@@ -92,11 +92,9 @@ async function loadData() {
     acLoaded = true;
 
     const aptCount = Object.keys(AIRPORTS).length;
-    const acCount = Object.keys(AIRCRAFT).length;
 
-    statusEl.textContent =
-      aptCount.toLocaleString() + ' airports · ' +
-      acCount + ' aircraft types · Loading registry…';
+      statusEl.textContent =
+        'Loading VAT reference data...';
 
     // Load VAT reference data before any route can be evaluated for VAT.
     await Promise.all([
@@ -105,6 +103,24 @@ async function loadData() {
       loadVatRules(),
       loadSellingEntities()
     ]);
+
+    const entityCount =
+    sellingEntitiesData.recordCount || 0;
+
+const ruleCount =
+    vatRulesData.ruleCount || 0;
+
+statusEl.textContent =
+    'Ready • ' +
+    aptCount.toLocaleString() +
+    ' Airports • ' +
+    ruleCount +
+    ' VAT Rules • ' +
+    entityCount +
+    ' Entities';
+
+statusEl.classList.remove('loading');
+statusEl.classList.add('ready');
 
     /*
      * Initialise the existing VAT inputs as soon as their core
