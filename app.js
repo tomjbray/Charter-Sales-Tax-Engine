@@ -1,0 +1,3112 @@
+// ═══════════════════════════════════════════════════════════
+//  Charter Route Planner — app.js
+//
+//  Main responsibilities:
+//  1. Load airport, aircraft, registry and VAT reference data.
+//  2. Build the itinerary used by both route planning and VAT.
+//  3. Plot routes and calculate distance.
+//  4. Rank suitable aircraft and show supporting information.
+//  5. Match each itinerary sector to the appropriate VAT rule.
+// ═══════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════
+//  1. APPLICATION STATE
+// ═══════════════════════════════════════════════════════════
+
+// Core reference data
+let AIRPORTS = {};
+let AIRCRAFT = {};
+let REGISTRY = {};
+let REGISTRY_BY_TYPE = {};
+
+// Data-loading flags
+let dbLoaded = false;
+let acLoaded = false;
+let regLoaded = false;
+
+// Current route and itinerary
+let origAirport = null;
+let destAirport = null;
+let itinerary = [];
+
+/*
+ * Additional sectors entered after the primary route.
+ *
+ * The existing Origin and Destination controls remain Sector 1.
+ * Each object below represents Sector 2 onwards.
+ */
+let additionalSectors = [];
+let nextSectorId = 2;
+
+// Aircraft search inputs
+let paxCount = 8;
+let includeSingleEngine = true;
+let minYear = null;
+let activeFilter = 'all';
+
+// Map and tracking layers
+let routeLayers = [];
+let trackingLayers = [];
+
+// VAT reference data
+let selectedEntity = "BRU";
+let selectedCharterType = "PASSENGER";
+let selectedCustomerType = "PRIVATE";
+let selectedCustomerCountry = "BE";
+let selectedVatRegistered = "NO";
+let sellingEntitiesData = null;
+let vatRulesData = null;
+let taxTerritoriesData = null;
+let countriesData = null;
+let charterValue = 0;
+
+// Dynamic VAT-input configuration loaded from input_requirements.json.
+// The current renderer uses this file for validation/readiness; the next phase
+// will use its input definitions to generate controls conditionally.
+let inputRequirementsData = null;
+
+// ═══════════════════════════════════════════════════════════
+//  2. DATA LOADING
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Coordinates application start-up by loading core and VAT reference data, initialising controls, restoring any airport input entered during loading, and starting the optional registry load.
+ * @returns {Promise<void>}
+ */
+
+async function loadData() {
+  const statusEl = document.getElementById('dbStatus');
+  statusEl.classList.add('loading');
+
+  try {
+    // Core planner data is needed immediately for airport and aircraft searches.
+    const [aptRes, acRes] = await Promise.all([
+      fetch('./airports.json'),
+      fetch('./aircraft_types.json'),
+    ]);
+
+    if (!aptRes.ok) throw new Error('airports.json: HTTP ' + aptRes.status);
+    if (!acRes.ok) throw new Error('aircraft_types.json: HTTP ' + acRes.status);
+
+    AIRPORTS = await aptRes.json();
+    const acData = await acRes.json();
+
+    // Remove the metadata entry because it is not an aircraft type.
+    AIRCRAFT = Object.fromEntries(
+      Object.entries(acData).filter(([key]) => key !== '_metadata')
+    );
+
+    dbLoaded = true;
+    acLoaded = true;
+
+    const aptCount = Object.keys(AIRPORTS).length;
+    const acCount = Object.keys(AIRCRAFT).length;
+
+    statusEl.textContent =
+      aptCount.toLocaleString() + ' airports · ' +
+      acCount + ' aircraft types · Loading registry…';
+
+    // Load VAT reference data before any route can be evaluated for VAT.
+    await Promise.all([
+      loadCountries(),
+      loadTaxTerritories(),
+      loadVatRules(),
+      loadSellingEntities()
+    ]);
+
+    /*
+     * Initialise the existing VAT inputs as soon as their core
+     * reference files are ready. A problem with the optional dynamic
+     * input file must not remove Selling Entity or Customer Country.
+     */
+    populateSellingEntityDropdown();
+    initialiseCustomerCountryTypeahead();
+    initialiseCharterTypeSelector();
+    initialiseCustomerTypeSelector();
+    initialiseVatRegisteredSelector();
+    syncVatRegisteredState();
+    initialiseCharterValueInput();
+
+    /*
+     * Load the new dynamic-input file separately. This keeps the rest
+     * of the application working while also reporting any file issue.
+     */
+    await loadInputRequirements();
+    renderDynamicInputs();
+
+    // Re-run airport lookups if the user typed while data was loading.
+    const originValue = document.getElementById('origInput').value;
+    const destinationValue = document.getElementById('destInput').value;
+
+    if (originValue.length === 3) {
+      lookupAirport(originValue, document.getElementById('origInfo'), true);
+    }
+
+    if (destinationValue.length === 3) {
+      lookupAirport(destinationValue, document.getElementById('destInfo'), false);
+    }
+
+    // Registry loading is non-blocking because it is not needed for route entry.
+    loadRegistry(aptCount, acCount);
+
+  } catch (error) {
+    statusEl.textContent = '⚠ Data load failed: ' + error.message;
+    console.error(error);
+  }
+}
+
+/**
+ * Loads the country reference dataset used by customer-country typeahead and VAT region classification.
+ * @returns {Promise<void>}
+ */
+
+async function loadCountries() {
+  const response = await fetch('./countries.json');
+  if (!response.ok) throw new Error('countries.json: HTTP ' + response.status);
+
+  countriesData = await response.json();
+  console.log(`Loaded ${countriesData.recordCount} countries`);
+}
+
+/**
+ * Loads and validates the configuration that will drive conditional VAT inputs.
+ * @returns {Promise<void>}
+ */
+
+async function loadInputRequirements() {
+    const response = await fetch('./input_requirements.json');
+
+    if (!response.ok) {
+        throw new Error(
+            'input_requirements.json: HTTP ' + response.status
+        );
+    }
+
+    inputRequirementsData = await response.json();
+
+    if (!Array.isArray(inputRequirementsData?.inputs)) {
+        throw new Error(
+            'input_requirements.json does not contain an inputs array.'
+        );
+    }
+
+    console.log(
+        `Loaded ${inputRequirementsData.inputCount} input requirements`
+    );
+}
+
+/**
+ * Loads selling-entity reference data, including each entity’s home country.
+ * @returns {Promise<void>}
+ */
+
+async function loadSellingEntities() {
+    const response =
+        await fetch('./selling_entities.json');
+
+    if (!response.ok) {
+        throw new Error(
+            'selling_entities.json: HTTP ' +
+            response.status
+        );
+    }
+
+    sellingEntitiesData =
+        await response.json();
+
+    console.log(
+        `Loaded ${sellingEntitiesData.recordCount} selling entities`
+    );
+}
+
+/**
+ * Loads country-to-tax-territory mappings used where a country may contain distinct VAT territories.
+ * @returns {Promise<void>}
+ */
+
+async function loadTaxTerritories() {
+  const response = await fetch('./tax_territories.json');
+  if (!response.ok) throw new Error('tax_territories.json: HTTP ' + response.status);
+
+  taxTerritoriesData = await response.json();
+  console.log(`Loaded ${taxTerritoriesData.recordCount} tax territories`);
+}
+
+/**
+ * Loads the VAT rule matrix used for sector-by-sector rule matching.
+ * @returns {Promise<void>}
+ */
+
+async function loadVatRules() {
+  const response = await fetch('./vat_rules.json');
+  if (!response.ok) throw new Error('vat_rules.json: HTTP ' + response.status);
+
+  vatRulesData = await response.json();
+  console.log(`Loaded ${vatRulesData.ruleCount} VAT rules`);
+}
+
+/**
+ * Loads aircraft registry data without blocking route entry, then indexes records by aircraft type for fast lookup.
+ *
+ * @param {number} aptCount - Loaded airport count for the status message.
+ * @param {number} acCount - Loaded aircraft-type count for the status message.
+ * @returns {Promise<void>}
+ */
+
+async function loadRegistry(aptCount, acCount) {
+  try {
+    const res = await fetch('./aircraft_registry.json');
+    if (!res.ok) {
+      document.getElementById('dbStatus').textContent =
+        aptCount.toLocaleString() + ' airports · ' + acCount + ' aircraft types';
+      return;
+    }
+
+    REGISTRY = await res.json();
+    regLoaded = true;
+
+    // Pre-group by type_code for fast lookup
+    for (const entry of Object.values(REGISTRY)) {
+      const tc = entry.type_code;
+      if (!REGISTRY_BY_TYPE[tc]) REGISTRY_BY_TYPE[tc] = [];
+      REGISTRY_BY_TYPE[tc].push(entry);
+    }
+
+    const regCount = Object.keys(REGISTRY).length;
+    const statusEl = document.getElementById('dbStatus');
+    statusEl.textContent =
+      aptCount.toLocaleString() + ' airports · ' +
+      acCount + ' aircraft types · ' +
+      regCount.toLocaleString() + ' registered aircraft';
+    statusEl.classList.remove('loading');
+    statusEl.classList.add('ready');
+
+  } catch(e) {
+    console.warn('Registry load failed:', e.message);
+    const statusEl2 = document.getElementById('dbStatus');
+    statusEl2.textContent = aptCount.toLocaleString() + ' airports · ' + acCount + ' aircraft types';
+    statusEl2.classList.remove('loading');
+    statusEl2.classList.add('ready');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  3. VAT REGION AND TERRITORY CLASSIFICATION
+// ═══════════════════════════════════════════════════════════
+
+// getRuleRegion() provides the broad region used by the current BRU matrix.
+// getTaxTerritory() is reserved for specific territory distinctions such as
+// ES_MAINLAND, ES_BALEARIC and ES_CANARY when airport-level mappings are added.
+
+
+
+/**
+ * Converts an ISO country code into the rule-region value expected by the VAT matrix, preserving the selling entity’s home country as a distinct value.
+ *
+ * @param {string} countryCode - ISO country code to classify.
+ * @param {string} homeCountry - ISO country code of the selected selling entity.
+ * @returns {string|null}
+ */
+
+
+
+function getRuleRegion(
+          countryCode,
+          homeCountry
+         ) {
+  if (!countryCode) return null;
+
+  const country = countriesData?.data?.[countryCode];
+
+  // If a country is not yet in the reference file, preserve its country code.
+  // This avoids silently treating unknown data as non-EU.
+  if (!country) return countryCode;
+
+  // Domestic country must always map to itself
+  if (countryCode === homeCountry) {
+        return homeCountry;
+}
+
+
+  // Belgium must remain distinct because the BRU rule matrix uses BE explicitly.
+  //if (countryCode === 'BE') return 'BE';
+
+  // Support both proper JSON booleans and text values from older exports.
+const euFlag =
+    country.eUMember ?? country.euMember;
+
+const isEuMember =
+    euFlag === true ||
+    String(euFlag).toUpperCase() === 'TRUE';
+ 
+      return isEuMember ? 'EU' : 'NON_EU';
+
+
+}
+
+/**
+ * Returns a unique tax-territory code for a country when exactly one mapping exists; otherwise returns the country code to avoid an unsafe assumption.
+ *
+ * @param {string} countryCode - ISO country code to resolve.
+ * @returns {string}
+ */
+
+function getTaxTerritory(countryCode) {
+  if (!countryCode || !taxTerritoriesData?.data) return countryCode;
+
+  const matchingTerritories = Object.entries(taxTerritoriesData.data)
+    .filter(([, territory]) => territory.country === countryCode);
+
+  // A country can have several tax territories, such as mainland Spain,
+  // the Balearic Islands and the Canary Islands. Country alone is therefore
+  // insufficient to choose safely when more than one territory exists.
+  if (matchingTerritories.length !== 1) return countryCode;
+
+  return matchingTerritories[0][0];
+}
+
+/**
+ * Returns the home-country code for a selling entity.
+ *
+ * @param {string} entityCode - Selling-entity identifier.
+ * @returns {string|null}
+ */
+
+function getEntityCountry(entityCode) {
+ 
+    const entity =
+        sellingEntitiesData?.data?.[entityCode];
+
+    if (!entity)
+        return null;
+
+    return entity.country;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  4. VAT RULE MATCHING AND DISPLAY
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Tests one VAT rule field against a transaction field, treating blank and ANY rule values as wildcards.
+ *
+ * @param {string} ruleValue - Value stored in the VAT rule.
+ * @param {string} inputValue - Derived or selected transaction value.
+ * @returns {boolean}
+ */
+
+function valueMatches(
+    ruleValue,
+    inputValue
+) {
+
+    if (
+        !ruleValue ||
+        ruleValue === "ANY"
+    ) {
+        return true;
+    }
+
+    return ruleValue === inputValue;
+}
+
+/**
+ * Filters the VAT rule matrix against all transaction dimensions and returns the first matching rule.
+ *
+ * @param {Object} transaction - Normalised VAT transaction for one itinerary sector.
+ * @returns {Object|null}
+ */
+
+function findMatchingRule(
+    transaction
+) {
+
+    if (
+        !vatRulesData ||
+        !vatRulesData.rules
+    ) {
+        return null;
+    }
+
+    const matches =
+        vatRulesData.rules.filter(
+            rule =>
+
+                valueMatches(
+                    rule.entity,
+                    transaction.entity
+                )
+
+                &&
+
+                valueMatches(
+                    rule.charterType,
+                    transaction.charterType
+                )
+
+                &&
+
+                valueMatches(
+                    rule.customerType,
+                    transaction.customerType
+                )
+
+                &&
+
+                valueMatches(
+                    rule.customerLocation,
+                    transaction.customerLocation
+                )
+
+                &&
+
+                valueMatches(
+                    rule.vatRegistered,
+                    transaction.vatRegistered
+                )
+
+                &&
+
+                valueMatches(
+                    rule.originTerritory,
+                    transaction.originTerritory
+                )
+
+                &&
+
+                valueMatches(
+                    rule.destinationTerritory,
+                    transaction.destinationTerritory
+                )
+        );
+
+    
+
+    return matches[0] || null;
+}
+
+
+
+
+
+
+/**
+ * Removes all rendered sector VAT cards from the results container.
+ */
+
+
+
+
+
+
+function clearVatSectorResults() {
+
+    const container =
+        document.getElementById(
+            "vatSectorResults"
+        );
+
+    if (container) {
+        container.innerHTML = "";
+    }
+}
+
+
+/**
+ * Escapes text before inserting it into HTML templates to prevent markup injection.
+ *
+ * @param {*} value - Value to convert to safe display text.
+ * @returns {string}
+ */
+
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/**
+ * Validates whether a matched rule has a supported calculation method, numeric rate, and numeric taxable percentage.
+ *
+ * @param {Object|null} matchedRule - Matched VAT rule, or null when no rule matched.
+ * @returns {{{canCalculate: boolean, status: string, reasons: string[]}}}
+ */
+
+
+function evaluateVatCalculationStatus(matchedRule) {
+    const reasons = [];
+
+    if (!matchedRule) {
+        reasons.push("No matching VAT rule was found.");
+    } else {
+        const calculationMethod =
+            String(matchedRule.calculationMethod || "")
+                .trim()
+                .toUpperCase();
+
+        if (!calculationMethod) {
+            reasons.push("The rule has no calculation method.");
+        } else if (calculationMethod !== "STANDARD") {
+            reasons.push(
+                `Calculation method ${calculationMethod} is not yet supported.`
+            );
+        }
+
+        if (
+            matchedRule.rate === null ||
+            matchedRule.rate === undefined ||
+            matchedRule.rate === "" ||
+            !Number.isFinite(Number(matchedRule.rate))
+        ) {
+            reasons.push("The rule has no valid VAT rate.");
+        }
+
+        if (
+            matchedRule.taxablePercent === null ||
+            matchedRule.taxablePercent === undefined ||
+            matchedRule.taxablePercent === "" ||
+            !Number.isFinite(Number(matchedRule.taxablePercent))
+        ) {
+            reasons.push("The rule has no valid taxable percentage.");
+        }
+    }
+
+    return {
+        canCalculate: reasons.length === 0,
+        status: reasons.length === 0 ? "Complete" : "Review Required",
+        reasons
+    };
+}
+
+/**
+ * Formats a finite numeric amount to two decimal places, or returns a review message for unavailable values.
+ *
+ * @param {number|null} value - Amount to format.
+ * @returns {string}
+ */
+
+function formatMoneyValue(value) {
+    if (!Number.isFinite(value)) {
+        return "Review Required";
+    }
+
+    return value.toLocaleString(
+        undefined,
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
+}
+
+/**
+ * Builds and displays the detailed derived-input, rule-match, distance-allocation, and VAT-calculation card for every itinerary sector.
+ *
+ * @param {Object[]} results - Sector VAT calculation results.
+ */
+
+function renderVatSectorResults(
+    results
+) {
+
+    const container =
+        document.getElementById(
+            "vatSectorResults"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    results.forEach(result => {
+
+        const {
+            sector,
+            transaction,
+            homeCountry,
+            matchedRule,
+            distanceNm,
+            distancePercentage,
+            totalDistanceNm,
+            allocatedNetValue,
+            taxablePercent,
+            taxableValue,
+            vatAmount,
+            grossValue,
+            calculationStatus,
+            reviewReasons
+        } = result;
+
+        const card =
+            document.createElement(
+                "section"
+            );
+
+        card.className =
+            "vat-sector-card";
+
+        const routeLabel =
+            `${sector.origin.iata} → ` +
+            `${sector.destination.iata}`;
+
+        const ruleId =
+            matchedRule
+                ? matchedRule.ruleId
+                : "NO MATCH";
+
+        const treatment =
+            matchedRule
+                ? matchedRule.treatment
+                : "Review Required";
+
+        const rate =
+            matchedRule
+                ? (
+                    matchedRule.rate * 100
+                ).toFixed(2) + "%"
+                : "-";
+
+        const priority =
+            matchedRule
+                ? matchedRule.rulePriority
+                : "-";
+
+        const explanation =
+            matchedRule
+                ? (
+                    matchedRule.ruleExplanation ||
+                    "-"
+                )
+                : (
+                    "No VAT rule matches this " +
+                    "sector and the selected VAT inputs."
+                );
+
+        const legalReference =
+            matchedRule
+                ? (
+                    matchedRule.legalReference ||
+                    "-"
+                )
+                : "Review VAT matrix";
+
+        card.innerHTML = `
+            <div class="vat-sector-heading">
+
+                <div>
+                    Sector ${sector.sectorNumber}
+                </div>
+
+                <strong>
+                    ${escapeHtml(routeLabel)}
+                </strong>
+
+            </div>
+
+            <div class="vat-sector-columns">
+
+                <div class="vat-panel">
+
+                    <h3>
+                        Derived Rule Inputs
+                    </h3>
+
+                    ${createVatResultRow(
+                        "Home Country",
+                        homeCountry
+                    )}
+
+                    ${createVatResultRow(
+                        "Customer Region",
+                        transaction.customerLocation
+                    )}
+
+                    ${createVatResultRow(
+                        "Origin Territory",
+                        transaction.originTerritory
+                    )}
+
+                    ${createVatResultRow(
+                        "Destination Territory",
+                        transaction.destinationTerritory
+                    )}
+
+                    ${createVatResultRow(
+                        "VAT Registered",
+                        transaction.vatRegistered
+                    )}
+
+                </div>
+
+                <div class="vat-panel">
+
+                    <h3>
+                        VAT Rule Match
+                    </h3>
+
+                    ${createVatResultRow(
+                        "Calculation Status",
+                        calculationStatus,
+                        calculationStatus === "Complete"
+                            ? "calculation-complete"
+                            : "no-match"
+                    )}
+
+                    ${createVatResultRow(
+                        "Review Reason",
+                        reviewReasons.length
+                            ? reviewReasons.join(" ")
+                            : "-"
+                    )}
+
+                    ${createVatResultRow(
+                        "Rule ID",
+                        ruleId,
+                        matchedRule
+                            ? ""
+                            : "no-match"
+                    )}
+
+                    ${createVatResultRow(
+                        "Treatment",
+                        treatment
+                    )}
+
+                    ${createVatResultRow(
+                        "Rate",
+                        rate
+                    )}
+
+                    ${createVatResultRow(
+                        "Priority",
+                        priority
+                    )}
+
+                    ${createVatResultRow(
+                        "Explanation",
+                        explanation
+                    )}
+
+                    ${createVatResultRow(
+                        "Legal Reference",
+                        legalReference
+                    )}
+
+                    ${createVatResultRow(
+                        "Sector Distance",
+                        Math.round(distanceNm).toLocaleString() + " nm"
+                    )}
+
+                    ${createVatResultRow(
+                        "Itinerary Distance",
+                        Math.round(totalDistanceNm).toLocaleString() + " nm"
+                    )}
+
+                    ${createVatResultRow(
+                        "Distance Allocation",
+                        distancePercentage.toFixed(2) + "%"
+                    )}
+
+                    ${createVatResultRow(
+                        "Allocated Value",
+                        formatMoneyValue(allocatedNetValue)
+                    )}
+
+                    ${createVatResultRow(
+                    "Taxable Percentage",
+                    Number.isFinite(taxablePercent)
+                        ? (taxablePercent * 100).toFixed(2) + "%"
+                        : "Review Required"
+                    )}
+
+                    ${createVatResultRow(
+                    "Taxable Amount",
+                    formatMoneyValue(taxableValue)
+                    )}
+
+                    ${createVatResultRow(
+                    "VAT Amount",
+                    formatMoneyValue(vatAmount)
+                      )}
+
+                     ${createVatResultRow(
+                      "Gross Amount",
+                      formatMoneyValue(grossValue)
+                      )} 
+
+                </div>
+
+            </div>
+        `;
+
+        container.appendChild(
+            card
+        );
+    });
+}
+
+
+/**
+ * Creates one escaped label/value row for a VAT result panel.
+ *
+ * @param {string} label - Row label.
+ * @param {*} value - Displayed value.
+ * @param {string} extraClass - Optional CSS class for the value.
+ * @returns {string}
+ */
+
+
+function createVatResultRow(
+    label,
+    value,
+    extraClass = ""
+) {
+
+    const displayedValue =
+        value === null ||
+        value === undefined ||
+        value === ""
+            ? "-"
+            : value;
+
+    return `
+        <div class="vat-result-row">
+
+            <span class="vat-result-label">
+                ${escapeHtml(label)}
+            </span>
+
+            <strong
+                class="vat-result-value ${escapeHtml(extraClass)}">
+
+                ${escapeHtml(displayedValue)}
+
+            </strong>
+
+        </div>
+    `;
+}
+
+/**
+ * Populates the selling-entity selector and reruns VAT evaluation when the selection changes.
+ */
+
+function populateSellingEntityDropdown() {
+
+    const select =
+        document.getElementById(
+            "sellingEntitySelect"
+        );
+
+    select.innerHTML = "";
+
+    Object.keys(
+        sellingEntitiesData.data
+    )
+    .sort()
+    .forEach(entityCode => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = entityCode;
+        option.textContent = entityCode;
+
+        if (
+            entityCode === selectedEntity
+        ) {
+            option.selected = true;
+        }
+
+        select.appendChild(option);
+    });
+
+    select.addEventListener(
+        "change",
+        event => {
+
+            selectedEntity =
+                event.target.value;
+
+            runVatTest();
+        }
+    );
+}
+
+/**
+ * Attaches charter-value input handling and reruns VAT allocation whenever the value changes.
+ */
+
+function initialiseCharterValueInput() {
+
+    const input =
+        document.getElementById(
+            "charterValueInput"
+        );
+
+    input.addEventListener(
+        "input",
+        event => {
+
+            charterValue =
+                Number(
+                    event.target.value
+                ) || 0;
+
+            runVatTest();
+        }
+    );
+}
+
+/**
+ * Builds the customer-country datalist, displays the initial country, and wires validation for input, change, and blur events.
+ */
+
+function initialiseCustomerCountryTypeahead() {
+
+    const input =
+        document.getElementById(
+            "customerCountryInput"
+        );
+
+    const datalist =
+        document.getElementById(
+            "customerCountryList"
+        );
+
+    if (
+        !input ||
+        !datalist ||
+        !countriesData?.data
+    ) {
+        return;
+    }
+
+    datalist.innerHTML = "";
+
+    const countries =
+        Object.entries(
+            countriesData.data
+        )
+        .map(
+            ([code, country]) => ({
+                code:
+                    code.toUpperCase(),
+
+                name:
+                    country.name
+            })
+        )
+        .sort(
+            (firstCountry, secondCountry) =>
+                firstCountry.name.localeCompare(
+                    secondCountry.name
+                )
+        );
+
+    countries.forEach(country => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            country.name;
+
+        option.label =
+            country.code;
+
+        option.dataset.code =
+            country.code;
+
+        datalist.appendChild(
+            option
+        );
+    });
+
+    /*
+     * Show the name matching the initial ISO code.
+     */
+    const initialCountry =
+        countries.find(
+            country =>
+                country.code ===
+                selectedCustomerCountry
+        );
+
+    if (initialCountry) {
+        input.value =
+            initialCountry.name;
+    }
+
+    /*
+     * Update the selected country whenever the user
+     * selects or enters a recognised country.
+     */
+    input.addEventListener(
+        "change",
+        () => {
+
+            applyCustomerCountrySelection(
+                input.value
+            );
+        }
+    );
+
+    /*
+     * Also respond immediately when a recognised
+     * country name or ISO code has been entered.
+     */
+    input.addEventListener(
+        "input",
+        () => {
+
+            const match =
+                findCountryFromInput(
+                    input.value
+                );
+
+            if (match) {
+
+                selectedCustomerCountry =
+                    match.code;
+
+                setCustomerCountryStatus(
+                    `${match.name} (${match.code})`,
+                    false
+                );
+
+                runVatTest();
+
+            } else {
+
+                setCustomerCountryStatus(
+                    "",
+                    false
+                );
+            }
+        }
+    );
+
+    /*
+     * Reject unrecognised text when the user leaves
+     * the input.
+     */
+    input.addEventListener(
+        "blur",
+        () => {
+
+            applyCustomerCountrySelection(
+                input.value
+            );
+        }
+    );
+
+    if (initialCountry) {
+        setCustomerCountryStatus(
+            `${initialCountry.name} ` +
+            `(${initialCountry.code})`,
+            false
+        );
+    }
+}
+
+
+/**
+ * Resolves an exact ISO country code or country name to the canonical country record.
+ *
+ * @param {string} inputValue - User-entered country code or name.
+ * @returns {{{code: string, name: string}|null}}
+ */
+
+
+function findCountryFromInput(
+    inputValue
+) {
+
+    if (
+        !inputValue ||
+        !countriesData?.data
+    ) {
+        return null;
+    }
+
+    const searchValue =
+        inputValue
+            .trim()
+            .toLowerCase();
+
+    /*
+     * First allow an exact ISO-code match.
+     *
+     * Example:
+     * FR → France
+     */
+    const codeMatch =
+        Object.entries(
+            countriesData.data
+        )
+        .find(
+            ([code]) =>
+                code.toLowerCase() ===
+                searchValue
+        );
+
+    if (codeMatch) {
+
+        return {
+            code:
+                codeMatch[0].toUpperCase(),
+
+            name:
+                codeMatch[1].name
+        };
+    }
+
+    /*
+     * Then look for an exact country-name match.
+     *
+     * Example:
+     * France → FR
+     */
+    const nameMatch =
+        Object.entries(
+            countriesData.data
+        )
+        .find(
+            ([, country]) =>
+                country.name
+                    .trim()
+                    .toLowerCase() ===
+                searchValue
+        );
+
+    if (!nameMatch) {
+        return null;
+    }
+
+    return {
+        code:
+            nameMatch[0].toUpperCase(),
+
+        name:
+            nameMatch[1].name
+    };
+}
+
+
+/**
+ * Validates and canonicalises the customer-country entry, updates application state, and refreshes VAT results.
+ *
+ * @param {string} inputValue - Country value entered by the user.
+ */
+
+
+function applyCustomerCountrySelection(
+    inputValue
+) {
+
+    const input =
+        document.getElementById(
+            "customerCountryInput"
+        );
+
+    const match =
+        findCountryFromInput(
+            inputValue
+        );
+
+    if (!match) {
+
+        selectedCustomerCountry =
+            null;
+
+        setCustomerCountryStatus(
+            "Please select a recognised country.",
+            true
+        );
+
+        /*
+         * Refresh the VAT panels so an old result
+         * is not left on screen.
+         */
+        runVatTest();
+
+        return;
+    }
+
+    selectedCustomerCountry =
+        match.code;
+
+    /*
+     * Standardise the displayed value to the
+     * official country name from countries.json.
+     */
+    input.value =
+        match.name;
+
+    setCustomerCountryStatus(
+        `${match.name} (${match.code})`,
+        false
+    );
+
+    runVatTest();
+}
+
+
+/**
+ * Updates the customer-country validation message and its error styling.
+ *
+ * @param {string} message - Status text to display.
+ * @param {boolean} isError - Whether to apply error styling.
+ */
+
+
+function setCustomerCountryStatus(
+    message,
+    isError
+) {
+
+    const status =
+        document.getElementById(
+            "customerCountryStatus"
+        );
+
+    if (!status) {
+        return;
+    }
+
+    status.textContent =
+        message;
+
+    status.classList.toggle(
+        "country-typeahead-error",
+        isError
+    );
+}
+
+/**
+ * Initialises the charter-type selector and refreshes VAT results after a change.
+ */
+
+function initialiseCharterTypeSelector() {
+
+    const selector =
+        document.getElementById(
+            "charterTypeSelect"
+        );
+
+    selector.value =
+        selectedCharterType;
+
+    selector.addEventListener(
+        "change",
+        event => {
+
+            selectedCharterType =
+                event.target.value;
+
+            runVatTest();
+        }
+    );
+}
+
+/**
+ * Initialises the customer-type selector, synchronises VAT-registration behaviour, and refreshes VAT results after a change.
+ */
+
+function initialiseCustomerTypeSelector() {
+    const selector = document.getElementById("customerTypeSelect");
+
+    selector.value = selectedCustomerType;
+
+    selector.addEventListener("change", event => {
+        selectedCustomerType = event.target.value;
+        syncVatRegisteredState();
+        runVatTest();
+    });
+}
+
+/**
+ * Initialises the VAT-registration selector and refreshes VAT results after a change.
+ */
+
+function initialiseVatRegisteredSelector() {
+
+    const selector =
+        document.getElementById(
+            "vatRegisteredSelect"
+        );
+
+    selector.value =
+        selectedVatRegistered;
+
+    selector.addEventListener(
+        "change",
+        event => {
+
+            selectedVatRegistered =
+                event.target.value;
+
+            runVatTest();
+        }
+    );
+}
+
+/**
+ * Enforces NO and disables the VAT-registration selector for private customers; preserves a valid YES/NO choice for business customers.
+ */
+
+function syncVatRegisteredState() {
+
+    const vatSelect =
+        document.getElementById(
+            "vatRegisteredSelect"
+        );
+
+    if (selectedCustomerType === "PRIVATE") {
+
+        selectedVatRegistered = "NO";
+
+        vatSelect.value = "NO";
+        vatSelect.disabled = true;
+
+    } else {
+
+        if (
+            selectedVatRegistered !== "YES" &&
+            selectedVatRegistered !== "NO"
+        ) {
+            selectedVatRegistered = "YES";
+        }
+
+        vatSelect.value =
+            selectedVatRegistered;
+
+        vatSelect.disabled = false;
+    }
+}
+
+/**
+ * Builds the normalised VAT matching transaction and selling-entity home country for one sector.
+ *
+ * @param {Object} sector - Itinerary sector containing origin and destination airports.
+ * @returns {{{transaction: Object, homeCountry: string|null}}}
+ */
+
+function buildVatTransaction(sector) {
+    const homeCountry = getEntityCountry(selectedEntity);
+
+    const transaction = {
+        entity: selectedEntity,
+        charterType: selectedCharterType,
+        customerType: selectedCustomerType,
+        customerLocation: getRuleRegion(
+            selectedCustomerCountry,
+            homeCountry
+        ),
+        vatRegistered: selectedVatRegistered,
+        originTerritory: getRuleRegion(
+            sector.origin.country,
+            homeCountry
+        ),
+        destinationTerritory: getRuleRegion(
+            sector.destination.country,
+            homeCountry
+        )
+    };
+
+    return {
+        transaction,
+        homeCountry
+    };
+}
+
+/**
+ * Aggregates sector calculations into itinerary totals and identifies any sectors requiring review.
+ *
+ * @param {Object[]} results - Sector VAT calculation results.
+ */
+
+function renderVatSummary(results) {
+    const reviewResults = results.filter(
+        result => result.calculationStatus !== "Complete"
+    );
+
+    const isComplete = reviewResults.length === 0;
+
+    const totalNetValue = results.reduce(
+        (sum, result) => sum + result.allocatedNetValue,
+        0
+    );
+
+    const totalTaxableValue = isComplete
+        ? results.reduce((sum, result) => sum + result.taxableValue, 0)
+        : null;
+
+    const totalVatValue = isComplete
+        ? results.reduce((sum, result) => sum + result.vatAmount, 0)
+        : null;
+
+    const totalGrossValue = isComplete
+        ? results.reduce((sum, result) => sum + result.grossValue, 0)
+        : null;
+
+    document.getElementById("summaryNetValue").textContent =
+        formatMoneyValue(totalNetValue);
+    document.getElementById("summaryTaxableValue").textContent =
+        formatMoneyValue(totalTaxableValue);
+    document.getElementById("summaryVatValue").textContent =
+        formatMoneyValue(totalVatValue);
+    document.getElementById("summaryGrossValue").textContent =
+        formatMoneyValue(totalGrossValue);
+
+    const statusElement =
+        document.getElementById("summaryCalculationStatus");
+    const reviewElement =
+        document.getElementById("summaryReviewSectors");
+
+    statusElement.textContent =
+        isComplete ? "Complete" : "Review Required";
+    statusElement.classList.toggle("summary-status-complete", isComplete);
+    statusElement.classList.toggle("summary-status-review", !isComplete);
+
+    reviewElement.textContent = reviewResults.length
+        ? reviewResults
+            .map(result => `Sector ${result.sector.sectorNumber}`)
+            .join(", ")
+        : "None";
+}
+
+/**
+ * Evaluates every complete itinerary sector, allocates value by rounded distance percentage, calculates VAT where supported, and renders summary and detail results.
+ * @returns {Object[]}
+ */
+
+function runVatTests() {
+    if (itinerary.length === 0 || !vatRulesData) {
+        clearVatSectorResults();
+        return [];
+    }
+
+    if (!selectedCustomerCountry) {
+        clearVatSectorResults();
+        return [];
+    }
+
+    const sectorDistances = itinerary.map(sector => {
+        return haversineNm(
+            sector.origin.lat,
+            sector.origin.lon,
+            sector.destination.lat,
+            sector.destination.lon
+        );
+    });
+
+    const totalDistanceNm = sectorDistances.reduce(
+        (total, distance) => total + distance,
+        0
+    );
+
+    const distancePercentages = [];
+    let allocatedPercentage = 0;
+
+    sectorDistances.forEach((distanceNm, index) => {
+        const isFinalSector = index === sectorDistances.length - 1;
+        let distancePercentage;
+
+        if (isFinalSector) {
+            distancePercentage = Math.max(
+                0,
+                Number((100 - allocatedPercentage).toFixed(2))
+            );
+        } else {
+            distancePercentage = totalDistanceNm > 0
+                ? Number((distanceNm / totalDistanceNm * 100).toFixed(2))
+                : 0;
+            allocatedPercentage += distancePercentage;
+        }
+
+        distancePercentages.push(distancePercentage);
+    });
+
+    const results = itinerary.map((sector, index) => {
+        const {
+            transaction,
+            homeCountry
+        } = buildVatTransaction(sector);
+
+        const matchedRule = findMatchingRule(transaction);
+        const distancePercentage = distancePercentages[index];
+        const allocatedNetValue =
+            charterValue * (distancePercentage / 100);
+
+        const calculationCheck =
+            evaluateVatCalculationStatus(matchedRule);
+
+        const taxablePercent = calculationCheck.canCalculate
+            ? Number(matchedRule.taxablePercent)
+            : null;
+        const taxableValue = calculationCheck.canCalculate
+            ? allocatedNetValue * taxablePercent
+            : null;
+        const vatAmount = calculationCheck.canCalculate
+            ? taxableValue * Number(matchedRule.rate)
+            : null;
+        const grossValue = calculationCheck.canCalculate
+            ? allocatedNetValue + vatAmount
+            : null;
+
+        return {
+            sector,
+            transaction,
+            homeCountry,
+            matchedRule,
+            distanceNm: sectorDistances[index],
+            distancePercentage,
+            totalDistanceNm,
+            allocatedNetValue,
+            taxablePercent,
+            taxableValue,
+            vatAmount,
+            grossValue,
+            calculationStatus: calculationCheck.status,
+            reviewReasons: calculationCheck.reasons
+        };
+    });
+
+    renderVatSummary(results);
+    renderVatSectorResults(results);
+    return results;
+}
+
+/*
+ * Compatibility wrapper.
+ * Existing VAT input handlers call runVatTest().
+ */
+/**
+ * Provides backward-compatible singular naming for existing input handlers while delegating to the multi-sector VAT evaluator.
+ * @returns {Object[]}
+ */
+function runVatTest() {
+    return runVatTests();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  5. MULTI-SECTOR ITINERARY CONTROLS
+// ═══════════════════════════════════════════════════════════
+/**
+ * Adds a new optional itinerary sector, defaulting its origin to the previous valid destination.
+ */
+function addSector() {
+    const previousDestination = getPreviousSectorDestination();
+
+    const sector = {
+        id: nextSectorId,
+        originCode: previousDestination?.iata || "",
+        destinationCode: "",
+        origin: previousDestination || null,
+        destination: null
+    };
+
+    additionalSectors.push(sector);
+    nextSectorId++;
+
+    renderAdditionalSectors();
+    buildItinerary();
+}
+
+/**
+ * Removes an additional sector and rebuilds the itinerary.
+ *
+ * @param {number} sectorId - Stable identifier of the sector to remove.
+ */
+
+function removeSector(sectorId) {
+    additionalSectors = additionalSectors.filter(
+        sector => sector.id !== sectorId
+    );
+
+    renderAdditionalSectors();
+    buildItinerary();
+}
+
+/**
+ * Returns the most recent additional-sector destination, or the primary destination when no additional sector exists.
+ * @returns {Object|null}
+ */
+
+function getPreviousSectorDestination() {
+    if (additionalSectors.length > 0) {
+        return additionalSectors[additionalSectors.length - 1].destination;
+    }
+
+    return destAirport;
+}
+
+/**
+ * Normalises an additional-sector IATA entry, resolves the airport, updates status, and rebuilds the itinerary.
+ *
+ * @param {number} sectorId - Stable sector identifier.
+ * @param {string} field - Either origin or destination.
+ * @param {string} value - User-entered IATA code.
+ */
+
+function updateAdditionalSectorAirport(sectorId, field, value) {
+    const sector = additionalSectors.find(
+        item => item.id === sectorId
+    );
+
+    if (!sector) return;
+
+    const cleanCode = value.trim().toUpperCase();
+    const airport = cleanCode.length === 3
+        ? getAirport(cleanCode)
+        : null;
+
+    if (field === "origin") {
+        sector.originCode = cleanCode;
+        sector.origin = airport;
+    } else {
+        sector.destinationCode = cleanCode;
+        sector.destination = airport;
+    }
+
+    renderAdditionalSectorStatus(sector, field);
+    buildItinerary();
+}
+
+/**
+ * Renders the current transitional “Direct Exporter” VAT checkbox. The loaded configuration is validated now and will drive conditional rendering in the next implementation phase.
+ */
+
+function renderDynamicInputs() {
+
+    const container =
+        document.getElementById(
+            "dynamicVatInputs"
+        );
+
+    if (!container) {
+
+        console.error(
+            "dynamicVatInputs container not found"
+        );
+
+        return;
+    }
+
+    console.log(
+        "Input requirements data:",
+        inputRequirementsData
+    );
+
+    container.innerHTML = `
+        <div class="vat-input-block">
+
+            <label
+                class="vat-input-label"
+                for="directExporter">
+
+                Additional VAT Inputs
+
+            </label>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="directExporter">
+
+                Customer is Direct Exporter
+
+            </label>
+
+        </div>
+    `;
+}
+
+/**
+ * Displays the resolved airport details or an error for one additional-sector field.
+ *
+ * @param {Object} sector - Additional-sector state object.
+ * @param {string} field - Either origin or destination.
+ */
+
+function renderAdditionalSectorStatus(sector, field) {
+    const infoElement = document.getElementById(
+        `sector-${sector.id}-${field}-info`
+    );
+
+    if (!infoElement) return;
+
+    const airport = field === "origin"
+        ? sector.origin
+        : sector.destination;
+
+    const code = field === "origin"
+        ? sector.originCode
+        : sector.destinationCode;
+
+    if (code.length < 3) {
+        infoElement.textContent = "";
+        return;
+    }
+
+    if (!airport) {
+        infoElement.innerHTML =
+            '<div class="apt-error">Code not found</div>';
+        return;
+    }
+
+    infoElement.innerHTML =
+        '<div class="apt-name">' + airport.name + '</div>' +
+        '<div class="apt-meta">' +
+        (airport.city || '') +
+        (airport.city ? ' · ' : '') +
+        airport.country +
+        '</div>';
+}
+
+/**
+ * Rebuilds all additional-sector controls and attaches their input and removal handlers.
+ */
+
+function renderAdditionalSectors() {
+    const container = document.getElementById("additionalSectors");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    additionalSectors.forEach((sector, index) => {
+        const sectorNumber = index + 2;
+        const element = document.createElement("div");
+
+        element.className = "additional-sector-card";
+        element.innerHTML = `
+            <div class="additional-sector-header">
+                <span>Sector ${sectorNumber}</span>
+
+                <button
+                    type="button"
+                    class="remove-sector-btn"
+                    data-sector-id="${sector.id}"
+                    aria-label="Remove Sector ${sectorNumber}">
+                    Remove
+                </button>
+            </div>
+
+            <div class="additional-sector-fields">
+                <div class="additional-sector-field">
+                    <label for="sector-${sector.id}-origin">
+                        Origin
+                    </label>
+
+                    <input
+                        id="sector-${sector.id}-origin"
+                        class="sector-iata-input"
+                        maxlength="3"
+                        autocomplete="off"
+                        spellcheck="false"
+                        value="${escapeHtml(sector.originCode)}"
+                        placeholder="LBG">
+
+                    <div
+                        id="sector-${sector.id}-origin-info"
+                        class="airport-detail">
+                    </div>
+                </div>
+
+                <div class="sector-arrow">→</div>
+
+                <div class="additional-sector-field">
+                    <label for="sector-${sector.id}-destination">
+                        Destination
+                    </label>
+
+                    <input
+                        id="sector-${sector.id}-destination"
+                        class="sector-iata-input"
+                        maxlength="3"
+                        autocomplete="off"
+                        spellcheck="false"
+                        value="${escapeHtml(sector.destinationCode)}"
+                        placeholder="FRA">
+
+                    <div
+                        id="sector-${sector.id}-destination-info"
+                        class="airport-detail">
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(element);
+
+        const originInput = element.querySelector(
+            `#sector-${sector.id}-origin`
+        );
+
+        const destinationInput = element.querySelector(
+            `#sector-${sector.id}-destination`
+        );
+
+        const removeButton = element.querySelector(
+            ".remove-sector-btn"
+        );
+
+        originInput.addEventListener("input", event => {
+            updateAdditionalSectorAirport(
+                sector.id,
+                "origin",
+                event.target.value
+            );
+        });
+
+        destinationInput.addEventListener("input", event => {
+            updateAdditionalSectorAirport(
+                sector.id,
+                "destination",
+                event.target.value
+            );
+        });
+
+        removeButton.addEventListener("click", () => {
+            removeSector(sector.id);
+        });
+
+        renderAdditionalSectorStatus(sector, "origin");
+        renderAdditionalSectorStatus(sector, "destination");
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  6. ITINERARY BUILDING
+// ═══════════════════════════════════════════════════════════
+/**
+ * Reconstructs the itinerary from valid primary and additional sectors, then replots the map and reruns VAT evaluation.
+ * @returns {Object[]}
+ */
+function buildItinerary() {
+    itinerary = [];
+
+    if (origAirport && destAirport) {
+        itinerary.push({
+            sectorNumber: 1,
+            origin: origAirport,
+            destination: destAirport
+        });
+    }
+
+    additionalSectors.forEach(sector => {
+        if (sector.origin && sector.destination) {
+            itinerary.push({
+                sectorNumber: itinerary.length + 1,
+                origin: sector.origin,
+                destination: sector.destination
+            });
+        }
+    });
+
+    if (itinerary.length === 0) {
+        clearRoute();
+        clearVatSectorResults();
+        return itinerary;
+    }
+
+    plotItinerary();
+    runVatTests();
+
+    return itinerary;
+}
+// ═══════════════════════════════════════════════════════════
+//  7. AIRPORT LOOKUP
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Returns a normalised airport object for an IATA code, supporting both legacy array data and the current object format.
+ *
+ * @param {string} iata - Three-letter IATA airport code.
+ * @returns {Object|null}
+ */
+
+function getAirport(iata) {
+  const d = AIRPORTS[iata.toUpperCase().trim()];
+  if (!d) return null;
+
+  // Handle both old array format [name,country,city,lat,lon]
+  // and new object format {name, country, city, lat, lon, icao, ...}
+  if (Array.isArray(d)) {
+    return { iata: iata.toUpperCase(), name: d[0], country: d[1], city: d[2], lat: d[3], lon: d[4] };
+  }
+  return { iata: iata.toUpperCase(), ...d };
+}
+
+/**
+ * Validates a primary airport input, renders airport details, updates origin/destination state, and refreshes dependent UI.
+ *
+ * @param {string} iata - User-entered IATA code.
+ * @param {HTMLElement} infoEl - Element used for airport status/details.
+ * @param {boolean} isOrigin - True for origin; false for destination.
+ */
+
+function lookupAirport(iata, infoEl, isOrigin) {
+  iata = iata.toUpperCase().trim();
+
+  if (iata.length < 3) {
+    infoEl.innerHTML = '';
+    if (isOrigin) origAirport = null; else destAirport = null;
+    updateUI();
+    return;
+  }
+
+  if (!dbLoaded) {
+    infoEl.innerHTML = '<div class="apt-loading">Loading database…</div>';
+    if (isOrigin) origAirport = null; else destAirport = null;
+    updateUI();
+    return;
+  }
+
+  const ap = getAirport(iata);
+
+  if (ap) {
+    // Build the info display
+    const icao      = ap.icao      ? ' · ' + ap.icao : '';
+    const elevation = ap.elevation ? ' · ' + ap.elevation.toLocaleString() + ' ft' : '';
+
+    // Runway info — show best (longest) runway if available
+    let rwyHtml = '';
+    if (ap.runways && ap.runways.length > 0) {
+      const longest = Math.max(...ap.runways.map(r => r.length_ft || 0));
+      if (longest > 0) {
+        rwyHtml = '<div class="apt-rwy">Longest runway: ' + longest.toLocaleString() + ' ft</div>';
+      }
+    }
+
+    infoEl.innerHTML =
+      '<div class="apt-name">' + ap.name + '</div>' +
+      '<div class="apt-meta">' + (ap.city || '') + (ap.city ? ' · ' : '') + ap.country + icao + elevation + '</div>' +
+      rwyHtml;
+
+    if (isOrigin) origAirport = ap; else destAirport = ap;
+
+  } else {
+    infoEl.innerHTML = '<div class="apt-error">Code not found</div>';
+    if (isOrigin) origAirport = null; else destAirport = null;
+  }
+
+  updateUI();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  8. MAP SETUP AND ROUTE DRAWING
+// ═══════════════════════════════════════════════════════════
+
+/** Leaflet map instance shared by route and live-tracking features. */
+const map = L.map('map', {
+  center: [30, 10],
+  zoom: 2,
+  zoomControl: true,
+  attributionControl: true,
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 18,
+}).addTo(map);
+
+/**
+ * Removes all itinerary route lines and airport markers from the map.
+ */
+
+function clearRoute() {
+  routeLayers.forEach(l => map.removeLayer(l));
+  routeLayers = [];
+}
+
+
+
+ /**
+  * Draws every itinerary sector as a great-circle route, adds one marker per unique airport, and fits the map to the full itinerary.
+  */
+
+
+
+ function plotItinerary() {
+
+    clearRoute();
+
+    if (itinerary.length === 0) {
+        return;
+    }
+
+    const allCoordinates = [];
+
+    itinerary.forEach(
+        (sector, index) => {
+
+            const points = [];
+
+            for (
+                let step = 0;
+                step <= 120;
+                step++
+            ) {
+                const fraction =
+                    step / 120;
+
+                points.push(
+                    interpolateGreatCircle(
+                        sector.origin.lat,
+                        sector.origin.lon,
+                        sector.destination.lat,
+                        sector.destination.lon,
+                        fraction
+                    )
+                );
+            }
+
+            const segments =
+                splitAtAntimeridian(
+                    points
+                );
+
+            const colours = [
+                "#9a7235",
+                "#2a6fd4",
+                "#2e8f60",
+                "#c47a10",
+                "#6030b0"
+            ];
+
+            const colour =
+                colours[
+                    index %
+                    colours.length
+                ];
+
+            segments.forEach(
+                segment => {
+
+                    const line =
+                        L.polyline(
+                            segment,
+                            {
+                                color:
+                                    colour,
+
+                                weight: 3,
+                                opacity: 0.85
+                            }
+                        )
+                        .addTo(map);
+
+                    routeLayers.push(
+                        line
+                    );
+                }
+            );
+
+            allCoordinates.push([
+                sector.origin.lat,
+                sector.origin.lon
+            ]);
+
+            allCoordinates.push([
+                sector.destination.lat,
+                sector.destination.lon
+            ]);
+        }
+    );
+
+    /*
+     * Create one marker for every unique airport.
+     */
+    const airportsByCode = {};
+
+    itinerary.forEach(
+        sector => {
+
+            airportsByCode[
+                sector.origin.iata
+            ] = sector.origin;
+
+            airportsByCode[
+                sector.destination.iata
+            ] = sector.destination;
+        }
+    );
+
+    Object.values(
+        airportsByCode
+    )
+    .forEach(airport => {
+
+        const marker =
+            L.marker(
+                [
+                    airport.lat,
+                    airport.lon
+                ],
+                {
+                    icon:
+                        L.divIcon({
+                            className: "",
+
+                            html:
+                                '<div class="route-airport-marker">' +
+                                airport.iata +
+                                '</div>',
+
+                            iconAnchor:
+                                [20, 10]
+                        })
+                }
+            )
+            .addTo(map);
+
+        routeLayers.push(
+            marker
+        );
+    });
+
+    if (allCoordinates.length > 0) {
+
+        map.fitBounds(
+            L.latLngBounds(
+                allCoordinates
+            ),
+            {
+                padding: [40, 40]
+            }
+        );
+    }
+
+    document
+        .getElementById(
+            "mapEmpty"
+        )
+        .classList
+        .add(
+            "hidden"
+        );
+} 
+
+/**
+ * Calculates a point at a fractional position along the great-circle path between two coordinates.
+ *
+ * @param {number} lat1 - Start latitude.
+ * @param {number} lon1 - Start longitude.
+ * @param {number} lat2 - End latitude.
+ * @param {number} lon2 - End longitude.
+ * @param {number} f - Fraction from 0 to 1 along the path.
+ * @returns {number[]}
+ */
+
+function interpolateGreatCircle(lat1, lon1, lat2, lon2, f) {
+  const toRad = d => d * Math.PI / 180;
+  const toDeg = r => r * 180 / Math.PI;
+  const φ1 = toRad(lat1), λ1 = toRad(lon1);
+  const φ2 = toRad(lat2), λ2 = toRad(lon2);
+  const d = 2 * Math.asin(Math.sqrt(
+    Math.sin((φ2-φ1)/2)**2 + Math.cos(φ1)*Math.cos(φ2)*Math.sin((λ2-λ1)/2)**2
+  ));
+  if (d === 0) return [lat1, lon1];
+  const A = Math.sin((1-f)*d) / Math.sin(d);
+  const B = Math.sin(f*d)     / Math.sin(d);
+  const x = A*Math.cos(φ1)*Math.cos(λ1) + B*Math.cos(φ2)*Math.cos(λ2);
+  const y = A*Math.cos(φ1)*Math.sin(λ1) + B*Math.cos(φ2)*Math.sin(λ2);
+  const z = A*Math.sin(φ1)              + B*Math.sin(φ2);
+  return [toDeg(Math.atan2(z, Math.sqrt(x*x+y*y))), toDeg(Math.atan2(y, x))];
+}
+
+/**
+ * Splits a coordinate sequence when longitude jumps across the antimeridian, preventing a line across the map.
+ *
+ * @param {number[][]} points - Latitude/longitude points in route order.
+ * @returns {number[][][]}
+ */
+
+function splitAtAntimeridian(points) {
+  const segments = [];
+  let current = [points[0]];
+  for (let i = 1; i < points.length; i++) {
+    const dLon = Math.abs(points[i][1] - points[i-1][1]);
+    if (dLon > 180) {
+      segments.push(current);
+      current = [];
+    }
+    current.push(points[i]);
+  }
+  segments.push(current);
+  return segments;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  9. DISTANCE CALCULATION
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Calculates great-circle distance between coordinates in nautical miles using the haversine formula.
+ *
+ * @param {number} lat1 - Start latitude.
+ * @param {number} lon1 - Start longitude.
+ * @param {number} lat2 - End latitude.
+ * @param {number} lon2 - End longitude.
+ * @returns {number}
+ */
+
+function haversineNm(lat1, lon1, lat2, lon2) {
+  const R = 3440.065;   // Earth radius in nautical miles
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat/2)**2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+  return R * 2 * Math.asin(Math.sqrt(a));
+}
+
+// ═══════════════════════════════════════════════════════════
+//  10. AIRCRAFT MATCHING AND SCORING
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Returns the longest known runway length for an airport, or null when runway data is unavailable.
+ *
+ * @param {Object} airport - Normalised airport record.
+ * @returns {number|null}
+ */
+
+function getLongestRunway(airport) {
+  // If new format has runway data, use it
+  if (airport.runways && airport.runways.length > 0) {
+    return Math.max(...airport.runways.map(r => r.length_ft || 0));
+  }
+  // Otherwise return null — runway check will be skipped
+  return null;
+}
+
+/**
+ * Applies hard suitability filters, records soft fit indicators, scores eligible aircraft, and returns results ranked by score.
+ *
+ * @param {Object} orig - Origin airport.
+ * @param {Object} dest - Destination airport.
+ * @param {number} pax - Required passenger count.
+ * @returns {Object}
+ */
+
+function matchAircraft(orig, dest, pax) {
+  const distNm  = haversineNm(orig.lat, orig.lon, dest.lat, dest.lon);
+  const distKm  = distNm * 1.852;
+
+  // Add 15% to distance for real-world routing, weather, reserves
+  const effectiveDist = distNm * 1.15;
+
+  const origRwy = getLongestRunway(orig);
+  const destRwy = getLongestRunway(dest);
+
+  // Limiting runway is the shorter of the two airports
+  const limitingRwy = (origRwy && destRwy) ? Math.min(origRwy, destRwy) : null;
+
+  const results = [];
+
+  for (const [code, ac] of Object.entries(AIRCRAFT)) {
+
+    const warnings = []; // soft warnings (not eliminated, just flagged)
+    const goods = [];    // positive fit indicators
+
+    // ── Hard filter 1: passenger capacity ──────────────────
+    if (ac.pax_max < pax) {
+      continue;   // skip entirely — too small
+    }
+
+    // ── Hard filter 2: range ───────────────────────────────
+    if (ac.range_nm < effectiveDist) {
+      continue;   // skip entirely — can't make the distance
+    }
+
+    // ── Hard filter 3: runway (only if we have data) ───────
+    if (limitingRwy !== null && ac.runway_required_ft > 0) {
+      if (ac.runway_required_ft > limitingRwy) {
+        continue;   // skip — runway too short
+      }
+    }
+
+    // ── Hard filter 4: single engine ───────────────────────
+    if (!includeSingleEngine && ac.engines === 1) {
+      continue;   // skip — user has excluded single engine aircraft
+    }
+
+    // ── Soft checks (add to warnings/goods, don't eliminate) ──
+
+    // Passenger fit
+    const paxRatio = pax / ac.pax_typical;
+    if (paxRatio <= 0.5) {
+      warnings.push('Oversized for ' + pax + ' pax');
+    } else if (paxRatio <= 0.85) {
+      goods.push('Good pax fit');
+    } else if (paxRatio <= 1.0) {
+      goods.push('Full cabin');
+    } else {
+      // Over typical but under max
+      warnings.push('Above typical capacity');
+    }
+
+    // Range efficiency — how much of the range is being used
+    const rangeRatio = effectiveDist / ac.range_nm;
+    if (rangeRatio < 0.25) {
+      warnings.push('Significant excess range');
+    } else if (rangeRatio < 0.5) {
+      goods.push('Comfortable range margin');
+    } else if (rangeRatio < 0.85) {
+      goods.push('Efficient range use');
+    } else {
+      warnings.push('Near range limit');
+    }
+
+    // Runway margin
+    if (limitingRwy !== null && ac.runway_required_ft > 0) {
+      const rwyMargin = limitingRwy - ac.runway_required_ft;
+      if (rwyMargin < 500) {
+        warnings.push('Tight runway margin');
+      } else if (rwyMargin > 3000) {
+        goods.push('Ample runway margin');
+      }
+    }
+
+    // ── Score calculation ──────────────────────────────────
+    // Score 0-100. Higher = better fit for this route and pax count.
+
+    let score = 50;   // start at midpoint
+
+    // Range score: peak around 60-80% range utilisation
+    const rangePct = effectiveDist / ac.range_nm;
+    if      (rangePct >= 0.6 && rangePct <= 0.8) score += 25;
+    else if (rangePct >= 0.4 && rangePct <  0.6) score += 15;
+    else if (rangePct >= 0.8 && rangePct <  0.9) score += 10;
+    else if (rangePct >= 0.9 && rangePct <  1.0) score -= 5;
+    else if (rangePct < 0.2)                     score -= 20;
+    else if (rangePct < 0.4)                     score -= 5;
+
+    // Passenger score: peak around 80-100% of typical
+    if      (paxRatio >= 0.8 && paxRatio <= 1.0) score += 20;
+    else if (paxRatio >= 0.5 && paxRatio <  0.8) score += 8;
+    else if (paxRatio >  1.0 && paxRatio <= 1.2) score += 5;
+    else if (paxRatio <  0.5)                    score -= 10;
+
+    // Bonus for good indicator count
+    score += goods.length * 3;
+    score -= warnings.length * 4;
+
+    // Clamp to 0-100
+    score = Math.max(0, Math.min(100, Math.round(score)));
+
+    results.push({
+      code, ac,
+      distNm, distKm,
+      effectiveDist,
+      rangeRatio,
+      paxRatio,
+      score,
+      goods,
+      warnings,
+      limitingRwy,
+    });
+  }
+
+  // Sort by score descending
+  results.sort((a, b) => b.score - a.score);
+
+  return { results, distNm, distKm, limitingRwy };
+}
+
+// ═══════════════════════════════════════════════════════════
+//  11. AIRCRAFT RESULTS UI
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Converts an aircraft category code into a user-facing label.
+ *
+ * @param {string} cat - Aircraft category code.
+ * @returns {string}
+ */
+
+function categoryLabel(cat) {
+  const labels = {
+    helicopter:           'Helicopter',
+    turboprop:            'Turboprop',
+    light_jet:            'Light Jet',
+    midsize_jet:          'Midsize Jet',
+    super_midsize_jet:    'Super Midsize',
+    large_jet:            'Large Jet',
+    ultra_long_range_jet: 'Ultra Long Range',
+    airliner_narrow:      'Narrow Body',
+    airliner_wide:        'Wide Body',
+  };
+  return labels[cat] || cat;
+}
+
+/**
+ * Displays route-level aircraft-match metadata, category filters, and ranked result cards.
+ *
+ * @param {Object} matchData - Output returned by matchAircraft.
+ */
+
+function renderResults(matchData) {
+  const { results, distNm, distKm, limitingRwy } = matchData;
+
+  const area = document.getElementById('resultsArea');
+  const meta = document.getElementById('resultsMeta');
+  const tabs = document.getElementById('filterTabs');
+
+  area.style.display = 'block';
+
+  // Meta line
+  const rwyNote = limitingRwy
+    ? ' · Limiting runway: ' + limitingRwy.toLocaleString() + ' ft'
+    : ' · Runway data not yet available';
+  meta.textContent = results.length + ' aircraft found · ' +
+    Math.round(distNm).toLocaleString() + ' nm (' +
+    Math.round(distKm).toLocaleString() + ' km)' + rwyNote;
+
+  // Build category filter tabs
+  const cats = ['all', ...new Set(results.map(r => r.ac.category))];
+  tabs.innerHTML = '';
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-tab' + (cat === activeFilter ? ' active' : '');
+    btn.textContent = cat === 'all' ? 'All (' + results.length + ')' : categoryLabel(cat);
+    btn.addEventListener('click', () => {
+      activeFilter = cat;
+      renderCards(results);
+      tabs.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+    tabs.appendChild(btn);
+  });
+
+  renderCards(results);
+}
+
+/**
+ * Renders aircraft cards for the active category, including fit metrics, registry availability, and expandable information.
+ *
+ * @param {Object[]} results - Ranked aircraft match results.
+ */
+
+function renderCards(results) {
+  const grid = document.getElementById('aircraftGrid');
+  grid.innerHTML = '';
+
+  const filtered = activeFilter === 'all'
+    ? results
+    : results.filter(r => r.ac.category === activeFilter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="no-results"><strong>No aircraft found</strong>Try adjusting passengers or selecting a different route.</div>';
+    return;
+  }
+
+  filtered.forEach((r, idx) => {
+    const { ac, code, score, goods, warnings, rangeRatio } = r;
+
+    const card = document.createElement('div');
+    card.className = 'aircraft-card';
+
+    // Score bar width
+    const barWidth = score + '%';
+
+    // Fit pills
+    const allPills = [
+      ...goods.map(g    => '<span class="fit-pill fit-good">' + g + '</span>'),
+      ...warnings.map(w => '<span class="fit-pill fit-' + (w.includes('limit') || w.includes('tight') ? 'warning' : 'ok') + '">' + w + '</span>'),
+    ].join('');
+
+    // Range display
+    const rangeUsed = Math.round(rangeRatio * 100) + '% range';
+
+    // Flight time estimate
+    // Base time = distance / speed (both in nm and knots, result is hours)
+    // Add buffer: 15 min for fixed wing, 5 min for helicopters
+    const bufferMins = ac.category === 'helicopter' ? 5 : 15;
+    const flightMins = Math.round((r.distNm / ac.cruise_speed_kts) * 60) + bufferMins;
+    const flightHrs  = Math.floor(flightMins / 60);
+    const flightRem  = flightMins % 60;
+    const flightTime = flightHrs > 0
+      ? flightHrs + 'h ' + String(flightRem).padStart(2, '0') + 'm'
+      : flightRem + 'm';
+
+    card.innerHTML = `
+      <div class="card-score-bar" style="width:${barWidth}"></div>
+      <div class="card-score">${score}</div>
+      <div class="card-rank">#${idx + 1} match</div>
+      <div class="card-manufacturer">${ac.manufacturer}</div>
+      <div class="card-model">${ac.model}</div>
+      <span class="card-category cat-${ac.category}">${categoryLabel(ac.category)}</span>
+      <div class="card-stats">
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.pax_typical}</div>
+          <div class="card-stat-key">Typical Pax</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.range_nm.toLocaleString()}</div>
+          <div class="card-stat-key">Range (nm)</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.runway_required_ft > 0 ? ac.runway_required_ft.toLocaleString() : '—'}</div>
+          <div class="card-stat-key">Runway (ft)</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.engines}</div>
+          <div class="card-stat-key">Engines</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.cruise_speed_kts}</div>
+          <div class="card-stat-key">Speed (kts)</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${flightTime}</div>
+          <div class="card-stat-key">Est. Flight Time</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${rangeUsed}</div>
+          <div class="card-stat-key">Route Use</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.luggage_cuft ? ac.luggage_cuft.toLocaleString() : '—'}</div>
+          <div class="card-stat-key">Luggage (cu ft)</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val">${ac.ceiling_ft ? (ac.ceiling_ft / 1000).toFixed(0) + 'k' : '—'}</div>
+          <div class="card-stat-key">Ceiling (ft)</div>
+        </div>
+      </div>
+      <div class="card-fit">${allPills}</div>
+      <div class="card-registry-badge" id="reg-badge-${code}"></div>
+      <div class="card-expand-hint">Click to expand</div>
+      <div class="card-expanded" style="display:none">
+        <div class="card-img-wrap">
+          <div class="card-img-loading">Loading image…</div>
+          <img class="card-img" style="display:none">
+        </div>
+        <div class="card-description"></div>
+        <a class="card-wiki-link" target="_blank" rel="noopener">View on Wikipedia ↗</a>
+        <div class="card-registry-section" style="display:none">
+          <div class="card-registry-title">Registered Aircraft (US)</div>
+          <div class="card-registry-list"></div>
+        </div>
+      </div>
+    `;
+
+    // ── Populate registry badge ───────────────────────────────
+    const allRegEntries = REGISTRY_BY_TYPE[code] || [];
+    const regEntries = allRegEntries.filter(e => {
+      // Year filter
+      if (minYear && e.year && e.year < minYear) return false;
+      // Cabotage filter — hide aircraft that cannot legally fly this route
+      // Rule: if both airports are in the same country, aircraft must be
+      // registered in that country (or a territory/dependency of it)
+      if (origAirport && destAirport) {
+        const orig = origAirport.country;
+        const dest = destAirport.country;
+        if (orig === dest) {
+          // Domestic route — check aircraft registration is from same country
+          // or a dependency (e.g. Isle of Man IM counts for UK GB routes)
+          const dependencies = {
+            'GB': ['GB', 'IM', 'GG', 'JE'],   // UK includes Isle of Man, Guernsey, Jersey
+            'US': ['US', 'PR', 'VI', 'GU'],    // US territories
+            'NL': ['NL', 'AW', 'CW'],          // Netherlands territories
+            'FR': ['FR', 'GF', 'GP', 'MQ', 'RE', 'YT'],  // French territories
+          };
+          const allowed = dependencies[orig] || [orig];
+          if (!allowed.includes(e.country)) return false;
+        }
+      }
+      return true;
+    });
+    const badgeEl = card.querySelector('.card-registry-badge');
+    if (regEntries.length > 0) {
+      const yearNote = minYear ? ' (' + minYear + '+)' : '';
+      // Count by country
+      const usCount = regEntries.filter(e => e.country === 'US').length;
+      const gbCount = regEntries.filter(e => e.country === 'GB').length;
+      const parts = [];
+      if (usCount > 0) parts.push(usCount.toLocaleString() + ' US');
+      if (gbCount > 0) parts.push(gbCount.toLocaleString() + ' UK');
+      badgeEl.textContent = parts.join(' · ') + ' registered' + yearNote;
+      badgeEl.style.display = 'block';
+    } else {
+      badgeEl.style.display = 'none';
+    }
+
+    // ── Click to expand/collapse ───────────────────────────────
+    let loaded = false;   // only fetch once per card
+
+    card.addEventListener('click', () => {
+      const expanded  = card.querySelector('.card-expanded');
+      const hint      = card.querySelector('.card-expand-hint');
+      const isOpen    = card.classList.contains('expanded');
+
+      if (isOpen) {
+        // Collapse
+        card.classList.remove('expanded');
+        expanded.style.display = 'none';
+        hint.textContent = 'Click to expand';
+      } else {
+        // Expand
+        card.classList.add('expanded');
+        expanded.style.display = 'block';
+        hint.textContent = 'Click to collapse';
+
+        // Fetch Wikipedia image and populate registry on first expand
+        if (!loaded) {
+          loaded = true;
+          fetchWikiImage(ac.wikipedia, card);
+          populateRegistry(code, card);
+        }
+      }
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  12. WIKIPEDIA AIRCRAFT INFORMATION
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Loads an aircraft summary and thumbnail from the Wikipedia REST API when a result card is first expanded.
+ *
+ * @param {string} wikiUrl - Aircraft Wikipedia page URL.
+ * @param {HTMLElement} card - Aircraft card receiving the content.
+ * @returns {Promise<void>}
+ */
+
+async function fetchWikiImage(wikiUrl, card) {
+  const imgEl     = card.querySelector('.card-img');
+  const loadingEl = card.querySelector('.card-img-loading');
+  const descEl    = card.querySelector('.card-description');
+  const linkEl    = card.querySelector('.card-wiki-link');
+
+  // Set the Wikipedia link href
+  if (wikiUrl) linkEl.href = wikiUrl;
+
+  if (!wikiUrl) {
+    loadingEl.textContent = 'No Wikipedia page available';
+    return;
+  }
+
+  try {
+    // Extract page title from URL
+    // e.g. https://en.wikipedia.org/wiki/Gulfstream_G650 → Gulfstream_G650
+    const title = wikiUrl.split('/wiki/')[1];
+    if (!title) throw new Error('Could not parse Wikipedia URL');
+
+    // Wikipedia REST API — returns page summary including thumbnail
+    const apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + title;
+    const res    = await fetch(apiUrl);
+    if (!res.ok) throw new Error('Wikipedia API returned ' + res.status);
+
+    const data = await res.json();
+
+    // Show description
+    if (data.extract) {
+      // Trim to a reasonable length — first 300 characters
+      const text = data.extract.length > 300
+        ? data.extract.substring(0, 300).trimEnd() + '…'
+        : data.extract;
+      descEl.textContent = text;
+    }
+
+    // Show image if available
+    if (data.thumbnail && data.thumbnail.source) {
+      imgEl.src = data.thumbnail.source;
+      imgEl.alt = data.title || 'Aircraft image';
+      imgEl.onload  = () => { loadingEl.style.display = 'none'; imgEl.style.display = 'block'; };
+      imgEl.onerror = () => { loadingEl.textContent = 'Image not available'; };
+    } else {
+      loadingEl.textContent = 'No image available';
+    }
+
+  } catch(e) {
+    loadingEl.textContent = 'Could not load image';
+    console.warn('Wikipedia fetch failed:', e.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  13. AIRCRAFT REGISTRY DISPLAY
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Filters registry entries for year and domestic-route eligibility, then lists the first five matching aircraft.
+ *
+ * @param {string} typeCode - Aircraft type code.
+ * @param {HTMLElement} card - Aircraft card receiving registry details.
+ */
+
+function populateRegistry(typeCode, card) {
+  const section  = card.querySelector('.card-registry-section');
+  const listEl   = card.querySelector('.card-registry-list');
+  const allEntries = REGISTRY_BY_TYPE[typeCode] || [];
+
+  // Apply year and cabotage filters
+  const entries = allEntries.filter(e => {
+    if (minYear && e.year && e.year < minYear) return false;
+    if (origAirport && destAirport) {
+      const orig = origAirport.country;
+      const dest = destAirport.country;
+      if (orig === dest) {
+        const dependencies = {
+          'GB': ['GB', 'IM', 'GG', 'JE'],
+          'US': ['US', 'PR', 'VI', 'GU'],
+          'NL': ['NL', 'AW', 'CW'],
+          'FR': ['FR', 'GF', 'GP', 'MQ', 'RE', 'YT'],
+        };
+        const allowed = dependencies[orig] || [orig];
+        if (!allowed.includes(e.country)) return false;
+      }
+    }
+    return true;
+  });
+
+  if (entries.length === 0) return;
+
+  section.style.display = 'block';
+
+  const top5 = entries.slice(0, 5);
+  const remaining = entries.length - top5.length;
+
+  const rows = top5.map(e => {
+    const owner = e.owner || 'Owner not disclosed';
+    const loc   = [e.city, e.state].filter(Boolean).join(', ') || 'US';
+    return `
+      <div class="reg-row">
+        <span class="reg-number">${e.registration}</span>
+        <span class="reg-owner">${owner}</span>
+        <span class="reg-loc">${loc}</span>
+      </div>`;
+  }).join('');
+
+  const moreHtml = remaining > 0
+    ? `<div class="reg-more">+ ${remaining.toLocaleString()} more registered</div>`
+    : '';
+
+  listEl.innerHTML = rows + moreHtml;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  14. LIVE AIRCRAFT TRACKING
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Removes all live-tracking markers from the map.
+ */
+
+function clearTracking() {
+  trackingLayers.forEach(l => map.removeLayer(l));
+  trackingLayers = [];
+}
+
+/**
+ * Fetches nearby OpenSky states, retains aircraft reported on the ground, and joins them to the local registry.
+ *
+ * @param {Object} airport - Airport around which to search.
+ * @param {boolean} isOrigin - Whether the airport is the itinerary origin.
+ * @returns {Promise<Object[]>}
+ */
+
+async function fetchGroundPositions(airport, isOrigin) {
+  if (!airport || !airport.lat || !airport.lon) return [];
+
+  // Bounding box ~50nm around the airport
+  const deg  = 0.8;
+  const bbox = [
+    airport.lat - deg,
+    airport.lon - deg,
+    airport.lat + deg,
+    airport.lon + deg,
+  ];
+
+  try {
+    const url = `https://opensky-network.org/api/states/all?lamin=${bbox[0]}&lomin=${bbox[1]}&lamax=${bbox[2]}&lomax=${bbox[3]}`;
+    const res  = await fetch(url);
+    if (!res.ok) return [];
+
+    const data = await res.json();
+    if (!data.states) return [];
+
+    // Filter to aircraft that are on the ground (on_ground = index 8)
+    // and have an ICAO24 that matches our registry
+    const ground = data.states.filter(s => s[8] === true);   // on_ground flag
+
+    const matched = [];
+    for (const state of ground) {
+      const icao24 = state[0];
+      // Look up in our registry
+      const entry = Object.values(REGISTRY).find(e => e.icao24 === icao24);
+      if (entry) {
+        matched.push({
+          icao24,
+          callsign:   (state[1] || '').trim(),
+          lat:        state[6],
+          lon:        state[5],
+          registration: entry.registration,
+          type_code:  entry.type_code,
+          owner:      entry.owner,
+          country:    entry.country,
+          isOrigin,
+        });
+      }
+    }
+    return matched;
+
+  } catch(e) {
+    console.warn('OpenSky fetch failed:', e.message);
+    return [];
+  }
+}
+
+/**
+ * Fetches origin and destination ground positions in parallel, deduplicates aircraft, and plots matched registry aircraft.
+ * @returns {Promise<void>}
+ */
+
+async function showGroundTracking() {
+  clearTracking();
+
+  if (!origAirport && !destAirport) return;
+  if (!regLoaded) return;
+
+  const flags = {
+    'US':'🇺🇸','GB':'🇬🇧','DE':'🇩🇪','FR':'🇫🇷','AT':'🇦🇹',
+    'CH':'🇨🇭','MT':'🇲🇹','SM':'🇸🇲','IM':'🇮🇲','BM':'🇧🇲',
+    'KY':'🇰🇾','LU':'🇱🇺','PT':'🇵🇹','ES':'🇪🇸','IT':'🇮🇹',
+    'DK':'🇩🇰','SE':'🇸🇪','FI':'🇫🇮','NO':'🇳🇴','NL':'🇳🇱',
+    'BE':'🇧🇪','PL':'🇵🇱','CZ':'🇨🇿','HU':'🇭🇺','RO':'🇷🇴',
+  };
+
+  // Fetch both airports in parallel
+  const [origMatches, destMatches] = await Promise.all([
+    origAirport ? fetchGroundPositions(origAirport, true)  : Promise.resolve([]),
+    destAirport ? fetchGroundPositions(destAirport, false) : Promise.resolve([]),
+  ]);
+
+  const allMatches = [...origMatches, ...destMatches];
+
+  // Deduplicate by icao24
+  const seen = new Set();
+  const unique = allMatches.filter(m => {
+    if (seen.has(m.icao24)) return false;
+    seen.add(m.icao24);
+    return true;
+  });
+
+  if (unique.length === 0) return;
+
+  // Plot each on the map
+  unique.forEach(m => {
+    if (!m.lat || !m.lon) return;
+
+    const ac    = AIRCRAFT[m.type_code];
+    const label = m.registration || m.callsign;
+    const flag  = flags[m.country] || '';
+    const color = m.isOrigin ? '#9a7235' : '#2a6fd4';
+
+    const marker = L.marker([m.lat, m.lon], {
+      icon: L.divIcon({
+        className: '',
+        html: `<div style="background:${color};color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.08em;padding:2px 6px;border-radius:3px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.3);">${flag} ${label}</div>`,
+        iconAnchor: [20, 10],
+      })
+    });
+
+    const popupText = `
+      <b>${label}</b><br>
+      ${ac ? ac.manufacturer + ' ' + ac.model : m.type_code}<br>
+      ${m.owner || 'Owner not disclosed'}<br>
+      <small>${m.isOrigin ? 'Near origin' : 'Near destination'}</small>
+    `;
+    marker.bindPopup(popupText);
+    marker.addTo(map);
+    trackingLayers.push(marker);
+  });
+
+  console.log(`Tracking: ${unique.length} matching aircraft on ground nearby`);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  15. GENERAL UI HELPERS
+// ═══════════════════════════════════════════════════════════
+
+/**
+ * Synchronises route-dependent controls and summary values after primary airport or passenger changes.
+ */
+
+function updateUI() {
+  const ready = origAirport && destAirport;
+  document.getElementById('findBtn').disabled  = !ready;
+  document.getElementById('trackBtn').disabled = !ready;
+
+  if (ready) {
+
+    buildItinerary();
+    
+    const distNm = haversineNm(origAirport.lat, origAirport.lon, destAirport.lat, destAirport.lon);
+    const distKm = distNm * 1.852;
+
+    // Show route summary
+    const summary = document.getElementById('routeSummary');
+    summary.style.display = 'block';
+    document.getElementById('summaryDist').textContent = Math.round(distNm).toLocaleString();
+    document.getElementById('summaryKm').textContent   = Math.round(distKm).toLocaleString();
+    document.getElementById('summaryPax').textContent  = paxCount;
+    document.getElementById('summaryRwy').textContent  = '—';  // updated after matching
+
+//    plotRoute(origAirport, destAirport);
+  } 
+}
+
+/**
+ * Recalculates and rerenders aircraft matches only when the results panel is already visible.
+ */
+
+function rerunIfResultsVisible() {
+  const area = document.getElementById('resultsArea');
+  if (area.style.display !== 'none' && origAirport && destAirport && acLoaded) {
+    activeFilter = 'all';
+    const matchData = matchAircraft(origAirport, destAirport, paxCount);
+    if (matchData.limitingRwy) {
+      document.getElementById('summaryRwy').textContent =
+        matchData.limitingRwy.toLocaleString();
+    }
+    renderResults(matchData);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  16. EVENT HANDLERS
+//  DOM listeners below translate user actions into state changes and call the
+//  smallest relevant refresh function. They are registered before loadData().
+// ═══════════════════════════════════════════════════════════
+
+document.getElementById('origInput').addEventListener('input', function() {
+  lookupAirport(this.value, document.getElementById('origInfo'), true);
+});
+document.getElementById('destInput').addEventListener('input', function() {
+  lookupAirport(this.value, document.getElementById('destInfo'), false);
+});
+
+document.getElementById('addSectorBtn').addEventListener('click', addSector);
+
+// Passenger buttons
+document.getElementById('paxDown').addEventListener('click', () => {
+  if (paxCount > 1) {
+    paxCount--;
+    document.getElementById('paxCount').value = paxCount;
+    updateUI();
+    rerunIfResultsVisible();
+  }
+});
+document.getElementById('paxUp').addEventListener('click', () => {
+  if (paxCount < 900) {
+    paxCount++;
+    document.getElementById('paxCount').value = paxCount;
+    updateUI();
+    rerunIfResultsVisible();
+  }
+});
+
+// Re-run the aircraft search automatically if results are already showing
+
+// Allow typing directly into the passenger field
+document.getElementById('paxCount').addEventListener('input', function() {
+  const val = parseInt(this.value);
+  if (!isNaN(val) && val >= 1 && val <= 900) {
+    paxCount = val;
+    updateUI();
+    rerunIfResultsVisible();
+  }
+});
+
+// Clamp value on blur in case user types something out of range
+document.getElementById('paxCount').addEventListener('blur', function() {
+  const val = parseInt(this.value);
+  if (isNaN(val) || val < 1) {
+    paxCount = 1;
+    this.value = 1;
+  } else if (val > 900) {
+    paxCount = 900;
+    this.value = 900;
+  }
+  updateUI();
+  rerunIfResultsVisible();
+});
+
+// Single engine checkbox
+document.getElementById('singleEngineCheck').addEventListener('change', function() {
+  includeSingleEngine = this.checked;
+  rerunIfResultsVisible();
+});
+
+// Minimum year of manufacture
+document.getElementById('minYearInput').addEventListener('input', function() {
+  const val = parseInt(this.value);
+  minYear = (!isNaN(val) && val >= 1980 && val <= 2025) ? val : null;
+  rerunIfResultsVisible();
+});
+document.getElementById('minYearInput').addEventListener('blur', function() {
+  const val = parseInt(this.value);
+  if (this.value && (isNaN(val) || val < 1980 || val > 2025)) {
+    this.value = '';
+    minYear = null;
+    rerunIfResultsVisible();
+  }
+});
+
+// Find aircraft
+document.getElementById('findBtn').addEventListener('click', () => {
+  if (!origAirport || !destAirport || !acLoaded) return;
+
+  activeFilter = 'all';
+  const matchData = matchAircraft(origAirport, destAirport, paxCount);
+
+  // Update runway summary
+  if (matchData.limitingRwy) {
+    document.getElementById('summaryRwy').textContent =
+      matchData.limitingRwy.toLocaleString();
+  }
+
+  renderResults(matchData);
+
+  // Scroll results into view on mobile
+  document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// Track button
+document.getElementById('trackBtn').addEventListener('click', () => {
+  const btn = document.getElementById('trackBtn');
+  btn.textContent = 'Loading…';
+  btn.disabled = true;
+  showGroundTracking().then(() => {
+    btn.textContent = 'Show Aircraft Nearby';
+    btn.disabled = false;
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+//  17. APPLICATION STARTUP
+// ═══════════════════════════════════════════════════════════
+
+// Start loading data after all functions and event handlers are defined.
+loadData();
