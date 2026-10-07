@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Charter Route Planner</title>
+  <title>Charter Sales Tax Engine</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -15,7 +15,7 @@
     <div class="logo">
       <span class="logo-mark">✦</span>
       <div>
-        <h1>Charter Planner</h1>
+        <h1>Charter Sales Tax</h1>
         <p class="tagline">Route · Aircraft · Range</p>
       </div>
     </div>
@@ -199,33 +199,6 @@
     
 
 
-    <!-- Passengers -->
-    <section class="panel">
-      <div class="panel-label">Passengers</div>
-      <div class="pax-row">
-        <button class="pax-btn" id="paxDown">−</button>
-        <div class="pax-display">
-          <input class="pax-input" id="paxCount" type="number" value="8" min="1" max="900">
-          <span class="pax-label">passengers</span>
-        </div>
-        <button class="pax-btn" id="paxUp">+</button>
-      </div>
-    </section>
-
-    <!-- Options -->
-    <section class="panel">
-      <div class="panel-label">Options</div>
-      <label class="option-row" for="singleEngineCheck">
-        <input type="checkbox" id="singleEngineCheck" checked>
-        <span class="option-label">Include single engine aircraft</span>
-      </label>
-      <div class="option-row option-year-row">
-        <span class="option-label">Min year of manufacture</span>
-        <input type="number" id="minYearInput" class="option-year-input"
-               placeholder="Any" min="1980" max="2025" autocomplete="off">
-      </div>
-    </section>
-
     <!-- Route summary -->
     <section class="panel route-summary" id="routeSummary" style="display:none">
       <div class="panel-label">Route Summary</div>
@@ -248,12 +221,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Track button -->
-    <button class="track-btn" id="trackBtn" disabled>Show Aircraft Nearby</button>
-
-    <!-- Find aircraft button -->
-    <button class="find-btn" id="findBtn" disabled>Find Suitable Aircraft</button>
 
   </aside>
 
@@ -352,16 +319,6 @@
         class="vat-sector-results">
       </div>
     
-    <!-- Aircraft results -->
-    <div class="results-area" id="resultsArea" style="display:none">
-      <div class="results-header">
-        <div class="results-title">Suitable Aircraft</div>
-        <div class="results-meta" id="resultsMeta"></div>
-        <div class="filter-tabs" id="filterTabs"></div>
-      </div>
-      <div class="aircraft-grid" id="aircraftGrid"></div>
-    </div>
-
   </main>
 
 </div>
