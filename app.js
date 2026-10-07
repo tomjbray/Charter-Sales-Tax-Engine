@@ -1,12 +1,11 @@
 // ═══════════════════════════════════════════════════════════
-//  Charter Route Planner — app.js
+//  Charter Sales Tax Engine — app.js
 //
 //  Main responsibilities:
 //  1. Load airport, aircraft, registry and VAT reference data.
 //  2. Build the itinerary used by both route planning and VAT.
 //  3. Plot routes and calculate distance.
-//  4. Rank suitable aircraft and show supporting information.
-//  5. Match each itinerary sector to the appropriate VAT rule.
+//  4. Match each itinerary sector to the appropriate VAT rule.
 // ═══════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════
