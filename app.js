@@ -2334,11 +2334,8 @@ document.getElementById('destInput').addEventListener('input', function() {
 document.getElementById('addSectorBtn').addEventListener('click', addSector);
 
 
-// Re-run the aircraft search automatically if results are already showing
 
- // Scroll results into view on mobile
-  document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+
 
 
 // ═══════════════════════════════════════════════════════════
