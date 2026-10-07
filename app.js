@@ -15,13 +15,12 @@
 // Core reference data
 let AIRPORTS = {};
 let AIRCRAFT = {};
-let REGISTRY = {};
-let REGISTRY_BY_TYPE = {};
+
 
 // Data-loading flags
 let dbLoaded = false;
 let acLoaded = false;
-let regLoaded = false;
+
 
 // Current route and itinerary
 let origAirport = null;
@@ -39,7 +38,7 @@ let nextSectorId = 2;
 
 // Map and tracking layers
 let routeLayers = [];
-let trackingLayers = [];
+
 
 // VAT reference data
 let selectedEntity = "BRU";
@@ -139,8 +138,7 @@ async function loadData() {
       lookupAirport(destinationValue, document.getElementById('destInfo'), false);
     }
 
-    // Registry loading is non-blocking because it is not needed for route entry.
-    loadRegistry(aptCount, acCount);
+
 
   } catch (error) {
     statusEl.textContent = '⚠ Data load failed: ' + error.message;
@@ -246,42 +244,7 @@ async function loadVatRules() {
  * @returns {Promise<void>}
  */
 
-async function loadRegistry(aptCount, acCount) {
-  try {
-    const res = await fetch('./aircraft_registry.json');
-    if (!res.ok) {
-      document.getElementById('dbStatus').textContent =
-        aptCount.toLocaleString() + ' airports · ' + acCount + ' aircraft types';
-      return;
-    }
 
-    REGISTRY = await res.json();
-    regLoaded = true;
-
-    // Pre-group by type_code for fast lookup
-    for (const entry of Object.values(REGISTRY)) {
-      const tc = entry.type_code;
-      if (!REGISTRY_BY_TYPE[tc]) REGISTRY_BY_TYPE[tc] = [];
-      REGISTRY_BY_TYPE[tc].push(entry);
-    }
-
-    const regCount = Object.keys(REGISTRY).length;
-    const statusEl = document.getElementById('dbStatus');
-    statusEl.textContent =
-      aptCount.toLocaleString() + ' airports · ' +
-      acCount + ' aircraft types · ' +
-      regCount.toLocaleString() + ' registered aircraft';
-    statusEl.classList.remove('loading');
-    statusEl.classList.add('ready');
-
-  } catch(e) {
-    console.warn('Registry load failed:', e.message);
-    const statusEl2 = document.getElementById('dbStatus');
-    statusEl2.textContent = aptCount.toLocaleString() + ' airports · ' + acCount + ' aircraft types';
-    statusEl2.classList.remove('loading');
-    statusEl2.classList.add('ready');
-  }
-}
 
 // ═══════════════════════════════════════════════════════════
 //  3. VAT REGION AND TERRITORY CLASSIFICATION
@@ -1976,19 +1939,18 @@ function lookupAirport(iata, infoEl, isOrigin) {
     const icao      = ap.icao      ? ' · ' + ap.icao : '';
     const elevation = ap.elevation ? ' · ' + ap.elevation.toLocaleString() + ' ft' : '';
 
-    // Runway info — show best (longest) runway if available
-    let rwyHtml = '';
-    if (ap.runways && ap.runways.length > 0) {
-      const longest = Math.max(...ap.runways.map(r => r.length_ft || 0));
-      if (longest > 0) {
-        rwyHtml = '<div class="apt-rwy">Longest runway: ' + longest.toLocaleString() + ' ft</div>';
-      }
-    }
+   
 
-    infoEl.innerHTML =
-      '<div class="apt-name">' + ap.name + '</div>' +
-      '<div class="apt-meta">' + (ap.city || '') + (ap.city ? ' · ' : '') + ap.country + icao + elevation + '</div>' +
-      rwyHtml;
+infoEl.innerHTML =
+  '<div class="apt-name">' + ap.name + '</div>' +
+  '<div class="apt-meta">' +
+  (ap.city || '') +
+  (ap.city ? ' · ' : '') +
+  ap.country +
+  icao +
+  elevation +
+  '</div>';
+
 
     if (isOrigin) origAirport = ap; else destAirport = ap;
 
@@ -2278,45 +2240,47 @@ function haversineNm(lat1, lon1, lat2, lon2) {
  * Synchronises route-dependent controls and summary values after primary airport or passenger changes.
  */
 
-function updateUI() {
-  const ready = origAirport && destAirport;
-  document.getElementById('findBtn').disabled  = !ready;
-  document.getElementById('trackBtn').disabled = !ready;
-
-  if (ready) {
-
-    buildItinerary();
-    
-    const distNm = haversineNm(origAirport.lat, origAirport.lon, destAirport.lat, destAirport.lon);
-    const distKm = distNm * 1.852;
-
-    // Show route summary
-    const summary = document.getElementById('routeSummary');
-    summary.style.display = 'block';
-    document.getElementById('summaryDist').textContent = Math.round(distNm).toLocaleString();
-    document.getElementById('summaryKm').textContent   = Math.round(distKm).toLocaleString();
-    document.getElementById('summaryRwy').textContent  = '—';  // updated after matching
-
-//    plotRoute(origAirport, destAirport);
-  } 
-}
-
 /**
- * Recalculates and rerenders aircraft matches only when the results panel is already visible.
+ * Rebuilds the itinerary after either primary airport changes.
+ *
+ * When both the origin and destination are valid, buildItinerary()
+ * plots the route, calculates sector distances and refreshes the
+ * VAT results.
+ *
+ * When either airport is incomplete or invalid, the existing route
+ * and VAT results are cleared so that stale calculations are not shown.
  */
+function updateUI() {
+    const routeIsReady =
+        Boolean(origAirport && destAirport);
 
-function rerunIfResultsVisible() {
-  const area = document.getElementById('resultsArea');
-  if (area.style.display !== 'none' && origAirport && destAirport && acLoaded) {
-    activeFilter = 'all';
-    const matchData = matchAircraft(origAirport, destAirport);
-    if (matchData.limitingRwy) {
-      document.getElementById('summaryRwy').textContent =
-        matchData.limitingRwy.toLocaleString();
+    if (routeIsReady) {
+        buildItinerary();
+        return;
     }
-    renderResults(matchData);
-  }
+
+    /*
+     * A valid primary route no longer exists.
+     * Rebuild the itinerary so any incomplete primary sector is removed.
+     */
+    buildItinerary();
+
+    const routeSummary =
+        document.getElementById("routeSummary");
+
+    if (routeSummary) {
+        routeSummary.style.display = "none";
+    }
+
+    const mapEmpty =
+        document.getElementById("mapEmpty");
+
+    if (mapEmpty) {
+        mapEmpty.classList.remove("hidden");
+    }
 }
+
+
 
 // ═══════════════════════════════════════════════════════════
 //  11. EVENT HANDLERS
