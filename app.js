@@ -112,8 +112,6 @@ const ruleCount =
 
 statusEl.textContent =
     'Ready • ' +
-    aptCount.toLocaleString() +
-    ' Airports • ' +
     ruleCount +
     ' VAT Rules • ' +
     entityCount +
