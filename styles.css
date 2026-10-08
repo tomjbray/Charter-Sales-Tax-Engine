@@ -918,6 +918,37 @@ header::after {
     border-color: #9a7235;
 }
 
+.dynamic-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dynamic-input-tooltip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #7a7a7a;
+    border-radius: 50%;
+    color: #555555;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: help;
+    user-select: none;
+}
+
+.dynamic-input-tooltip:hover,
+.dynamic-input-tooltip:focus {
+    color: #ffffff;
+    background-color: #17365d;
+    border-color: #17365d;
+    outline: none;
+}
+
 /* ==========================================================
    VAT RESULT PANEL
    ========================================================== */
@@ -1252,3 +1283,5 @@ header::after {
 #summaryReviewSectors {
     font-size: 16px;
 }
+
+
