@@ -1852,19 +1852,47 @@ function renderDynamicInputs() {
 const tooltipText =
     input.tooltip || "";
 
+//const tooltipHtml =
+//    tooltipText
+//        ? `
+//            <span
+//                class="dynamic-input-tooltip"
+//                title="${escapeHtml(tooltipText)}"
+//                aria-label="${escapeHtml(tooltipText)}"
+//                tabindex="0"
+//            >
+//                ?
+//            </span>
+//        `
+//        : "";
+
+//debug bit
 const tooltipHtml =
     tooltipText
         ? `
             <span
-                class="dynamic-input-tooltip"
                 title="${escapeHtml(tooltipText)}"
-                aria-label="${escapeHtml(tooltipText)}"
-                tabindex="0"
+                style="
+                    display:inline-block;
+                    width:18px;
+                    height:18px;
+                    line-height:18px;
+                    text-align:center;
+                    border:1px solid #666;
+                    border-radius:50%;
+                    margin-left:6px;
+                    font-size:12px;
+                    font-weight:bold;
+                    cursor:help;
+                    background:#f0f0f0;
+                    color:#000;
+                "
             >
                 ?
             </span>
         `
         : "";
+//end of debug bit          
 
             block.innerHTML = `
                 <label class="dynamic-checkbox-label">
