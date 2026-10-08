@@ -402,6 +402,69 @@ function valueMatches(
  * @returns {Object|null}
  */
 
+function dynamicInputsMatch(
+    rule,
+    transaction
+) {
+
+    const dynamicInputs =
+        transaction.dynamicInputs || {};
+
+    for (
+        const [inputKey, inputValue]
+        of Object.entries(dynamicInputs)
+    ) {
+
+        const ruleValue =
+            rule[inputKey];
+
+        if (
+            ruleValue === undefined ||
+            ruleValue === null ||
+            ruleValue === "" ||
+            ruleValue === "ANY"
+        ) {
+            continue;
+        }
+
+        const transactionValue =
+            String(inputValue)
+                .toUpperCase();
+
+        const normalisedRuleValue =
+            String(ruleValue)
+                .toUpperCase();
+
+        const expectedValue =
+            transactionValue === "TRUE"
+                ? "YES"
+                : transactionValue === "FALSE"
+                    ? "NO"
+                    : transactionValue;
+/* debug bit */
+      console.log(
+    "Testing dynamic field:",
+    inputKey,
+    "Transaction:",
+    expectedValue,
+    "Rule:",
+    normalisedRuleValue
+);
+      /* debug bit end */
+
+        if (
+            normalisedRuleValue !==
+            expectedValue
+        ) {
+            return false;
+        }
+
+    }
+
+    return true;
+
+}
+
 function findMatchingRule(
     transaction
 ) {
@@ -459,10 +522,17 @@ function findMatchingRule(
 
                 &&
 
-                valueMatches(
-                    rule.destinationTerritory,
-                    transaction.destinationTerritory
-                )
+              valueMatches(
+                  rule.destinationTerritory,
+                  transaction.destinationTerritory
+              )
+              
+                &&
+              
+              dynamicInputsMatch(
+                  rule,
+                  transaction
+              )
         );
 
     
