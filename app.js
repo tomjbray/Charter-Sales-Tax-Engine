@@ -1871,21 +1871,22 @@ const tooltipHtml =
     tooltipText
         ? `
             <span
-                title="${escapeHtml(tooltipText)}"
+                title="${tooltipText}"
                 style="
                     display:inline-block;
                     width:18px;
                     height:18px;
                     line-height:18px;
                     text-align:center;
-                    border:1px solid #666;
+                    border:1px solid #999;
                     border-radius:50%;
                     margin-left:6px;
                     font-size:12px;
                     font-weight:bold;
                     cursor:help;
-                    background:#f0f0f0;
-                    color:#000;
+                    background:white;
+                    color:#17365D;
+                    border-color:#17365D;
                 "
             >
                 ?
