@@ -1841,6 +1841,12 @@ function renderDynamicInputs() {
         const inputKey =
             input.inputKey;
 
+        if (
+            dynamicInputValues[inputKey] === undefined
+        ) {
+            dynamicInputValues[inputKey] = "NO";
+          }
+
         const inputLabel =
             input.inputLabel ||
             inputKey;
