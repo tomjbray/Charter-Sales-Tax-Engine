@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceTable": "tblVatRules",
-  "ruleCount": 93,
+  "ruleCount": 97,
   "rules": [
     {
       "ruleId": "BRU01",
@@ -1150,13 +1150,13 @@
       "customerType": "ANY",
       "customerLocation": "DE",
       "vatRegistered": "ANY",
-      "originTerritory": "EU",
-      "destinationTerritory": "EU",
+      "originTerritory": "DE",
+      "destinationTerritory": "NON_EU",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
-      "ruleExplanation": "EU cargo transport",
-      "legalReference": "tbc",
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
       "taxablePercent": 1,
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
@@ -1171,7 +1171,7 @@
       "customerLocation": "DE",
       "vatRegistered": "ANY",
       "originTerritory": "EU",
-      "destinationTerritory": "DE",
+      "destinationTerritory": "EU",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1191,6 +1191,26 @@
       "customerLocation": "DE",
       "vatRegistered": "ANY",
       "originTerritory": "EU",
+      "destinationTerritory": "DE",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "EU cargo transport",
+      "legalReference": "tbc",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "ruleId": "FRA16",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "DE",
+      "vatRegistered": "ANY",
+      "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
       "treatment": "ZERO",
       "rate": 0,
@@ -1204,7 +1224,27 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA16",
+      "ruleId": "FRA17",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "DE",
+      "vatRegistered": "ANY",
+      "originTerritory": "EU",
+      "destinationTerritory": "NON_EU",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "ruleId": "FRA18",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1224,7 +1264,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA17",
+      "ruleId": "FRA19",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1244,7 +1284,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA18",
+      "ruleId": "FRA20",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1264,7 +1304,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA19",
+      "ruleId": "FRA21",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1284,7 +1324,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA20",
+      "ruleId": "FRA22",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1304,7 +1344,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA21",
+      "ruleId": "FRA23",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1324,7 +1364,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA22",
+      "ruleId": "FRA24",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "BUSINESS",
@@ -1344,7 +1384,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA23",
+      "ruleId": "FRA25",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "BUSINESS",
@@ -1364,7 +1404,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA24",
+      "ruleId": "FRA26",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "PRIVATE",
@@ -1384,7 +1424,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA25",
+      "ruleId": "FRA27",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1404,7 +1444,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA26",
+      "ruleId": "FRA28",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1424,7 +1464,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA27",
+      "ruleId": "FRA29",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1444,7 +1484,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA28",
+      "ruleId": "FRA30",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1464,7 +1504,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA29",
+      "ruleId": "FRA31",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1484,7 +1524,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA30",
+      "ruleId": "FRA32",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1504,7 +1544,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA31",
+      "ruleId": "FRA33",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1524,7 +1564,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA32",
+      "ruleId": "FRA34",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1544,7 +1584,27 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA33",
+      "ruleId": "FRA35",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "NON_EU",
+      "vatRegistered": "ANY",
+      "originTerritory": "DE",
+      "destinationTerritory": "NON_EU",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "ruleId": "FRA36",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1564,7 +1624,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA34",
+      "ruleId": "FRA37",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1584,7 +1644,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA35",
+      "ruleId": "FRA38",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1604,7 +1664,27 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA36",
+      "ruleId": "FRA39",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "NON_EU",
+      "vatRegistered": "ANY",
+      "originTerritory": "EU",
+      "destinationTerritory": "NON_EU",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "ruleId": "FRA40",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1624,7 +1704,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA37",
+      "ruleId": "FRA41",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -1644,7 +1724,7 @@
       "effectiveTo": null
     },
     {
-      "ruleId": "FRA38",
+      "ruleId": "FRA42",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3012,13 +3092,13 @@
       "customerType": "ANY",
       "customerLocation": "DE",
       "vatRegistered": "ANY",
-      "originTerritory": "EU",
-      "destinationTerritory": "EU",
+      "originTerritory": "DE",
+      "destinationTerritory": "NON_EU",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
-      "ruleExplanation": "EU cargo transport",
-      "legalReference": "tbc",
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
       "taxablePercent": 1,
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
@@ -3033,7 +3113,7 @@
       "customerLocation": "DE",
       "vatRegistered": "ANY",
       "originTerritory": "EU",
-      "destinationTerritory": "DE",
+      "destinationTerritory": "EU",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3053,6 +3133,26 @@
       "customerLocation": "DE",
       "vatRegistered": "ANY",
       "originTerritory": "EU",
+      "destinationTerritory": "DE",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "EU cargo transport",
+      "legalReference": "tbc",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    "FRA16": {
+      "ruleId": "FRA16",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "DE",
+      "vatRegistered": "ANY",
+      "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
       "treatment": "ZERO",
       "rate": 0,
@@ -3065,8 +3165,28 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA16": {
-      "ruleId": "FRA16",
+    "FRA17": {
+      "ruleId": "FRA17",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "DE",
+      "vatRegistered": "ANY",
+      "originTerritory": "EU",
+      "destinationTerritory": "NON_EU",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    "FRA18": {
+      "ruleId": "FRA18",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3085,8 +3205,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA17": {
-      "ruleId": "FRA17",
+    "FRA19": {
+      "ruleId": "FRA19",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3105,8 +3225,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA18": {
-      "ruleId": "FRA18",
+    "FRA20": {
+      "ruleId": "FRA20",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3125,8 +3245,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA19": {
-      "ruleId": "FRA19",
+    "FRA21": {
+      "ruleId": "FRA21",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3145,8 +3265,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA20": {
-      "ruleId": "FRA20",
+    "FRA22": {
+      "ruleId": "FRA22",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3165,8 +3285,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA21": {
-      "ruleId": "FRA21",
+    "FRA23": {
+      "ruleId": "FRA23",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3185,8 +3305,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA22": {
-      "ruleId": "FRA22",
+    "FRA24": {
+      "ruleId": "FRA24",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "BUSINESS",
@@ -3205,8 +3325,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA23": {
-      "ruleId": "FRA23",
+    "FRA25": {
+      "ruleId": "FRA25",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "BUSINESS",
@@ -3225,8 +3345,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA24": {
-      "ruleId": "FRA24",
+    "FRA26": {
+      "ruleId": "FRA26",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "PRIVATE",
@@ -3245,8 +3365,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA25": {
-      "ruleId": "FRA25",
+    "FRA27": {
+      "ruleId": "FRA27",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3265,8 +3385,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA26": {
-      "ruleId": "FRA26",
+    "FRA28": {
+      "ruleId": "FRA28",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3285,8 +3405,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA27": {
-      "ruleId": "FRA27",
+    "FRA29": {
+      "ruleId": "FRA29",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3305,8 +3425,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA28": {
-      "ruleId": "FRA28",
+    "FRA30": {
+      "ruleId": "FRA30",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3325,8 +3445,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA29": {
-      "ruleId": "FRA29",
+    "FRA31": {
+      "ruleId": "FRA31",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3345,8 +3465,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA30": {
-      "ruleId": "FRA30",
+    "FRA32": {
+      "ruleId": "FRA32",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3365,8 +3485,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA31": {
-      "ruleId": "FRA31",
+    "FRA33": {
+      "ruleId": "FRA33",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3385,8 +3505,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA32": {
-      "ruleId": "FRA32",
+    "FRA34": {
+      "ruleId": "FRA34",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3405,8 +3525,28 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA33": {
-      "ruleId": "FRA33",
+    "FRA35": {
+      "ruleId": "FRA35",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "NON_EU",
+      "vatRegistered": "ANY",
+      "originTerritory": "DE",
+      "destinationTerritory": "NON_EU",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    "FRA36": {
+      "ruleId": "FRA36",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3425,8 +3565,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA34": {
-      "ruleId": "FRA34",
+    "FRA37": {
+      "ruleId": "FRA37",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3445,8 +3585,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA35": {
-      "ruleId": "FRA35",
+    "FRA38": {
+      "ruleId": "FRA38",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3465,8 +3605,28 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA36": {
-      "ruleId": "FRA36",
+    "FRA39": {
+      "ruleId": "FRA39",
+      "entity": "FRA",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "NON_EU",
+      "vatRegistered": "ANY",
+      "originTerritory": "EU",
+      "destinationTerritory": "NON_EU",
+      "treatment": "STANDARD",
+      "rate": 0.19,
+      "rulePriority": 100,
+      "ruleExplanation": "Export of goods - no exemption",
+      "legalReference": "This exemption only applies to the final exporter - if subcontracted 19% applies - need to add this option",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    "FRA40": {
+      "ruleId": "FRA40",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3485,8 +3645,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA37": {
-      "ruleId": "FRA37",
+    "FRA41": {
+      "ruleId": "FRA41",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
@@ -3505,8 +3665,8 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null
     },
-    "FRA38": {
-      "ruleId": "FRA38",
+    "FRA42": {
+      "ruleId": "FRA42",
       "entity": "FRA",
       "charterType": "CARGO",
       "customerType": "ANY",
