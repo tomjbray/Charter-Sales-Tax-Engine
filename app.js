@@ -1400,23 +1400,34 @@ function buildVatTransaction(sector) {
     const homeCountry = getEntityCountry(selectedEntity);
 
     const transaction = {
-        entity: selectedEntity,
-        charterType: selectedCharterType,
-        customerType: selectedCustomerType,
-        customerLocation: getRuleRegion(
-            selectedCustomerCountry,
-            homeCountry
-        ),
-        vatRegistered: selectedVatRegistered,
-        originTerritory: getRuleRegion(
-            sector.origin.country,
-            homeCountry
-        ),
-        destinationTerritory: getRuleRegion(
-            sector.destination.country,
-            homeCountry
-        )
-    };
+    entity: selectedEntity,
+
+    charterType: selectedCharterType,
+
+    customerType: selectedCustomerType,
+
+    customerLocation: getRuleRegion(
+        selectedCustomerCountry,
+        homeCountry
+    ),
+
+    vatRegistered: selectedVatRegistered,
+
+    originTerritory: getRuleRegion(
+        sector.origin.country,
+        homeCountry
+    ),
+
+    destinationTerritory: getRuleRegion(
+        sector.destination.country,
+        homeCountry
+    ),
+
+    dynamicInputs: {
+        ...dynamicInputValues
+    }
+};
+
 
     return {
         transaction,
@@ -1538,6 +1549,15 @@ function runVatTests() {
             homeCountry
         } = buildVatTransaction(sector);
 
+/*//temp debugging*/
+
+      console.log(
+    "VAT Transaction",
+    transaction
+);
+      
+/*//end of temp debugging      */
+      
         const matchedRule = findMatchingRule(transaction);
         const distancePercentage = distancePercentages[index];
         const allocatedNetValue =
