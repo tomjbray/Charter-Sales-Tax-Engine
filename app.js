@@ -1858,7 +1858,7 @@ function renderDynamicInputs() {
         if (inputType === "CHECKBOX") {
 
             const checked =
-                dynamicInputValues[inputKey] === true;
+                dynamicInputValues[inputKey] === "YES";
 
             block.innerHTML = `
                 <label>
@@ -1883,7 +1883,10 @@ function renderDynamicInputs() {
                 event => {
 
                     dynamicInputValues[inputKey] =
-                        event.target.checked;
+                        event.target.checked
+                            ? "YES"
+                            : "NO";
+
 
                     console.log(
                         "Dynamic Inputs",
