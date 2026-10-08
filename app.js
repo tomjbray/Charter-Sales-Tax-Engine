@@ -1849,14 +1849,34 @@ function renderDynamicInputs() {
             const checked =
                 dynamicInputValues[inputKey] === "YES";
 
+const tooltipText =
+    input.tooltip || "";
+
+const tooltipHtml =
+    tooltipText
+        ? `
+            <span
+                class="dynamic-input-tooltip"
+                title="${escapeHtml(tooltipText)}"
+                aria-label="${escapeHtml(tooltipText)}"
+                tabindex="0"
+            >
+                ?
+            </span>
+        `
+        : "";
+
             block.innerHTML = `
-                <label>
+                <label class="dynamic-checkbox-label">
                     <input
                         type="checkbox"
                         id="dynamic-${inputKey}"
                         ${checked ? "checked" : ""}
                     >
-                    ${inputLabel}
+                    <span>
+                        ${escapeHtml(inputLabel)}
+                    </span>
+                    ${tooltipHtml}
                 </label>
             `;
 
