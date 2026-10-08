@@ -441,16 +441,6 @@ function dynamicInputsMatch(
                 : transactionValue === "FALSE"
                     ? "NO"
                     : transactionValue;
-/* debug bit */
-      console.log(
-    "Testing dynamic field:",
-    inputKey,
-    "Transaction:",
-    expectedValue,
-    "Rule:",
-    normalisedRuleValue
-);
-      /* debug bit end */
 
         if (
             normalisedRuleValue !==
@@ -1629,14 +1619,7 @@ function runVatTests() {
             homeCountry
         } = buildVatTransaction(sector);
 
-/*//temp debugging*/
 
-      console.log(
-    "VAT Transaction",
-    transaction
-);
-      
-/*//end of temp debugging      */
       
         const matchedRule = findMatchingRule(transaction);
         const distancePercentage = distancePercentages[index];
