@@ -729,6 +729,16 @@ function renderVatSectorResults(
                         transaction.vatRegistered
                     )}
 
+                    ${Object.entries(transaction.dynamicInputs || {})
+                      .map(([key, value]) =>
+                            createVatResultRow(
+                            key,
+                            String(value)
+                            )
+                          )
+                        .join("")
+                    }
+
                 </div>
 
                 <div class="vat-panel">
