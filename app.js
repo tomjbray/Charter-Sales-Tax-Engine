@@ -55,7 +55,22 @@ let charterValue = 0;
 // Dynamic VAT-input configuration loaded from input_requirements.json.
 // The current renderer uses this file for validation/readiness; the next phase
 // will use its input definitions to generate controls conditionally.
+
 let inputRequirementsData = null;
+/*
+ * Stores the current answers entered into dynamically generated
+ * tax-input controls.
+ *
+ * Values are stored using the InputKey from input_requirements.json.
+ *
+ * Example:
+ * {
+ *     DirectExporter: "YES"
+ * }
+ */
+let dynamicInputValues = {};
+
+
 
 // ═══════════════════════════════════════════════════════════
 //  2. DATA LOADING
@@ -906,6 +921,8 @@ function populateSellingEntityDropdown() {
             selectedEntity =
                 event.target.value;
 
+            renderDynamicInputs();
+
             runVatTest();
         }
     );
@@ -1217,6 +1234,8 @@ function applyCustomerCountrySelection(
     selectedCustomerCountry =
         match.code;
 
+    renderDynamicInputs();
+
     /*
      * Standardise the displayed value to the
      * official country name from countries.json.
@@ -1285,9 +1304,13 @@ function initialiseCharterTypeSelector() {
             selectedCharterType =
                 event.target.value;
 
+            renderDynamicInputs();
+
             runVatTest();
+
         }
     );
+
 }
 
 /**
@@ -1659,6 +1682,40 @@ function updateAdditionalSectorAirport(sectorId, field, value) {
  * Renders the current transitional “Direct Exporter” VAT checkbox. The loaded configuration is validated now and will drive conditional rendering in the next implementation phase.
  */
 
+function getApplicableDynamicInputs() {
+
+    if (
+        !inputRequirementsData ||
+        !Array.isArray(inputRequirementsData.inputs)
+    ) {
+        return [];
+    }
+
+    return inputRequirementsData.inputs.filter(input => {
+
+        const entityMatch =
+            !input.appliesToEntity ||
+            input.appliesToEntity === selectedEntity;
+
+        const countryMatch =
+            !input.appliesToCountry ||
+            input.appliesToCountry === selectedCustomerCountry;
+
+        const charterMatch =
+            !input.appliesToCharterType ||
+            input.appliesToCharterType.toUpperCase() ===
+            selectedCharterType.toUpperCase();
+
+        return (
+            entityMatch &&
+            countryMatch &&
+            charterMatch
+        );
+
+    });
+
+}
+
 function renderDynamicInputs() {
 
     const container =
@@ -1667,42 +1724,80 @@ function renderDynamicInputs() {
         );
 
     if (!container) {
-
-        console.error(
-            "dynamicVatInputs container not found"
-        );
-
         return;
     }
 
-    console.log(
-        "Input requirements data:",
-        inputRequirementsData
-    );
+    container.innerHTML = "";
 
-    container.innerHTML = `
-        <div class="vat-input-block">
+    const applicableInputs =
+        getApplicableDynamicInputs();
 
-            <label
-                class="vat-input-label"
-                for="directExporter">
+    if (applicableInputs.length === 0) {
+        return;
+    }
 
-                Additional VAT Inputs
+    applicableInputs.forEach(input => {
 
-            </label>
+        const inputKey =
+            input.inputKey;
 
-            <label>
+        const inputLabel =
+            input.inputLabel ||
+            inputKey;
 
-                <input
-                    type="checkbox"
-                    id="directExporter">
+        const inputType =
+            String(input.inputType || "")
+                .toUpperCase();
 
-                Customer is Direct Exporter
+        const block =
+            document.createElement("div");
 
-            </label>
+        block.className =
+            "vat-input-block";
 
-        </div>
-    `;
+        if (inputType === "CHECKBOX") {
+
+            const checked =
+                dynamicInputValues[inputKey] === true;
+
+            block.innerHTML = `
+                <label>
+                    <input
+                        type="checkbox"
+                        id="dynamic-${inputKey}"
+                        ${checked ? "checked" : ""}
+                    >
+                    ${inputLabel}
+                </label>
+            `;
+
+            container.appendChild(block);
+
+            const checkbox =
+                block.querySelector(
+                    `#dynamic-${inputKey}`
+                );
+
+            checkbox.addEventListener(
+                "change",
+                event => {
+
+                    dynamicInputValues[inputKey] =
+                        event.target.checked;
+
+                    console.log(
+                        "Dynamic Inputs",
+                        dynamicInputValues
+                    );
+
+                    runVatTest();
+
+                }
+            );
+        }
+
+    });
+
 }
 
 /**
