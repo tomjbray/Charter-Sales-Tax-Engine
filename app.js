@@ -2012,18 +2012,59 @@ function runVatTest() {
 
 function exportPdfReport() {
 
-    const pdfRunDate =
-        document.getElementById(
-            "pdfRunDate"
-        );
+    document.getElementById(
+        "pdfRunDate"
+    ).textContent =
+        "Generated: " +
+        new Date().toLocaleString();
 
-    if (pdfRunDate) {
+    document.getElementById(
+        "pdfSummary"
+    ).innerHTML = `
 
-        pdfRunDate.textContent =
-            "Generated: " +
-            new Date().toLocaleString();
+        <h2>Inputs</h2>
 
-    }
+        <p>
+            Selling Entity:
+            ${selectedEntity}
+        </p>
+
+        <p>
+            Customer Country:
+            ${selectedCustomerCountry}
+        </p>
+
+        <p>
+            Customer Type:
+            ${selectedCustomerType}
+        </p>
+
+        <p>
+            Charter Type:
+            ${selectedCharterType}
+        </p>
+
+        <p>
+            Tax Type:
+            ${getCurrentTaxName()}
+        </p>
+
+        <hr>
+
+        <h2>Itinerary</h2>
+
+        ${
+            itinerary.map(sector => `
+                <p>
+                    Sector ${sector.sectorNumber}:
+                    ${sector.origin.iata}
+                    →
+                    ${sector.destination.iata}
+                </p>
+            `).join("")
+        }
+
+    `;
 
     window.print();
 
