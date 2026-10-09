@@ -368,6 +368,38 @@ function getEntityCountry(entityCode) {
     return entity.country;
 }
 
+/**
+ * Returns the display name for the tax system used by the
+ * currently selected selling entity.
+ *
+ * Examples:
+ * VAT
+ * GST
+ * Sales Tax
+ * GST/HST
+ */
+function getCurrentTaxName() {
+
+    if (
+        !sellingEntitiesData ||
+        !sellingEntitiesData.data ||
+        !selectedEntity
+    ) {
+        return "Tax";
+    }
+
+    const entity =
+        sellingEntitiesData.data[selectedEntity];
+
+    if (!entity) {
+        return "Tax";
+    }
+
+    return entity.taxName || "Tax";
+
+}
+
+
 // ═══════════════════════════════════════════════════════════
 //  4. VAT RULE MATCHING AND DISPLAY
 // ═══════════════════════════════════════════════════════════
@@ -1641,7 +1673,14 @@ function runVatTests() {
         const grossValue = calculationCheck.canCalculate
             ? allocatedNetValue + vatAmount
             : null;
-
+//debug
+console.log(
+    "Current Tax Name:",
+    getCurrentTaxName()
+);
+      
+//end debug
+      
         return {
             sector,
             transaction,
