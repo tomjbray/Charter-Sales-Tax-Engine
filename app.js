@@ -2051,6 +2051,18 @@ function exportPdfReport() {
 
         <hr>
 
+        <h2>Dynamic Inputs</h2>
+
+${
+    Object.entries(dynamicInputValues)
+        .map(([key, value]) => `
+            <p>${key}: ${value}</p>
+        `)
+        .join("")
+}
+
+        <hr>
+
         <h2>Itinerary</h2>
 
         ${
@@ -2063,6 +2075,51 @@ function exportPdfReport() {
                 </p>
             `).join("")
         }
+
+<hr>
+
+<h2>Summary</h2>
+
+<p>
+    Net Value:
+    ${
+        document.getElementById(
+            "summaryNetValue"
+        )?.textContent || "-"
+    }
+</p>
+
+<p>
+    Taxable Value:
+    ${
+        document.getElementById(
+            "summaryTaxableValue"
+        )?.textContent || "-"
+    }
+</p>
+
+<p>
+    ${getCurrentTaxName()} Amount:
+    ${
+        document.getElementById(
+            "summaryVatValue"
+        )?.textContent || "-"
+    }
+</p>
+
+<p>
+    Gross Value:
+    ${
+        document.getElementById(
+            "summaryGrossValue"
+        )?.textContent || "-"
+    }
+</p>
+
+const firstRule =
+    document.querySelector(
+        ".vat-sector-card"
+    );
 
     `;
 
