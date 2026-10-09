@@ -1284,4 +1284,126 @@ header::after {
     font-size: 16px;
 }
 
+/* ==========================================================
+  VAT REASONING PANEL
+   ========================================================== */
 
+.rule-trace-panel {
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid #d7dce3;
+    border-radius: 8px;
+    background-color: #f8fafc;
+}
+
+.rule-trace-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.rule-trace-heading h3 {
+    margin: 0;
+}
+
+.rule-trace-heading strong {
+    color: #17365d;
+}
+
+.rule-trace-header,
+.rule-trace-row {
+    display: grid;
+    grid-template-columns:
+        minmax(160px, 1.5fr)
+        minmax(100px, 1fr)
+        minmax(100px, 1fr)
+        minmax(145px, 1fr);
+    gap: 12px;
+    align-items: center;
+}
+
+.rule-trace-header {
+    padding: 8px 10px;
+    border-bottom: 2px solid #aeb8c5;
+    color: #52606d;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.rule-trace-row {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e1e6ec;
+}
+
+.rule-trace-row:last-child {
+    border-bottom: none;
+}
+
+.rule-trace-criterion {
+    color: #52606d;
+}
+
+.rule-trace-value {
+    color: #17365d;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.rule-trace-status {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.trace-match {
+    color: #237a44;
+}
+
+.trace-no-match {
+    color: #b42318;
+}
+
+.rule-trace-no-rule {
+    padding: 12px;
+    border-left: 4px solid #b42318;
+    background-color: #fff5f5;
+    color: #8a1c13;
+}
+
+@media (max-width: 760px) {
+    .rule-trace-heading {
+        display: block;
+    }
+
+    .rule-trace-heading strong {
+        display: block;
+        margin-top: 6px;
+    }
+
+    .rule-trace-header {
+        display: none;
+    }
+
+    .rule-trace-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .rule-trace-criterion {
+        font-weight: 700;
+    }
+
+    .rule-trace-value:nth-child(2)::before {
+        content: "Transaction: ";
+        color: #52606d;
+        font-weight: 400;
+    }
+
+    .rule-trace-value:nth-child(3)::before {
+        content: "Rule: ";
+        color: #52606d;
+        font-weight: 400;
+    }
+}
