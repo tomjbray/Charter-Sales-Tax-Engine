@@ -7,119 +7,136 @@
       "ruleSet": "BJS",
       "legalEntityName": "Air Global Business Sevice (Beijing) Co. Ltd",
       "country": "CN",
-      "vATRegistration": "911101055621363000"
+      "vATRegistration": "911101055621363000",
+      "taxName": "VAT"
     },
     "BOM": {
       "entityCode": "BOM",
       "ruleSet": "BOM",
       "legalEntityName": "ACS Air Charter Service India Private Ltd",
       "country": "IN",
-      "vATRegistration": "27AAJCA7123J1ZK"
+      "vATRegistration": "27AAJCA7123J1ZK",
+      "taxName": "VAT"
     },
     "BRU": {
       "entityCode": "BRU",
       "ruleSet": "BRU",
       "legalEntityName": "ACS Air Charter Brussels S.R.L.",
       "country": "BE",
-      "vATRegistration": "BE1028.867.221"
+      "vATRegistration": "BE1028.867.221",
+      "taxName": "VAT"
     },
     "DUB": {
       "entityCode": "DUB",
       "ruleSet": "DUB",
       "legalEntityName": "ACS Air Charter Service (Ireland) Limited",
       "country": "IE",
-      "vATRegistration": "IE4325071AH"
+      "vATRegistration": "IE4325071AH",
+      "taxName": "VAT"
     },
     "DXB": {
       "entityCode": "DXB",
       "ruleSet": "DXB",
       "legalEntityName": "Air Charter Service FZCO",
       "country": "AE",
-      "vATRegistration": "100012645600003"
+      "vATRegistration": "100012645600003",
+      "taxName": "VAT"
     },
     "FRA": {
       "entityCode": "FRA",
       "ruleSet": "FRA",
       "legalEntityName": "Air Charter Service GmbH",
       "country": "DE",
-      "vATRegistration": "DE273300790"
+      "vATRegistration": "DE273300790",
+      "taxName": "VAT"
     },
     "GVA": {
       "entityCode": "GVA",
       "ruleSet": "GVA",
       "legalEntityName": "Air Charter Service (ACS) Switzerland SA",
       "country": "CH",
-      "vATRegistration": "CHE-332.992.880"
+      "vATRegistration": "CHE-332.992.880",
+      "taxName": "VAT"
     },
     "JNB": {
       "entityCode": "JNB",
       "ruleSet": "JNB",
       "legalEntityName": "ACS Air Charter (Pty) Ltd",
       "country": "ZA",
-      "vATRegistration": "4050253493"
+      "vATRegistration": "4050253493",
+      "taxName": "VAT"
     },
     "LON": {
       "entityCode": "LON",
       "ruleSet": "LON",
       "legalEntityName": "Air Charter Service Limited",
       "country": "GB",
-      "vATRegistration": "911579715"
+      "vATRegistration": "911579715",
+      "taxName": "VAT"
     },
     "MAD": {
       "entityCode": "MAD",
       "ruleSet": "MAD",
       "legalEntityName": "ACS Espana - Servicios Charter Aereo SLU",
       "country": "ES",
-      "vATRegistration": "ES B95552139"
+      "vATRegistration": "ES B95552139",
+      "taxName": "VAT"
     },
     "MXP": {
       "entityCode": "MXP",
       "ruleSet": "MXP",
       "legalEntityName": "Air Charter Service Italy S.R.L.",
       "country": "IT",
-      "vATRegistration": "IT13693200969"
+      "vATRegistration": "IT13693200969",
+      "taxName": "VAT"
     },
     "PAR": {
       "entityCode": "PAR",
       "ruleSet": "PAR",
       "legalEntityName": "Aircraft Chartering Services SAS",
       "country": "FR",
-      "vATRegistration": "FR16513299719"
+      "vATRegistration": "FR16513299719",
+      "taxName": "VAT"
     },
     "RUH": {
       "entityCode": "RUH",
       "ruleSet": "RUH",
       "legalEntityName": "Air Charter Service LLC",
       "country": "SA",
-      "vATRegistration": "312696973400003"
+      "vATRegistration": "312696973400003",
+      "taxName": "VAT"
     },
     "SAO": {
       "entityCode": "SAO",
       "ruleSet": "SAO",
       "legalEntityName": "ACS - Afretamento Aereo Ltda",
       "country": "BR",
-      "vATRegistration": "12.902.754/0001-16"
+      "vATRegistration": "12.902.754/0001-16",
+      "taxName": "tbc"
     },
     "SYD": {
       "entityCode": "SYD",
       "ruleSet": "SYD",
       "legalEntityName": "Air Charter Service (Aust) Pty Ltd",
       "country": "AU",
-      "vATRegistration": "47156345809"
+      "vATRegistration": "47156345809",
+      "taxName": "GST"
     },
     "YTZ": {
       "entityCode": "YTZ",
       "ruleSet": "YTZ",
       "legalEntityName": "ACS Air Charter Service (Canada) Passenger Corp",
       "country": "CA",
-      "vATRegistration": "781064886RC0001"
+      "vATRegistration": "781064886RC0001",
+      "taxName": "GST/HST"
     },
     "YYZ": {
       "entityCode": "YYZ",
       "ruleSet": "YYZ",
       "legalEntityName": "ACS Air Charter Service (Canada) Corp",
       "country": "CA",
-      "vATRegistration": "836509257RC0001"
+      "vATRegistration": "836509257RC0001",
+      "taxName": "GST/HST"
     }
   }
 }

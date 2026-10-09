@@ -12,7 +12,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REDUCED",
       "rate": 0.06,
       "rulePriority": 100,
@@ -22,7 +21,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU02",
@@ -33,7 +33,6 @@
       "vatRegistered": "NO",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -43,7 +42,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU03",
@@ -54,7 +54,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -64,7 +63,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU04",
@@ -75,7 +75,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -85,7 +84,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU05",
@@ -96,7 +96,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -106,7 +105,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU06",
@@ -117,7 +117,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -127,7 +126,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU07",
@@ -138,7 +138,6 @@
       "vatRegistered": "NO",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -148,7 +147,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU08",
@@ -159,7 +159,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -169,7 +168,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU09",
@@ -180,7 +180,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -190,7 +189,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU10",
@@ -201,7 +201,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -211,7 +210,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU11",
@@ -222,7 +222,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -232,7 +231,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU12",
@@ -243,7 +243,6 @@
       "vatRegistered": "NO",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -253,7 +252,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU13",
@@ -264,7 +264,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -274,7 +273,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU14",
@@ -285,7 +285,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -295,7 +294,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU15",
@@ -306,7 +306,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -316,7 +315,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU16",
@@ -327,7 +327,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -337,7 +336,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU17",
@@ -348,7 +348,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -358,7 +357,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU18",
@@ -369,7 +369,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -379,7 +378,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU19",
@@ -390,7 +390,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -400,7 +399,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU20",
@@ -411,7 +411,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -421,7 +420,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU21",
@@ -432,7 +432,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -442,7 +441,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU22",
@@ -453,7 +453,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -463,7 +462,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU23",
@@ -474,7 +474,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -484,7 +483,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU24",
@@ -495,7 +495,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -505,7 +504,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU25",
@@ -516,7 +516,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -526,7 +525,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU26",
@@ -537,7 +537,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -547,7 +546,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU27",
@@ -558,7 +558,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -568,7 +567,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU28",
@@ -579,7 +579,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -589,7 +588,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU29",
@@ -600,7 +600,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -610,7 +609,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU30",
@@ -621,7 +621,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -631,7 +630,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU31",
@@ -642,7 +642,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -652,7 +651,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU32",
@@ -663,7 +663,6 @@
       "vatRegistered": "NO",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -673,7 +672,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU33",
@@ -684,7 +684,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -694,7 +693,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU34",
@@ -705,7 +705,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -715,7 +714,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU35",
@@ -726,7 +726,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -736,7 +735,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU36",
@@ -747,7 +747,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -757,7 +756,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU37",
@@ -768,7 +768,6 @@
       "vatRegistered": "NO",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -778,7 +777,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU38",
@@ -789,7 +789,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -799,7 +798,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU39",
@@ -810,7 +810,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -820,7 +819,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU40",
@@ -831,7 +831,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -841,7 +840,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU41",
@@ -852,7 +852,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -862,7 +861,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU42",
@@ -873,7 +873,6 @@
       "vatRegistered": "NO",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -883,7 +882,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU43",
@@ -894,7 +894,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -904,7 +903,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU44",
@@ -915,7 +915,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -925,7 +924,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "BRU45",
@@ -936,7 +936,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -946,7 +945,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA01",
@@ -957,7 +957,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -967,7 +966,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA02",
@@ -978,7 +978,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -988,7 +987,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA03",
@@ -999,7 +999,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1009,7 +1008,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA04",
@@ -1020,7 +1020,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1030,7 +1029,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA05",
@@ -1041,7 +1041,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1051,7 +1050,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA06",
@@ -1062,7 +1062,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1072,7 +1071,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA07",
@@ -1083,7 +1083,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1093,7 +1092,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA08",
@@ -1104,7 +1104,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1114,7 +1113,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA09",
@@ -1125,7 +1125,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -1135,7 +1134,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA10",
@@ -1146,7 +1146,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1156,7 +1155,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA11",
@@ -1167,7 +1167,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1177,7 +1176,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA12",
@@ -1188,7 +1188,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1198,7 +1197,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     {
       "ruleId": "FRA13",
@@ -1209,7 +1209,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1219,7 +1218,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     {
       "ruleId": "FRA14",
@@ -1230,7 +1230,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1240,7 +1239,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA15",
@@ -1251,7 +1251,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1261,7 +1260,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA16",
@@ -1272,7 +1272,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1282,7 +1281,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     {
       "ruleId": "FRA17",
@@ -1293,7 +1293,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1303,7 +1302,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     {
       "ruleId": "FRA18",
@@ -1314,7 +1314,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1324,7 +1323,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA19",
@@ -1335,7 +1335,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1345,7 +1344,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA20",
@@ -1356,7 +1356,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -1366,7 +1365,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA21",
@@ -1377,7 +1377,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1387,7 +1386,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA22",
@@ -1398,7 +1398,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1408,7 +1407,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA23",
@@ -1419,7 +1419,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1429,7 +1428,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA24",
@@ -1440,7 +1440,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1450,7 +1449,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA25",
@@ -1461,7 +1461,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1471,7 +1470,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA26",
@@ -1482,7 +1482,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1492,7 +1491,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA27",
@@ -1503,7 +1503,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1513,7 +1512,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA28",
@@ -1524,7 +1524,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1534,7 +1533,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA29",
@@ -1545,7 +1545,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1555,7 +1554,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA30",
@@ -1566,7 +1566,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1576,7 +1575,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA31",
@@ -1587,7 +1587,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -1597,7 +1596,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA32",
@@ -1608,7 +1608,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1618,7 +1617,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA33",
@@ -1629,7 +1629,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1639,7 +1638,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA34",
@@ -1650,7 +1650,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1660,7 +1659,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     {
       "ruleId": "FRA35",
@@ -1671,7 +1671,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1681,7 +1680,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     {
       "ruleId": "FRA36",
@@ -1692,7 +1692,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1702,7 +1701,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA37",
@@ -1713,7 +1713,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1723,7 +1722,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA38",
@@ -1734,7 +1734,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1744,7 +1743,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     {
       "ruleId": "FRA39",
@@ -1755,7 +1755,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -1765,7 +1764,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     {
       "ruleId": "FRA40",
@@ -1776,7 +1776,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1786,7 +1785,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA41",
@@ -1797,7 +1797,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1807,7 +1806,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "FRA42",
@@ -1818,7 +1818,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -1828,7 +1827,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB01",
@@ -1839,7 +1839,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.15,
       "rulePriority": 100,
@@ -1849,7 +1848,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB02",
@@ -1860,7 +1860,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.15,
       "rulePriority": 100,
@@ -1870,7 +1869,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB03",
@@ -1881,7 +1881,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1891,7 +1890,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB04",
@@ -1902,7 +1902,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1912,7 +1911,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB05",
@@ -1923,7 +1923,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1933,7 +1932,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB06",
@@ -1944,7 +1944,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1954,7 +1953,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB07",
@@ -1965,7 +1965,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1975,7 +1974,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB08",
@@ -1986,7 +1986,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -1996,7 +1995,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB09",
@@ -2007,7 +2007,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2017,7 +2016,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     {
       "ruleId": "JNB10",
@@ -2028,7 +2028,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2038,7 +2037,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     }
   ],
   "rulesById": {
@@ -2051,7 +2051,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REDUCED",
       "rate": 0.06,
       "rulePriority": 100,
@@ -2061,7 +2060,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU02": {
       "ruleId": "BRU02",
@@ -2072,7 +2072,6 @@
       "vatRegistered": "NO",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2082,7 +2081,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU03": {
       "ruleId": "BRU03",
@@ -2093,7 +2093,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2103,7 +2102,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU04": {
       "ruleId": "BRU04",
@@ -2114,7 +2114,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2124,7 +2123,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU05": {
       "ruleId": "BRU05",
@@ -2135,7 +2135,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2145,7 +2144,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU06": {
       "ruleId": "BRU06",
@@ -2156,7 +2156,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2166,7 +2165,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU07": {
       "ruleId": "BRU07",
@@ -2177,7 +2177,6 @@
       "vatRegistered": "NO",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2187,7 +2186,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU08": {
       "ruleId": "BRU08",
@@ -2198,7 +2198,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2208,7 +2207,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU09": {
       "ruleId": "BRU09",
@@ -2219,7 +2219,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2229,7 +2228,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU10": {
       "ruleId": "BRU10",
@@ -2240,7 +2240,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2250,7 +2249,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU11": {
       "ruleId": "BRU11",
@@ -2261,7 +2261,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2271,7 +2270,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU12": {
       "ruleId": "BRU12",
@@ -2282,7 +2282,6 @@
       "vatRegistered": "NO",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2292,7 +2291,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU13": {
       "ruleId": "BRU13",
@@ -2303,7 +2303,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2313,7 +2312,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU14": {
       "ruleId": "BRU14",
@@ -2324,7 +2324,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2334,7 +2333,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU15": {
       "ruleId": "BRU15",
@@ -2345,7 +2345,6 @@
       "vatRegistered": "YES",
       "originTerritory": "BE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2355,7 +2354,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU16": {
       "ruleId": "BRU16",
@@ -2366,7 +2366,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2376,7 +2375,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU17": {
       "ruleId": "BRU17",
@@ -2387,7 +2387,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2397,7 +2396,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU18": {
       "ruleId": "BRU18",
@@ -2408,7 +2408,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2418,7 +2417,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU19": {
       "ruleId": "BRU19",
@@ -2429,7 +2429,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2439,7 +2438,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU20": {
       "ruleId": "BRU20",
@@ -2450,7 +2450,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2460,7 +2459,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU21": {
       "ruleId": "BRU21",
@@ -2471,7 +2471,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2481,7 +2480,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU22": {
       "ruleId": "BRU22",
@@ -2492,7 +2492,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2502,7 +2501,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU23": {
       "ruleId": "BRU23",
@@ -2513,7 +2513,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.21,
       "rulePriority": 100,
@@ -2523,7 +2522,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU24": {
       "ruleId": "BRU24",
@@ -2534,7 +2534,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2544,7 +2543,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU25": {
       "ruleId": "BRU25",
@@ -2555,7 +2555,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2565,7 +2564,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU26": {
       "ruleId": "BRU26",
@@ -2576,7 +2576,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2586,7 +2585,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU27": {
       "ruleId": "BRU27",
@@ -2597,7 +2597,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2607,7 +2606,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU28": {
       "ruleId": "BRU28",
@@ -2618,7 +2618,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2628,7 +2627,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU29": {
       "ruleId": "BRU29",
@@ -2639,7 +2639,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2649,7 +2648,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU30": {
       "ruleId": "BRU30",
@@ -2660,7 +2660,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2670,7 +2669,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU31": {
       "ruleId": "BRU31",
@@ -2681,7 +2681,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2691,7 +2690,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU32": {
       "ruleId": "BRU32",
@@ -2702,7 +2702,6 @@
       "vatRegistered": "NO",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2712,7 +2711,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU33": {
       "ruleId": "BRU33",
@@ -2723,7 +2723,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2733,7 +2732,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU34": {
       "ruleId": "BRU34",
@@ -2744,7 +2744,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2754,7 +2753,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU35": {
       "ruleId": "BRU35",
@@ -2765,7 +2765,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "BE",
-      "DirectExporter": "ANY",
       "treatment": "REVERSE_CHARGE",
       "rate": 0,
       "rulePriority": 100,
@@ -2775,7 +2774,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU36": {
       "ruleId": "BRU36",
@@ -2786,7 +2786,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2796,7 +2795,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU37": {
       "ruleId": "BRU37",
@@ -2807,7 +2807,6 @@
       "vatRegistered": "NO",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2817,7 +2816,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU38": {
       "ruleId": "BRU38",
@@ -2828,7 +2828,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2838,7 +2837,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU39": {
       "ruleId": "BRU39",
@@ -2849,7 +2849,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2859,7 +2858,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU40": {
       "ruleId": "BRU40",
@@ -2870,7 +2870,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2880,7 +2879,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU41": {
       "ruleId": "BRU41",
@@ -2891,7 +2891,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -2901,7 +2900,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU42": {
       "ruleId": "BRU42",
@@ -2912,7 +2912,6 @@
       "vatRegistered": "NO",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -2922,7 +2921,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU43": {
       "ruleId": "BRU43",
@@ -2933,7 +2933,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -2943,7 +2942,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU44": {
       "ruleId": "BRU44",
@@ -2954,7 +2954,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -2964,7 +2963,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "BRU45": {
       "ruleId": "BRU45",
@@ -2975,7 +2975,6 @@
       "vatRegistered": "YES",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -2985,7 +2984,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA01": {
       "ruleId": "FRA01",
@@ -2996,7 +2996,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3006,7 +3005,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA02": {
       "ruleId": "FRA02",
@@ -3017,7 +3017,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3027,7 +3026,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA03": {
       "ruleId": "FRA03",
@@ -3038,7 +3038,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3048,7 +3047,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA04": {
       "ruleId": "FRA04",
@@ -3059,7 +3059,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3069,7 +3068,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA05": {
       "ruleId": "FRA05",
@@ -3080,7 +3080,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3090,7 +3089,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA06": {
       "ruleId": "FRA06",
@@ -3101,7 +3101,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3111,7 +3110,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA07": {
       "ruleId": "FRA07",
@@ -3122,7 +3122,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3132,7 +3131,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA08": {
       "ruleId": "FRA08",
@@ -3143,7 +3143,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3153,7 +3152,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA09": {
       "ruleId": "FRA09",
@@ -3164,7 +3164,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -3174,7 +3173,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA10": {
       "ruleId": "FRA10",
@@ -3185,7 +3185,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3195,7 +3194,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA11": {
       "ruleId": "FRA11",
@@ -3206,7 +3206,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3216,7 +3215,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA12": {
       "ruleId": "FRA12",
@@ -3227,7 +3227,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3237,7 +3236,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     "FRA13": {
       "ruleId": "FRA13",
@@ -3248,7 +3248,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3258,7 +3257,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     "FRA14": {
       "ruleId": "FRA14",
@@ -3269,7 +3269,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3279,7 +3278,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA15": {
       "ruleId": "FRA15",
@@ -3290,7 +3290,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3300,7 +3299,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA16": {
       "ruleId": "FRA16",
@@ -3311,7 +3311,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3321,7 +3320,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     "FRA17": {
       "ruleId": "FRA17",
@@ -3332,7 +3332,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3342,7 +3341,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     "FRA18": {
       "ruleId": "FRA18",
@@ -3353,7 +3353,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3363,7 +3362,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA19": {
       "ruleId": "FRA19",
@@ -3374,7 +3374,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3384,7 +3383,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA20": {
       "ruleId": "FRA20",
@@ -3395,7 +3395,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -3405,7 +3404,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA21": {
       "ruleId": "FRA21",
@@ -3416,7 +3416,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3426,7 +3425,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA22": {
       "ruleId": "FRA22",
@@ -3437,7 +3437,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3447,7 +3446,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA23": {
       "ruleId": "FRA23",
@@ -3458,7 +3458,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3468,7 +3467,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA24": {
       "ruleId": "FRA24",
@@ -3479,7 +3479,6 @@
       "vatRegistered": "YES",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3489,7 +3488,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA25": {
       "ruleId": "FRA25",
@@ -3500,7 +3500,6 @@
       "vatRegistered": "NO",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3510,7 +3509,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA26": {
       "ruleId": "FRA26",
@@ -3521,7 +3521,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3531,7 +3530,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA27": {
       "ruleId": "FRA27",
@@ -3542,7 +3542,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3552,7 +3551,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA28": {
       "ruleId": "FRA28",
@@ -3563,7 +3563,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3573,7 +3572,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA29": {
       "ruleId": "FRA29",
@@ -3584,7 +3584,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3594,7 +3593,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA30": {
       "ruleId": "FRA30",
@@ -3605,7 +3605,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3615,7 +3614,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA31": {
       "ruleId": "FRA31",
@@ -3626,7 +3626,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -3636,7 +3635,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA32": {
       "ruleId": "FRA32",
@@ -3647,7 +3647,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3657,7 +3656,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA33": {
       "ruleId": "FRA33",
@@ -3668,7 +3668,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3678,7 +3677,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA34": {
       "ruleId": "FRA34",
@@ -3689,7 +3689,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3699,7 +3698,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     "FRA35": {
       "ruleId": "FRA35",
@@ -3710,7 +3710,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "DE",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3720,7 +3719,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     "FRA36": {
       "ruleId": "FRA36",
@@ -3731,7 +3731,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3741,7 +3740,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA37": {
       "ruleId": "FRA37",
@@ -3752,7 +3752,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3762,7 +3761,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA38": {
       "ruleId": "FRA38",
@@ -3773,7 +3773,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "YES",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3783,7 +3782,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "YES"
     },
     "FRA39": {
       "ruleId": "FRA39",
@@ -3794,7 +3794,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "NO",
       "treatment": "STANDARD",
       "rate": 0.19,
       "rulePriority": 100,
@@ -3804,7 +3803,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "NO"
     },
     "FRA40": {
       "ruleId": "FRA40",
@@ -3815,7 +3815,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "DE",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3825,7 +3824,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA41": {
       "ruleId": "FRA41",
@@ -3836,7 +3836,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "EU",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3846,7 +3845,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "FRA42": {
       "ruleId": "FRA42",
@@ -3857,7 +3857,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
       "destinationTerritory": "NON_EU",
-      "DirectExporter": "ANY",
       "treatment": "OUTSIDE_SCOPE",
       "rate": 0,
       "rulePriority": 100,
@@ -3867,7 +3866,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB01": {
       "ruleId": "JNB01",
@@ -3878,7 +3878,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.15,
       "rulePriority": 100,
@@ -3888,7 +3887,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB02": {
       "ruleId": "JNB02",
@@ -3899,7 +3899,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "STANDARD",
       "rate": 0.15,
       "rulePriority": 100,
@@ -3909,7 +3908,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB03": {
       "ruleId": "JNB03",
@@ -3920,7 +3920,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3930,7 +3929,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB04": {
       "ruleId": "JNB04",
@@ -3941,7 +3941,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3951,7 +3950,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB05": {
       "ruleId": "JNB05",
@@ -3962,7 +3962,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3972,7 +3971,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB06": {
       "ruleId": "JNB06",
@@ -3983,7 +3983,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -3993,7 +3992,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB07": {
       "ruleId": "JNB07",
@@ -4004,7 +4004,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -4014,7 +4013,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB08": {
       "ruleId": "JNB08",
@@ -4025,7 +4025,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -4035,7 +4034,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB09": {
       "ruleId": "JNB09",
@@ -4046,7 +4046,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -4056,7 +4055,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     },
     "JNB10": {
       "ruleId": "JNB10",
@@ -4067,7 +4067,6 @@
       "vatRegistered": "ANY",
       "originTerritory": "NON_ZA",
       "destinationTerritory": "NON_ZA",
-      "DirectExporter": "ANY",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 100,
@@ -4077,7 +4076,8 @@
       "calculationMethod": "STANDARD",
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
-      "effectiveTo": null
+      "effectiveTo": null,
+      "DirectExporter": "ANY"
     }
   }
 }
