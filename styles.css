@@ -1412,27 +1412,28 @@ header::after {
 PRINT-SPECIFIC STYLE
    ========================================================== */
 
-@media print {
-
-    body {
-        background: white;
-    }
-
-    #exportPdfBtn,
-    #addSectorBtn {
-        display: none;
-    }
-
-}
-
 #printReport {
     display: none;
 }
 
 @media print {
 
+    #applicationLayout {
+        display: none !important;
+    }
+
     #printReport {
-        display: block;
+        display: block !important;
+    }
+
+    body {
+        background: white;
+        font-size: 10pt;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 10mm;
     }
 }
 
