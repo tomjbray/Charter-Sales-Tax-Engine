@@ -424,10 +424,20 @@ function updateTaxLabels() {
     ).textContent =
         `${taxName} Summary`;
 
-      document.getElementById(
+const vatInputsTitle =
+    document.getElementById(
         "vatInputsTitle"
-    ).textContent =
-        `${taxName} INPUTS`;
+    );
+
+console.log(
+    "vatInputsTitle:",
+    vatInputsTitle
+);
+
+if (vatInputsTitle) {
+    vatInputsTitle.textContent =
+        `${taxName} Inputs`;
+}
 
 }
 
