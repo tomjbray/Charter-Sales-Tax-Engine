@@ -1429,7 +1429,8 @@ PRINT-SPECIFIC STYLE
 
     body {
         background: white;
-        font-size: 10pt;
+        font-size: 9pt;
+        zoom: 85%;
     }
 }
 
