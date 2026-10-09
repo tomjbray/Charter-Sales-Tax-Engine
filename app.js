@@ -386,84 +386,60 @@ function getCurrentTaxName() {
         !sellingEntitiesData.data ||
         !selectedEntity
     ) {
-        return "Tax";
+        return "VAT";
     }
 
     const entity =
         sellingEntitiesData.data[selectedEntity];
 
     if (!entity) {
-        return "Tax";
+        return "VAT";
     }
 
     return (
         entity.taxName ||
         entity.TaxName ||
-        "Tax"
+        "VAT"
     );
 
 }
 
 function updateTaxLabels() {
 
+    const taxName =
+        getCurrentTaxName();
+
     const resultsSummaryTitle =
-    document.getElementById("resultsSummaryTitle");
+        document.getElementById("resultsSummaryTitle");
 
-if (resultsSummaryTitle) {
-    resultsSummaryTitle.textContent =
-        `${taxName} Results Summary`;
-}
+    if (resultsSummaryTitle) {
+        resultsSummaryTitle.textContent =
+            `${taxName} Results Summary`;
+    }
 
-const sectorResultsTitle =
-    document.getElementById("sectorResultsTitle");
+    const sectorResultsTitle =
+        document.getElementById("sectorResultsTitle");
 
-if (sectorResultsTitle) {
-    sectorResultsTitle.textContent =
-        `${taxName} Results`;
-}
+    if (sectorResultsTitle) {
+        sectorResultsTitle.textContent =
+            `${taxName} Results`;
+    }
 
-const itinerarySummaryTitle =
-    document.getElementById("itinerarySummaryTitle");
+    const itinerarySummaryTitle =
+        document.getElementById("itinerarySummaryTitle");
 
-if (itinerarySummaryTitle) {
-    itinerarySummaryTitle.textContent =
-        `${taxName} Summary`;
-}
+    if (itinerarySummaryTitle) {
+        itinerarySummaryTitle.textContent =
+            `${taxName} Summary`;
+    }
 
-const vatInputsTitle =
-    document.getElementById("vatInputsTitle");
+    const vatInputsTitle =
+        document.getElementById("vatInputsTitle");
 
-if (vatInputsTitle) {
-    vatInputsTitle.textContent =
-        `${taxName} Inputs`;
-}
-
-console.log(
-    "vatInputsTitle:",
-    vatInputsTitle
-);
-  console.log(
-    document.getElementById("resultsSummaryTitle")
-);
-
-console.log(
-    document.getElementById("sectorResultsTitle")
-);
-
-console.log(
-    document.getElementById("itinerarySummaryTitle")
-);
-
-console.log(
-    document.getElementById("vatInputsTitle")
-);
-
-
-if (vatInputsTitle) {
-    vatInputsTitle.textContent =
-        `${taxName} Inputs`;
-}
-
+    if (vatInputsTitle) {
+        vatInputsTitle.textContent =
+            `${taxName} Inputs`;
+    }
 }
 
 // ═══════════════════════════════════════════════════════════
