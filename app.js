@@ -2012,6 +2012,19 @@ function runVatTest() {
 
 function exportPdfReport() {
 
+    const pdfRunDate =
+        document.getElementById(
+            "pdfRunDate"
+        );
+
+    if (pdfRunDate) {
+
+        pdfRunDate.textContent =
+            "Generated: " +
+            new Date().toLocaleString();
+
+    }
+
     window.print();
 
 }
