@@ -51,6 +51,7 @@ let vatRulesData = null;
 let taxTerritoriesData = null;
 let countriesData = null;
 let charterValue = 0;
+let latestVatResults = [];
 
 // Dynamic VAT-input configuration loaded from input_requirements.json.
 // The current renderer uses this file for validation/readiness; the next phase
@@ -1967,13 +1968,6 @@ function runVatTests() {
         const grossValue = calculationCheck.canCalculate
             ? allocatedNetValue + vatAmount
             : null;
-//debug
-console.log(
-    "Current Tax Name:",
-    getCurrentTaxName()
-);
-      
-//end debug
       
         return {
             sector,
@@ -1993,6 +1987,8 @@ console.log(
         };
     });
 
+    latestVatResults = results;
+  
     renderVatSummary(results);
     renderVatSectorResults(results);
     return results;
@@ -2054,11 +2050,15 @@ function exportPdfReport() {
         <h2>Dynamic Inputs</h2>
 
 ${
-    Object.entries(dynamicInputValues)
-        .map(([key, value]) => `
-            <p>${key}: ${value}</p>
-        `)
-        .join("")
+    Object.keys(dynamicInputValues).length > 0
+        ? Object.entries(dynamicInputValues)
+            .map(([key, value]) => `
+                <p>
+                    ${key}: ${value}
+                </p>
+            `)
+            .join("")
+        : "<p>None</p>"
 }
 
         <hr>
@@ -2120,6 +2120,26 @@ const firstRule =
     document.querySelector(
         ".vat-sector-card"
     );
+<hr>
+<h2>Tax Treatment</h2>
+
+${
+    latestVatResults
+        .map(result => `
+            <p>
+                Sector ${result.sector.sectorNumber}
+                -
+                ${result.matchedRule?.ruleId || "No Rule"}
+                -
+                ${result.matchedRule?.treatment || ""}
+            </p>
+
+            <p>
+                ${result.matchedRule?.legalReference || ""}
+            </p>
+        `)
+        .join("")
+}
 
     `;
 
