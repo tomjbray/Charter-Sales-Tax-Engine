@@ -2215,8 +2215,6 @@ ${
         `)
         .join("")
 }
-``
-``
 
     `;
 
@@ -2473,10 +2471,7 @@ const tooltipHtml =
                             : "NO";
 
 
-                    console.log(
-                        "Dynamic Inputs",
-                        dynamicInputValues
-                    );
+
 
                     runVatTest();
 
