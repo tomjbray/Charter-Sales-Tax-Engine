@@ -406,33 +406,58 @@ function getCurrentTaxName() {
 
 function updateTaxLabels() {
 
-    const taxName =
-        getCurrentTaxName();
+    const resultsSummaryTitle =
+    document.getElementById("resultsSummaryTitle");
 
-    document.getElementById(
-        "resultsSummaryTitle"
-    ).textContent =
+if (resultsSummaryTitle) {
+    resultsSummaryTitle.textContent =
         `${taxName} Results Summary`;
+}
 
-    document.getElementById(
-        "sectorResultsTitle"
-    ).textContent =
+const sectorResultsTitle =
+    document.getElementById("sectorResultsTitle");
+
+if (sectorResultsTitle) {
+    sectorResultsTitle.textContent =
         `${taxName} Results`;
+}
 
-    document.getElementById(
-        "itinerarySummaryTitle"
-    ).textContent =
+const itinerarySummaryTitle =
+    document.getElementById("itinerarySummaryTitle");
+
+if (itinerarySummaryTitle) {
+    itinerarySummaryTitle.textContent =
         `${taxName} Summary`;
+}
 
 const vatInputsTitle =
-    document.getElementById(
-        "vatInputsTitle"
-    );
+    document.getElementById("vatInputsTitle");
+
+if (vatInputsTitle) {
+    vatInputsTitle.textContent =
+        `${taxName} Inputs`;
+}
 
 console.log(
     "vatInputsTitle:",
     vatInputsTitle
 );
+  console.log(
+    document.getElementById("resultsSummaryTitle")
+);
+
+console.log(
+    document.getElementById("sectorResultsTitle")
+);
+
+console.log(
+    document.getElementById("itinerarySummaryTitle")
+);
+
+console.log(
+    document.getElementById("vatInputsTitle")
+);
+
 
 if (vatInputsTitle) {
     vatInputsTitle.textContent =
