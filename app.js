@@ -2065,15 +2065,14 @@ document.getElementById(
         <h2>Dynamic Inputs</h2>
 
 ${
-    Object.keys(dynamicInputValues).length > 0
-        ? Object.entries(dynamicInputValues)
-            .map(([inputLabel, value]) => `
-                <p>
-                    ${inputLabel}: ${value}
-                </p>
-            `)
-            .join("")
-        : "<p>None</p>"
+    getApplicableDynamicInputs()
+        .map(input => `
+            <p>
+                ${input.inputLabel}:
+                ${dynamicInputValues[input.inputKey] || "NO"}
+            </p>
+        `)
+        .join("")
 }
 
         
@@ -2237,7 +2236,7 @@ ${
         `)
         .join("")
 }
-${JSON.stringify(getApplicableDynamicInputs(), null, 2)}
+
 ${
     getApplicableDynamicInputs()
     .map(input => `
