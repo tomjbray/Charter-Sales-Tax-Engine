@@ -767,8 +767,8 @@ function renderVatSectorResults(
                     "-"
                 )
                 : (
-                    'No ${getCurrentTaxName()} rule matches this ' +
-                    'sector and the selected ${getCurrentTaxName()} inputs.'
+                    `No ${getCurrentTaxName()} rule matches this ` +
+                    `sector and the selected ${getCurrentTaxName()} inputs.`
                 );
 
         const legalReference =
@@ -777,7 +777,7 @@ function renderVatSectorResults(
                     matchedRule.legalReference ||
                     "-"
                 )
-                : 'Review ${getCurrentTaxName()} matrix';
+                : `Review ${getCurrentTaxName()} matrix`;
 
         card.innerHTML = `
             <div class="vat-sector-heading">
@@ -821,7 +821,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                        '${getCurrentTaxName()} Registered',
+                        `${getCurrentTaxName()} Registered`,
                         transaction.vatRegistered
                     )}
 
@@ -840,7 +840,7 @@ function renderVatSectorResults(
                 <div class="vat-panel">
 
                     <h3>
-                        '${getCurrentTaxName()} Rule Match'
+                        ${getCurrentTaxName()} Rule Match
                     </h3>
 
                     ${createVatResultRow(
@@ -872,7 +872,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                        '${getCurrentTaxName()} Rate',
+                        `${getCurrentTaxName()} Rate`,
                         rate
                     )}
 
@@ -924,7 +924,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                    '${getCurrentTaxName()} Amount',
+                    `${getCurrentTaxName()} Amount`,
                     formatMoneyValue(vatAmount)
                       )}
 
