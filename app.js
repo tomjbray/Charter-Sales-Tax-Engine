@@ -147,6 +147,7 @@ statusEl.classList.add('ready');
     initialiseVatRegisteredSelector();
     syncVatRegisteredState();
     initialiseCharterValueInput();
+    updateTaxLabels();
 
     /*
      * Load the new dynamic-input file separately. This keeps the rest
@@ -1041,6 +1042,8 @@ function populateSellingEntityDropdown() {
 
             selectedEntity =
                 event.target.value;
+
+            updateTaxLabels();
 
             renderDynamicInputs();
 
