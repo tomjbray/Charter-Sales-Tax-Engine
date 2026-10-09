@@ -725,6 +725,247 @@ function formatMoneyValue(value) {
 }
 
 /**
+ * Converts a rule comparison into a user-facing match result.
+ *
+ * Blank rule values and ANY are treated as wildcards because
+ * valueMatches() treats them as matching every transaction value.
+ *
+ * @param {*} ruleValue - Value stored in the VAT rule.
+ * @param {*} transactionValue - Value used by the transaction.
+ * @returns {string}
+ */
+function getTraceMatchStatus(*    ruleValue,
+    transactionValu*
+) {
+    const normalisedRuleValue*=
+        String(ruleValue ?? "")
+*           .trim()
+            .to*pperCase();
+
+    const normalisedT*ansactionValue =
+        String(tr*nsactionValue ?? "")
+            .*rim()
+            .toUpperCase();
+*    if (
+        normalisedRuleVal*e === "" ||
+        normalisedRule*alue === "ANY"
+    ) {
+        return "Matched as wildcard";
+    }
+
+    return normalisedRuleValue ===
+        normalisedTransactionValue
+        ? "Matched"
+        : "Did not match";
+}
+
+
+/**
+ * Creates one row in the rule-trace panel.
+ *
+ * @param {string} label - User-facing criterion name.
+ * @param {*} transactionValue - Value derived from the transaction.
+ * @param {*} ruleValue - Value stored in the *atched rule.
+ * @returns {string}
+**/
+function createRuleTraceRow(
+  * label,
+    transactionValue,
+    *uleValue
+) {
+    const status =
+  *     getTraceMatchStatus(
+        *   ruleValue,
+            transact*onValue
+        );
+
+    const stat*sClass =
+        status === "Did n*t match"
+            ? "trace-no-m*tch"
+            : "trace-match";
+*    const displayedTransactionValu* =
+        transactionValue === nu*l ||
+        transactionValue === *ndefined ||
+        transactionVal*e === ""
+            ? "-"
+       *    : transactionValue;
+
+    const*displayedRuleValue =
+        ruleV*lue === null ||
+        ruleValue *== undefined ||
+        ruleValue *== ""
+            ? "ANY"
+        *   : ruleValue;
+
+    return `
+    *   <div class="rule-trace-row">
+  *         <div class="rule-trace-cr*terion">
+                ${escapeH*ml(label)}
+            </div>
+
+   *        <div class="rule-trace-val*e">
+                ${escapeHtml(d*splayedTransactionValue)}
+        *   </div>
+
+            <div class=*rule-trace-value">
+               *${escapeHtml(displayedRuleValue)}
+*           </div>
+
+            <di* class="rule-trace-status ${status*lass}">
+                ${
+       *            status === "Did not ma*ch"
+                        ? "✕"
+*                       : "✓"
+     *          }
+                ${esca*eHtml(status)}
+            </div>
+*       </div>
+    `;
+}
+
+
+/**
+ * Creates the complete trace explaining why a rule matched.
+ *
+ * Standard transaction criteria are shown first, followed by
+ * any dynamic criteria currently present in the transaction.
+ *
+ * @param {Object|null} matchedRule - Rule selected by the matcher.
+ * @param {Object} transaction - Transaction used for rule matching.
+ * @returns {string}
+ */
+function createRuleTracePanel(
+    matchedRule,
+    transaction
+) {
+    if (!matchedRule) {
+        return `
+            <div class="rule-trace-panel">
+                <h3>
+                    Rule Match Trace
+                </h3>
+
+                <div class="rule-trace-no-rule">
+                    No rule matched the current transaction.
+                    Review the rule matrix and the selected inputs.
+                </div>
+            </div>
+        `;
+    }
+
+    const standardCriteria = [
+        {
+            label: "Selling Entity",
+            transactionValue: transaction.entity,
+            ruleValue: matchedRule.entity
+        },
+        {
+            label: "Charter Type",
+            transactionValue: transaction.charterType,
+            ruleValue: matchedRule.charterType
+        },
+        {
+            label: "Customer Type",
+            transactionValue: transaction.customerType,
+            ruleValue: matchedRule.customerType
+        },
+        {
+            label: "Customer Region",
+            transactionValue: transaction.customerLocation,
+            ruleValue: matchedRule.customerLocation
+        },
+        {
+            label: `${getCurrentTaxName()} Registered`,
+            transactionValue: transaction.vatRegistered,
+            ruleValue: matchedRule.vatRegistered
+        },
+        {
+            label: "Origin Territory",
+            transactionValue: transaction.originTerritory,
+            ruleValue: matchedRule.originTerritory
+        },
+        {
+            label: "Destination Territory",
+            transactionValue: transaction.destinationTerritory,
+            ruleValue: matchedRule.destinationTerritory
+        }
+    ];
+
+    const standardRows =
+        standardCriteria
+            .map(criterion => {
+                return createRuleTraceRow(
+                    criterion.label,
+                    criterion.transactionValue,
+                    criterion.ruleValue
+                );
+            })
+            .join("");
+
+    const applicableInputs =
+        getApplicableDynamicInputs();
+
+    const dynamicRows =
+        applicableInputs
+            .map(input => {
+
+                const inputKey =
+                    input.inputKey;
+
+                const inputLabel =
+                    input.inputLabel ||
+                    inputKey;
+
+                const transactionValue =
+                    transaction.dynamicInputs?.[
+                        inputKey
+                    ];
+
+                const ruleValue =
+                    matchedRule[inputKey];
+
+                return createRuleTraceRow(
+                    inputLabel,
+                    transactionValue,
+                    ruleValue
+                );
+
+            })
+            .join("");
+
+    return `
+        <div class="rule-trace-panel">
+
+            <div class="rule-trace-heading">
+
+                <h3>
+                    Rule Match Trace
+                </h3>
+
+                <strong>
+                    Matched Rule:
+                    ${escapeHtml(matchedRule.ruleId)}
+                </strong>
+
+            </div>
+
+            <div class="rule-trace-header">
+                <div>Criterion</div>
+                <div>Transaction</div>
+                <div>Rule</div>
+                <div>Result</div>
+            </div>
+
+            ${standardRows}
+
+            ${dynamicRows}
+
+        </div>
+    `;
+}
+
+
+/**
  * Builds and displays the detailed derived-input, rule-match, distance-allocation, and VAT-calculation card for every itinerary sector.
  *
  * @param {Object[]} results - Sector VAT calculation results.
@@ -974,6 +1215,11 @@ function renderVatSectorResults(
                 </div>
 
             </div>
+              ${createRuleTracePanel(
+                  matchedRule,
+                  transaction
+              )}
+            
         `;
 
         container.appendChild(
