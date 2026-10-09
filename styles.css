@@ -1407,3 +1407,20 @@ header::after {
         font-weight: 400;
     }
 }
+
+/* ==========================================================
+PRINT-SPECIFIC STYLE
+   ========================================================== */
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    #exportPdfBtn,
+    #addSectorBtn {
+        display: none;
+    }
+
+}
