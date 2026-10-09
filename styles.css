@@ -1424,3 +1424,17 @@ PRINT-SPECIFIC STYLE
     }
 
 }
+
+#printReport {
+    display: none;
+}
+
+@media print {
+
+    #printReport {
+        display: block;
+    }
+
+}
+`
+
