@@ -2010,6 +2010,12 @@ function runVatTest() {
     return runVatTests();
 }
 
+function exportPdfReport() {
+
+    window.print();
+
+}
+
 // ═══════════════════════════════════════════════════════════
 //  5. MULTI-SECTOR ITINERARY CONTROLS
 // ═══════════════════════════════════════════════════════════
@@ -2879,6 +2885,12 @@ document.getElementById('destInput').addEventListener('input', function() {
 });
 
 document.getElementById('addSectorBtn').addEventListener('click', addSector);
+
+document.getElementById('exportPdfBtn')
+    .addEventListener(
+        'click',
+        exportPdfReport
+    );
 
 
 
