@@ -2045,23 +2045,23 @@ function exportPdfReport() {
             ${getCurrentTaxName()}
         </p>
 
-        <hr>
+       
 
         <h2>Dynamic Inputs</h2>
 
 ${
     Object.keys(dynamicInputValues).length > 0
         ? Object.entries(dynamicInputValues)
-            .map(([key, value]) => `
+            .map(([inputLabel, value]) => `
                 <p>
-                    ${key}: ${value}
+                    ${inputLabel}: ${value}
                 </p>
             `)
             .join("")
         : "<p>None</p>"
 }
 
-        <hr>
+        
 
         <h2>Itinerary</h2>
 
@@ -2076,7 +2076,7 @@ ${
             `).join("")
         }
 
-<hr>
+
 
 <h2>Summary</h2>
 
@@ -2116,30 +2116,107 @@ ${
     }
 </p>
 
-const firstRule =
-    document.querySelector(
-        ".vat-sector-card"
-    );
-<hr>
+
 <h2>Tax Treatment</h2>
 
 ${
     latestVatResults
         .map(result => `
+
             <p>
-                Sector ${result.sector.sectorNumber}
-                -
-                ${result.matchedRule?.ruleId || "No Rule"}
-                -
-                ${result.matchedRule?.treatment || ""}
+                <strong>
+                    Sector ${result.sector.sectorNumber}
+                </strong>
             </p>
 
             <p>
-                ${result.matchedRule?.legalReference || ""}
+                Rule ID:
+                ${result.matchedRule?.ruleId || "No Rule"}
+            </p>
+
+            <p>
+                Treatment:
+                ${result.matchedRule?.treatment || "-"}
+            </p>
+
+            <p>
+                ${getCurrentTaxName()} Rate:
+                ${
+                    result.matchedRule
+                        ? (result.matchedRule.rate * 100).toFixed(2) + "%"
+                        : "-"
+                }
+            </p>
+
+            <p>
+                Legal Reference:
+                ${
+                    result.matchedRule?.legalReference || "-"
+                }
+            </p>
+
+        `)
+        .join("")
+}
+
+
+<h2>Rule Match Trace</h2>
+
+${
+    latestVatResults
+        .map(result => `
+
+            <p>
+                Selling Entity:
+                ${result.transaction.entity}
+            </p>
+
+            <p>
+                Charter Type:
+                ${result.transaction.charterType}
+            </p>
+
+            <p>
+                Customer Type:
+                ${result.transaction.customerType}
+            </p>
+
+            <p>
+                Customer Region:
+                ${result.transaction.customerLocation}
+            </p>
+
+            <p>
+                ${getCurrentTaxName()} Registered:
+                ${result.transaction.vatRegistered}
+            </p>
+
+            <p>
+                Origin Territory:
+                ${result.transaction.originTerritory}
+            </p>
+
+            <p>
+                Destination Territory:
+                ${result.transaction.destinationTerritory}
+            </p>
+
+        `)
+        .join("")
+}
+
+${
+    Object.entries(dynamicInputValues)
+        .map(([key, value]) => `
+            <p>
+                ${key}:
+                ${value}
             </p>
         `)
         .join("")
 }
+``
+``
 
     `;
 
