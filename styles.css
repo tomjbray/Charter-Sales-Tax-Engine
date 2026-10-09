@@ -1434,6 +1434,16 @@ PRINT-SPECIFIC STYLE
     #printReport {
         display: block;
     }
+   header,
+nav,
+button,
+#map,
+.leaflet-container,
+#routeEntry,
+#additionalSectors,
+#dynamicVatInputs {
+    display: none !important;
+}
 
 }
 `
