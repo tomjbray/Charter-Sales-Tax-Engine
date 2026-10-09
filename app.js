@@ -730,25 +730,27 @@ function formatMoneyValue(value) {
  * Blank rule values and ANY are treated as wildcards because
  * valueMatches() treats them as matching every transaction value.
  *
- * @param {*} ruleValue - Value stored in the VAT rule.
+ * @param {*} ruleValue - Value stored in the tax rule.
  * @param {*} transactionValue - Value used by the transaction.
  * @returns {string}
  */
-function getTraceMatchStatus(*    ruleValue,
-    transactionValu*
+function getTraceMatchStatus(
+    ruleValue,
+    transactionValue
 ) {
-    const normalisedRuleValue*=
+    const normalisedRuleValue =
         String(ruleValue ?? "")
-*           .trim()
-            .to*pperCase();
-
-    const normalisedT*ansactionValue =
-        String(tr*nsactionValue ?? "")
-            .*rim()
+            .trim()
             .toUpperCase();
-*    if (
-        normalisedRuleVal*e === "" ||
-        normalisedRule*alue === "ANY"
+
+    const normalisedTransactionValue =
+        String(transactionValue ?? "")
+            .trim()
+            .toUpperCase();
+
+    if (
+        normalisedRuleValue === "" ||
+        normalisedRuleValue === "ANY"
     ) {
         return "Matched as wildcard";
     }
@@ -765,61 +767,63 @@ function getTraceMatchStatus(*    ruleValue,
  *
  * @param {string} label - User-facing criterion name.
  * @param {*} transactionValue - Value derived from the transaction.
- * @param {*} ruleValue - Value stored in the *atched rule.
+ * @param {*} ruleValue - Value stored in the matched rule.
  * @returns {string}
-**/
+ */
 function createRuleTraceRow(
-  * label,
+    label,
     transactionValue,
-    *uleValue
+    ruleValue
 ) {
     const status =
-  *     getTraceMatchStatus(
-        *   ruleValue,
-            transact*onValue
+        getTraceMatchStatus(
+            ruleValue,
+            transactionValue
         );
 
-    const stat*sClass =
-        status === "Did n*t match"
-            ? "trace-no-m*tch"
+    const statusClass =
+        status === "Did not match"
+            ? "trace-no-match"
             : "trace-match";
-*    const displayedTransactionValu* =
-        transactionValue === nu*l ||
-        transactionValue === *ndefined ||
-        transactionVal*e === ""
-            ? "-"
-       *    : transactionValue;
 
-    const*displayedRuleValue =
-        ruleV*lue === null ||
-        ruleValue *== undefined ||
-        ruleValue *== ""
+    const displayedTransactionValue =
+        transactionValue === null ||
+        transactionValue === undefined ||
+        transactionValue === ""
+            ? "-"
+            : transactionValue;
+
+    const displayedRuleValue =
+        ruleValue === null ||
+        ruleValue === undefined ||
+        ruleValue === ""
             ? "ANY"
-        *   : ruleValue;
+            : ruleValue;
+
+    const statusIcon =
+        status === "Did not match"
+            ? "✕"
+            : "✓";
 
     return `
-    *   <div class="rule-trace-row">
-  *         <div class="rule-trace-cr*terion">
-                ${escapeH*ml(label)}
+        <div class="rule-trace-row">
+            <div class="rule-trace-criterion">
+                ${escapeHtml(label)}
             </div>
 
-   *        <div class="rule-trace-val*e">
-                ${escapeHtml(d*splayedTransactionValue)}
-        *   </div>
-
-            <div class=*rule-trace-value">
-               *${escapeHtml(displayedRuleValue)}
-*           </div>
-
-            <di* class="rule-trace-status ${status*lass}">
-                ${
-       *            status === "Did not ma*ch"
-                        ? "✕"
-*                       : "✓"
-     *          }
-                ${esca*eHtml(status)}
+            <div class="rule-trace-value">
+                ${escapeHtml(displayedTransactionValue)}
             </div>
-*       </div>
+
+            <div class="rule-trace-value">
+                ${escapeHtml(displayedRuleValue)}
+            </div>
+
+            <div class="rule-trace-status ${statusClass}">
+                ${statusIcon}
+                ${escapeHtml(status)}
+            </div>
+        </div>
     `;
 }
 
