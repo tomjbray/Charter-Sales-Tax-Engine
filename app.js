@@ -403,6 +403,21 @@ function getCurrentTaxName() {
 
 }
 
+function updateTaxLabels() {
+
+    const resultsSummaryTitle =
+        document.getElementById(
+            "resultsSummaryTitle"
+        );
+
+    if (resultsSummaryTitle) {
+
+        resultsSummaryTitle.textContent =
+            `${getCurrentTaxName()} Results Summary`;
+
+    }
+
+}
 
 // ═══════════════════════════════════════════════════════════
 //  4. VAT RULE MATCHING AND DISPLAY
