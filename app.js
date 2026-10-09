@@ -2262,15 +2262,15 @@ ${
         .join("")
 }
 
-//${
-//    getApplicableDynamicInputs()
-//    .map(input => `
-//       <p>
-//            ${input.inputLabel}:
-//            ${dynamicInputValues[input.inputKey] || "NO"}
-//        </p>
-//    `)
-//        .join("")
+${
+    getApplicableDynamicInputs()
+    .map(input => `
+       <p>
+            ${input.inputLabel}:
+            ${dynamicInputValues[input.inputKey] || "NO"}
+        </p>
+    `)
+        .join("")
 }
 
     `;
