@@ -2193,6 +2193,21 @@ ${
     latestVatResults
         .map(result => `
 
+            <hr>
+
+            <h3>
+                Sector ${result.sector.sectorNumber}
+                -
+                ${result.sector.origin.iata}
+                →
+                ${result.sector.destination.iata}
+            </h3>
+
+            <p>
+                Matched Rule:
+                ${result.matchedRule?.ruleId || "-"}
+            </p>
+
             <p>
                 Selling Entity:
                 ${result.transaction.entity}
@@ -2227,11 +2242,21 @@ ${
                 Destination Territory:
                 ${result.transaction.destinationTerritory}
             </p>
-        
-            <p>
-                Matched Rule:
-                ${result.matchedRule?.ruleId || "-"}
-            </p>
+
+            ${
+                getApplicableDynamicInputs()
+                    .map(input => `
+                        <p>
+                            ${input.inputLabel}:
+                            ${
+                                result.transaction.dynamicInputs?.[
+                                    input.inputKey
+                                ] || "NO"
+                            }
+                        </p>
+                    `)
+                    .join("")
+            }
 
         `)
         .join("")
