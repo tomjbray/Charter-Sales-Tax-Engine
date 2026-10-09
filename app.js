@@ -2008,12 +2008,27 @@ function runVatTest() {
 
 function exportPdfReport() {
 
+    const reportId =
+    Date.now().toString();
+  
     document.getElementById(
         "pdfRunDate"
     ).textContent =
         "Generated: " +
         new Date().toLocaleString();
 
+document.getElementById(
+    "pdfRunDate"
+).innerHTML =
+    `
+        Generated:
+        ${new Date().toLocaleString()}
+        <br>
+        Report ID:
+        ${reportId}
+    `;
+
+  
     document.getElementById(
         "pdfSummary"
     ).innerHTML = `
@@ -2116,6 +2131,14 @@ ${
     }
 </p>
 
+<p>
+    Calculation Status:
+    ${
+        document.getElementById(
+            "summaryCalculationStatus"
+        )?.textContent || "-"
+    }
+</p>
 
 <h2>Tax Treatment</h2>
 
@@ -2147,7 +2170,12 @@ ${
                         : "-"
                 }
             </p>
-
+            
+            <p>
+              ${getCurrentTaxName()} Amount:
+              ${formatMoneyValue(result.vatAmount)}
+            </p>
+            
             <p>
                 Legal Reference:
                 ${
@@ -2200,19 +2228,24 @@ ${
                 Destination Territory:
                 ${result.transaction.destinationTerritory}
             </p>
+        
+            <p>
+                Matched Rule:
+                ${result.matchedRule?.ruleId || "-"}
+            </p>
 
         `)
         .join("")
 }
 
 ${
-    Object.entries(dynamicInputValues)
-        .map(([key, value]) => `
-            <p>
-                ${key}:
-                ${value}
-            </p>
-        `)
+    getApplicableDynamicInputs()
+    .map(input => `
+        <p>
+            ${input.inputLabel}:
+            ${dynamicInputValues[input.inputKey] || "NO"}
+        </p>
+    `)
         .join("")
 }
 
