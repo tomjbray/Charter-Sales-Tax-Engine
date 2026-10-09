@@ -2237,7 +2237,7 @@ ${
         `)
         .join("")
 }
-
+${JSON.stringify(getApplicableDynamicInputs(), null, 2)}
 ${
     getApplicableDynamicInputs()
     .map(input => `
