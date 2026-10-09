@@ -395,7 +395,11 @@ function getCurrentTaxName() {
         return "Tax";
     }
 
-    return entity.taxName || "Tax";
+    return (
+        entity.taxName ||
+        entity.TaxName ||
+        "Tax"
+    );
 
 }
 
@@ -763,8 +767,8 @@ function renderVatSectorResults(
                     "-"
                 )
                 : (
-                    "No VAT rule matches this " +
-                    "sector and the selected VAT inputs."
+                    'No ${getCurrentTaxName()} rule matches this ' +
+                    'sector and the selected ${getCurrentTaxName()} inputs.'
                 );
 
         const legalReference =
@@ -773,7 +777,7 @@ function renderVatSectorResults(
                     matchedRule.legalReference ||
                     "-"
                 )
-                : "Review VAT matrix";
+                : 'Review ${getCurrentTaxName()} matrix';
 
         card.innerHTML = `
             <div class="vat-sector-heading">
@@ -817,7 +821,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                        "VAT Registered",
+                        '${getCurrentTaxName()} Registered',
                         transaction.vatRegistered
                     )}
 
@@ -836,7 +840,7 @@ function renderVatSectorResults(
                 <div class="vat-panel">
 
                     <h3>
-                        VAT Rule Match
+                        '${getCurrentTaxName()} Rule Match'
                     </h3>
 
                     ${createVatResultRow(
@@ -868,7 +872,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                        "Rate",
+                        '${getCurrentTaxName()} Rate',
                         rate
                     )}
 
@@ -920,7 +924,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                    "VAT Amount",
+                    '${getCurrentTaxName()} Amount',
                     formatMoneyValue(vatAmount)
                       )}
 
