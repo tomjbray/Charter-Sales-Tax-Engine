@@ -406,17 +406,28 @@ function getCurrentTaxName() {
 
 function updateTaxLabels() {
 
-    const resultsSummaryTitle =
-        document.getElementById(
-            "resultsSummaryTitle"
-        );
+    const taxName =
+        getCurrentTaxName();
 
-    if (resultsSummaryTitle) {
+    document.getElementById(
+        "resultsSummaryTitle"
+    ).textContent =
+        `${taxName} Results Summary`;
 
-        resultsSummaryTitle.textContent =
-            `${getCurrentTaxName()} Results Summary`;
+    document.getElementById(
+        "sectorResultsTitle"
+    ).textContent =
+        `${taxName} Results`;
 
-    }
+    document.getElementById(
+        "itinerarySummaryTitle"
+    ).textContent =
+        `${taxName} Summary`;
+
+      document.getElementById(
+        "vatInputsTitle"
+    ).textContent =
+        `${taxName} INPUTS`;
 
 }
 
