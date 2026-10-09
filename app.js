@@ -2243,20 +2243,20 @@ ${
                 ${result.transaction.destinationTerritory}
             </p>
 
-            ${
-                getApplicableDynamicInputs()
-                    .map(input => `
-                        <p>
-                            ${input.inputLabel}:
-                            ${
-                                result.transaction.dynamicInputs?.[
-                                    input.inputKey
-                                ] || "NO"
-                            }
-                        </p>
-                    `)
-                    .join("")
-            }
+//            ${
+//                getApplicableDynamicInputs()
+//                    .map(input => `
+//                        <p>
+//                            ${input.inputLabel}:
+//                            ${
+//                                result.transaction.dynamicInputs?.[
+//                                    input.inputKey
+//                                ] || "NO"
+//                            }
+//                        </p>
+//                    `)
+//                    .join("")
+//            }
 
         `)
         .join("")
