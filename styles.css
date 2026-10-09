@@ -1418,6 +1418,7 @@ PRINT-SPECIFIC STYLE
 
 @media print {
 
+    header,
     #applicationLayout {
         display: none !important;
     }
@@ -1430,6 +1431,7 @@ PRINT-SPECIFIC STYLE
         background: white;
         font-size: 10pt;
     }
+}
 
     @page {
         size: A4 portrait;
