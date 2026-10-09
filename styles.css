@@ -1446,5 +1446,25 @@ button,
 }
 
 }
-`
+
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 10mm;
+    }
+
+    body {
+        font-size: 10pt;
+    }
+
+    .vat-sector-card {
+        page-break-inside: avoid;
+    }
+
+    .rule-trace-panel {
+        page-break-inside: avoid;
+    }
+
+}
 
