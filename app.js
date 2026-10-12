@@ -1,12 +1,21 @@
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
-//  Main responsibilities:
-//  1. Load airport, aircraft, registry and VAT reference data.
-//  2. Build the itinerary used by both route planning and VAT.
-//  3. Plot routes and calculate distance.
-//  4. Match each itinerary sector to the appropriate VAT rule.
+//  Current responsibilities:
+//  1. Load airport and tax-reference datasets.
+//  2. Capture transaction and multi-sector itinerary inputs.
+//  3. Derive country, region and supplementary rule inputs.
+//  4. Match each sector deterministically to an applicable tax rule.
+//  5. Allocate itinerary value and calculate supported taxes.
+//  6. Render summaries, detailed results, traces and a print report.
+//
+//  Current limitations:
+//  - Only STANDARD calculation rules are calculated.
+//  - Rule effective dates are stored but not yet evaluated.
+//  - Tax-territory classification is not yet airport-specific.
 // ═══════════════════════════════════════════════════════════
+
+const APP_VERSION = "0.1.0-phase0";
 
 // ═══════════════════════════════════════════════════════════
 //  1. APPLICATION STATE
@@ -14,12 +23,10 @@
 
 // Core reference data
 let AIRPORTS = {};
-let AIRCRAFT = {};
 
 
-// Data-loading flags
+// Data-loading flag
 let dbLoaded = false;
-let acLoaded = false;
 
 
 // Current route and itinerary
@@ -36,7 +43,7 @@ let itinerary = [];
 let additionalSectors = [];
 let nextSectorId = 2;
 
-// Map and tracking layers
+// Map route layers
 let routeLayers = [];
 
 
@@ -53,10 +60,9 @@ let countriesData = null;
 let charterValue = 0;
 let latestVatResults = [];
 
-// Dynamic VAT-input configuration loaded from input_requirements.json.
-// The current renderer uses this file for validation/readiness; the next phase
-// will use its input definitions to generate controls conditionally.
-
+// Dynamic tax-input definitions loaded from input_requirements.json.
+// These definitions control supplementary fields, labels, tooltips and the
+// property names passed into rule matching.
 let inputRequirementsData = null;
 /*
  * Stores the current answers entered into dynamically generated
@@ -78,7 +84,8 @@ let dynamicInputValues = {};
 // ═══════════════════════════════════════════════════════════
 
 /**
- * Coordinates application start-up by loading core and VAT reference data, initialising controls, restoring any airport input entered during loading, and starting the optional registry load.
+ * Coordinates application start-up by loading airport and tax-reference data,
+ * initialising controls and restoring airport input entered during loading.
  * @returns {Promise<void>}
  */
 
@@ -87,27 +94,13 @@ async function loadData() {
   statusEl.classList.add('loading');
 
   try {
-    // Core planner data is needed immediately for airport and aircraft searches.
-    const [aptRes, acRes] = await Promise.all([
-      fetch('./airports.json'),
-      fetch('./aircraft_types.json'),
-    ]);
+    // Airport data is required for route entry, sector geography and distance.
+    const aptRes = await fetch('./airports.json');
 
     if (!aptRes.ok) throw new Error('airports.json: HTTP ' + aptRes.status);
-    if (!acRes.ok) throw new Error('aircraft_types.json: HTTP ' + acRes.status);
 
     AIRPORTS = await aptRes.json();
-    const acData = await acRes.json();
-
-    // Remove the metadata entry because it is not an aircraft type.
-    AIRCRAFT = Object.fromEntries(
-      Object.entries(acData).filter(([key]) => key !== '_metadata')
-    );
-
     dbLoaded = true;
-    acLoaded = true;
-
-    const aptCount = Object.keys(AIRPORTS).length;
 
       statusEl.textContent =
         'Loading VAT reference data...';
@@ -151,8 +144,8 @@ statusEl.classList.add('ready');
     updateTaxLabels();
 
     /*
-     * Load the new dynamic-input file separately. This keeps the rest
-     * of the application working while also reporting any file issue.
+     * Load supplementary-input definitions after the core controls exist.
+     * The definitions are required for any rules that use dynamic criteria.
      */
     await loadInputRequirements();
     renderDynamicInputs();
@@ -266,14 +259,6 @@ async function loadVatRules() {
   vatRulesData = await response.json();
   console.log(`Loaded ${vatRulesData.ruleCount} VAT rules`);
 }
-
-/**
- * Loads aircraft registry data without blocking route entry, then indexes records by aircraft type for fast lookup.
- *
- * @param {number} aptCount - Loaded airport count for the status message.
- * @param {number} acCount - Loaded aircraft-type count for the status message.
- * @returns {Promise<void>}
- */
 
 
 
@@ -533,82 +518,69 @@ function dynamicInputsMatch(
 function findMatchingRule(
     transaction
 ) {
-
     if (
         !vatRulesData ||
-        !vatRulesData.rules
+        !Array.isArray(vatRulesData.rules)
     ) {
-        return null;
+        return {
+            matchedRule: null,
+            matchError: "VAT rule data is unavailable."
+        };
     }
 
-    const matches =
-        vatRulesData.rules.filter(
-            rule =>
+    const matches = vatRulesData.rules
+        .filter(rule =>
+            valueMatches(rule.entity, transaction.entity) &&
+            valueMatches(rule.charterType, transaction.charterType) &&
+            valueMatches(rule.customerType, transaction.customerType) &&
+            valueMatches(rule.customerLocation, transaction.customerLocation) &&
+            valueMatches(rule.vatRegistered, transaction.vatRegistered) &&
+            valueMatches(rule.originTerritory, transaction.originTerritory) &&
+            valueMatches(rule.destinationTerritory, transaction.destinationTerritory) &&
+            dynamicInputsMatch(rule, transaction)
+        )
+        .sort((firstRule, secondRule) => {
+            const priorityDifference =
+                Number(secondRule.rulePriority || 0) -
+                Number(firstRule.rulePriority || 0);
 
-                valueMatches(
-                    rule.entity,
-                    transaction.entity
-                )
+            if (priorityDifference !== 0) {
+                return priorityDifference;
+            }
 
-                &&
+            return String(firstRule.ruleId || "")
+                .localeCompare(String(secondRule.ruleId || ""));
+        });
 
-                valueMatches(
-                    rule.charterType,
-                    transaction.charterType
-                )
+    if (matches.length === 0) {
+        return {
+            matchedRule: null,
+            matchError: null
+        };
+    }
 
-                &&
+    const highestPriority = Number(matches[0].rulePriority || 0);
+    const highestPriorityMatches = matches.filter(rule =>
+        Number(rule.rulePriority || 0) === highestPriority
+    );
 
-                valueMatches(
-                    rule.customerType,
-                    transaction.customerType
-                )
+    if (highestPriorityMatches.length > 1) {
+        const ruleIds = highestPriorityMatches
+            .map(rule => rule.ruleId || "UNNAMED RULE")
+            .join(", ");
 
-                &&
+        return {
+            matchedRule: null,
+            matchError:
+                `Ambiguous rule match at priority ${highestPriority}: ${ruleIds}.`
+        };
+    }
 
-                valueMatches(
-                    rule.customerLocation,
-                    transaction.customerLocation
-                )
-
-                &&
-
-                valueMatches(
-                    rule.vatRegistered,
-                    transaction.vatRegistered
-                )
-
-                &&
-
-                valueMatches(
-                    rule.originTerritory,
-                    transaction.originTerritory
-                )
-
-                &&
-
-              valueMatches(
-                  rule.destinationTerritory,
-                  transaction.destinationTerritory
-              )
-              
-                &&
-              
-              dynamicInputsMatch(
-                  rule,
-                  transaction
-              )
-        );
-
-    
-
-    return matches[0] || null;
+    return {
+        matchedRule: matches[0],
+        matchError: null
+    };
 }
-
-
-
-
-
 
 /**
  * Removes all rendered sector VAT cards from the results container.
@@ -631,6 +603,36 @@ function clearVatSectorResults() {
     }
 }
 
+/**
+ * Clears the latest calculation and restores the summary to its neutral state.
+ */
+function resetVatSummary() {
+    latestVatResults = [];
+
+    const values = {
+        summaryNetValue: "-",
+        summaryTaxableValue: "-",
+        summaryVatValue: "-",
+        summaryGrossValue: "-",
+        summaryCalculationStatus: "Awaiting Inputs",
+        summaryReviewSectors: "-"
+    };
+
+    Object.entries(values).forEach(([elementId, value]) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = value;
+        }
+    });
+
+    const statusElement = document.getElementById("summaryCalculationStatus");
+    if (statusElement) {
+        statusElement.classList.remove(
+            "summary-status-complete",
+            "summary-status-review"
+        );
+    }
+}
 
 /**
  * Escapes text before inserting it into HTML templates to prevent markup injection.
@@ -655,14 +657,17 @@ function escapeHtml(value) {
  * Validates whether a matched rule has a supported calculation method, numeric rate, and numeric taxable percentage.
  *
  * @param {Object|null} matchedRule - Matched VAT rule, or null when no rule matched.
+ * @param {string|null} matchError - Configuration error detected during matching.
  * @returns {{{canCalculate: boolean, status: string, reasons: string[]}}}
  */
 
 
-function evaluateVatCalculationStatus(matchedRule) {
+function evaluateVatCalculationStatus(matchedRule, matchError = null) {
     const reasons = [];
 
-    if (!matchedRule) {
+    if (matchError) {
+        reasons.push(matchError);
+    } else if (!matchedRule) {
         reasons.push("No matching VAT rule was found.");
     } else {
         const calculationMethod =
@@ -1896,11 +1901,13 @@ function renderVatSummary(results) {
 function runVatTests() {
     if (itinerary.length === 0 || !vatRulesData) {
         clearVatSectorResults();
+        resetVatSummary();
         return [];
     }
 
     if (!selectedCustomerCountry) {
         clearVatSectorResults();
+        resetVatSummary();
         return [];
     }
 
@@ -1948,13 +1955,16 @@ function runVatTests() {
 
 
       
-        const matchedRule = findMatchingRule(transaction);
+        const {
+            matchedRule,
+            matchError
+        } = findMatchingRule(transaction);
         const distancePercentage = distancePercentages[index];
         const allocatedNetValue =
             charterValue * (distancePercentage / 100);
 
         const calculationCheck =
-            evaluateVatCalculationStatus(matchedRule);
+            evaluateVatCalculationStatus(matchedRule, matchError);
 
         const taxablePercent = calculationCheck.canCalculate
             ? Number(matchedRule.taxablePercent)
@@ -2010,12 +2020,6 @@ function exportPdfReport() {
 
     const reportId =
     Date.now().toString();
-  
-    document.getElementById(
-        "pdfRunDate"
-    ).textContent =
-        "Generated: " +
-        new Date().toLocaleString();
 
 document.getElementById(
     "pdfRunDate"
@@ -2026,6 +2030,9 @@ document.getElementById(
         <br>
         Report ID:
         ${reportId}
+        <br>
+        Application Version:
+        ${APP_VERSION}
     `;
 
   
@@ -2261,18 +2268,6 @@ ${
         `)
         .join("")
 }
-
-${
-    getApplicableDynamicInputs()
-    .map(input => `
-       <p>
-            ${input.inputLabel}:
-            ${dynamicInputValues[input.inputKey] || "NO"}
-        </p>
-    `)
-        .join("")
-}
-
     `;
 
     window.print();
@@ -2364,9 +2359,14 @@ function updateAdditionalSectorAirport(sectorId, field, value) {
 }
 
 /**
- * Renders the current transitional “Direct Exporter” VAT checkbox. The loaded configuration is validated now and will drive conditional rendering in the next implementation phase.
+ * Returns supplementary tax inputs applicable to the current entity,
+ * customer country and charter type.
+ *
+ * Applicability is defined in input_requirements.json. The current renderer
+ * supports CHECKBOX inputs; unsupported types are reported in the console.
+ *
+ * @returns {Object[]}
  */
-
 function getApplicableDynamicInputs() {
 
     if (
@@ -2401,6 +2401,30 @@ function getApplicableDynamicInputs() {
 
 }
 
+/**
+ * Retains answers only for inputs that are currently applicable and applies
+ * configured defaults to newly displayed inputs.
+ *
+ * @param {Object[]} applicableInputs - Current supplementary input definitions.
+ */
+function synchroniseDynamicInputValues(applicableInputs) {
+    const nextValues = {};
+
+    applicableInputs.forEach(input => {
+        const inputKey = input.inputKey;
+        const configuredDefault =
+            input.defaultValue ??
+            input.default ??
+            "NO";
+
+        nextValues[inputKey] =
+            dynamicInputValues[inputKey] ??
+            String(configuredDefault).toUpperCase();
+    });
+
+    dynamicInputValues = nextValues;
+}
+
 function renderDynamicInputs() {
 
     const container =
@@ -2417,6 +2441,8 @@ function renderDynamicInputs() {
     const applicableInputs =
         getApplicableDynamicInputs();
 
+    synchroniseDynamicInputValues(applicableInputs);
+
     if (applicableInputs.length === 0) {
         return;
     }
@@ -2426,11 +2452,6 @@ function renderDynamicInputs() {
         const inputKey =
             input.inputKey;
 
-        if (
-            dynamicInputValues[inputKey] === undefined
-        ) {
-            dynamicInputValues[inputKey] = "NO";
-          }
 
         const inputLabel =
             input.inputLabel ||
@@ -2451,53 +2472,22 @@ function renderDynamicInputs() {
             const checked =
                 dynamicInputValues[inputKey] === "YES";
 
-const tooltipText =
-    input.tooltip || "";
+const tooltipText = input.tooltip || "";
 
-//const tooltipHtml =
-//    tooltipText
-//        ? `
-//            <span
-//                class="dynamic-input-tooltip"
-//                title="${escapeHtml(tooltipText)}"
-//                aria-label="${escapeHtml(tooltipText)}"
-//                tabindex="0"
-//            >
-//                ?
-//            </span>
-//        `
-//        : "";
+        const tooltipHtml = tooltipText
+            ? `
+                <span
+                    class="dynamic-input-tooltip"
+                    title="${escapeHtml(tooltipText)}"
+                    aria-label="${escapeHtml(tooltipText)}"
+                    tabindex="0"
+                >
+                    ?
+                </span>
+            `
+            : "";
 
-//debug bit
-const tooltipHtml =
-    tooltipText
-        ? `
-            <span
-                title="${tooltipText}"
-                style="
-                    display:inline-block;
-                    width:18px;
-                    height:18px;
-                    line-height:18px;
-                    text-align:center;
-                    border:1px solid #999;
-                    border-radius:50%;
-                    margin-left:6px;
-                    font-size:12px;
-                    font-weight:bold;
-                    cursor:help;
-                    background:white;
-                    color:#17365D;
-                    border-color:#17365D;
-                "
-            >
-                ?
-            </span>
-        `
-        : "";
-//end of debug bit          
-
-            block.innerHTML = `
+block.innerHTML = `
                 <label class="dynamic-checkbox-label">
                     <input
                         type="checkbox"
@@ -2725,6 +2715,7 @@ function buildItinerary() {
     if (itinerary.length === 0) {
         clearRoute();
         clearVatSectorResults();
+        resetVatSummary();
         return itinerary;
     }
 
@@ -3086,10 +3077,6 @@ function haversineNm(lat1, lon1, lat2, lon2) {
 // ═══════════════════════════════════════════════════════════
 
 /**
- * Synchronises route-dependent controls and summary values after primary airport or passenger changes.
- */
-
-/**
  * Rebuilds the itinerary after either primary airport changes.
  *
  * When both the origin and destination are valid, buildItinerary()
@@ -3161,5 +3148,6 @@ document.getElementById('exportPdfBtn')
 //  12. APPLICATION STARTUP
 // ═══════════════════════════════════════════════════════════
 
-// Start loading data after all functions and event handlers are defined.
+// Start with a neutral calculation summary, then load application data.
+resetVatSummary();
 loadData();
