@@ -445,7 +445,6 @@ header::after {
 
 .dynamic-input-tooltip {
     display: inline-flex;
-    flex: 0 0 18px;
     align-items: center;
     justify-content: center;
     width: 18px;
@@ -958,3 +957,18 @@ PRINT-SPECIFIC STYLE
     size: A4 portrait;
     margin: 10mm;
 }
+
+
+/* Start-up validation status */
+.header-status.validation-warning::before,
+.header-status.validation-error::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.header-status.validation-warning::before { background: var(--amber); }
+.header-status.validation-error::before { background: var(--red); }

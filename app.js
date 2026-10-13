@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
-//  Current responsibilities:
-//  1. Load airport and tax-reference datasets.
+//  Responsibilities:
+//  1. Load and validate airport and tax-reference datasets.
 //  2. Capture transaction and multi-sector itinerary inputs.
 //  3. Derive country, region and supplementary rule inputs.
 //  4. Match each sector deterministically to an applicable tax rule.
@@ -11,11 +11,11 @@
 //
 //  Current limitations:
 //  - Only STANDARD calculation rules are calculated.
-//  - Rule effective dates are stored but not yet evaluated.
+//  - Rule effective dates are validated but not yet applied to transactions.
 //  - Tax-territory classification is not yet airport-specific.
 // ═══════════════════════════════════════════════════════════
 
-const APP_VERSION = "0.1.0-phase0";
+const APP_VERSION = "0.2.0-phase1";
 
 // ═══════════════════════════════════════════════════════════
 //  1. APPLICATION STATE
@@ -25,8 +25,10 @@ const APP_VERSION = "0.1.0-phase0";
 let AIRPORTS = {};
 
 
-// Data-loading flag
+// Data-loading and validation state
 let dbLoaded = false;
+let startupValidationResult = { errors: [], warnings: [] };
+let taxDataValidationPassed = false;
 
 
 // Current route and itinerary
@@ -63,6 +65,7 @@ let latestVatResults = [];
 // Dynamic tax-input definitions loaded from input_requirements.json.
 // These definitions control supplementary fields, labels, tooltips and the
 // property names passed into rule matching.
+
 let inputRequirementsData = null;
 /*
  * Stores the current answers entered into dynamically generated
@@ -84,8 +87,7 @@ let dynamicInputValues = {};
 // ═══════════════════════════════════════════════════════════
 
 /**
- * Coordinates application start-up by loading airport and tax-reference data,
- * initialising controls and restoring airport input entered during loading.
+ * Coordinates application start-up by loading airport and tax-reference data, validating configuration, initialising controls and restoring airport input entered during loading.
  * @returns {Promise<void>}
  */
 
@@ -94,9 +96,8 @@ async function loadData() {
   statusEl.classList.add('loading');
 
   try {
-    // Airport data is required for route entry, sector geography and distance.
+    // Airport data is required for route entry, geography and distance.
     const aptRes = await fetch('./airports.json');
-
     if (!aptRes.ok) throw new Error('airports.json: HTTP ' + aptRes.status);
 
     AIRPORTS = await aptRes.json();
@@ -113,22 +114,6 @@ async function loadData() {
       loadSellingEntities()
     ]);
 
-    const entityCount =
-    sellingEntitiesData.recordCount || 0;
-
-const ruleCount =
-    vatRulesData.ruleCount || 0;
-
-statusEl.textContent =
-    'Ready • ' +
-    ruleCount +
-    ' VAT Rules • ' +
-    entityCount +
-    ' Entities';
-
-statusEl.classList.remove('loading');
-statusEl.classList.add('ready');
-
     /*
      * Initialise the existing VAT inputs as soon as their core
      * reference files are ready. A problem with the optional dynamic
@@ -144,10 +129,13 @@ statusEl.classList.add('ready');
     updateTaxLabels();
 
     /*
-     * Load supplementary-input definitions after the core controls exist.
-     * The definitions are required for any rules that use dynamic criteria.
+     * Load supplementary-input definitions after the core controls exist,
+     * then validate the complete data model before calculations are enabled.
      */
     await loadInputRequirements();
+    startupValidationResult = validateStartupData();
+    taxDataValidationPassed = startupValidationResult.errors.length === 0;
+    reportStartupValidation(statusEl, startupValidationResult);
     renderDynamicInputs();
 
     // Re-run airport lookups if the user typed while data was loading.
@@ -262,8 +250,274 @@ async function loadVatRules() {
 
 
 
+
 // ═══════════════════════════════════════════════════════════
-//  3. VAT REGION AND TERRITORY CLASSIFICATION
+//  3. START-UP DATA VALIDATION
+// ═══════════════════════════════════════════════════════════
+
+/** Returns true when an object owns a non-null property. */
+function hasRequiredProperty(value, propertyName) {
+    return Boolean(
+        value &&
+        Object.prototype.hasOwnProperty.call(value, propertyName) &&
+        value[propertyName] !== null &&
+        value[propertyName] !== undefined
+    );
+}
+
+/** Converts a configured matching value to a stable comparison value. */
+function normaliseValidationValue(value) {
+    const normalised = String(value ?? "").trim().toUpperCase();
+    return normalised || "ANY";
+}
+
+/** Tests an ISO-style date without allowing JavaScript date rollover. */
+function isValidIsoDate(value) {
+    if (value === null || value === undefined || value === "") return true;
+    const text = String(value).trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return false;
+    const [year, month, day] = text.split("-").map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return (
+        date.getUTCFullYear() === year &&
+        date.getUTCMonth() === month - 1 &&
+        date.getUTCDate() === day
+    );
+}
+
+/** Adds a unique validation message. */
+function addValidationMessage(messages, message) {
+    if (!messages.includes(message)) messages.push(message);
+}
+
+/**
+ * Validates all loaded tax-reference documents and returns blocking errors and
+ * non-blocking warnings. No calculation is enabled when any error exists.
+ */
+function validateStartupData() {
+    const errors = [];
+    const warnings = [];
+
+    const documentChecks = [
+        ["countries.json", countriesData, ["data", "recordCount"]],
+        ["selling_entities.json", sellingEntitiesData, ["data", "recordCount"]],
+        ["tax_territories.json", taxTerritoriesData, ["data", "recordCount"]],
+        ["vat_rules.json", vatRulesData, ["rules", "ruleCount"]],
+        ["input_requirements.json", inputRequirementsData, ["inputs", "inputCount"]]
+    ];
+
+    documentChecks.forEach(([fileName, documentValue, requiredProperties]) => {
+        if (!documentValue || typeof documentValue !== "object") {
+            addValidationMessage(errors, `${fileName}: document is missing or invalid.`);
+            return;
+        }
+        requiredProperties.forEach(propertyName => {
+            if (!hasRequiredProperty(documentValue, propertyName)) {
+                addValidationMessage(
+                    errors,
+                    `${fileName}: missing top-level property '${propertyName}'.`
+                );
+            }
+        });
+    });
+
+    const countries = countriesData?.data || {};
+    const entities = sellingEntitiesData?.data || {};
+    const territories = taxTerritoriesData?.data || {};
+    const rules = Array.isArray(vatRulesData?.rules) ? vatRulesData.rules : [];
+    const inputDefinitions = Array.isArray(inputRequirementsData?.inputs)
+        ? inputRequirementsData.inputs
+        : [];
+
+    const seenRuleIds = new Map();
+    rules.forEach((rule, index) => {
+        const ruleId = String(rule.ruleId || "").trim();
+        if (!ruleId) {
+            addValidationMessage(errors, `vat_rules.json: rule at row ${index + 1} has no ruleId.`);
+        } else if (seenRuleIds.has(ruleId)) {
+            addValidationMessage(
+                errors,
+                `vat_rules.json: duplicate ruleId '${ruleId}' at rows ${seenRuleIds.get(ruleId)} and ${index + 1}.`
+            );
+        } else {
+            seenRuleIds.set(ruleId, index + 1);
+        }
+    });
+
+    const seenInputKeys = new Map();
+    inputDefinitions.forEach((input, index) => {
+        const inputKey = String(input.inputKey || "").trim();
+        if (!inputKey) {
+            addValidationMessage(errors, `input_requirements.json: input at row ${index + 1} has no inputKey.`);
+        } else if (seenInputKeys.has(inputKey)) {
+            addValidationMessage(
+                errors,
+                `input_requirements.json: duplicate inputKey '${inputKey}' at rows ${seenInputKeys.get(inputKey)} and ${index + 1}.`
+            );
+        } else {
+            seenInputKeys.set(inputKey, index + 1);
+        }
+    });
+
+    Object.entries(entities).forEach(([entityCode, entity]) => {
+        const homeCountry = String(entity?.country || "").trim().toUpperCase();
+        if (!homeCountry) {
+            addValidationMessage(errors, `selling_entities.json: entity '${entityCode}' has no home country.`);
+        } else if (!Object.prototype.hasOwnProperty.call(countries, homeCountry)) {
+            addValidationMessage(
+                errors,
+                `selling_entities.json: entity '${entityCode}' references unknown home country '${homeCountry}'.`
+            );
+        }
+    });
+
+    const supportedMethods = new Set(["STANDARD"]);
+    rules.forEach(rule => {
+        const ruleId = rule.ruleId || "UNNAMED RULE";
+        const rate = Number(rule.rate);
+        const taxablePercent = Number(rule.taxablePercent);
+
+        if (rule.rate === "" || rule.rate === null || rule.rate === undefined || !Number.isFinite(rate) || rate < 0 || rate > 1) {
+            addValidationMessage(errors, `Rule '${ruleId}' has an invalid rate; expected a number from 0 to 1.`);
+        }
+        if (rule.taxablePercent === "" || rule.taxablePercent === null || rule.taxablePercent === undefined || !Number.isFinite(taxablePercent) || taxablePercent < 0 || taxablePercent > 1) {
+            addValidationMessage(errors, `Rule '${ruleId}' has an invalid taxablePercent; expected a number from 0 to 1.`);
+        }
+
+        const method = normaliseValidationValue(rule.calculationMethod);
+        if (method === "ANY" || !supportedMethods.has(method)) {
+            addValidationMessage(
+                warnings,
+                `Rule '${ruleId}' uses unsupported calculation method '${rule.calculationMethod || "BLANK"}'.`
+            );
+        }
+
+        if (!isValidIsoDate(rule.effectiveFrom)) {
+            addValidationMessage(errors, `Rule '${ruleId}' has invalid effectiveFrom '${rule.effectiveFrom}'.`);
+        }
+        if (!isValidIsoDate(rule.effectiveTo)) {
+            addValidationMessage(errors, `Rule '${ruleId}' has invalid effectiveTo '${rule.effectiveTo}'.`);
+        }
+        if (
+            isValidIsoDate(rule.effectiveFrom) &&
+            isValidIsoDate(rule.effectiveTo) &&
+            rule.effectiveFrom &&
+            rule.effectiveTo &&
+            String(rule.effectiveTo) < String(rule.effectiveFrom)
+        ) {
+            addValidationMessage(errors, `Rule '${ruleId}' has effectiveTo before effectiveFrom.`);
+        }
+    });
+
+    inputDefinitions.forEach(input => {
+        const inputKey = String(input.inputKey || "").trim();
+        if (inputKey && !rules.some(rule => Object.prototype.hasOwnProperty.call(rule, inputKey))) {
+            addValidationMessage(
+                errors,
+                `Dynamic inputKey '${inputKey}' does not appear in the VAT rule schema.`
+            );
+        }
+    });
+
+    function validateEntityReference(value, sourceDescription) {
+        const code = normaliseValidationValue(value);
+        if (code !== "ANY" && !Object.prototype.hasOwnProperty.call(entities, code)) {
+            addValidationMessage(errors, `${sourceDescription} references unknown entity '${code}'.`);
+        }
+    }
+
+    function validateCountryOrTerritoryReference(value, sourceDescription) {
+        const code = normaliseValidationValue(value);
+        const genericValues = new Set(["ANY", "EU", "NON_EU"]);
+        if (
+            !genericValues.has(code) &&
+            !Object.prototype.hasOwnProperty.call(countries, code) &&
+            !Object.prototype.hasOwnProperty.call(territories, code)
+        ) {
+            addValidationMessage(errors, `${sourceDescription} references unknown country/territory '${code}'.`);
+        }
+    }
+
+    rules.forEach(rule => {
+        const ruleId = rule.ruleId || "UNNAMED RULE";
+        validateEntityReference(rule.entity, `Rule '${ruleId}'`);
+        validateCountryOrTerritoryReference(rule.customerLocation, `Rule '${ruleId}' customerLocation`);
+        validateCountryOrTerritoryReference(rule.originTerritory, `Rule '${ruleId}' originTerritory`);
+        validateCountryOrTerritoryReference(rule.destinationTerritory, `Rule '${ruleId}' destinationTerritory`);
+    });
+
+    inputDefinitions.forEach(input => {
+        const inputKey = input.inputKey || "UNNAMED INPUT";
+        validateEntityReference(input.appliesToEntity, `Input '${inputKey}'`);
+        validateCountryOrTerritoryReference(input.appliesToCountry, `Input '${inputKey}'`);
+    });
+
+    const dynamicKeys = inputDefinitions
+        .map(input => String(input.inputKey || "").trim())
+        .filter(Boolean)
+        .sort();
+    const criteriaFields = [
+        "entity",
+        "charterType",
+        "customerType",
+        "customerLocation",
+        "vatRegistered",
+        "originTerritory",
+        "destinationTerritory",
+        ...dynamicKeys
+    ];
+    const criteriaSignatures = new Map();
+
+    rules.forEach((rule, index) => {
+        const signature = JSON.stringify({
+            priority: Number(rule.rulePriority || 0),
+            criteria: criteriaFields.map(fieldName =>
+                normaliseValidationValue(rule[fieldName])
+            )
+        });
+        const ruleId = rule.ruleId || `ROW ${index + 1}`;
+        if (criteriaSignatures.has(signature)) {
+            addValidationMessage(
+                errors,
+                `Rules '${criteriaSignatures.get(signature)}' and '${ruleId}' have the same criteria and priority.`
+            );
+        } else {
+            criteriaSignatures.set(signature, ruleId);
+        }
+    });
+
+    return { errors, warnings };
+}
+
+/** Reports validation results in the status bar and browser console. */
+function reportStartupValidation(statusElement, result) {
+    const entityCount = sellingEntitiesData?.recordCount || 0;
+    const ruleCount = vatRulesData?.ruleCount || 0;
+    const errorCount = result.errors.length;
+    const warningCount = result.warnings.length;
+
+    console.group(`Tax data validation: ${errorCount} error(s), ${warningCount} warning(s)`);
+    result.errors.forEach(message => console.error(message));
+    result.warnings.forEach(message => console.warn(message));
+    console.groupEnd();
+
+    statusElement.classList.remove("loading", "ready", "validation-warning", "validation-error");
+
+    if (errorCount > 0) {
+        statusElement.textContent =
+            `Configuration invalid • ${errorCount} error(s) • ${warningCount} warning(s)`;
+        statusElement.classList.add("validation-error");
+        return;
+    }
+
+    statusElement.textContent =
+        `Ready • v${APP_VERSION} • ${ruleCount} Rules • ${entityCount} Entities` +
+        (warningCount ? ` • ${warningCount} warning(s)` : "");
+    statusElement.classList.add(warningCount ? "validation-warning" : "ready");
+}
+
+// ═══════════════════════════════════════════════════════════
+//  4. VAT REGION AND TERRITORY CLASSIFICATION
 // ═══════════════════════════════════════════════════════════
 
 // getRuleRegion() provides the broad region used by the current BRU matrix.
@@ -429,7 +683,7 @@ function updateTaxLabels() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  4. VAT RULE MATCHING AND DISPLAY
+//  5. VAT RULE MATCHING AND DISPLAY
 // ═══════════════════════════════════════════════════════════
 
 /**
@@ -515,17 +769,9 @@ function dynamicInputsMatch(
 
 }
 
-function findMatchingRule(
-    transaction
-) {
-    if (
-        !vatRulesData ||
-        !Array.isArray(vatRulesData.rules)
-    ) {
-        return {
-            matchedRule: null,
-            matchError: "VAT rule data is unavailable."
-        };
+function findMatchingRule(transaction) {
+    if (!vatRulesData || !Array.isArray(vatRulesData.rules)) {
+        return { matchedRule: null, matchError: "VAT rule data is unavailable." };
     }
 
     const matches = vatRulesData.rules
@@ -539,47 +785,21 @@ function findMatchingRule(
             valueMatches(rule.destinationTerritory, transaction.destinationTerritory) &&
             dynamicInputsMatch(rule, transaction)
         )
-        .sort((firstRule, secondRule) => {
-            const priorityDifference =
-                Number(secondRule.rulePriority || 0) -
-                Number(firstRule.rulePriority || 0);
+        .sort((a, b) =>
+            Number(b.rulePriority || 0) - Number(a.rulePriority || 0) ||
+            String(a.ruleId || "").localeCompare(String(b.ruleId || ""))
+        );
 
-            if (priorityDifference !== 0) {
-                return priorityDifference;
-            }
-
-            return String(firstRule.ruleId || "")
-                .localeCompare(String(secondRule.ruleId || ""));
-        });
-
-    if (matches.length === 0) {
-        return {
-            matchedRule: null,
-            matchError: null
-        };
-    }
-
+    if (!matches.length) return { matchedRule: null, matchError: null };
     const highestPriority = Number(matches[0].rulePriority || 0);
-    const highestPriorityMatches = matches.filter(rule =>
-        Number(rule.rulePriority || 0) === highestPriority
-    );
-
-    if (highestPriorityMatches.length > 1) {
-        const ruleIds = highestPriorityMatches
-            .map(rule => rule.ruleId || "UNNAMED RULE")
-            .join(", ");
-
+    const topMatches = matches.filter(rule => Number(rule.rulePriority || 0) === highestPriority);
+    if (topMatches.length > 1) {
         return {
             matchedRule: null,
-            matchError:
-                `Ambiguous rule match at priority ${highestPriority}: ${ruleIds}.`
+            matchError: `Ambiguous rule match at priority ${highestPriority}: ${topMatches.map(rule => rule.ruleId || "UNNAMED RULE").join(", ")}.`
         };
     }
-
-    return {
-        matchedRule: matches[0],
-        matchError: null
-    };
+    return { matchedRule: matches[0], matchError: null };
 }
 
 /**
@@ -603,12 +823,9 @@ function clearVatSectorResults() {
     }
 }
 
-/**
- * Clears the latest calculation and restores the summary to its neutral state.
- */
+/** Clears calculation results and restores neutral summary values. */
 function resetVatSummary() {
     latestVatResults = [];
-
     const values = {
         summaryNetValue: "-",
         summaryTaxableValue: "-",
@@ -617,21 +834,12 @@ function resetVatSummary() {
         summaryCalculationStatus: "Awaiting Inputs",
         summaryReviewSectors: "-"
     };
-
-    Object.entries(values).forEach(([elementId, value]) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.textContent = value;
-        }
+    Object.entries(values).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
     });
-
-    const statusElement = document.getElementById("summaryCalculationStatus");
-    if (statusElement) {
-        statusElement.classList.remove(
-            "summary-status-complete",
-            "summary-status-review"
-        );
-    }
+    const status = document.getElementById("summaryCalculationStatus");
+    if (status) status.classList.remove("summary-status-complete", "summary-status-review");
 }
 
 /**
@@ -657,7 +865,6 @@ function escapeHtml(value) {
  * Validates whether a matched rule has a supported calculation method, numeric rate, and numeric taxable percentage.
  *
  * @param {Object|null} matchedRule - Matched VAT rule, or null when no rule matched.
- * @param {string|null} matchError - Configuration error detected during matching.
  * @returns {{{canCalculate: boolean, status: string, reasons: string[]}}}
  */
 
@@ -1899,7 +2106,7 @@ function renderVatSummary(results) {
  */
 
 function runVatTests() {
-    if (itinerary.length === 0 || !vatRulesData) {
+    if (!taxDataValidationPassed || itinerary.length === 0 || !vatRulesData) {
         clearVatSectorResults();
         resetVatSummary();
         return [];
@@ -1955,10 +2162,7 @@ function runVatTests() {
 
 
       
-        const {
-            matchedRule,
-            matchError
-        } = findMatchingRule(transaction);
+        const { matchedRule, matchError } = findMatchingRule(transaction);
         const distancePercentage = distancePercentages[index];
         const allocatedNetValue =
             charterValue * (distancePercentage / 100);
@@ -2017,6 +2221,10 @@ function runVatTest() {
 }
 
 function exportPdfReport() {
+    if (!taxDataValidationPassed || latestVatResults.length === 0) {
+        window.alert("Complete a valid calculation before exporting the report.");
+        return;
+    }
 
     const reportId =
     Date.now().toString();
@@ -2071,203 +2279,6 @@ document.getElementById(
 
         <h2>Dynamic Inputs</h2>
 
-${
-    getApplicableDynamicInputs()
-        .map(input => `
-            <p>
-                ${input.inputLabel}:
-                ${dynamicInputValues[input.inputKey] || "NO"}
-            </p>
-        `)
-        .join("")
-}
-
-        
-
-        <h2>Itinerary</h2>
-
-        ${
-            itinerary.map(sector => `
-                <p>
-                    Sector ${sector.sectorNumber}:
-                    ${sector.origin.iata}
-                    →
-                    ${sector.destination.iata}
-                </p>
-            `).join("")
-        }
-
-
-
-<h2>Summary</h2>
-
-<p>
-    Net Value:
-    ${
-        document.getElementById(
-            "summaryNetValue"
-        )?.textContent || "-"
-    }
-</p>
-
-<p>
-    Taxable Value:
-    ${
-        document.getElementById(
-            "summaryTaxableValue"
-        )?.textContent || "-"
-    }
-</p>
-
-<p>
-    ${getCurrentTaxName()} Amount:
-    ${
-        document.getElementById(
-            "summaryVatValue"
-        )?.textContent || "-"
-    }
-</p>
-
-<p>
-    Gross Value:
-    ${
-        document.getElementById(
-            "summaryGrossValue"
-        )?.textContent || "-"
-    }
-</p>
-
-<p>
-    Calculation Status:
-    ${
-        document.getElementById(
-            "summaryCalculationStatus"
-        )?.textContent || "-"
-    }
-</p>
-
-<h2>Tax Treatment</h2>
-
-${
-    latestVatResults
-        .map(result => `
-
-            <p>
-                <strong>
-                    Sector ${result.sector.sectorNumber}
-                </strong>
-            </p>
-
-            <p>
-                Rule ID:
-                ${result.matchedRule?.ruleId || "No Rule"}
-            </p>
-
-            <p>
-                Treatment:
-                ${result.matchedRule?.treatment || "-"}
-            </p>
-
-            <p>
-                ${getCurrentTaxName()} Rate:
-                ${
-                    result.matchedRule
-                        ? (result.matchedRule.rate * 100).toFixed(2) + "%"
-                        : "-"
-                }
-            </p>
-            
-            <p>
-              ${getCurrentTaxName()} Amount:
-              ${formatMoneyValue(result.vatAmount)}
-            </p>
-            
-            <p>
-                Legal Reference:
-                ${
-                    result.matchedRule?.legalReference || "-"
-                }
-            </p>
-
-        `)
-        .join("")
-}
-
-
-<h2>Rule Match Trace</h2>
-
-${
-    latestVatResults
-        .map(result => `
-
-            <hr>
-
-            <h3>
-                Sector ${result.sector.sectorNumber}
-                -
-                ${result.sector.origin.iata}
-                →
-                ${result.sector.destination.iata}
-            </h3>
-
-            <p>
-                Matched Rule:
-                ${result.matchedRule?.ruleId || "-"}
-            </p>
-
-            <p>
-                Selling Entity:
-                ${result.transaction.entity}
-            </p>
-
-            <p>
-                Charter Type:
-                ${result.transaction.charterType}
-            </p>
-
-            <p>
-                Customer Type:
-                ${result.transaction.customerType}
-            </p>
-
-            <p>
-                Customer Region:
-                ${result.transaction.customerLocation}
-            </p>
-
-            <p>
-                ${getCurrentTaxName()} Registered:
-                ${result.transaction.vatRegistered}
-            </p>
-
-            <p>
-                Origin Territory:
-                ${result.transaction.originTerritory}
-            </p>
-
-            <p>
-                Destination Territory:
-                ${result.transaction.destinationTerritory}
-            </p>
-
-            ${
-                getApplicableDynamicInputs()
-                    .map(input => `
-                        <p>
-                            ${input.inputLabel}:
-                            ${
-                                result.transaction.dynamicInputs?.[
-                                    input.inputKey
-                                ] || "NO"
-                            }
-                        </p>
-                    `)
-                    .join("")
-            }
-
-        `)
-        .join("")
-}
     `;
 
     window.print();
@@ -2275,7 +2286,7 @@ ${
 }
 
 // ═══════════════════════════════════════════════════════════
-//  5. MULTI-SECTOR ITINERARY CONTROLS
+//  6. MULTI-SECTOR ITINERARY CONTROLS
 // ═══════════════════════════════════════════════════════════
 /**
  * Adds a new optional itinerary sector, defaulting its origin to the previous valid destination.
@@ -2359,14 +2370,10 @@ function updateAdditionalSectorAirport(sectorId, field, value) {
 }
 
 /**
- * Returns supplementary tax inputs applicable to the current entity,
- * customer country and charter type.
- *
- * Applicability is defined in input_requirements.json. The current renderer
- * supports CHECKBOX inputs; unsupported types are reported in the console.
- *
- * @returns {Object[]}
+ * Returns supplementary tax inputs applicable to the current selections.
+ * The current renderer supports CHECKBOX inputs.
  */
+
 function getApplicableDynamicInputs() {
 
     if (
@@ -2401,27 +2408,13 @@ function getApplicableDynamicInputs() {
 
 }
 
-/**
- * Retains answers only for inputs that are currently applicable and applies
- * configured defaults to newly displayed inputs.
- *
- * @param {Object[]} applicableInputs - Current supplementary input definitions.
- */
 function synchroniseDynamicInputValues(applicableInputs) {
     const nextValues = {};
-
     applicableInputs.forEach(input => {
-        const inputKey = input.inputKey;
-        const configuredDefault =
-            input.defaultValue ??
-            input.default ??
-            "NO";
-
-        nextValues[inputKey] =
-            dynamicInputValues[inputKey] ??
-            String(configuredDefault).toUpperCase();
+        const configuredDefault = input.defaultValue ?? input.default ?? "NO";
+        nextValues[input.inputKey] =
+            dynamicInputValues[input.inputKey] ?? String(configuredDefault).toUpperCase();
     });
-
     dynamicInputValues = nextValues;
 }
 
@@ -2452,7 +2445,6 @@ function renderDynamicInputs() {
         const inputKey =
             input.inputKey;
 
-
         const inputLabel =
             input.inputLabel ||
             inputKey;
@@ -2473,7 +2465,6 @@ function renderDynamicInputs() {
                 dynamicInputValues[inputKey] === "YES";
 
 const tooltipText = input.tooltip || "";
-
         const tooltipHtml = tooltipText
             ? `
                 <span
@@ -2481,9 +2472,7 @@ const tooltipText = input.tooltip || "";
                     title="${escapeHtml(tooltipText)}"
                     aria-label="${escapeHtml(tooltipText)}"
                     tabindex="0"
-                >
-                    ?
-                </span>
+                >?</span>
             `
             : "";
 
@@ -2685,7 +2674,7 @@ function renderAdditionalSectors() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  6. ITINERARY BUILDING
+//  7. ITINERARY BUILDING
 // ═══════════════════════════════════════════════════════════
 /**
  * Reconstructs the itinerary from valid primary and additional sectors, then replots the map and reruns VAT evaluation.
@@ -2725,7 +2714,7 @@ function buildItinerary() {
     return itinerary;
 }
 // ═══════════════════════════════════════════════════════════
-//  7. AIRPORT LOOKUP
+//  8. AIRPORT LOOKUP
 // ═══════════════════════════════════════════════════════════
 
 /**
@@ -2803,7 +2792,7 @@ infoEl.innerHTML =
 }
 
 // ═══════════════════════════════════════════════════════════
-//  8. MAP SETUP AND ROUTE DRAWING
+//  9. MAP SETUP AND ROUTE DRAWING
 // ═══════════════════════════════════════════════════════════
 
 /** Leaflet map instance shared by route and live-tracking features. */
@@ -3047,7 +3036,7 @@ function splitAtAntimeridian(points) {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  9. DISTANCE CALCULATION
+//  10. DISTANCE CALCULATION
 // ═══════════════════════════════════════════════════════════
 
 /**
@@ -3073,8 +3062,9 @@ function haversineNm(lat1, lon1, lat2, lon2) {
 
 
 // ═══════════════════════════════════════════════════════════
-//  10. GENERAL UI HELPERS
+//  11. GENERAL UI HELPERS
 // ═══════════════════════════════════════════════════════════
+
 
 /**
  * Rebuilds the itinerary after either primary airport changes.
@@ -3119,7 +3109,7 @@ function updateUI() {
 
 
 // ═══════════════════════════════════════════════════════════
-//  11. EVENT HANDLERS
+//  12. EVENT HANDLERS
 //  DOM listeners below translate user actions into state changes and call the
 //  smallest relevant refresh function. They are registered before loadData().
 // ═══════════════════════════════════════════════════════════
@@ -3145,9 +3135,9 @@ document.getElementById('exportPdfBtn')
 
 
 // ═══════════════════════════════════════════════════════════
-//  12. APPLICATION STARTUP
+//  13. APPLICATION STARTUP
 // ═══════════════════════════════════════════════════════════
 
-// Start with a neutral calculation summary, then load application data.
+// Start with neutral results, then load and validate configuration.
 resetVatSummary();
 loadData();
