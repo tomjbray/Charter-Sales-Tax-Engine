@@ -2515,73 +2515,217 @@ function runVatTest() {
 
 function exportPdfReport() {
     if (
-        !taxDataValidationPassed ||
-        latestVatResults.length === 0
+        typeof taxDataValidationPassed !== "undefined" &&
+        !taxDataValidationPassed
     ) {
+        window.alert(
+            "The tax configuration contains blocking errors. Resolve them before exporting the report."
+        );
+        return;
+    }
+
+    if (!latestVatResults.length) {
         window.alert(
             "Complete a valid calculation before exporting the report."
         );
         return;
     }
 
-    const reportId =
-    Date.now().toString();
+    const reportId = Date.now().toString();
+    const generatedAt = new Date().toLocaleString();
+    const applicationVersion =
+        typeof APP_VERSION !== "undefined"
+            ? APP_VERSION
+            : "Phase 1";
 
-document.getElementById(
-    "pdfRunDate"
-).innerHTML =
-    `
-        Generated:
-        ${new Date().toLocaleString()}
+    const runDetailsHtml = `
+        Generated: ${escapeHtml(generatedAt)}
         <br>
-        Report ID:
-        ${reportId}
+        Report ID: ${escapeHtml(reportId)}
         <br>
-        Application Version:
-        ${APP_VERSION}
+        Application Version: ${escapeHtml(applicationVersion)}
     `;
 
-  
-    document.getElementById(
-        "pdfSummary"
-    ).innerHTML = `
-
+    const inputsHtml = `
         <h2>Inputs</h2>
+        <p>Selling Entity: ${escapeHtml(selectedEntity)}</p>
+        <p>Customer Country: ${escapeHtml(selectedCustomerCountry)}</p>
+        <p>Customer Type: ${escapeHtml(selectedCustomerType)}</p>
+        <p>Charter Type: ${escapeHtml(selectedCharterType)}</p>
+        <p>Tax Type: ${escapeHtml(getCurrentTaxName())}</p>
+    `;
 
-        <p>
-            Selling Entity:
-            ${selectedEntity}
-        </p>
+    const applicableDynamicInputs =
+        getApplicableDynamicInputs();
 
-        <p>
-            Customer Country:
-            ${selectedCustomerCountry}
-        </p>
-
-        <p>
-            Customer Type:
-            ${selectedCustomerType}
-        </p>
-
-        <p>
-            Charter Type:
-            ${selectedCharterType}
-        </p>
-
-        <p>
-            Tax Type:
-            ${getCurrentTaxName()}
-        </p>
-
-       
-
+    const dynamicInputsHtml = `
         <h2>Dynamic Inputs</h2>
+        ${
+            applicableDynamicInputs.length
+                ? applicableDynamicInputs
+                    .map(input => `
+                        <p>
+                            ${escapeHtml(input.inputLabel || input.inputKey)}:
+                            ${escapeHtml(dynamicInputValues[input.inputKey] || "NO")}
+                        </p>
+                    `)
+                    .join("")
+                : "<p>None</p>"
+        }
+    `;
 
+    const itineraryHtml = `
+        <h2>Itinerary</h2>
+        ${
+            itinerary
+                .map(sector => `
+                    <p>
+                        Sector ${escapeHtml(sector.sectorNumber)}:
+                        ${escapeHtml(sector.origin.iata)}
+                        →
+                        ${escapeHtml(sector.destination.iata)}
+                    </p>
+                `)
+                .join("")
+        }
+    `;
+
+    const summaryHtml = `
+        <h2>Summary</h2>
+        <p>
+            Net Value:
+            ${escapeHtml(document.getElementById("summaryNetValue")?.textContent || "-")}
+        </p>
+        <p>
+            Taxable Value:
+            ${escapeHtml(document.getElementById("summaryTaxableValue")?.textContent || "-")}
+        </p>
+        <p>
+            ${escapeHtml(getCurrentTaxName())} Amount:
+            ${escapeHtml(document.getElementById("summaryVatValue")?.textContent || "-")}
+        </p>
+        <p>
+            Gross Value:
+            ${escapeHtml(document.getElementById("summaryGrossValue")?.textContent || "-")}
+        </p>
+        <p>
+            Calculation Status:
+            ${escapeHtml(document.getElementById("summaryCalculationStatus")?.textContent || "-")}
+        </p>
+        <p>
+            Sectors Requiring Review:
+            ${escapeHtml(document.getElementById("summaryReviewSectors")?.textContent || "-")}
+        </p>
+    `;
+
+    const taxTreatmentHtml = `
+        <h2>Tax Treatment</h2>
+        ${
+            latestVatResults
+                .map(result => `
+                    <h3>
+                        Sector ${escapeHtml(result.sector.sectorNumber)}:
+                        ${escapeHtml(result.sector.origin.iata)}
+                        →
+                        ${escapeHtml(result.sector.destination.iata)}
+                    </h3>
+                    <p>
+                        Rule ID:
+                        ${escapeHtml(result.matchedRule?.ruleId || "No Rule")}
+                    </p>
+                    <p>
+                        Treatment:
+                        ${escapeHtml(result.matchedRule?.treatment || "-")}
+                    </p>
+                    <p>
+                        ${escapeHtml(getCurrentTaxName())} Rate:
+                        ${
+                            result.matchedRule && Number.isFinite(Number(result.matchedRule.rate))
+                                ? escapeHtml((Number(result.matchedRule.rate) * 100).toFixed(2) + "%")
+                                : "-"
+                        }
+                    </p>
+                    <p>
+                        Taxable Percentage:
+                        ${
+                            Number.isFinite(result.taxablePercent)
+                                ? escapeHtml((result.taxablePercent * 100).toFixed(2) + "%")
+                                : "Review Required"
+                        }
+                    </p>
+                    <p>
+                        Allocated Value:
+                        ${escapeHtml(formatMoneyValue(result.allocatedNetValue))}
+                    </p>
+                    <p>
+                        Taxable Amount:
+                        ${escapeHtml(formatMoneyValue(result.taxableValue))}
+                    </p>
+                    <p>
+                        ${escapeHtml(getCurrentTaxName())} Amount:
+                        ${escapeHtml(formatMoneyValue(result.vatAmount))}
+                    </p>
+                    <p>
+                        Legal Reference:
+                        ${escapeHtml(result.matchedRule?.legalReference || "-")}
+                    </p>
+                `)
+                .join("")
+        }
+    `;
+
+    const traceHtml = `
+        <h2>Rule Match Trace</h2>
+        ${
+            latestVatResults
+                .map(result => {
+                    const transaction = result.transaction;
+                    const dynamicTraceHtml =
+                        applicableDynamicInputs
+                            .map(input => `
+                                <p>
+                                    ${escapeHtml(input.inputLabel || input.inputKey)}:
+                                    ${escapeHtml(transaction.dynamicInputs?.[input.inputKey] || "NO")}
+                                </p>
+                            `)
+                            .join("");
+
+                    return `
+                        <hr>
+                        <h3>
+                            Sector ${escapeHtml(result.sector.sectorNumber)}:
+                            ${escapeHtml(result.sector.origin.iata)}
+                            →
+                            ${escapeHtml(result.sector.destination.iata)}
+                        </h3>
+                        <p>Matched Rule: ${escapeHtml(result.matchedRule?.ruleId || "-")}</p>
+                        <p>Selling Entity: ${escapeHtml(transaction.entity)}</p>
+                        <p>Charter Type: ${escapeHtml(transaction.charterType)}</p>
+                        <p>Customer Type: ${escapeHtml(transaction.customerType)}</p>
+                        <p>Customer Region: ${escapeHtml(transaction.customerLocation)}</p>
+                        <p>${escapeHtml(getCurrentTaxName())} Registered: ${escapeHtml(transaction.vatRegistered)}</p>
+                        <p>Origin Territory: ${escapeHtml(transaction.originTerritory)}</p>
+                        <p>Destination Territory: ${escapeHtml(transaction.destinationTerritory)}</p>
+                        ${dynamicTraceHtml}
+                    `;
+                })
+                .join("")
+        }
+    `;
+
+    document.getElementById("pdfRunDate").innerHTML =
+        runDetailsHtml;
+
+    document.getElementById("pdfSummary").innerHTML = `
+        ${inputsHtml}
+        ${dynamicInputsHtml}
+        ${itineraryHtml}
+        ${summaryHtml}
+        ${taxTreatmentHtml}
+        ${traceHtml}
     `;
 
     window.print();
-
-}
 
 // ═══════════════════════════════════════════════════════════
 //  6. MULTI-SECTOR ITINERARY CONTROLS
