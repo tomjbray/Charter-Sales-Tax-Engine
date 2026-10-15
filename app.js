@@ -3,6 +3,10 @@ import {
     evaluateVatCalculationStatus
 } from "./tax-engine.js";
 
+import {
+    runRuleRegressionTests
+} from "./rule-tests.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -10,7 +14,7 @@ import {
 //  1. Load and validate airport and tax-reference datasets.
 //  2. Capture transaction and multi-sector itinerary inputs.
 //  3. Derive country, region and supplementary rule inputs.
-//  4. Delegate deterministic rule matching to tax-engine.js.
+//  4. Match each sector deterministically to an applicable tax rule.
 //  5. Allocate itinerary value and calculate supported taxes.
 //  6. Render summaries, detailed results, traces and a print report.
 //
@@ -20,7 +24,7 @@ import {
 //  - INFO: allows calculations and records expected work-in-progress data.
 // ═══════════════════════════════════════════════════════════
 
-const APP_VERSION = "0.2.2-phase2a-engine-split";
+const APP_VERSION = "0.2.3-phase2b-regression";
 
 // ═══════════════════════════════════════════════════════════
 //  1. APPLICATION STATE
@@ -153,6 +157,16 @@ async function loadData() {
     );
 
     renderDynamicInputs();
+
+    /*
+     * Regression tests are development diagnostics only. A missing,
+     * malformed or failing rule_tests.json must never disable the live
+     * calculator, so the runner handles its own errors independently.
+     */
+    runRuleRegressionTests({
+        rules: vatRulesData.rules,
+        testFileUrl: "./rule_tests.json"
+    });
 
     // Re-run airport lookups if the user typed while data was loading.
     const originValue = document.getElementById('origInput').value;
@@ -927,7 +941,7 @@ function updateTaxLabels() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  5. VAT RESULT DISPLAY AND CALCULATION ORCHESTRATION
+//  5. VAT RULE MATCHING AND DISPLAY
 // ═══════════════════════════════════════════════════════════
 
 /**

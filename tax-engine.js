@@ -1,10 +1,4 @@
-// ═══════════════════════════════════════════════════════════
-//  Charter Sales Tax Engine — tax-engine.js
-//
-//  Pure tax-rule engine shared by the browser application and
-//  future regression-test runners. This module contains no DOM,
-//  map, itinerary, PDF or application-state dependencies.
-// ═══════════════════════════════════════════════════════════
+// Charter Sales Tax Engine — pure tax-rule engine.
 
 function valueMatches(
     ruleValue,
@@ -83,10 +77,7 @@ function dynamicInputsMatch(
 
 function findMatchingRule(transaction, rules) {
     if (!Array.isArray(rules)) {
-        return {
-            matchedRule: null,
-            matchError: "VAT rule data is unavailable."
-        };
+        return { matchedRule: null, matchError: "VAT rule data is unavailable." };
     }
 
     const matches = rules
@@ -101,22 +92,13 @@ function findMatchingRule(transaction, rules) {
             dynamicInputsMatch(rule, transaction)
         )
         .sort((firstRule, secondRule) =>
-            Number(secondRule.rulePriority || 0) -
-                Number(firstRule.rulePriority || 0) ||
-            String(firstRule.ruleId || "")
-                .localeCompare(String(secondRule.ruleId || ""))
+            Number(secondRule.rulePriority || 0) - Number(firstRule.rulePriority || 0) ||
+            String(firstRule.ruleId || "").localeCompare(String(secondRule.ruleId || ""))
         );
 
-    if (matches.length === 0) {
-        return {
-            matchedRule: null,
-            matchError: null
-        };
-    }
+    if (matches.length === 0) return { matchedRule: null, matchError: null };
 
-    const highestPriority =
-        Number(matches[0].rulePriority || 0);
-
+    const highestPriority = Number(matches[0].rulePriority || 0);
     const topMatches = matches.filter(
         rule => Number(rule.rulePriority || 0) === highestPriority
     );
@@ -124,19 +106,12 @@ function findMatchingRule(transaction, rules) {
     if (topMatches.length > 1) {
         return {
             matchedRule: null,
-            matchError:
-                `Ambiguous rule match at priority ${highestPriority}: ` +
-                topMatches
-                    .map(rule => rule.ruleId || "UNNAMED RULE")
-                    .join(", ") +
-                "."
+            matchError: `Ambiguous rule match at priority ${highestPriority}: ` +
+                topMatches.map(rule => rule.ruleId || "UNNAMED RULE").join(", ") + "."
         };
     }
 
-    return {
-        matchedRule: matches[0],
-        matchError: null
-    };
+    return { matchedRule: matches[0], matchError: null };
 }
 
 function evaluateVatCalculationStatus(matchedRule, matchError = null) {
@@ -186,9 +161,4 @@ function evaluateVatCalculationStatus(matchedRule, matchError = null) {
     };
 }
 
-export {
-    valueMatches,
-    dynamicInputsMatch,
-    findMatchingRule,
-    evaluateVatCalculationStatus
-};
+export { valueMatches, dynamicInputsMatch, findMatchingRule, evaluateVatCalculationStatus };
