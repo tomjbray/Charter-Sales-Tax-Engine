@@ -21,7 +21,7 @@
         }
       },
       "expected": {
-        "ruleId": "FRA99",
+        "ruleId": "FRA12",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -71,7 +71,7 @@
         }
       },
       "expected": {
-        "ruleId": "FRA99",
+        "ruleId": "FRA12",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
