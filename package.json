@@ -1,0 +1,8 @@
+{
+  "name": "charter-sales-tax-engine",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/run-regression-tests.mjs"
+  }
+}
