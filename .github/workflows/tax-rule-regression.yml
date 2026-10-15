@@ -1,0 +1,50 @@
+name: Tax rule regression tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app.js"
+      - "tax-engine.js"
+      - "rule-tests.js"
+      - "vat_rules.json"
+      - "rule_tests.json"
+      - "scripts/run-regression-tests.mjs"
+      - ".github/workflows/tax-rule-regression.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "app.js"
+      - "tax-engine.js"
+      - "rule-tests.js"
+      - "vat_rules.json"
+      - "rule_tests.json"
+      - "scripts/run-regression-tests.mjs"
+      - ".github/workflows/tax-rule-regression.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression-tests:
+    name: Run tax rule regression tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24.x"
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check tax-engine.js
+          node --check rule-tests.js
+          node --check app.js
+
+      - name: Run regression tests
+        run: node scripts/run-regression-tests.mjs
