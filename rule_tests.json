@@ -197,7 +197,7 @@
       "expected": {
         "ruleId": "BRU01",
         "treatment": "REDUCED",
-        "rate": 0.6,
+        "rate": 0.06,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
@@ -555,7 +555,7 @@
       "expected": {
         "ruleId": "BRU01",
         "treatment": "REDUCED",
-        "rate": 0.6,
+        "rate": 0.06,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
