@@ -1,25 +1,106 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "2.0",
   "sourceTable": "Table14",
-  "testCount": 3,
+  "testCount": 2,
+  "enabledTestCount": 2,
   "tests": [
     {
-      "testID": "BE-BE PASSENGER",
-      "office": "BRU",
-      "inputs": "BRU01",
-      "expectedOutput": "REDUCED"
+      "testId": "FRA-CARGO-001",
+      "description": "FRA export of cargo - Direct exporter",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {
+          "DirectExporter": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "FRA12",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
     },
     {
-      "testID": "BRU02",
-      "office": "BRU",
-      "inputs": "BRU02",
-      "expectedOutput": "STANDARD"
-    },
-    {
-      "testID": "BRU03",
-      "office": "BRU",
-      "inputs": "BRU03",
-      "expectedOutput": null
+      "testId": "FRA-CARGO-002",
+      "description": "FRA export of Cargo - NOT Direct exporter",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {
+          "DirectExporter": "NO"
+        }
+      },
+      "expected": {
+        "ruleId": "FRA13",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
     }
-  ]
+  ],
+  "testsById": {
+    "FRA-CARGO-001": {
+      "testId": "FRA-CARGO-001",
+      "description": "FRA export of cargo - Direct exporter",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {
+          "DirectExporter": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "FRA12",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-002": {
+      "testId": "FRA-CARGO-002",
+      "description": "FRA export of Cargo - NOT Direct exporter",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {
+          "DirectExporter": "NO"
+        }
+      },
+      "expected": {
+        "ruleId": "FRA13",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    }
+  }
 }
