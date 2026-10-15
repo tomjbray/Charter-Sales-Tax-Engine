@@ -1,3 +1,8 @@
+import {
+    findMatchingRule,
+    evaluateVatCalculationStatus
+} from "./tax-engine.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -5,7 +10,7 @@
 //  1. Load and validate airport and tax-reference datasets.
 //  2. Capture transaction and multi-sector itinerary inputs.
 //  3. Derive country, region and supplementary rule inputs.
-//  4. Match each sector deterministically to an applicable tax rule.
+//  4. Delegate deterministic rule matching to tax-engine.js.
 //  5. Allocate itinerary value and calculate supported taxes.
 //  6. Render summaries, detailed results, traces and a print report.
 //
@@ -15,7 +20,7 @@
 //  - INFO: allows calculations and records expected work-in-progress data.
 // ═══════════════════════════════════════════════════════════
 
-const APP_VERSION = "0.2.1-phase1-validation";
+const APP_VERSION = "0.2.2-phase2a-engine-split";
 
 // ═══════════════════════════════════════════════════════════
 //  1. APPLICATION STATE
@@ -922,7 +927,7 @@ function updateTaxLabels() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  5. VAT RULE MATCHING AND DISPLAY
+//  5. VAT RESULT DISPLAY AND CALCULATION ORCHESTRATION
 // ═══════════════════════════════════════════════════════════
 
 /**
@@ -932,147 +937,6 @@ function updateTaxLabels() {
  * @param {string} inputValue - Derived or selected transaction value.
  * @returns {boolean}
  */
-
-function valueMatches(
-    ruleValue,
-    inputValue
-) {
-
-    if (
-        !ruleValue ||
-        ruleValue === "ANY"
-    ) {
-        return true;
-    }
-
-    return ruleValue === inputValue;
-}
-
-/**
- * Filters the VAT rule matrix against all transaction dimensions and returns the first matching rule.
- *
- * @param {Object} transaction - Normalised VAT transaction for one itinerary sector.
- * @returns {Object|null}
- */
-
-function dynamicInputsMatch(
-    rule,
-    transaction
-) {
-
-    const dynamicInputs =
-        transaction.dynamicInputs || {};
-
-    for (
-        const [inputKey, inputValue]
-        of Object.entries(dynamicInputs)
-    ) {
-
-        const ruleValue =
-            rule[inputKey];
-
-        if (
-            ruleValue === undefined ||
-            ruleValue === null ||
-            ruleValue === "" ||
-            ruleValue === "ANY"
-        ) {
-            continue;
-        }
-
-        const transactionValue =
-            String(inputValue)
-                .toUpperCase();
-
-        const normalisedRuleValue =
-            String(ruleValue)
-                .toUpperCase();
-
-        const expectedValue =
-            transactionValue === "TRUE"
-                ? "YES"
-                : transactionValue === "FALSE"
-                    ? "NO"
-                    : transactionValue;
-
-        if (
-            normalisedRuleValue !==
-            expectedValue
-        ) {
-            return false;
-        }
-
-    }
-
-    return true;
-
-}
-
-function findMatchingRule(transaction) {
-    if (
-        !vatRulesData ||
-        !Array.isArray(vatRulesData.rules)
-    ) {
-        return {
-            matchedRule: null,
-            matchError: "VAT rule data is unavailable."
-        };
-    }
-
-    const matches = vatRulesData.rules
-        .filter(rule =>
-            valueMatches(rule.entity, transaction.entity) &&
-            valueMatches(rule.charterType, transaction.charterType) &&
-            valueMatches(rule.customerType, transaction.customerType) &&
-            valueMatches(rule.customerLocation, transaction.customerLocation) &&
-            valueMatches(rule.vatRegistered, transaction.vatRegistered) &&
-            valueMatches(rule.originTerritory, transaction.originTerritory) &&
-            valueMatches(rule.destinationTerritory, transaction.destinationTerritory) &&
-            dynamicInputsMatch(rule, transaction)
-        )
-        .sort((firstRule, secondRule) =>
-            Number(secondRule.rulePriority || 0) -
-                Number(firstRule.rulePriority || 0) ||
-            String(firstRule.ruleId || "")
-                .localeCompare(
-                    String(secondRule.ruleId || "")
-                )
-        );
-
-    if (matches.length === 0) {
-        return {
-            matchedRule: null,
-            matchError: null
-        };
-    }
-
-    const highestPriority =
-        Number(matches[0].rulePriority || 0);
-    const topMatches =
-        matches.filter(rule =>
-            Number(rule.rulePriority || 0) ===
-                highestPriority
-        );
-
-    if (topMatches.length > 1) {
-        return {
-            matchedRule: null,
-            matchError:
-                `Ambiguous rule match at priority ${highestPriority}: ` +
-                topMatches
-                    .map(rule =>
-                        rule.ruleId || "UNNAMED RULE"
-                    )
-                    .join(", ") +
-                "."
-        };
-    }
-
-    return {
-        matchedRule: matches[0],
-        matchError: null
-    };
-}
 
 /**
  * Removes all rendered sector VAT cards from the results container.
@@ -1158,52 +1022,7 @@ function escapeHtml(value) {
  */
 
 
-function evaluateVatCalculationStatus(matchedRule, matchError = null) {
-    const reasons = [];
 
-    if (matchError) {
-        reasons.push(matchError);
-    } else if (!matchedRule) {
-        reasons.push("No matching VAT rule was found.");
-    } else {
-        const calculationMethod =
-            String(matchedRule.calculationMethod || "")
-                .trim()
-                .toUpperCase();
-
-        if (!calculationMethod) {
-            reasons.push("The rule has no calculation method.");
-        } else if (calculationMethod !== "STANDARD") {
-            reasons.push(
-                `Calculation method ${calculationMethod} is not yet supported.`
-            );
-        }
-
-        if (
-            matchedRule.rate === null ||
-            matchedRule.rate === undefined ||
-            matchedRule.rate === "" ||
-            !Number.isFinite(Number(matchedRule.rate))
-        ) {
-            reasons.push("The rule has no valid VAT rate.");
-        }
-
-        if (
-            matchedRule.taxablePercent === null ||
-            matchedRule.taxablePercent === undefined ||
-            matchedRule.taxablePercent === "" ||
-            !Number.isFinite(Number(matchedRule.taxablePercent))
-        ) {
-            reasons.push("The rule has no valid taxable percentage.");
-        }
-    }
-
-    return {
-        canCalculate: reasons.length === 0,
-        status: reasons.length === 0 ? "Complete" : "Review Required",
-        reasons
-    };
-}
 
 /**
  * Formats a finite numeric amount to two decimal places, or returns a review message for unavailable values.
@@ -2455,7 +2274,10 @@ function runVatTests() {
 
 
       
-        const { matchedRule, matchError } = findMatchingRule(transaction);
+        const { matchedRule, matchError } = findMatchingRule(
+            transaction,
+            vatRulesData.rules
+        );
         const distancePercentage = distancePercentages[index];
         const allocatedNetValue =
             charterValue * (distancePercentage / 100);
