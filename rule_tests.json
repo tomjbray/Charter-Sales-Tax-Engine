@@ -1,9 +1,273 @@
 {
   "schemaVersion": "2.0",
-  "sourceTable": "Table14",
-  "testCount": 2,
-  "enabledTestCount": 2,
+  "sourceTable": "tblRuleTests",
+  "testCount": 24,
+  "enabledTestCount": 24,
   "tests": [
+    {
+      "testId": "BRU-CARGO-001",
+      "description": "Belgian domestic cargo for private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "NO",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU02",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-002",
+      "description": "Belgian domestic cargo for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU03",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-003",
+      "description": "Belgian domestic cargo for EU business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "EU",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU04",
+        "treatment": "REVERSE_CHARGE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-004",
+      "description": "Belgian cargo export for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU13",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-005",
+      "description": "Belgian cargo export for non-EU business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "NON_EU",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU15",
+        "treatment": "REVERSE_CHARGE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-006",
+      "description": "Belgian cargo import for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU33",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-007",
+      "description": "Belgian cargo import for non-EU business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "NON_EU",
+        "vatRegistered": "YES",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU35",
+        "treatment": "REVERSE_CHARGE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-CARGO-008",
+      "description": "Belgian cargo wholly outside EU for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU43",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-PAX-001",
+      "description": "Belgian domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU01",
+        "treatment": "REDUCED",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-PAX-002",
+      "description": "Belgian passenger transport from Belgium to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "BE",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU06",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-PAX-003",
+      "description": "Belgian passenger transport from Belgium to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "BE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU11",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "BRU-PAX-004",
+      "description": "Belgian passenger transport wholly outside EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU41",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
     {
       "testId": "FRA-CARGO-001",
       "description": "FRA export of cargo - Direct exporter",
@@ -30,7 +294,7 @@
     },
     {
       "testId": "FRA-CARGO-002",
-      "description": "FRA export of Cargo - NOT Direct exporter",
+      "description": "FRA export of cargo - NOT direct exporter",
       "enabled": true,
       "transaction": {
         "entity": "FRA",
@@ -51,9 +315,581 @@
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
+    },
+    {
+      "testId": "FRA-CARGO-003",
+      "description": "German domestic cargo transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA10",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-CARGO-004",
+      "description": "Cargo transport from Germany to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA11",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-CARGO-005",
+      "description": "EU business cargo transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "EU",
+        "vatRegistered": "YES",
+        "originTerritory": "EU",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA24",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-CARGO-006",
+      "description": "EU private cargo transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerLocation": "EU",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA26",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-CARGO-007",
+      "description": "Cargo import from non-EU to Germany",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA18",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-CARGO-008",
+      "description": "Cargo transport wholly outside EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA20",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-PAX-001",
+      "description": "German domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA01",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-PAX-002",
+      "description": "Passenger transport from Germany to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA02",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-PAX-003",
+      "description": "Passenger transport from Germany to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "FRA-PAX-004",
+      "description": "Passenger transport wholly outside EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA09",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
     }
   ],
   "testsById": {
+    "BRU-PAX-001": {
+      "testId": "BRU-PAX-001",
+      "description": "Belgian domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU01",
+        "treatment": "REDUCED",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-PAX-002": {
+      "testId": "BRU-PAX-002",
+      "description": "Belgian passenger transport from Belgium to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "BE",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU06",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-PAX-003": {
+      "testId": "BRU-PAX-003",
+      "description": "Belgian passenger transport from Belgium to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "BE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU11",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-PAX-004": {
+      "testId": "BRU-PAX-004",
+      "description": "Belgian passenger transport wholly outside EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU41",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-001": {
+      "testId": "BRU-CARGO-001",
+      "description": "Belgian domestic cargo for private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "NO",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU02",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-002": {
+      "testId": "BRU-CARGO-002",
+      "description": "Belgian domestic cargo for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU03",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-003": {
+      "testId": "BRU-CARGO-003",
+      "description": "Belgian domestic cargo for EU business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "EU",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU04",
+        "treatment": "REVERSE_CHARGE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-004": {
+      "testId": "BRU-CARGO-004",
+      "description": "Belgian cargo export for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU13",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-005": {
+      "testId": "BRU-CARGO-005",
+      "description": "Belgian cargo export for non-EU business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "NON_EU",
+        "vatRegistered": "YES",
+        "originTerritory": "BE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU15",
+        "treatment": "REVERSE_CHARGE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-006": {
+      "testId": "BRU-CARGO-006",
+      "description": "Belgian cargo import for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU33",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-007": {
+      "testId": "BRU-CARGO-007",
+      "description": "Belgian cargo import for non-EU business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "NON_EU",
+        "vatRegistered": "YES",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "BE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU35",
+        "treatment": "REVERSE_CHARGE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "BRU-CARGO-008": {
+      "testId": "BRU-CARGO-008",
+      "description": "Belgian cargo wholly outside EU for Belgian business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "BRU",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "BE",
+        "vatRegistered": "YES",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "BRU43",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-PAX-001": {
+      "testId": "FRA-PAX-001",
+      "description": "German domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA01",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-PAX-002": {
+      "testId": "FRA-PAX-002",
+      "description": "Passenger transport from Germany to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA02",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-PAX-003": {
+      "testId": "FRA-PAX-003",
+      "description": "Passenger transport from Germany to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-PAX-004": {
+      "testId": "FRA-PAX-004",
+      "description": "Passenger transport wholly outside EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA09",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
     "FRA-CARGO-001": {
       "testId": "FRA-CARGO-001",
       "description": "FRA export of cargo - Direct exporter",
@@ -80,7 +916,7 @@
     },
     "FRA-CARGO-002": {
       "testId": "FRA-CARGO-002",
-      "description": "FRA export of Cargo - NOT Direct exporter",
+      "description": "FRA export of cargo - NOT direct exporter",
       "enabled": true,
       "transaction": {
         "entity": "FRA",
@@ -98,6 +934,138 @@
         "ruleId": "FRA13",
         "treatment": "STANDARD",
         "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-003": {
+      "testId": "FRA-CARGO-003",
+      "description": "German domestic cargo transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA10",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-004": {
+      "testId": "FRA-CARGO-004",
+      "description": "Cargo transport from Germany to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA11",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-005": {
+      "testId": "FRA-CARGO-005",
+      "description": "EU business cargo transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "EU",
+        "vatRegistered": "YES",
+        "originTerritory": "EU",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA24",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-006": {
+      "testId": "FRA-CARGO-006",
+      "description": "EU private cargo transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerLocation": "EU",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA26",
+        "treatment": "STANDARD",
+        "rate": 0.19,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-007": {
+      "testId": "FRA-CARGO-007",
+      "description": "Cargo import from non-EU to Germany",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA18",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "FRA-CARGO-008": {
+      "testId": "FRA-CARGO-008",
+      "description": "Cargo transport wholly outside EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "DE",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "FRA20",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
