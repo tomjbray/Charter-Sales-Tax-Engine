@@ -7,9 +7,14 @@ on:
       - "app.js"
       - "tax-engine.js"
       - "rule-tests.js"
+      - "dynamic-inputs.js"
       - "vat_rules.json"
       - "rule_tests.json"
+      - "dynamic_input_tests.json"
+      - "input_requirements.json"
+      - "selling_entities.json"
       - "scripts/run-regression-tests.mjs"
+      - "scripts/run-dynamic-input-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
@@ -17,9 +22,14 @@ on:
       - "app.js"
       - "tax-engine.js"
       - "rule-tests.js"
+      - "dynamic-inputs.js"
       - "vat_rules.json"
       - "rule_tests.json"
+      - "dynamic_input_tests.json"
+      - "input_requirements.json"
+      - "selling_entities.json"
       - "scripts/run-regression-tests.mjs"
+      - "scripts/run-dynamic-input-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -45,6 +55,8 @@ jobs:
           node --check tax-engine.js
           node --check rule-tests.js
           node --check app.js
+          node --check dynamic-inputs.js
+          node --check scripts/run-dynamic-input-tests.mjs
 
       - name: Run regression tests
         run: node scripts/run-regression-tests.mjs
