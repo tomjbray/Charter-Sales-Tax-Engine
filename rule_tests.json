@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.0",
   "sourceTable": "tblRuleTests",
-  "testCount": 24,
-  "enabledTestCount": 24,
+  "testCount": 34,
+  "enabledTestCount": 34,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -197,7 +197,7 @@
       "expected": {
         "ruleId": "BRU01",
         "treatment": "REDUCED",
-        "rate": 0.06,
+        "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
@@ -535,6 +535,226 @@
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
+    },
+    {
+      "testId": "JNB-CARGO-001",
+      "description": "South Africa domestic cargo transport - South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB02",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-CARGO-002",
+      "description": "South Africa domestic cargo transport - non-South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB04",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-CARGO-003",
+      "description": "South Africa cargo transport from ZA to outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB06",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-CARGO-004",
+      "description": "South Africa cargo transport from outside South Africa to ZA",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB08",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-CARGO-005",
+      "description": "South Africa cargo transport wholly outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB10",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-001",
+      "description": "South Africa domestic passenger transport - South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB01",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-002",
+      "description": "South Africa domestic passenger transport - non-South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-003",
+      "description": "South Africa passenger transport from ZA to outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB05",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-004",
+      "description": "South Africa passenger transport from outside South Africa to ZA",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB07",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-005",
+      "description": "South Africa passenger transport wholly outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB09",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
     }
   ],
   "testsById": {
@@ -555,7 +775,7 @@
       "expected": {
         "ruleId": "BRU01",
         "treatment": "REDUCED",
-        "rate": 0.06,
+        "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
@@ -1065,6 +1285,226 @@
       "expected": {
         "ruleId": "FRA20",
         "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-001": {
+      "testId": "JNB-PAX-001",
+      "description": "South Africa domestic passenger transport - South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB01",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-001": {
+      "testId": "JNB-CARGO-001",
+      "description": "South Africa domestic cargo transport - South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB02",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-002": {
+      "testId": "JNB-PAX-002",
+      "description": "South Africa domestic passenger transport - non-South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-002": {
+      "testId": "JNB-CARGO-002",
+      "description": "South Africa domestic cargo transport - non-South African customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB04",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-003": {
+      "testId": "JNB-PAX-003",
+      "description": "South Africa passenger transport from ZA to outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB05",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-003": {
+      "testId": "JNB-CARGO-003",
+      "description": "South Africa cargo transport from ZA to outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB06",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-004": {
+      "testId": "JNB-PAX-004",
+      "description": "South Africa passenger transport from outside South Africa to ZA",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB07",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-004": {
+      "testId": "JNB-CARGO-004",
+      "description": "South Africa cargo transport from outside South Africa to ZA",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB08",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-005": {
+      "testId": "JNB-PAX-005",
+      "description": "South Africa passenger transport wholly outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB09",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-005": {
+      "testId": "JNB-CARGO-005",
+      "description": "South Africa cargo transport wholly outside South Africa",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {}
+      },
+      "expected": {
+        "ruleId": "JNB10",
+        "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
