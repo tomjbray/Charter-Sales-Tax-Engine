@@ -785,47 +785,91 @@ function reportStartupValidation(
 
 
 /**
- * Converts an ISO country code into the rule-region value expected by the VAT matrix, preserving the selling entity’s home country as a distinct value.
+ * Converts an ISO country code into the rule-region value expected
+ * by the selected selling entity's VAT rule matrix.
+ *
+ * Classification order:
+ * 1. The entity's home country remains its own country code.
+ * 2. If the entity defines outsideHomeRegion, all other countries
+ *    use that configured region.
+ * 3. Otherwise use the existing EU / NON_EU classification.
+ *
+ * Examples:
+ * JNB: ZA -> ZA, GB -> NON_ZA, US -> NON_ZA
+ * FRA: DE -> DE, FR -> EU, GB -> NON_EU
  *
  * @param {string} countryCode - ISO country code to classify.
- * @param {string} homeCountry - ISO country code of the selected selling entity.
+ * @param {string} homeCountry - ISO country code of the selling entity.
  * @returns {string|null}
  */
 
+function getRuleRegion(countryCode, homeCountry) {
+    if (!countryCode) {
+        return null;
+    }
 
+    const normalisedCountryCode =
+        String(countryCode).trim().toUpperCase();
 
-function getRuleRegion(
-          countryCode,
-          homeCountry
-         ) {
-  if (!countryCode) return null;
+    const normalisedHomeCountry =
+        String(homeCountry || "").trim().toUpperCase();
 
-  const country = countriesData?.data?.[countryCode];
+    const country =
+        countriesData?.data?.[normalisedCountryCode];
 
-  // If a country is not yet in the reference file, preserve its country code.
-  // This avoids silently treating unknown data as non-EU.
-  if (!country) return countryCode;
+    // Preserve unknown country codes rather than silently
+    // classifying them into the wrong tax region.
+    if (!country) {
+        return normalisedCountryCode;
+    }
 
-  // Domestic country must always map to itself
-  if (countryCode === homeCountry) {
-        return homeCountry;
-}
+    // The selling entity's own country is always distinct.
+    if (
+        normalisedHomeCountry &&
+        normalisedCountryCode === normalisedHomeCountry
+    ) {
+        return normalisedHomeCountry;
+    }
 
+    /*
+     * Some rule sets define all countries outside the entity's
+     * home country as one configured tax region.
+     *
+     * Example:
+     * JNB / ZA
+     *   ZA        -> ZA
+     *   every
+     *   other
+     *   country   -> NON_ZA
+     */
+    const entity =
+        sellingEntitiesData?.data?.[selectedEntity];
 
-  // Belgium must remain distinct because the BRU rule matrix uses BE explicitly.
-  //if (countryCode === 'BE') return 'BE';
+    const outsideHomeRegion =
+        String(
+            entity?.outsideHomeRegion || ""
+        )
+            .trim()
+            .toUpperCase();
 
-  // Support both proper JSON booleans and text values from older exports.
-const euFlag =
-    country.eUMember ?? country.euMember;
+    if (outsideHomeRegion) {
+        return outsideHomeRegion;
+    }
 
-const isEuMember =
-    euFlag === true ||
-    String(euFlag).toUpperCase() === 'TRUE';
- 
-      return isEuMember ? 'EU' : 'NON_EU';
+    // Default classification used by the existing European rule sets.
+    const euFlag =
+        country.eUMember ??
+        country.euMember;
 
+    const isEuMember =
+        euFlag === true ||
+        String(euFlag).toUpperCase() === "TRUE";
 
+    if (isEuMember) {
+        return "EU";
+    }
+
+    return "NON_EU";
 }
 
 /**
