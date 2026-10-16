@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "recordCount": 11,
+  "recordCount": 12,
   "data": {
     "ES_MAINLAND": {
       "territoryCode": "ES_MAINLAND",
@@ -8,7 +8,7 @@
       "country": "ES",
       "description": "Spain Mainland",
       "eUMember": true,
-      "area": "TRUE"
+      "eUArea": "TRUE"
     },
     "ES_BALEARIC": {
       "territoryCode": "ES_BALEARIC",
@@ -16,7 +16,7 @@
       "country": "ES",
       "description": "Balearic Islands",
       "eUMember": true,
-      "area": "TRUE"
+      "eUArea": "TRUE"
     },
     "ES_CANARY": {
       "territoryCode": "ES_CANARY",
@@ -24,7 +24,7 @@
       "country": "ES",
       "description": "Canary Islands",
       "eUMember": true,
-      "area": "FALSE"
+      "eUArea": "FALSE"
     },
     "UK_MAINLAND": {
       "territoryCode": "UK_MAINLAND",
@@ -32,7 +32,7 @@
       "country": "GB",
       "description": "United Kingdom",
       "eUMember": false,
-      "area": "TRUE"
+      "eUArea": "TRUE"
     },
     "JEY": {
       "territoryCode": "JEY",
@@ -40,7 +40,7 @@
       "country": "JE",
       "description": "Jersey",
       "eUMember": false,
-      "area": "FALSE"
+      "eUArea": "FALSE"
     },
     "GGY": {
       "territoryCode": "GGY",
@@ -48,7 +48,7 @@
       "country": "GG",
       "description": "Guernsey",
       "eUMember": false,
-      "area": "FALSE"
+      "eUArea": "FALSE"
     },
     "IMN": {
       "territoryCode": "IMN",
@@ -56,7 +56,7 @@
       "country": "IM",
       "description": "Isle of Man",
       "eUMember": false,
-      "area": "FALSE"
+      "eUArea": "FALSE"
     },
     "EU": {
       "territoryCode": "EU",
@@ -64,7 +64,7 @@
       "country": "MULTI",
       "description": "European Union",
       "eUMember": true,
-      "area": "TRUE"
+      "eUArea": "TRUE"
     },
     "NON_EU": {
       "territoryCode": "NON_EU",
@@ -72,7 +72,7 @@
       "country": "MULTI",
       "description": "Outside European Union",
       "eUMember": false,
-      "area": "FALSE"
+      "eUArea": "FALSE"
     },
     "BE": {
       "territoryCode": "BE",
@@ -80,7 +80,7 @@
       "country": "BE",
       "description": "Belgium",
       "eUMember": true,
-      "area": "TRUE"
+      "eUArea": "TRUE"
     },
     "GB": {
       "territoryCode": "GB",
@@ -88,7 +88,15 @@
       "country": "GB",
       "description": "United Kingdom",
       "eUMember": false,
-      "area": "TRUE"
+      "eUArea": "TRUE"
+    },
+    "NON_ZA": {
+      "territoryCode": "NON_ZA",
+      "territoryType": "REGION",
+      "country": "MULTI",
+      "description": "Outside South Africa",
+      "eUMember": false,
+      "eUArea": "FALSE"
     }
   }
 }
