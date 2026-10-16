@@ -59,4 +59,4 @@ jobs:
           node --check scripts/run-dynamic-input-tests.mjs
 
       - name: Run regression tests
-        run: node scripts/run-regression-tests.mjs
+        run: npm test
