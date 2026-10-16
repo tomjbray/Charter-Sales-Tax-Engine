@@ -2693,12 +2693,24 @@ function updateAdditionalSectorAirport(sectorId, field, value) {
 }
 
 /**
- * Returns supplementary tax inputs applicable to the current selections.
- * The current renderer supports CHECKBOX inputs.
+ * Returns supplementary tax inputs applicable to the current
+ * selling-entity and transaction selections.
+ *
+ * appliesToCountry refers to the selling entity's home country,
+ * not the customer's country.
+ *
+ * Example:
+ * DirectExporter applies to:
+ *   Entity FRA
+ *   Home country DE
+ *   Charter type CARGO
+ *
+ * It therefore remains applicable regardless of whether the
+ * customer is in DE, EU, NON_EU, ZA or another country.
+ *
+ * @returns {Object[]}
  */
-
 function getApplicableDynamicInputs() {
-
     if (
         !inputRequirementsData ||
         !Array.isArray(inputRequirementsData.inputs)
@@ -2706,29 +2718,70 @@ function getApplicableDynamicInputs() {
         return [];
     }
 
+    const selectedEntityRecord =
+        sellingEntitiesData?.data?.[selectedEntity];
+
+    const entityHomeCountry =
+        String(
+            selectedEntityRecord?.country || ""
+        )
+            .trim()
+            .toUpperCase();
+
+    const normalisedSelectedEntity =
+        String(selectedEntity || "")
+            .trim()
+            .toUpperCase();
+
+    const normalisedCharterType =
+        String(selectedCharterType || "")
+            .trim()
+            .toUpperCase();
+
     return inputRequirementsData.inputs.filter(input => {
+        const appliesToEntity =
+            String(input.appliesToEntity || "")
+                .trim()
+                .toUpperCase();
+
+        const appliesToCountry =
+            String(input.appliesToCountry || "")
+                .trim()
+                .toUpperCase();
+
+        const appliesToCharterType =
+            String(input.appliesToCharterType || "")
+                .trim()
+                .toUpperCase();
 
         const entityMatch =
-            !input.appliesToEntity ||
-            input.appliesToEntity === selectedEntity;
+            appliesToEntity === "" ||
+            appliesToEntity === "ANY" ||
+            appliesToEntity === normalisedSelectedEntity;
 
+        /*
+         * appliesToCountry is evaluated against the selected
+         * selling entity's home country.
+         *
+         * It is deliberately not compared with
+         * selectedCustomerCountry.
+         */
         const countryMatch =
-            !input.appliesToCountry ||
-            input.appliesToCountry === selectedCustomerCountry;
+            appliesToCountry === "" ||
+            appliesToCountry === "ANY" ||
+            appliesToCountry === entityHomeCountry;
 
         const charterMatch =
-            !input.appliesToCharterType ||
-            input.appliesToCharterType.toUpperCase() ===
-            selectedCharterType.toUpperCase();
+            appliesToCharterType === "" ||
+            appliesToCharterType === "ANY" ||
+            appliesToCharterType === normalisedCharterType;
 
         return (
             entityMatch &&
             countryMatch &&
             charterMatch
         );
-
     });
-
 }
 
 function synchroniseDynamicInputValues(
