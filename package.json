@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node scripts/run-regression-tests.mjs"
-  }
+  "test": "node scripts/run-regression-tests.mjs && node scripts/run-dynamic-input-tests.mjs",
+  "test:rules": "node scripts/run-regression-tests.mjs",
+  "test:inputs": "node scripts/run-dynamic-input-tests.mjs"
+}
 }
