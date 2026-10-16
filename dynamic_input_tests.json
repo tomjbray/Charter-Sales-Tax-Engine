@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "testCount": 5,
+  "tests": [
+    {
+      "testId": "INPUT-FRA-CARGO-DE",
+      "description": "DirectExporter applies to FRA cargo with a German customer",
+      "enabled": true,
+      "context": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerCountry": "DE"
+      },
+      "expectedInputKeys": [
+        "DirectExporter"
+      ]
+    },
+    {
+      "testId": "INPUT-FRA-CARGO-ZA",
+      "description": "DirectExporter applies to FRA cargo with a South African customer",
+      "enabled": true,
+      "context": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerCountry": "ZA"
+      },
+      "expectedInputKeys": [
+        "DirectExporter"
+      ]
+    },
+    {
+      "testId": "INPUT-FRA-CARGO-GB",
+      "description": "DirectExporter applies to FRA cargo with a UK customer",
+      "enabled": true,
+      "context": {
+        "entity": "FRA",
+        "charterType": "CARGO",
+        "customerCountry": "GB"
+      },
+      "expectedInputKeys": [
+        "DirectExporter"
+      ]
+    },
+    {
+      "testId": "INPUT-FRA-PASSENGER",
+      "description": "DirectExporter does not apply to FRA passenger charters",
+      "enabled": true,
+      "context": {
+        "entity": "FRA",
+        "charterType": "PASSENGER",
+        "customerCountry": "ZA"
+      },
+      "expectedInputKeys": []
+    },
+    {
+      "testId": "INPUT-JNB-CARGO",
+      "description": "German DirectExporter input does not apply to JNB cargo",
+      "enabled": true,
+      "context": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerCountry": "ZA"
+      },
+      "expectedInputKeys": []
+    }
+  ]
+}
