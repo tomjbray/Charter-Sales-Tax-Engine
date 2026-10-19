@@ -2356,7 +2356,7 @@ const journeyDerivedInputs =
         entityHomeCountry
     );
 
-console.debug(
+console.log(
     "Derived journey inputs:",
     journeyDerivedInputs
 );
