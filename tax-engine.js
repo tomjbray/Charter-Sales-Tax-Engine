@@ -75,6 +75,36 @@ function dynamicInputsMatch(
 
 }
 
+/**
+ * Tests automatically derived journey inputs against corresponding
+ * properties in a VAT rule.
+ *
+ * The function is generic and does not contain knowledge of
+ * HomeRoundTrip or any particular jurisdiction.
+ *
+ * @param {Object} rule
+ * @param {Object} transaction
+ * @returns {boolean}
+ */
+function derivedInputsMatch(
+    rule,
+    transaction
+) {
+    const derivedInputs =
+        transaction?.derivedInputs || {};
+
+    return Object.entries(
+        derivedInputs
+    ).every(
+        ([inputKey, inputValue]) =>
+            valueMatches(
+                rule[inputKey],
+                inputValue
+            )
+    );
+}
+
+
 function findMatchingRule(transaction, rules) {
     if (!Array.isArray(rules)) {
         return { matchedRule: null, matchError: "VAT rule data is unavailable." };
@@ -89,8 +119,14 @@ function findMatchingRule(transaction, rules) {
             valueMatches(rule.vatRegistered, transaction.vatRegistered) &&
             valueMatches(rule.originTerritory, transaction.originTerritory) &&
             valueMatches(rule.destinationTerritory, transaction.destinationTerritory) &&
-            dynamicInputsMatch(rule, transaction)
-        )
+            dynamicInputsMatch(
+                rule,
+                transaction
+            ) &&
+            derivedInputsMatch(
+                rule,
+                transaction
+            )
         .sort((firstRule, secondRule) =>
             Number(secondRule.rulePriority || 0) - Number(firstRule.rulePriority || 0) ||
             String(firstRule.ruleId || "").localeCompare(String(secondRule.ruleId || ""))
@@ -161,4 +197,4 @@ function evaluateVatCalculationStatus(matchedRule, matchError = null) {
     };
 }
 
-export { valueMatches, dynamicInputsMatch, findMatchingRule, evaluateVatCalculationStatus };
+export { valueMatches, derivedInputsMatch, dynamicInputsMatch, findMatchingRule, evaluateVatCalculationStatus };
