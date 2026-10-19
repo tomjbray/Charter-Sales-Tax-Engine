@@ -1478,7 +1478,7 @@
         "destinationTerritory": "ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1503,7 +1503,7 @@
         "destinationTerritory": "ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1528,7 +1528,7 @@
         "destinationTerritory": "ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1553,7 +1553,7 @@
         "destinationTerritory": "ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1578,7 +1578,7 @@
         "destinationTerritory": "NON_ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1603,7 +1603,7 @@
         "destinationTerritory": "NON_ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1628,7 +1628,7 @@
         "destinationTerritory": "ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1653,7 +1653,7 @@
         "destinationTerritory": "ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1678,7 +1678,7 @@
         "destinationTerritory": "NON_ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
@@ -1703,7 +1703,7 @@
         "destinationTerritory": "NON_ZA",
         "dynamicInputs": {},
         "derivedInputs": {
-          "HomeRoundTrip": "ANY"
+          "HomeRoundTrip": "NO"
         }
       },
       "expected": {
