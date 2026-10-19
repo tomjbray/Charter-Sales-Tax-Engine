@@ -2211,7 +2211,7 @@ function buildVatTransaction(
 
     dynamicInputs: {
         ...dynamicInputValues
-    }
+    },
 
     derivedInputs: {
         ...derivedInputs
