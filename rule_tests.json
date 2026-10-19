@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.0",
+  "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
   "testCount": 34,
   "enabledTestCount": 34,
@@ -16,7 +16,10 @@
         "vatRegistered": "NO",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU02",
@@ -38,7 +41,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU03",
@@ -60,7 +66,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU04",
@@ -82,7 +91,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU13",
@@ -104,7 +116,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU15",
@@ -126,7 +141,10 @@
         "vatRegistered": "YES",
         "originTerritory": "NON_EU",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU33",
@@ -148,7 +166,10 @@
         "vatRegistered": "YES",
         "originTerritory": "NON_EU",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU35",
@@ -170,7 +191,10 @@
         "vatRegistered": "YES",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU43",
@@ -192,7 +216,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU01",
@@ -214,7 +241,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "BE",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU06",
@@ -236,7 +266,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "BE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU11",
@@ -258,7 +291,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU41",
@@ -282,6 +318,9 @@
         "destinationTerritory": "NON_EU",
         "dynamicInputs": {
           "DirectExporter": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
         }
       },
       "expected": {
@@ -306,6 +345,9 @@
         "destinationTerritory": "NON_EU",
         "dynamicInputs": {
           "DirectExporter": "NO"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
         }
       },
       "expected": {
@@ -328,7 +370,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "DE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA10",
@@ -350,7 +395,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA11",
@@ -372,7 +420,10 @@
         "vatRegistered": "YES",
         "originTerritory": "EU",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA24",
@@ -394,7 +445,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "EU",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA26",
@@ -416,7 +470,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "DE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA18",
@@ -438,7 +495,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA20",
@@ -460,7 +520,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "DE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA01",
@@ -482,7 +545,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA02",
@@ -504,7 +570,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA03",
@@ -526,7 +595,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA09",
@@ -548,7 +620,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB02",
@@ -570,7 +645,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB04",
@@ -592,7 +670,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB06",
@@ -614,7 +695,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB08",
@@ -636,7 +720,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB10",
@@ -658,7 +745,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB01",
@@ -680,7 +770,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB03",
@@ -702,7 +795,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB05",
@@ -724,7 +820,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB07",
@@ -746,7 +845,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB09",
@@ -770,7 +872,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU01",
@@ -792,7 +897,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "BE",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU06",
@@ -814,7 +922,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "BE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU11",
@@ -836,7 +947,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU41",
@@ -858,7 +972,10 @@
         "vatRegistered": "NO",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU02",
@@ -880,7 +997,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU03",
@@ -902,7 +1022,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU04",
@@ -924,7 +1047,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU13",
@@ -946,7 +1072,10 @@
         "vatRegistered": "YES",
         "originTerritory": "BE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU15",
@@ -968,7 +1097,10 @@
         "vatRegistered": "YES",
         "originTerritory": "NON_EU",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU33",
@@ -990,7 +1122,10 @@
         "vatRegistered": "YES",
         "originTerritory": "NON_EU",
         "destinationTerritory": "BE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU35",
@@ -1012,7 +1147,10 @@
         "vatRegistered": "YES",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "BRU43",
@@ -1034,7 +1172,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "DE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA01",
@@ -1056,7 +1197,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA02",
@@ -1078,7 +1222,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA03",
@@ -1100,7 +1247,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA09",
@@ -1124,6 +1274,9 @@
         "destinationTerritory": "NON_EU",
         "dynamicInputs": {
           "DirectExporter": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
         }
       },
       "expected": {
@@ -1148,6 +1301,9 @@
         "destinationTerritory": "NON_EU",
         "dynamicInputs": {
           "DirectExporter": "NO"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
         }
       },
       "expected": {
@@ -1170,7 +1326,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "DE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA10",
@@ -1192,7 +1351,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "DE",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA11",
@@ -1214,7 +1376,10 @@
         "vatRegistered": "YES",
         "originTerritory": "EU",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA24",
@@ -1236,7 +1401,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "EU",
         "destinationTerritory": "EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA26",
@@ -1258,7 +1426,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "DE",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA18",
@@ -1280,7 +1451,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_EU",
         "destinationTerritory": "NON_EU",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "FRA20",
@@ -1302,7 +1476,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB01",
@@ -1324,7 +1501,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB02",
@@ -1346,7 +1526,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB03",
@@ -1368,7 +1551,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB04",
@@ -1390,7 +1576,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB05",
@@ -1412,7 +1601,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB06",
@@ -1434,7 +1626,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB07",
@@ -1456,7 +1651,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB08",
@@ -1478,7 +1676,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB09",
@@ -1500,7 +1701,10 @@
         "vatRegistered": "ANY",
         "originTerritory": "NON_ZA",
         "destinationTerritory": "NON_ZA",
-        "dynamicInputs": {}
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
       },
       "expected": {
         "ruleId": "JNB10",

@@ -22,7 +22,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU02",
@@ -43,7 +44,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU03",
@@ -64,7 +66,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU04",
@@ -85,7 +88,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU05",
@@ -106,7 +110,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU06",
@@ -127,7 +132,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU07",
@@ -148,7 +154,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU08",
@@ -169,7 +176,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU09",
@@ -190,7 +198,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU10",
@@ -211,7 +220,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU11",
@@ -232,7 +242,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU12",
@@ -253,7 +264,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU13",
@@ -274,7 +286,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU14",
@@ -295,7 +308,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU15",
@@ -316,7 +330,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU16",
@@ -337,7 +352,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU17",
@@ -358,7 +374,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU18",
@@ -379,7 +396,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU19",
@@ -400,7 +418,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU20",
@@ -421,7 +440,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU21",
@@ -442,7 +462,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU22",
@@ -463,7 +484,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU23",
@@ -484,7 +506,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU24",
@@ -505,7 +528,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU25",
@@ -526,7 +550,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU26",
@@ -547,7 +572,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU27",
@@ -568,7 +594,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU28",
@@ -589,7 +616,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU29",
@@ -610,7 +638,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU30",
@@ -631,7 +660,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU31",
@@ -652,7 +682,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU32",
@@ -673,7 +704,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU33",
@@ -694,7 +726,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU34",
@@ -715,7 +748,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU35",
@@ -736,7 +770,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU36",
@@ -757,7 +792,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU37",
@@ -778,7 +814,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU38",
@@ -799,7 +836,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU39",
@@ -820,7 +858,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU40",
@@ -841,7 +880,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU41",
@@ -862,7 +902,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU42",
@@ -883,7 +924,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU43",
@@ -904,7 +946,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU44",
@@ -925,7 +968,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU45",
@@ -946,7 +990,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA01",
@@ -967,7 +1012,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA02",
@@ -988,7 +1034,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA03",
@@ -1009,7 +1056,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA04",
@@ -1030,7 +1078,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA05",
@@ -1051,7 +1100,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA06",
@@ -1072,7 +1122,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA07",
@@ -1093,7 +1144,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA08",
@@ -1114,7 +1166,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA09",
@@ -1135,7 +1188,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA10",
@@ -1156,7 +1210,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA11",
@@ -1177,7 +1232,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA12",
@@ -1198,7 +1254,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA13",
@@ -1219,7 +1276,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA14",
@@ -1240,7 +1298,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA15",
@@ -1261,7 +1320,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA16",
@@ -1282,7 +1342,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA17",
@@ -1303,7 +1364,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA18",
@@ -1324,7 +1386,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA19",
@@ -1345,7 +1408,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA20",
@@ -1366,7 +1430,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA21",
@@ -1387,7 +1452,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA22",
@@ -1408,7 +1474,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA23",
@@ -1429,7 +1496,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA24",
@@ -1450,7 +1518,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA25",
@@ -1471,7 +1540,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA26",
@@ -1492,7 +1562,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA27",
@@ -1513,7 +1584,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA28",
@@ -1534,7 +1606,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA29",
@@ -1555,7 +1628,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA30",
@@ -1576,7 +1650,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA31",
@@ -1597,7 +1672,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA32",
@@ -1618,7 +1694,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA33",
@@ -1639,7 +1716,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA34",
@@ -1660,7 +1738,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA35",
@@ -1681,7 +1760,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA36",
@@ -1702,7 +1782,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA37",
@@ -1723,7 +1804,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA38",
@@ -1744,7 +1826,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA39",
@@ -1765,7 +1848,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA40",
@@ -1786,7 +1870,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA41",
@@ -1807,7 +1892,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "FRA42",
@@ -1828,7 +1914,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB01",
@@ -1849,7 +1936,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB02",
@@ -1870,7 +1958,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB03",
@@ -1891,7 +1980,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB04",
@@ -1912,7 +2002,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB05",
@@ -1933,7 +2024,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB06",
@@ -1954,7 +2046,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB07",
@@ -1975,7 +2068,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB08",
@@ -1996,7 +2090,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB09",
@@ -2017,7 +2112,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "JNB10",
@@ -2038,7 +2134,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     }
   ],
   "rulesById": {
@@ -2061,7 +2158,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU02": {
       "ruleId": "BRU02",
@@ -2082,7 +2180,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU03": {
       "ruleId": "BRU03",
@@ -2103,7 +2202,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU04": {
       "ruleId": "BRU04",
@@ -2124,7 +2224,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU05": {
       "ruleId": "BRU05",
@@ -2145,7 +2246,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU06": {
       "ruleId": "BRU06",
@@ -2166,7 +2268,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU07": {
       "ruleId": "BRU07",
@@ -2187,7 +2290,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU08": {
       "ruleId": "BRU08",
@@ -2208,7 +2312,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU09": {
       "ruleId": "BRU09",
@@ -2229,7 +2334,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU10": {
       "ruleId": "BRU10",
@@ -2250,7 +2356,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU11": {
       "ruleId": "BRU11",
@@ -2271,7 +2378,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU12": {
       "ruleId": "BRU12",
@@ -2292,7 +2400,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU13": {
       "ruleId": "BRU13",
@@ -2313,7 +2422,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU14": {
       "ruleId": "BRU14",
@@ -2334,7 +2444,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU15": {
       "ruleId": "BRU15",
@@ -2355,7 +2466,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU16": {
       "ruleId": "BRU16",
@@ -2376,7 +2488,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU17": {
       "ruleId": "BRU17",
@@ -2397,7 +2510,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU18": {
       "ruleId": "BRU18",
@@ -2418,7 +2532,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU19": {
       "ruleId": "BRU19",
@@ -2439,7 +2554,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU20": {
       "ruleId": "BRU20",
@@ -2460,7 +2576,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU21": {
       "ruleId": "BRU21",
@@ -2481,7 +2598,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU22": {
       "ruleId": "BRU22",
@@ -2502,7 +2620,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU23": {
       "ruleId": "BRU23",
@@ -2523,7 +2642,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU24": {
       "ruleId": "BRU24",
@@ -2544,7 +2664,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU25": {
       "ruleId": "BRU25",
@@ -2565,7 +2686,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU26": {
       "ruleId": "BRU26",
@@ -2586,7 +2708,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU27": {
       "ruleId": "BRU27",
@@ -2607,7 +2730,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU28": {
       "ruleId": "BRU28",
@@ -2628,7 +2752,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU29": {
       "ruleId": "BRU29",
@@ -2649,7 +2774,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU30": {
       "ruleId": "BRU30",
@@ -2670,7 +2796,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU31": {
       "ruleId": "BRU31",
@@ -2691,7 +2818,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU32": {
       "ruleId": "BRU32",
@@ -2712,7 +2840,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU33": {
       "ruleId": "BRU33",
@@ -2733,7 +2862,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU34": {
       "ruleId": "BRU34",
@@ -2754,7 +2884,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU35": {
       "ruleId": "BRU35",
@@ -2775,7 +2906,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU36": {
       "ruleId": "BRU36",
@@ -2796,7 +2928,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU37": {
       "ruleId": "BRU37",
@@ -2817,7 +2950,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU38": {
       "ruleId": "BRU38",
@@ -2838,7 +2972,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU39": {
       "ruleId": "BRU39",
@@ -2859,7 +2994,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU40": {
       "ruleId": "BRU40",
@@ -2880,7 +3016,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU41": {
       "ruleId": "BRU41",
@@ -2901,7 +3038,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU42": {
       "ruleId": "BRU42",
@@ -2922,7 +3060,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU43": {
       "ruleId": "BRU43",
@@ -2943,7 +3082,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU44": {
       "ruleId": "BRU44",
@@ -2964,7 +3104,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "BRU45": {
       "ruleId": "BRU45",
@@ -2985,7 +3126,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA01": {
       "ruleId": "FRA01",
@@ -3006,7 +3148,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA02": {
       "ruleId": "FRA02",
@@ -3027,7 +3170,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA03": {
       "ruleId": "FRA03",
@@ -3048,7 +3192,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA04": {
       "ruleId": "FRA04",
@@ -3069,7 +3214,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA05": {
       "ruleId": "FRA05",
@@ -3090,7 +3236,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA06": {
       "ruleId": "FRA06",
@@ -3111,7 +3258,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA07": {
       "ruleId": "FRA07",
@@ -3132,7 +3280,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA08": {
       "ruleId": "FRA08",
@@ -3153,7 +3302,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA09": {
       "ruleId": "FRA09",
@@ -3174,7 +3324,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA10": {
       "ruleId": "FRA10",
@@ -3195,7 +3346,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA11": {
       "ruleId": "FRA11",
@@ -3216,7 +3368,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA12": {
       "ruleId": "FRA12",
@@ -3237,7 +3390,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     "FRA13": {
       "ruleId": "FRA13",
@@ -3258,7 +3412,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     "FRA14": {
       "ruleId": "FRA14",
@@ -3279,7 +3434,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA15": {
       "ruleId": "FRA15",
@@ -3300,7 +3456,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA16": {
       "ruleId": "FRA16",
@@ -3321,7 +3478,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     "FRA17": {
       "ruleId": "FRA17",
@@ -3342,7 +3500,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     "FRA18": {
       "ruleId": "FRA18",
@@ -3363,7 +3522,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA19": {
       "ruleId": "FRA19",
@@ -3384,7 +3544,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA20": {
       "ruleId": "FRA20",
@@ -3405,7 +3566,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA21": {
       "ruleId": "FRA21",
@@ -3426,7 +3588,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA22": {
       "ruleId": "FRA22",
@@ -3447,7 +3610,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA23": {
       "ruleId": "FRA23",
@@ -3468,7 +3632,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA24": {
       "ruleId": "FRA24",
@@ -3489,7 +3654,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA25": {
       "ruleId": "FRA25",
@@ -3510,7 +3676,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA26": {
       "ruleId": "FRA26",
@@ -3531,7 +3698,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA27": {
       "ruleId": "FRA27",
@@ -3552,7 +3720,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA28": {
       "ruleId": "FRA28",
@@ -3573,7 +3742,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA29": {
       "ruleId": "FRA29",
@@ -3594,7 +3764,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA30": {
       "ruleId": "FRA30",
@@ -3615,7 +3786,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA31": {
       "ruleId": "FRA31",
@@ -3636,7 +3808,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA32": {
       "ruleId": "FRA32",
@@ -3657,7 +3830,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA33": {
       "ruleId": "FRA33",
@@ -3678,7 +3852,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA34": {
       "ruleId": "FRA34",
@@ -3699,7 +3874,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     "FRA35": {
       "ruleId": "FRA35",
@@ -3720,7 +3896,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     "FRA36": {
       "ruleId": "FRA36",
@@ -3741,7 +3918,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA37": {
       "ruleId": "FRA37",
@@ -3762,7 +3940,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA38": {
       "ruleId": "FRA38",
@@ -3783,7 +3962,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "YES"
+      "DirectExporter": "YES",
+      "HomeRoundTrip": "ANY"
     },
     "FRA39": {
       "ruleId": "FRA39",
@@ -3804,7 +3984,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "NO"
+      "DirectExporter": "NO",
+      "HomeRoundTrip": "ANY"
     },
     "FRA40": {
       "ruleId": "FRA40",
@@ -3825,7 +4006,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA41": {
       "ruleId": "FRA41",
@@ -3846,7 +4028,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "FRA42": {
       "ruleId": "FRA42",
@@ -3867,7 +4050,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB01": {
       "ruleId": "JNB01",
@@ -3888,7 +4072,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB02": {
       "ruleId": "JNB02",
@@ -3909,7 +4094,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB03": {
       "ruleId": "JNB03",
@@ -3930,7 +4116,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB04": {
       "ruleId": "JNB04",
@@ -3951,7 +4138,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB05": {
       "ruleId": "JNB05",
@@ -3972,7 +4160,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB06": {
       "ruleId": "JNB06",
@@ -3993,7 +4182,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB07": {
       "ruleId": "JNB07",
@@ -4014,7 +4204,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB08": {
       "ruleId": "JNB08",
@@ -4035,7 +4226,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB09": {
       "ruleId": "JNB09",
@@ -4056,7 +4248,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     },
     "JNB10": {
       "ruleId": "JNB10",
@@ -4077,7 +4270,8 @@
       "ruleComponents": null,
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
-      "DirectExporter": "ANY"
+      "DirectExporter": "ANY",
+      "HomeRoundTrip": "ANY"
     }
   }
 }
