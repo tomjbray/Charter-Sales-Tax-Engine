@@ -5,6 +5,7 @@
   "scripts": {
   "test": "node scripts/run-regression-tests.mjs && node scripts/run-dynamic-input-tests.mjs",
   "test:rules": "node scripts/run-regression-tests.mjs",
-  "test:inputs": "node scripts/run-dynamic-input-tests.mjs"
+  "test:inputs": "node scripts/run-dynamic-input-tests.mjs",
+  "test:journey": "node scripts/run-journey-context-tests.mjs"  
 }
 }
