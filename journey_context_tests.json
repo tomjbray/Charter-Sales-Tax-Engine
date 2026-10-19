@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0",
+  "testCount": 5,
+  "tests": [
+    {
+      "testId": "JCTX-001",
+      "description": "One-way journey from South Africa to outside South Africa",
+      "enabled": true,
+      "homeCountry": "ZA",
+      "countryChain": ["ZA", "NA"],
+      "expected": { "HomeRoundTrip": "NO" }
+    },
+    {
+      "testId": "JCTX-002",
+      "description": "South African out-and-back journey",
+      "enabled": true,
+      "homeCountry": "ZA",
+      "countryChain": ["ZA", "NA", "ZA"],
+      "expected": { "HomeRoundTrip": "YES" }
+    },
+    {
+      "testId": "JCTX-003",
+      "description": "Domestic South African return journey",
+      "enabled": true,
+      "homeCountry": "ZA",
+      "countryChain": ["ZA", "ZA", "ZA"],
+      "expected": { "HomeRoundTrip": "NO" }
+    },
+    {
+      "testId": "JCTX-004",
+      "description": "Domestic sector followed by foreign stop and return to South Africa",
+      "enabled": true,
+      "homeCountry": "ZA",
+      "countryChain": ["ZA", "ZA", "NA", "ZA"],
+      "expected": { "HomeRoundTrip": "YES" }
+    },
+    {
+      "testId": "JCTX-005",
+      "description": "Foreign-origin journey through South Africa and back outside",
+      "enabled": true,
+      "homeCountry": "ZA",
+      "countryChain": ["NA", "ZA", "NA"],
+      "expected": { "HomeRoundTrip": "NO" }
+    }
+  ]
+}
