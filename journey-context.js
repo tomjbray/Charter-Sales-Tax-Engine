@@ -103,11 +103,8 @@ function deriveJourneyContext(itinerary, homeCountry) {
     const startCountry = countryChain[0];
     const endCountry = countryChain[countryChain.length - 1];
 
-    const intermediateCountries =
-        countryChain.slice(1, -1);
-
     const includesOutsideHomeCountry =
-        intermediateCountries.some(
+        countryChain.some(
             countryCode =>
                 countryCode !== normalisedHomeCountry
         );
