@@ -11,6 +11,10 @@ import {
     getApplicableDynamicInputsForContext
 } from "./dynamic-inputs.js";
 
+import {
+    getDerivedJourneyInputs
+} from "./journey-context.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -2175,7 +2179,10 @@ function syncVatRegisteredState() {
  * @returns {{{transaction: Object, homeCountry: string|null}}}
  */
 
-function buildVatTransaction(sector) {
+function buildVatTransaction(
+    sector,
+    derivedInputs = {}
+) {
     const homeCountry = getEntityCountry(selectedEntity);
 
     const transaction = {
@@ -2204,6 +2211,10 @@ function buildVatTransaction(sector) {
 
     dynamicInputs: {
         ...dynamicInputValues
+    }
+
+    derivedInputs: {
+        ...derivedInputs
     }
 };
 
@@ -2309,30 +2320,55 @@ function runVatTests() {
     const distancePercentages = [];
     let allocatedPercentage = 0;
 
-    sectorDistances.forEach((distanceNm, index) => {
-        const isFinalSector = index === sectorDistances.length - 1;
-        let distancePercentage;
+   sectorDistances.forEach((distanceNm, index) => {
+    const isFinalSector = index === sectorDistances.length - 1;
+    let distancePercentage;
 
-        if (isFinalSector) {
-            distancePercentage = Math.max(
-                0,
-                Number((100 - allocatedPercentage).toFixed(2))
-            );
-        } else {
-            distancePercentage = totalDistanceNm > 0
-                ? Number((distanceNm / totalDistanceNm * 100).toFixed(2))
-                : 0;
-            allocatedPercentage += distancePercentage;
-        }
+    if (isFinalSector) {
+        distancePercentage = Math.max(
+            0,
+            Number((100 - allocatedPercentage).toFixed(2))
+        );
+    } else {
+        distancePercentage = totalDistanceNm > 0
+            ? Number((distanceNm / totalDistanceNm * 100).toFixed(2))
+            : 0;
 
-        distancePercentages.push(distancePercentage);
-    });
+        allocatedPercentage += distancePercentage;
+    }
 
-    const results = itinerary.map((sector, index) => {
+    distancePercentages.push(distancePercentage);
+});
+
+/*
+ * Derive journey-level rule inputs once from the complete itinerary.
+ *
+ * Example for JNB:
+ * JNB -> WDH       = HomeRoundTrip NO
+ * JNB -> WDH -> JNB = HomeRoundTrip YES
+ */
+const entityHomeCountry =
+    getEntityCountry(selectedEntity);
+
+const journeyDerivedInputs =
+    getDerivedJourneyInputs(
+        itinerary,
+        entityHomeCountry
+    );
+
+console.debug(
+    "Derived journey inputs:",
+    journeyDerivedInputs
+);
+
+const results = itinerary.map((sector, index) => {
         const {
-            transaction,
-            homeCountry
-        } = buildVatTransaction(sector);
+    transaction,
+    homeCountry
+} = buildVatTransaction(
+    sector,
+    journeyDerivedInputs
+);
 
 
       
