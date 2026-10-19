@@ -127,6 +127,7 @@ function findMatchingRule(transaction, rules) {
                 rule,
                 transaction
             )
+            )
         .sort((firstRule, secondRule) =>
             Number(secondRule.rulePriority || 0) - Number(firstRule.rulePriority || 0) ||
             String(firstRule.ruleId || "").localeCompare(String(secondRule.ruleId || ""))
