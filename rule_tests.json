@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 34,
-  "enabledTestCount": 34,
+  "testCount": 38,
+  "enabledTestCount": 38,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -734,6 +734,56 @@
       }
     },
     {
+      "testId": "JNB-CARGO-006",
+      "description": "SA Cargo - round trip - ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB12",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-CARGO-007",
+      "description": "SA Cargo - round trip - Non-ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB14",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
       "testId": "JNB-PAX-001",
       "description": "South Africa domestic passenger transport - South African customer",
       "enabled": true,
@@ -852,6 +902,56 @@
       },
       "expected": {
         "ruleId": "JNB09",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-006",
+      "description": "SA Passenger - round trip - ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB11",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "JNB-PAX-007",
+      "description": "SA Passenger - round trip - Non-ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB13",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -1708,6 +1808,106 @@
       },
       "expected": {
         "ruleId": "JNB10",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-006": {
+      "testId": "JNB-PAX-006",
+      "description": "SA Passenger - round trip - ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB11",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-006": {
+      "testId": "JNB-CARGO-006",
+      "description": "SA Cargo - round trip - ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB12",
+        "treatment": "STANDARD",
+        "rate": 0.15,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-PAX-007": {
+      "testId": "JNB-PAX-007",
+      "description": "SA Passenger - round trip - Non-ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB13",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "JNB-CARGO-007": {
+      "testId": "JNB-CARGO-007",
+      "description": "SA Cargo - round trip - Non-ZA Customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "JNB",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ANY",
+        "destinationTerritory": "ANY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "ruleId": "JNB14",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
