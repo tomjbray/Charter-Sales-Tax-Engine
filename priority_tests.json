@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "testCount": 4,
+  "tests": [
+    {
+      "testId": "PRIORITY-001",
+      "description": "Most precise geographical rule beats regional rule",
+      "transaction": {
+        "entity": "TEST",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "DE",
+        "dynamicInputs": {},
+        "derivedInputs": {}
+      },
+      "rules": [
+        {"ruleId":"P001-REGION","entity":"TEST","charterType":"PASSENGER","customerType":"ANY","customerLocation":"ANY","vatRegistered":"ANY","originTerritory":"ANY","destinationTerritory":"ANY","rulePriority":200},
+        {"ruleId":"P001-COUNTRY","entity":"TEST","charterType":"PASSENGER","customerType":"ANY","customerLocation":"ANY","vatRegistered":"ANY","originTerritory":"DE","destinationTerritory":"DE","rulePriority":300}
+      ],
+      "expectedRuleId": "P001-COUNTRY",
+      "expectedMatchError": null
+    },
+    {
+      "testId": "PRIORITY-002",
+      "description": "Mixed country and regional rule beats broader regional rule",
+      "transaction": {
+        "entity": "TEST",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {}
+      },
+      "rules": [
+        {"ruleId":"P002-REGION","entity":"TEST","charterType":"CARGO","customerType":"ANY","customerLocation":"ANY","vatRegistered":"ANY","originTerritory":"ANY","destinationTerritory":"NON_EU","rulePriority":200},
+        {"ruleId":"P002-MIXED","entity":"TEST","charterType":"CARGO","customerType":"ANY","customerLocation":"ANY","vatRegistered":"ANY","originTerritory":"DE","destinationTerritory":"NON_EU","rulePriority":250}
+      ],
+      "expectedRuleId": "P002-MIXED",
+      "expectedMatchError": null
+    },
+    {
+      "testId": "PRIORITY-003",
+      "description": "Explicit business override beats geographical rule",
+      "transaction": {
+        "entity": "TEST",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ZA",
+        "vatRegistered": "ANY",
+        "originTerritory": "ZA",
+        "destinationTerritory": "NON_ZA",
+        "dynamicInputs": {},
+        "derivedInputs": {"HomeRoundTrip":"YES"}
+      },
+      "rules": [
+        {"ruleId":"P003-GEO","entity":"TEST","charterType":"PASSENGER","customerType":"ANY","customerLocation":"ZA","vatRegistered":"ANY","originTerritory":"ZA","destinationTerritory":"NON_ZA","HomeRoundTrip":"ANY","rulePriority":300},
+        {"ruleId":"P003-OVERRIDE","entity":"TEST","charterType":"PASSENGER","customerType":"ANY","customerLocation":"ZA","vatRegistered":"ANY","originTerritory":"ANY","destinationTerritory":"ANY","HomeRoundTrip":"YES","rulePriority":500}
+      ],
+      "expectedRuleId": "P003-OVERRIDE",
+      "expectedMatchError": null
+    },
+    {
+      "testId": "PRIORITY-004",
+      "description": "Equal highest-priority matching rules remain ambiguous",
+      "transaction": {
+        "entity": "TEST",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "DE",
+        "vatRegistered": "YES",
+        "originTerritory": "DE",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {"DirectExporter":"YES"},
+        "derivedInputs": {}
+      },
+      "rules": [
+        {"ruleId":"P004-A","entity":"TEST","charterType":"CARGO","customerType":"BUSINESS","customerLocation":"DE","vatRegistered":"YES","originTerritory":"DE","destinationTerritory":"NON_EU","DirectExporter":"YES","rulePriority":250},
+        {"ruleId":"P004-B","entity":"TEST","charterType":"CARGO","customerType":"BUSINESS","customerLocation":"DE","vatRegistered":"YES","originTerritory":"DE","destinationTerritory":"NON_EU","DirectExporter":"YES","rulePriority":250}
+      ],
+      "expectedRuleId": null,
+      "expectedMatchErrorContains": "Ambiguous rule match at priority 250"
+    }
+  ]
+}
