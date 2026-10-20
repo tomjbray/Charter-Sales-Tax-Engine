@@ -15,9 +15,11 @@ on:
       - "input_requirements.json"
       - "selling_entities.json"
       - "journey_context_tests.json"
+      - "priority_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
+      - "scripts/run-priority-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
@@ -33,9 +35,11 @@ on:
       - "input_requirements.json"
       - "selling_entities.json"
       - "journey_context_tests.json"
+      - "priority_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
+      - "scripts/run-priority-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -65,6 +69,7 @@ jobs:
           node --check journey-context.js
           node --check scripts/run-dynamic-input-tests.mjs
           node --check scripts/run-journey-context-tests.mjs
+          node --check scripts/run-priority-tests.mjs
 
       - name: Run regression tests
         run: npm test
