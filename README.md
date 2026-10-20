@@ -40,6 +40,44 @@ Validation covers:
 - Rates and taxable percentages are decimal fractions, so 19% is stored as `0.19`.
 - Rule matching receives the transaction and VAT-rule array explicitly, allowing the same engine to run in the browser and under Node.js.
 
+## Rule priority conventions
+
+`RulePriority` is the explicit precedence mechanism for overlapping rules. The engine evaluates all matching rules, selects the highest numeric priority, and returns **Review Required** if more than one matching rule remains at that highest priority.
+
+Use the following controlled priority tiers when maintaining `VATRules`:
+
+| Priority | Purpose |
+|---:|---|
+| **500** | Explicit overriding business condition |
+| **300** | Most precise geographical rule |
+| **250** | Mixed country/regional rule |
+| **200** | Regional rule |
+| **150** | Broader fallback |
+| **100** | General/default fallback |
+
+### Authoring principles
+
+- Use **500** only where a business condition is intentionally intended to override normal geographical determination, for example a qualifying `HomeRoundTrip` rule.
+- Use **300** for the most geographically precise rules, typically where the relevant route criteria are expressed at exact-country level.
+- Use **250** where an exact country is combined with a broader region, for example `DE -> EU` or `EU -> DE`.
+- Use **200** for regional-to-regional rules such as `EU -> EU` or `EU -> NON_EU`.
+- Use **150** for broader fallback rules that are still more targeted than a general default.
+- Use **100** for general/default rules, especially rules relying predominantly on `ANY` criteria.
+- Do not create small priority differences merely to force a result. Leave gaps between tiers so that genuinely new precedence levels can be introduced later without renumbering the rule set.
+- Mutually exclusive criteria, such as `DirectExporter = YES` and `DirectExporter = NO`, normally belong in the same priority tier because both cannot match the same transaction.
+- If two rules can match the same transaction at the same highest priority, the configuration should be reviewed. The engine must not silently use table order or RuleID as a business-rule tiebreaker.
+
+### Example: German geographical hierarchy
+
+| Route criterion | Normal priority tier |
+|---|---:|
+| `DE -> DE` | **300** |
+| `DE -> EU`, `DE -> NON_EU`, `EU -> DE`, `NON_EU -> DE` | **250** |
+| `EU -> EU`, `EU -> NON_EU`, `NON_EU -> EU`, `NON_EU -> NON_EU` | **200** |
+
+These are authoring conventions rather than an automatically calculated specificity score. The assigned `RulePriority` remains visible in the master Excel rule table and is the value used by the deterministic matcher.
+
+
 ### Dynamic inputs
 
 Jurisdiction-specific questions are data-driven through `input_requirements.json` rather than hard-coded into `app.js`.
