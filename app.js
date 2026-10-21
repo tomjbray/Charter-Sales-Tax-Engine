@@ -881,24 +881,90 @@ function getRuleRegion(countryCode, homeCountry) {
 }
 
 /**
- * Returns a unique tax-territory code for a country when exactly one mapping exists; otherwise returns the country code to avoid an unsafe assumption.
+ * Returns an explicit airport-level tax territory when one is configured.
  *
- * @param {string} countryCode - ISO country code to resolve.
- * @returns {string}
+ * Airport codes are stored as comma-separated values in the
+ * AirportCodes property of tax_territories.json.
+ *
+ * Examples:
+ * IBZ -> ES_BALEARIC
+ * PMI -> ES_BALEARIC
+ * TFS -> ES_CANARY
+ *
+ * If no explicit airport mapping exists, null is returned so the caller
+ * can fall back to its normal country/region classification.
+ *
+ * @param {Object|null} airport
+ * @returns {string|null}
  */
 
-function getTaxTerritory(countryCode) {
-  if (!countryCode || !taxTerritoriesData?.data) return countryCode;
+function getAirportTaxTerritory(
+    airport,
+    homeCountry
+) {
+    if (
+        !airport?.iata ||
+        !taxTerritoriesData?.data
+    ) {
+        return null;
+    }
 
-  const matchingTerritories = Object.entries(taxTerritoriesData.data)
-    .filter(([, territory]) => territory.country === countryCode);
+    const airportCode =
+        String(airport.iata)
+            .trim()
+            .toUpperCase();
 
-  // A country can have several tax territories, such as mainland Spain,
-  // the Balearic Islands and the Canary Islands. Country alone is therefore
-  // insufficient to choose safely when more than one territory exists.
-  if (matchingTerritories.length !== 1) return countryCode;
+    const normalisedHomeCountry =
+        String(homeCountry || "")
+            .trim()
+            .toUpperCase();
 
-  return matchingTerritories[0][0];
+    for (
+        const [territoryCode, territory]
+        of Object.entries(
+            taxTerritoriesData.data
+        )
+    ) {
+        const territoryCountry =
+            String(
+                territory?.country || ""
+            )
+                .trim()
+                .toUpperCase();
+
+        /*
+         * Special airport territories are relevant only to
+         * the corresponding home-country rule matrix.
+         */
+        if (
+            territoryCountry !==
+            normalisedHomeCountry
+        ) {
+            continue;
+        }
+
+        const configuredAirportCodes =
+            String(
+                territory?.airportCodes || ""
+            )
+                .split(",")
+                .map(code =>
+                    code
+                        .trim()
+                        .toUpperCase()
+                )
+                .filter(Boolean);
+
+        if (
+            configuredAirportCodes.includes(
+                airportCode
+            )
+        ) {
+            return territoryCode;
+        }
+    }
+
+    return null;
 }
 
 /**
@@ -907,6 +973,85 @@ function getTaxTerritory(countryCode) {
  * @param {string} entityCode - Selling-entity identifier.
  * @returns {string|null}
  */
+
+/**
+ * Resolves the rule territory for an airport.
+ *
+ * Resolution order:
+ * 1. Explicit airport-level tax territory.
+ * 2. Selling entity home-country special mainland territory.
+ * 3. Existing country/region classification.
+ *
+ * @param {Object|null} airport
+ * @param {string} homeCountry
+ * @returns {string|null}
+ */
+function getAirportRuleTerritory(
+    airport,
+    homeCountry
+) {
+    if (!airport?.country) {
+        return null;
+    }
+
+    const explicitTerritory =
+        getAirportTaxTerritory(airport,homeCountry);
+
+    if (explicitTerritory) {
+        return explicitTerritory;
+    }
+
+    const normalisedCountry =
+        String(airport.country)
+            .trim()
+            .toUpperCase();
+
+    const normalisedHomeCountry =
+        String(homeCountry || "")
+            .trim()
+            .toUpperCase();
+
+    /*
+     * Where the selling entity's home country contains a configured
+     * MAINLAND special territory, use that territory as the domestic
+     * fallback when the airport has no explicit exception mapping.
+     *
+     * Example:
+     * MAD / BCN -> ES_MAINLAND
+     */
+    if (
+        normalisedCountry ===
+        normalisedHomeCountry
+    ) {
+        const mainlandTerritory =
+            Object.entries(
+                taxTerritoriesData?.data || {}
+            )
+            .find(
+                ([territoryCode, territory]) =>
+                    String(
+                        territory?.country || ""
+                    )
+                        .trim()
+                        .toUpperCase() ===
+                        normalisedHomeCountry
+                    &&
+                    String(territoryCode)
+                        .toUpperCase()
+                        .endsWith("_MAINLAND")
+            );
+
+        if (mainlandTerritory) {
+            return mainlandTerritory[0];
+        }
+    }
+
+    return getRuleRegion(
+        normalisedCountry,
+        normalisedHomeCountry
+    );
+}
+
 
 function getEntityCountry(entityCode) {
  
@@ -2199,13 +2344,15 @@ function buildVatTransaction(
 
     vatRegistered: selectedVatRegistered,
 
-    originTerritory: getRuleRegion(
-        sector.origin.country,
+    originTerritory:
+    getAirportRuleTerritory(
+        sector.origin,
         homeCountry
     ),
 
-    destinationTerritory: getRuleRegion(
-        sector.destination.country,
+destinationTerritory:
+    getAirportRuleTerritory(
+        sector.destination,
         homeCountry
     ),
 
