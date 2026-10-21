@@ -15,6 +15,10 @@ import {
     getDerivedJourneyInputs
 } from "./journey-context.js";
 
+import {
+    getAirportRuleTerritory
+} from "./territory-resolution.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -878,174 +882,6 @@ function getRuleRegion(countryCode, homeCountry) {
     }
 
     return "NON_EU";
-}
-
-/**
- * Returns an explicit airport-level tax territory when one is configured.
- *
- * Airport codes are stored as comma-separated values in the
- * AirportCodes property of tax_territories.json.
- *
- * Examples:
- * IBZ -> ES_BALEARIC
- * PMI -> ES_BALEARIC
- * TFS -> ES_CANARY
- *
- * If no explicit airport mapping exists, null is returned so the caller
- * can fall back to its normal country/region classification.
- *
- * @param {Object|null} airport
- * @returns {string|null}
- */
-
-function getAirportTaxTerritory(
-    airport,
-    homeCountry
-) {
-    if (
-        !airport?.iata ||
-        !taxTerritoriesData?.data
-    ) {
-        return null;
-    }
-
-    const airportCode =
-        String(airport.iata)
-            .trim()
-            .toUpperCase();
-
-    const normalisedHomeCountry =
-        String(homeCountry || "")
-            .trim()
-            .toUpperCase();
-
-    for (
-        const [territoryCode, territory]
-        of Object.entries(
-            taxTerritoriesData.data
-        )
-    ) {
-        const territoryCountry =
-            String(
-                territory?.country || ""
-            )
-                .trim()
-                .toUpperCase();
-
-        if (
-            territoryCountry !==
-            normalisedHomeCountry
-        ) {
-            continue;
-        }
-
-        const configuredAirportCodes =
-            String(
-                territory?.airportCodes || ""
-            )
-                .split(",")
-                .map(code =>
-                    code
-                        .trim()
-                        .toUpperCase()
-                )
-                .filter(Boolean);
-
-        if (
-            configuredAirportCodes.includes(
-                airportCode
-            )
-        ) {
-            return territoryCode;
-        }
-    }
-
-    return null;
-}
-
-/**
- * Returns the home-country code for a selling entity.
- *
- * @param {string} entityCode - Selling-entity identifier.
- * @returns {string|null}
- */
-
-/**
- * Resolves the rule territory for an airport.
- *
- * Resolution order:
- * 1. Explicit airport-level tax territory.
- * 2. Selling entity home-country special mainland territory.
- * 3. Existing country/region classification.
- *
- * @param {Object|null} airport
- * @param {string} homeCountry
- * @returns {string|null}
- */
-function getAirportRuleTerritory(
-    airport,
-    homeCountry
-) {
-    if (!airport?.country) {
-        return null;
-    }
-
-    const explicitTerritory =
-        getAirportTaxTerritory(airport,homeCountry);
-
-    if (explicitTerritory) {
-        return explicitTerritory;
-    }
-
-    const normalisedCountry =
-        String(airport.country)
-            .trim()
-            .toUpperCase();
-
-    const normalisedHomeCountry =
-        String(homeCountry || "")
-            .trim()
-            .toUpperCase();
-
-    /*
-     * Where the selling entity's home country contains a configured
-     * MAINLAND special territory, use that territory as the domestic
-     * fallback when the airport has no explicit exception mapping.
-     *
-     * Example:
-     * MAD / BCN -> ES_MAINLAND
-     */
-    if (
-        normalisedCountry ===
-        normalisedHomeCountry
-    ) {
-        const mainlandTerritory =
-            Object.entries(
-                taxTerritoriesData?.data || {}
-            )
-            .find(
-                ([territoryCode, territory]) =>
-                    String(
-                        territory?.country || ""
-                    )
-                        .trim()
-                        .toUpperCase() ===
-                        normalisedHomeCountry
-                    &&
-                    String(territoryCode)
-                        .toUpperCase()
-                        .endsWith("_MAINLAND")
-            );
-
-        if (mainlandTerritory) {
-            return mainlandTerritory[0];
-        }
-    }
-
-    return getRuleRegion(
-        normalisedCountry,
-        normalisedHomeCountry
-    );
 }
 
 
@@ -2340,16 +2176,28 @@ function buildVatTransaction(
 
     vatRegistered: selectedVatRegistered,
 
-    originTerritory:
+   originTerritory:
     getAirportRuleTerritory(
         sector.origin,
-        homeCountry
+        homeCountry,
+        taxTerritoriesData,
+        countriesData,
+        sellingEntitiesData
+            ?.data
+            ?.[selectedEntity]
+            ?.outsideHomeRegion || ""
     ),
 
 destinationTerritory:
     getAirportRuleTerritory(
         sector.destination,
-        homeCountry
+        homeCountry,
+        taxTerritoriesData,
+        countriesData,
+        sellingEntitiesData
+            ?.data
+            ?.[selectedEntity]
+            ?.outsideHomeRegion || ""
     ),
 
     dynamicInputs: {
