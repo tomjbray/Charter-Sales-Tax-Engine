@@ -3,11 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-  "test": "node scripts/run-regression-tests.mjs && node scripts/run-dynamic-input-tests.mjs && node scripts/run-journey-context-tests.mjs && node scripts/run-priority-tests.mjs",
+  "test": "node scripts/run-regression-tests.mjs && node scripts/run-dynamic-input-tests.mjs && node scripts/run-journey-context-tests.mjs && node scripts/run-priority-tests.mjs && node scripts/run-territory-tests.mjs",
   "test:rules": "node scripts/run-regression-tests.mjs",
   "test:inputs": "node scripts/run-dynamic-input-tests.mjs",
-  "test:journey": "node scripts/run-journey-context-tests.mjs"  ,
-  "test:priority": "node scripts/run-priority-tests.mjs"  
+  "test:journey": "node scripts/run-journey-context-tests.mjs",
+  "test:priority": "node scripts/run-priority-tests.mjs",
+  "test:territory": "node scripts/run-territory-tests.mjs"
 }
 }
  
