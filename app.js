@@ -914,6 +914,14 @@ function getAirportTaxTerritory(
             .trim()
             .toUpperCase();
 
+        console.log(
+    "TERRITORY DEBUG:",
+    airportCode,
+    homeCountry,
+    taxTerritoriesData?.data?.ES_BALEARIC?.airportCodes
+);
+``
+
     const normalisedHomeCountry =
         String(homeCountry || "")
             .trim()
@@ -966,13 +974,6 @@ function getAirportTaxTerritory(
 
     return null;
 
-    console.log(
-    "TERRITORY DEBUG:",
-    airportCode,
-    homeCountry,
-    taxTerritoriesData?.data?.ES_BALEARIC?.airportCodes
-);
-``
 }
 
 /**
