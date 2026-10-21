@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 38,
-  "enabledTestCount": 38,
+  "testCount": 46,
+  "enabledTestCount": 46,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -952,6 +952,206 @@
       },
       "expected": {
         "ruleId": "JNB13",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-001",
+      "description": "Spanish mainland domestic cargo - Spanish customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ES",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD10",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-002",
+      "description": "Cargo from mainland Spain to EU - Spanish customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ES",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD11",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-003",
+      "description": "Cargo from mainland Spain to non-EU - Spanish customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ES",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD14",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-004",
+      "description": "Spanish mainland domestic cargo - non-Spanish EU customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "EU",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD19",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-005",
+      "description": "Spanish mainland domestic cargo - non-EU customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_EU",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD20",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-001",
+      "description": "Spanish mainland domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD01",
+        "treatment": "REDUCED",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-002",
+      "description": "Passenger transport from mainland Spain to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD02",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-003",
+      "description": "Passenger transport from mainland Spain to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD03",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -1908,6 +2108,206 @@
       },
       "expected": {
         "ruleId": "JNB14",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-001": {
+      "testId": "MAD-PAX-001",
+      "description": "Spanish mainland domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD01",
+        "treatment": "REDUCED",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-002": {
+      "testId": "MAD-PAX-002",
+      "description": "Passenger transport from mainland Spain to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD02",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-003": {
+      "testId": "MAD-PAX-003",
+      "description": "Passenger transport from mainland Spain to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-001": {
+      "testId": "MAD-CARGO-001",
+      "description": "Spanish mainland domestic cargo - Spanish customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ES",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD10",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-002": {
+      "testId": "MAD-CARGO-002",
+      "description": "Cargo from mainland Spain to EU - Spanish customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ES",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD11",
+        "treatment": "STANDARD",
+        "rate": 0.21,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-003": {
+      "testId": "MAD-CARGO-003",
+      "description": "Cargo from mainland Spain to non-EU - Spanish customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ES",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD14",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-004": {
+      "testId": "MAD-CARGO-004",
+      "description": "Spanish mainland domestic cargo - non-Spanish EU customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "EU",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD19",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-005": {
+      "testId": "MAD-CARGO-005",
+      "description": "Spanish mainland domestic cargo - non-EU customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_EU",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD20",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
