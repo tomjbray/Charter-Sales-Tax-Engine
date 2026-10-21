@@ -9,6 +9,7 @@ on:
       - "rule-tests.js"
       - "dynamic-inputs.js"
       - "journey-context.js"
+      - "territory-resolution.js"
       - "vat_rules.json"
       - "rule_tests.json"
       - "dynamic_input_tests.json"
@@ -16,10 +17,13 @@ on:
       - "selling_entities.json"
       - "journey_context_tests.json"
       - "priority_tests.json"
+      - "territory_tests.json"
+      - "tax_territories.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
       - "scripts/run-priority-tests.mjs"
+      - "scripts/run-territory-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
@@ -29,6 +33,7 @@ on:
       - "rule-tests.js"
       - "dynamic-inputs.js"
       - "journey-context.js"
+      - "territory-resolution.js"
       - "vat_rules.json"
       - "rule_tests.json"
       - "dynamic_input_tests.json"
@@ -36,10 +41,13 @@ on:
       - "selling_entities.json"
       - "journey_context_tests.json"
       - "priority_tests.json"
+      - "territory_tests.json"
+      - "tax_territories.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
       - "scripts/run-priority-tests.mjs"
+      - "scripts/run-territory-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -67,9 +75,11 @@ jobs:
           node --check app.js
           node --check dynamic-inputs.js
           node --check journey-context.js
+          node --check territory-resolution.js
           node --check scripts/run-dynamic-input-tests.mjs
           node --check scripts/run-journey-context-tests.mjs
           node --check scripts/run-priority-tests.mjs
+          node --check scripts/run-territory-tests.mjs
 
       - name: Run regression tests
         run: npm test
