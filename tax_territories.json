@@ -8,7 +8,8 @@
       "country": "ES",
       "description": "Spain Mainland",
       "eUMember": true,
-      "eUArea": "TRUE"
+      "eUArea": "TRUE",
+      "airportCodes": null
     },
     "ES_BALEARIC": {
       "territoryCode": "ES_BALEARIC",
@@ -16,7 +17,8 @@
       "country": "ES",
       "description": "Balearic Islands",
       "eUMember": true,
-      "eUArea": "TRUE"
+      "eUArea": "TRUE",
+      "airportCodes": "IBZ,PMI,MAH"
     },
     "ES_CANARY": {
       "territoryCode": "ES_CANARY",
@@ -24,7 +26,8 @@
       "country": "ES",
       "description": "Canary Islands",
       "eUMember": true,
-      "eUArea": "FALSE"
+      "eUArea": "FALSE",
+      "airportCodes": "TFS,TFN,LPA,ACE,FUE,SPC,GMZ,VDE"
     },
     "UK_MAINLAND": {
       "territoryCode": "UK_MAINLAND",
@@ -32,7 +35,8 @@
       "country": "GB",
       "description": "United Kingdom",
       "eUMember": false,
-      "eUArea": "TRUE"
+      "eUArea": "TRUE",
+      "airportCodes": null
     },
     "JEY": {
       "territoryCode": "JEY",
@@ -40,7 +44,8 @@
       "country": "JE",
       "description": "Jersey",
       "eUMember": false,
-      "eUArea": "FALSE"
+      "eUArea": "FALSE",
+      "airportCodes": null
     },
     "GGY": {
       "territoryCode": "GGY",
@@ -48,7 +53,8 @@
       "country": "GG",
       "description": "Guernsey",
       "eUMember": false,
-      "eUArea": "FALSE"
+      "eUArea": "FALSE",
+      "airportCodes": null
     },
     "IMN": {
       "territoryCode": "IMN",
@@ -56,7 +62,8 @@
       "country": "IM",
       "description": "Isle of Man",
       "eUMember": false,
-      "eUArea": "FALSE"
+      "eUArea": "FALSE",
+      "airportCodes": null
     },
     "EU": {
       "territoryCode": "EU",
@@ -64,7 +71,8 @@
       "country": "MULTI",
       "description": "European Union",
       "eUMember": true,
-      "eUArea": "TRUE"
+      "eUArea": "TRUE",
+      "airportCodes": null
     },
     "NON_EU": {
       "territoryCode": "NON_EU",
@@ -72,7 +80,8 @@
       "country": "MULTI",
       "description": "Outside European Union",
       "eUMember": false,
-      "eUArea": "FALSE"
+      "eUArea": "FALSE",
+      "airportCodes": null
     },
     "BE": {
       "territoryCode": "BE",
@@ -80,7 +89,8 @@
       "country": "BE",
       "description": "Belgium",
       "eUMember": true,
-      "eUArea": "TRUE"
+      "eUArea": "TRUE",
+      "airportCodes": null
     },
     "GB": {
       "territoryCode": "GB",
@@ -88,7 +98,8 @@
       "country": "GB",
       "description": "United Kingdom",
       "eUMember": false,
-      "eUArea": "TRUE"
+      "eUArea": "TRUE",
+      "airportCodes": null
     },
     "NON_ZA": {
       "territoryCode": "NON_ZA",
@@ -96,7 +107,8 @@
       "country": "MULTI",
       "description": "Outside South Africa",
       "eUMember": false,
-      "eUArea": "FALSE"
+      "eUArea": "FALSE",
+      "airportCodes": null
     }
   }
 }
