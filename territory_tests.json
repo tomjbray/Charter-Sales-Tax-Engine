@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "testCount": 7,
+  "tests": [
+    {
+      "testId": "TERR-001",
+      "description": "MAD entity mainland Spain to mainland Spain",
+      "entity": "MAD",
+      "homeCountry": "ES",
+      "origin": {"iata": "MAD", "country": "ES"},
+      "destination": {"iata": "BCN", "country": "ES"},
+      "expectedOriginTerritory": "ES_MAINLAND",
+      "expectedDestinationTerritory": "ES_MAINLAND"
+    },
+    {
+      "testId": "TERR-002",
+      "description": "MAD entity mainland Spain to Balearic Islands",
+      "entity": "MAD",
+      "homeCountry": "ES",
+      "origin": {"iata": "MAD", "country": "ES"},
+      "destination": {"iata": "IBZ", "country": "ES"},
+      "expectedOriginTerritory": "ES_MAINLAND",
+      "expectedDestinationTerritory": "ES_BALEARIC"
+    },
+    {
+      "testId": "TERR-003",
+      "description": "MAD entity Balearic Islands to mainland Spain",
+      "entity": "MAD",
+      "homeCountry": "ES",
+      "origin": {"iata": "IBZ", "country": "ES"},
+      "destination": {"iata": "MAD", "country": "ES"},
+      "expectedOriginTerritory": "ES_BALEARIC",
+      "expectedDestinationTerritory": "ES_MAINLAND"
+    },
+    {
+      "testId": "TERR-004",
+      "description": "MAD entity Balearic Islands to Balearic Islands",
+      "entity": "MAD",
+      "homeCountry": "ES",
+      "origin": {"iata": "IBZ", "country": "ES"},
+      "destination": {"iata": "PMI", "country": "ES"},
+      "expectedOriginTerritory": "ES_BALEARIC",
+      "expectedDestinationTerritory": "ES_BALEARIC"
+    },
+    {
+      "testId": "TERR-005",
+      "description": "MAD entity mainland Spain to Canary Islands",
+      "entity": "MAD",
+      "homeCountry": "ES",
+      "origin": {"iata": "MAD", "country": "ES"},
+      "destination": {"iata": "TFS", "country": "ES"},
+      "expectedOriginTerritory": "ES_MAINLAND",
+      "expectedDestinationTerritory": "ES_CANARY"
+    },
+    {
+      "testId": "TERR-006",
+      "description": "MAD entity mainland Spain to another EU country",
+      "entity": "MAD",
+      "homeCountry": "ES",
+      "origin": {"iata": "MAD", "country": "ES"},
+      "destination": {"iata": "CDG", "country": "FR"},
+      "expectedOriginTerritory": "ES_MAINLAND",
+      "expectedDestinationTerritory": "EU"
+    },
+    {
+      "testId": "TERR-007",
+      "description": "FRA entity does not apply Spanish special territories",
+      "entity": "FRA",
+      "homeCountry": "DE",
+      "origin": {"iata": "MAD", "country": "ES"},
+      "destination": {"iata": "IBZ", "country": "ES"},
+      "expectedOriginTerritory": "EU",
+      "expectedDestinationTerritory": "EU"
+    }
+  ]
+}
