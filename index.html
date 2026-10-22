@@ -225,110 +225,45 @@
   </aside>
 
   
-  <!-- ── Main area ── -->
+  <!-- ── Main area: tax-first workspace ── -->
   <main class="main-area">
-
-    <!-- Map -->
-    <div class="map-wrap">
-      <div id="map"></div>
-      <div class="map-empty" id="mapEmpty">
-        <div class="map-empty-icon">✦</div>
-        <div class="map-empty-text">Enter origin and destination to plot route</div>
+    <section id="vatSummaryPanel" class="panel vat-summary-panel tax-result-hero">
+      <div class="result-section-heading">
+        <div>
+          <p class="result-eyebrow">Tax determination</p>
+          <h2 id="resultsSummaryTitle">VAT Results Summary</h2>
+        </div>
+        <button id="exportPdfBtn" class="export-report-btn" type="button">Export PDF</button>
       </div>
-    </div>
-
-  <!-- Summary VAT -->    
-    <section
-    id="vatSummaryPanel"
-    class="panel vat-summary-panel">
-
-    <h3 id="resultsSummaryTitle">
-    VAT Results Summary
-    </h3>
-
-    <div class="vat-summary-grid">
-
-        <div class="vat-summary-item">
-            <div class="vat-summary-label">
-                Net Charter Value
-            </div>
-            <div
-                id="summaryNetValue"
-                class="vat-summary-value">
-                -
-            </div>
-        </div>
-
-        <div class="vat-summary-item">
-            <div class="vat-summary-label">
-                Total Taxable Amount
-            </div>
-            <div
-                id="summaryTaxableValue"
-                class="vat-summary-value">
-                -
-            </div>
-        </div>
-
-        <div class="vat-summary-item">
-            <div class="vat-summary-label">
-                Total VAT
-            </div>
-            <div
-                id="summaryVatValue"
-                class="vat-summary-value">
-                -
-            </div>
-        </div>
-
-        <div class="vat-summary-item">
-            <div class="vat-summary-label">
-                Gross Amount
-            </div>
-            <div
-                id="summaryGrossValue"
-                class="vat-summary-value">
-                -
-            </div>
-        </div>
-
-        <div class="vat-summary-item">
-            <div class="vat-summary-label">Calculation Status</div>
-            <div
-                id="summaryCalculationStatus"
-                class="vat-summary-value summary-status-review">
-                Review Required
-            </div>
-        </div>
-
-        <div class="vat-summary-item">
-            <div class="vat-summary-label">Sectors Requiring Review</div>
-            <div
-                id="summaryReviewSectors"
-                class="vat-summary-value">
-                -
-            </div>
-        </div>
-
-    </div>
-
-      <button 
-          id="exportPdfBtn"
-          class="add-sector-btn"
-          type="button">
-        Export PDF
-      </button>
-
-</section>
-  
-    <!-- Per sector VAT results -->
-      <div
-        id="vatSectorResults"
-        class="vat-sector-results">
+      <div class="vat-summary-grid">
+        <div class="vat-summary-item summary-net"><div class="vat-summary-label">Net Charter Value</div><div id="summaryNetValue" class="vat-summary-value">-</div></div>
+        <div class="vat-summary-item summary-taxable"><div class="vat-summary-label">Total Taxable Amount</div><div id="summaryTaxableValue" class="vat-summary-value">-</div></div>
+        <div class="vat-summary-item summary-vat"><div class="vat-summary-label">Total VAT</div><div id="summaryVatValue" class="vat-summary-value">-</div></div>
+        <div class="vat-summary-item summary-gross"><div class="vat-summary-label">Gross Amount</div><div id="summaryGrossValue" class="vat-summary-value">-</div></div>
+        <div class="vat-summary-item summary-status"><div class="vat-summary-label">Calculation Status</div><div id="summaryCalculationStatus" class="vat-summary-value summary-status-review">Review Required</div></div>
+        <div class="vat-summary-item summary-review"><div class="vat-summary-label">Sectors Requiring Review</div><div id="summaryReviewSectors" class="vat-summary-value">-</div></div>
       </div>
-    
+    </section>
+
+    <section class="results-workspace">
+      <div class="results-workspace-heading">
+        <div><p class="result-eyebrow">Sector treatment</p><h2 id="sectorResultsTitle">VAT Results</h2></div>
+        <p class="results-workspace-note">Tax treatment, apportioned components, calculation details and rule trace.</p>
+      </div>
+      <div id="vatSectorResults" class="vat-sector-results"></div>
+    </section>
+
+    <details class="workspace-details route-map-details">
+      <summary><span>Route Map</span><span class="details-helper">View itinerary geography</span></summary>
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="map-empty" id="mapEmpty">
+          <div class="map-empty-icon">✦</div>
+          <div class="map-empty-text">Enter origin and destination to plot route</div>
+        </div>
+      </div>
+    </details>
   </main>
-
 </div>
 
 <div id="printReport">
