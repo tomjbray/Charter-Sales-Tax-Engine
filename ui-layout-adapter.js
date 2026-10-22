@@ -1,87 +1,79 @@
-/*
- * UI layout adapter for the Charter Sales Tax Engine.
- *
- * This small companion module moves the already-rendered tax-components
- * panels above the detailed VAT results and wraps rule traces in native,
- * collapsed disclosure controls. It does not change any tax calculation.
+/* Charter Sales Tax Engine - presentation adapter.
+ * Presentation only: does not alter tax calculations.
  */
 
-function moveTaxComponentsAboveDetails() {
-    const source = document.getElementById("vatSectorResults");
-    const target = document.getElementById("taxComponentsResults");
+function refreshTaxPresentation() {
+    const detailContainer = document.getElementById("vatSectorResults");
+    const componentContainer = document.getElementById("taxComponentsResults");
 
-    if (!source || !target) {
+    if (!detailContainer || !componentContainer) {
         return;
     }
 
-    target.innerHTML = "";
+    componentContainer.innerHTML = "";
 
-    source.querySelectorAll(".vat-sector-card").forEach(card => {
+    detailContainer.querySelectorAll(".vat-sector-card").forEach(card => {
         const heading = card.querySelector(":scope > .vat-sector-heading");
-        const componentPanel = card.querySelector(":scope > .vat-tax-components");
+        const componentPanel = card.querySelector(".vat-tax-components");
 
-        if (!componentPanel) {
-            return;
+        if (componentPanel) {
+            const componentCard = document.createElement("section");
+            componentCard.className = "vat-sector-card tax-components-sector-card";
+
+            if (heading) {
+                componentCard.appendChild(heading.cloneNode(true));
+            }
+
+            componentCard.appendChild(componentPanel);
+            componentContainer.appendChild(componentCard);
         }
 
-        const componentCard = document.createElement("section");
-        componentCard.className = "vat-sector-card tax-components-sector-card";
+        const tracePanel = card.querySelector(":scope > .rule-trace-panel");
 
-        if (heading) {
-            componentCard.appendChild(heading.cloneNode(true));
+        if (tracePanel && !tracePanel.closest(".rule-trace-details")) {
+            const details = document.createElement("details");
+            details.className = "rule-trace-details";
+
+            const summary = document.createElement("summary");
+            const ruleId = tracePanel
+                .querySelector(".rule-trace-heading strong")
+                ?.textContent
+                ?.replace("Matched Rule:", "")
+                ?.trim();
+
+            summary.textContent = ruleId
+                ? `Rule Match Trace · ${ruleId}`
+                : "Rule Match Trace";
+
+            tracePanel.parentNode.insertBefore(details, tracePanel);
+            details.appendChild(summary);
+            details.appendChild(tracePanel);
         }
-
-        componentCard.appendChild(componentPanel);
-        target.appendChild(componentCard);
     });
 }
 
-function collapseRuleTraces() {
-    const source = document.getElementById("vatSectorResults");
+const vatResults = document.getElementById("vatSectorResults");
 
-    if (!source) {
-        return;
-    }
+if (vatResults) {
+    let refreshPending = false;
 
-    source.querySelectorAll(".rule-trace-panel").forEach(panel => {
-        if (panel.closest(".rule-trace-details")) {
-            return;
-        }
-
-        const details = document.createElement("details");
-        details.className = "rule-trace-details";
-
-        const summary = document.createElement("summary");
-        const matchedRule =
-            panel.querySelector(".rule-trace-heading strong")?.textContent?.trim();
-
-        summary.textContent = matchedRule
-            ? `Rule Match Trace · ${matchedRule}`
-            : "Rule Match Trace";
-
-        panel.parentNode.insertBefore(details, panel);
-        details.appendChild(summary);
-        details.appendChild(panel);
-    });
-}
-
-function refreshResultPresentation() {
-    moveTaxComponentsAboveDetails();
-    collapseRuleTraces();
-}
-
-const resultContainer = document.getElementById("vatSectorResults");
-
-if (resultContainer) {
     const observer = new MutationObserver(() => {
-        requestAnimationFrame(refreshResultPresentation);
+        if (refreshPending) {
+            return;
+        }
+
+        refreshPending = true;
+
+        requestAnimationFrame(() => {
+            refreshPending = false;
+            refreshTaxPresentation();
+        });
     });
 
-    observer.observe(resultContainer, {
+    observer.observe(vatResults, {
         childList: true,
         subtree: true
     });
 }
 
-document.addEventListener("DOMContentLoaded", refreshResultPresentation);
-refreshResultPresentation();
+refreshTaxPresentation();
