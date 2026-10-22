@@ -523,7 +523,10 @@ function validateStartupData() {
 
     // Blocking numeric/date checks and non-blocking method checks.
     const supportedMethods =
-        new Set(["STANDARD"]);
+        new Set([
+            "STANDARD",
+            "APPORTIONED"
+        ]);
 
     rules.forEach(rule => {
         const ruleId =
