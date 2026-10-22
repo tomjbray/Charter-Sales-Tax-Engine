@@ -22,12 +22,14 @@ on:
       - "tax_territories.json"
       - "mad_apportionment.json"
       - "apportionment_tests.json"
+      - "apportioned_calculation_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
       - "scripts/run-priority-tests.mjs"
       - "scripts/run-territory-tests.mjs"
       - "scripts/run-apportionment-tests.mjs"
+      - "scripts/run-apportioned-calculation-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
@@ -50,12 +52,14 @@ on:
       - "tax_territories.json"
       - "mad_apportionment.json"
       - "apportionment_tests.json"
+      - "apportioned_calculation_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
       - "scripts/run-priority-tests.mjs"
       - "scripts/run-territory-tests.mjs"
       - "scripts/run-apportionment-tests.mjs"
+      - "scripts/run-apportioned-calculation-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -90,6 +94,7 @@ jobs:
           node --check scripts/run-territory-tests.mjs
           node --check mad-apportionment.js
           node --check scripts/run-apportionment-tests.mjs
+          node --check scripts/run-apportioned-calculation-tests.mjs
 
       - name: Run regression tests
         run: npm test
