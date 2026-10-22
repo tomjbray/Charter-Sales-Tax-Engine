@@ -10,6 +10,7 @@ on:
       - "dynamic-inputs.js"
       - "journey-context.js"
       - "territory-resolution.js"
+      - "mad-apportionment.js"
       - "vat_rules.json"
       - "rule_tests.json"
       - "dynamic_input_tests.json"
@@ -19,11 +20,14 @@ on:
       - "priority_tests.json"
       - "territory_tests.json"
       - "tax_territories.json"
+      - "mad_apportionment.json"
+      - "apportionment_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
       - "scripts/run-priority-tests.mjs"
       - "scripts/run-territory-tests.mjs"
+      - "scripts/run-apportionment-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
@@ -34,6 +38,7 @@ on:
       - "dynamic-inputs.js"
       - "journey-context.js"
       - "territory-resolution.js"
+      - "mad-apportionment.js"
       - "vat_rules.json"
       - "rule_tests.json"
       - "dynamic_input_tests.json"
@@ -43,11 +48,14 @@ on:
       - "priority_tests.json"
       - "territory_tests.json"
       - "tax_territories.json"
+      - "mad_apportionment.json"
+      - "apportionment_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
       - "scripts/run-priority-tests.mjs"
       - "scripts/run-territory-tests.mjs"
+      - "scripts/run-apportionment-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -80,6 +88,8 @@ jobs:
           node --check scripts/run-journey-context-tests.mjs
           node --check scripts/run-priority-tests.mjs
           node --check scripts/run-territory-tests.mjs
+          node --check mad-apportionment.js
+          node --check scripts/run-apportionment-tests.mjs
 
       - name: Run regression tests
         run: npm test
