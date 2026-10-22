@@ -151,59 +151,84 @@ function findMatchingRule(transaction, rules) {
     return { matchedRule: matches[0], matchError: null };
 }
 
-function evaluateVatCalculationStatus(matchedRule, matchError = null) {
+function evaluateVatCalculationStatus(
+    matchedRule,
+    matchError = null
+) {
     const reasons = [];
 
     if (matchError) {
         reasons.push(matchError);
     } else if (!matchedRule) {
-        reasons.push("No matching VAT rule was found.");
+        reasons.push(
+            "No matching VAT rule was found."
+        );
     } else {
         const calculationMethod =
-            String(matchedRule.calculationMethod || "")
+            String(
+                matchedRule.calculationMethod || ""
+            )
                 .trim()
                 .toUpperCase();
 
-        if (!calculationMethod) {
-            reasons.push("The rule has no calculation method.");
-        } else const supportedCalculationMethods =
-                    new Set([
-                        "STANDARD",
-                        "APPORTIONED"
-                    ]);
+        const supportedCalculationMethods =
+            new Set([
+                "STANDARD",
+                "APPORTIONED"
+            ]);
 
-                if (
-                    !supportedCalculationMethods.has(
-                    calculationMethod
-                    )
-                ) {
-                    reasons.push(
-                        `Calculation method ${calculationMethod} is not yet supported.`
-                );
-}
+        if (!calculationMethod) {
+            reasons.push(
+                "The rule has no calculation method."
+            );
+        } else if (
+            !supportedCalculationMethods.has(
+                calculationMethod
+            )
+        ) {
+            reasons.push(
+                `Calculation method ${calculationMethod} is not yet supported.`
+            );
+        }
 
         if (
             matchedRule.rate === null ||
             matchedRule.rate === undefined ||
             matchedRule.rate === "" ||
-            !Number.isFinite(Number(matchedRule.rate))
+            !Number.isFinite(
+                Number(matchedRule.rate)
+            )
         ) {
-            reasons.push("The rule has no valid VAT rate.");
+            reasons.push(
+                "The rule has no valid VAT rate."
+            );
         }
 
         if (
             matchedRule.taxablePercent === null ||
             matchedRule.taxablePercent === undefined ||
             matchedRule.taxablePercent === "" ||
-            !Number.isFinite(Number(matchedRule.taxablePercent))
+            !Number.isFinite(
+                Number(
+                    matchedRule.taxablePercent
+                )
+            )
         ) {
-            reasons.push("The rule has no valid taxable percentage.");
+            reasons.push(
+                "The rule has no valid taxable percentage."
+            );
         }
     }
 
     return {
-        canCalculate: reasons.length === 0,
-        status: reasons.length === 0 ? "Complete" : "Review Required",
+        canCalculate:
+            reasons.length === 0,
+
+        status:
+            reasons.length === 0
+                ? "Complete"
+                : "Review Required",
+
         reasons
     };
 }
