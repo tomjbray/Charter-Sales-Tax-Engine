@@ -972,3 +972,361 @@ PRINT-SPECIFIC STYLE
 }
 .header-status.validation-warning::before { background: var(--amber); }
 .header-status.validation-error::before { background: var(--red); }
+
+/* ==========================================================
+   TAX-FIRST WORKSPACE REFACTOR
+   ========================================================== */
+.main-area {
+    display: block;
+    min-width: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 22px;
+    background: #eef2f7;
+}
+
+.tax-result-hero {
+    margin: 0 0 20px;
+    padding: 22px;
+    background: var(--surface);
+    border-color: #d6dce6;
+    box-shadow: 0 10px 30px rgba(23, 54, 93, 0.06);
+}
+
+.result-section-heading,
+.results-workspace-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.result-eyebrow {
+    margin: 0 0 3px;
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.result-section-heading h2,
+.results-workspace-heading h2 {
+    margin: 0;
+    color: #17365d;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.export-report-btn {
+    min-width: 132px;
+    padding: 10px 16px;
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    background: var(--gold);
+    color: white;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.export-report-btn:hover {
+    background: #815d27;
+    border-color: #815d27;
+}
+
+.vat-summary-grid {
+    margin-top: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.vat-summary-item {
+    min-height: 92px;
+    padding: 15px 16px;
+    background: #f8fafc;
+}
+
+.vat-summary-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    line-height: 1.08;
+}
+
+.summary-vat,
+.summary-gross {
+    background: #fffaf1;
+    border-color: #e1cfaf;
+}
+
+.summary-status,
+.summary-review {
+    min-height: 68px;
+}
+
+.summary-status {
+    grid-column: span 2;
+}
+
+.summary-review {
+    grid-column: span 2;
+}
+
+.results-workspace {
+    margin-bottom: 20px;
+}
+
+.results-workspace-heading {
+    padding: 0 4px 12px;
+    align-items: flex-end;
+}
+
+.results-workspace-note {
+    max-width: 520px;
+    margin: 0 0 3px;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: right;
+}
+
+.vat-sector-results {
+    padding: 0;
+    background: transparent;
+}
+
+.vat-sector-card {
+    overflow: hidden;
+    border: 1px solid #d6dce6;
+    border-radius: 9px;
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgba(23, 54, 93, 0.05);
+}
+
+.vat-sector-heading {
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    padding: 13px 17px;
+}
+
+.vat-sector-columns {
+    gap: 14px;
+    border: none;
+    border-radius: 0;
+    padding: 14px;
+    background: #f7f9fc;
+}
+
+.vat-sector-columns > .vat-panel {
+    box-shadow: none;
+}
+
+.vat-tax-components {
+    margin: 0 14px 14px;
+    overflow: hidden;
+    border: 1px solid #d6dce6;
+    border-radius: 8px;
+}
+
+.vat-tax-components .vat-sector-heading {
+    background: #17365d;
+    color: rgba(255,255,255,0.75);
+}
+
+.vat-tax-components .vat-sector-heading strong {
+    color: #e8d2ab;
+}
+
+.vat-tax-components .vat-sector-columns {
+    padding: 12px;
+    background: #f4f7fb;
+}
+
+.vat-tax-components .vat-panel:first-child {
+    border-top: 3px solid var(--green);
+}
+
+.vat-tax-components .vat-panel:last-child:not(:first-child) {
+    border-top: 3px solid var(--gold);
+}
+
+.vat-result-row {
+    gap: 22px;
+}
+
+.vat-result-label {
+    flex: 0 0 42%;
+}
+
+.vat-result-value {
+    min-width: 0;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.rule-trace-panel {
+    margin: 0 14px 14px;
+    background: #fbfcfe;
+}
+
+.workspace-details {
+    margin: 0 0 22px;
+    overflow: hidden;
+    border: 1px solid #d6dce6;
+    border-radius: 8px;
+    background: var(--surface);
+}
+
+.workspace-details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 16px;
+    cursor: pointer;
+    color: #17365d;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    list-style: none;
+}
+
+.workspace-details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.workspace-details > summary::after {
+    content: '+';
+    margin-left: auto;
+    color: var(--gold);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.workspace-details[open] > summary::after {
+    content: '−';
+}
+
+.details-helper {
+    margin-right: 12px;
+    color: var(--text-muted);
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.route-map-details .map-wrap {
+    height: 280px;
+    min-height: 280px;
+    flex: none;
+    border-top: 1px solid var(--border);
+}
+
+.route-map-details #map {
+    height: 280px;
+    min-height: 280px;
+}
+
+/* Remove obsolete route-planner summary from normal flow. */
+.route-summary {
+    display: none !important;
+}
+
+@media (max-width: 1200px) {
+    .vat-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .summary-status,
+    .summary-review {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .layout {
+        display: block;
+        overflow: visible;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        overflow: visible;
+    }
+
+    .main-area {
+        padding: 14px;
+    }
+
+    .result-section-heading,
+    .results-workspace-heading {
+        display: block;
+    }
+
+    .export-report-btn {
+        width: 100%;
+        margin-top: 14px;
+    }
+
+    .results-workspace-note {
+        margin-top: 5px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 620px) {
+    header {
+        height: auto;
+        min-height: 64px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .header-inner {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header-status {
+        max-width: 45%;
+        text-align: right;
+    }
+
+    .vat-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-status,
+    .summary-review {
+        grid-column: span 1;
+    }
+
+    .vat-sector-columns {
+        padding: 10px;
+    }
+
+    .vat-result-row {
+        display: block;
+    }
+
+    .vat-result-value {
+        display: block;
+        margin-top: 2px;
+        text-align: left;
+    }
+
+    .details-helper {
+        display: none;
+    }
+}
