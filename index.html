@@ -227,42 +227,49 @@
   
   <!-- ── Main area: tax-first workspace ── -->
   <main class="main-area">
-    <section id="vatSummaryPanel" class="panel vat-summary-panel tax-result-hero">
-      <div class="result-section-heading">
-        <div>
-          <p class="result-eyebrow">Tax determination</p>
-          <h2 id="resultsSummaryTitle">VAT Results Summary</h2>
+    <section class="top-results-grid">
+      <section id="vatSummaryPanel" class="panel vat-summary-panel tax-result-hero">
+        <div class="result-section-heading">
+          <div>
+            <p class="result-eyebrow">Tax determination</p>
+            <h2 id="resultsSummaryTitle">VAT Results Summary</h2>
+          </div>
+          <button id="exportPdfBtn" class="export-report-btn" type="button">Export PDF</button>
         </div>
-        <button id="exportPdfBtn" class="export-report-btn" type="button">Export PDF</button>
-      </div>
-      <div class="vat-summary-grid">
-        <div class="vat-summary-item summary-net"><div class="vat-summary-label">Net Charter Value</div><div id="summaryNetValue" class="vat-summary-value">-</div></div>
-        <div class="vat-summary-item summary-taxable"><div class="vat-summary-label">Total Taxable Amount</div><div id="summaryTaxableValue" class="vat-summary-value">-</div></div>
-        <div class="vat-summary-item summary-vat"><div class="vat-summary-label">Total VAT</div><div id="summaryVatValue" class="vat-summary-value">-</div></div>
-        <div class="vat-summary-item summary-gross"><div class="vat-summary-label">Gross Amount</div><div id="summaryGrossValue" class="vat-summary-value">-</div></div>
-        <div class="vat-summary-item summary-status"><div class="vat-summary-label">Calculation Status</div><div id="summaryCalculationStatus" class="vat-summary-value summary-status-review">Review Required</div></div>
-        <div class="vat-summary-item summary-review"><div class="vat-summary-label">Sectors Requiring Review</div><div id="summaryReviewSectors" class="vat-summary-value">-</div></div>
-      </div>
+        <div class="vat-summary-grid">
+          <div class="vat-summary-item summary-net"><div class="vat-summary-label">Net Charter Value</div><div id="summaryNetValue" class="vat-summary-value">-</div></div>
+          <div class="vat-summary-item summary-taxable"><div class="vat-summary-label">Total Taxable Amount</div><div id="summaryTaxableValue" class="vat-summary-value">-</div></div>
+          <div class="vat-summary-item summary-vat"><div class="vat-summary-label">Total VAT</div><div id="summaryVatValue" class="vat-summary-value">-</div></div>
+          <div class="vat-summary-item summary-gross"><div class="vat-summary-label">Gross Amount</div><div id="summaryGrossValue" class="vat-summary-value">-</div></div>
+          <div class="vat-summary-item summary-status"><div class="vat-summary-label">Calculation Status</div><div id="summaryCalculationStatus" class="vat-summary-value summary-status-review">Review Required</div></div>
+          <div class="vat-summary-item summary-review"><div class="vat-summary-label">Sectors Requiring Review</div><div id="summaryReviewSectors" class="vat-summary-value">-</div></div>
+        </div>
+      </section>
+
+      <section class="panel route-map-panel" aria-labelledby="routeMapTitle">
+        <div class="route-map-heading">
+          <div><p class="result-eyebrow">Route validation</p><h2 id="routeMapTitle">Route Map</h2></div>
+          <span class="route-map-helper">Confirm the selected airport codes and itinerary</span>
+        </div>
+        <div class="map-wrap">
+          <div id="map"></div>
+          <div class="map-empty" id="mapEmpty">
+            <div class="map-empty-icon">✦</div>
+            <div class="map-empty-text">Enter origin and destination to plot route</div>
+          </div>
+        </div>
+      </section>
     </section>
+
+    <section id="taxComponentsResults" class="tax-components-workspace" aria-live="polite"></section>
 
     <section class="results-workspace">
       <div class="results-workspace-heading">
-        <div><p class="result-eyebrow">Sector treatment</p><h2 id="sectorResultsTitle">VAT Results</h2></div>
-        <p class="results-workspace-note">Tax treatment, apportioned components, calculation details and rule trace.</p>
+        <div><p class="result-eyebrow">Calculation detail</p><h2 id="sectorResultsTitle">VAT Results</h2></div>
+        <p class="results-workspace-note">Supporting rule, allocation and calculation detail by sector.</p>
       </div>
       <div id="vatSectorResults" class="vat-sector-results"></div>
     </section>
-
-    <details class="workspace-details route-map-details">
-      <summary><span>Route Map</span><span class="details-helper">View itinerary geography</span></summary>
-      <div class="map-wrap">
-        <div id="map"></div>
-        <div class="map-empty" id="mapEmpty">
-          <div class="map-empty-icon">✦</div>
-          <div class="map-empty-text">Enter origin and destination to plot route</div>
-        </div>
-      </div>
-    </details>
   </main>
 </div>
 
@@ -280,5 +287,6 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="app.js"></script>
+<script type="module" src="ui-layout-adapter.js"></script>
 </body>
 </html>
