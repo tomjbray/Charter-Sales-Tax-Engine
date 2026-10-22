@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "testCount": 6,
+  "tests": [
+    {
+      "testId": "APPORT-001",
+      "description": "Madrid to Ibiza",
+      "origin": "MAD",
+      "destination": "IBZ",
+      "expectedTaxablePercent": 0.681,
+      "expectedNonTaxablePercent": 0.319
+    },
+    {
+      "testId": "APPORT-002",
+      "description": "Ibiza to Madrid",
+      "origin": "IBZ",
+      "destination": "MAD",
+      "expectedTaxablePercent": 0.681,
+      "expectedNonTaxablePercent": 0.319
+    },
+    {
+      "testId": "APPORT-003",
+      "description": "Madrid to Mahon",
+      "origin": "MAD",
+      "destination": "MAH",
+      "expectedTaxablePercent": 0.4247,
+      "expectedNonTaxablePercent": 0.5753
+    },
+    {
+      "testId": "APPORT-004",
+      "description": "Madrid to Palma",
+      "origin": "MAD",
+      "destination": "PMI",
+      "expectedTaxablePercent": 0.5147,
+      "expectedNonTaxablePercent": 0.4853
+    },
+    {
+      "testId": "APPORT-005",
+      "description": "Barcelona to Ibiza",
+      "origin": "BCN",
+      "destination": "IBZ",
+      "expectedTaxablePercent": 0.3413,
+      "expectedNonTaxablePercent": 0.6587
+    },
+    {
+      "testId": "APPORT-006",
+      "description": "Madrid to Barcelona has no Balearic apportionment",
+      "origin": "MAD",
+      "destination": "BCN",
+      "expectedNoMatch": true
+    }
+  ]
+}
