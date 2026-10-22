@@ -8,7 +8,7 @@
   "test:inputs": "node scripts/run-dynamic-input-tests.mjs",
   "test:journey": "node scripts/run-journey-context-tests.mjs",
   "test:priority": "node scripts/run-priority-tests.mjs",
-  "test:territory": "node scripts/run-territory-tests.mjs"
+  "test:territory": "node scripts/run-territory-tests.mjs",
   "test:apportionment": "node scripts/run-apportionment-tests.mjs"  
 }
 }
