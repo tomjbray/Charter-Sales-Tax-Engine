@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "testCount": 4,
+  "tests": [
+    {
+      "testId": "APCALC-001",
+      "description": "Madrid to Ibiza passenger apportionment",
+      "origin": "MAD",
+      "destination": "IBZ",
+      "netValue": 1000,
+      "rate": 0.10,
+      "expectedTaxablePercent": 0.681,
+      "expectedTaxableValue": 681.00,
+      "expectedNonTaxableValue": 319.00,
+      "expectedVatAmount": 68.10,
+      "expectedGrossValue": 1068.10
+    },
+    {
+      "testId": "APCALC-002",
+      "description": "Madrid to Mahon passenger apportionment",
+      "origin": "MAD",
+      "destination": "MAH",
+      "netValue": 1000,
+      "rate": 0.10,
+      "expectedTaxablePercent": 0.4247,
+      "expectedTaxableValue": 424.70,
+      "expectedNonTaxableValue": 575.30,
+      "expectedVatAmount": 42.47,
+      "expectedGrossValue": 1042.47
+    },
+    {
+      "testId": "APCALC-003",
+      "description": "Madrid to Palma passenger apportionment",
+      "origin": "MAD",
+      "destination": "PMI",
+      "netValue": 1000,
+      "rate": 0.10,
+      "expectedTaxablePercent": 0.5147,
+      "expectedTaxableValue": 514.70,
+      "expectedNonTaxableValue": 485.30,
+      "expectedVatAmount": 51.47,
+      "expectedGrossValue": 1051.47
+    },
+    {
+      "testId": "APCALC-004",
+      "description": "Madrid to Ibiza cargo apportionment for Spanish customer",
+      "origin": "MAD",
+      "destination": "IBZ",
+      "netValue": 1000,
+      "rate": 0.21,
+      "expectedTaxablePercent": 0.681,
+      "expectedTaxableValue": 681.00,
+      "expectedNonTaxableValue": 319.00,
+      "expectedVatAmount": 143.01,
+      "expectedGrossValue": 1143.01
+    }
+  ]
+}
