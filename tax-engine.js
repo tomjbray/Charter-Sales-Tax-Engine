@@ -166,11 +166,21 @@ function evaluateVatCalculationStatus(matchedRule, matchError = null) {
 
         if (!calculationMethod) {
             reasons.push("The rule has no calculation method.");
-        } else if (calculationMethod !== "STANDARD") {
-            reasons.push(
-                `Calculation method ${calculationMethod} is not yet supported.`
-            );
-        }
+        } else const supportedCalculationMethods =
+                    new Set([
+                        "STANDARD",
+                        "APPORTIONED"
+                    ]);
+
+                if (
+                    !supportedCalculationMethods.has(
+                    calculationMethod
+                    )
+                ) {
+                    reasons.push(
+                        `Calculation method ${calculationMethod} is not yet supported.`
+                );
+}
 
         if (
             matchedRule.rate === null ||
