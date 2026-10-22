@@ -2915,7 +2915,7 @@
       "customerLocation": "EU",
       "vatRegistered": "ANY",
       "originTerritory": "NON_EU",
-      "destinationTerritory": "NON-EU",
+      "destinationTerritory": "NON_EU",
       "treatment": "ZERO",
       "rate": 0,
       "rulePriority": 200,
