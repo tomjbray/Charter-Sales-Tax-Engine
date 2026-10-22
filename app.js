@@ -1412,7 +1412,9 @@ function renderVatSectorResults(
             totalDistanceNm,
             allocatedNetValue,
             taxablePercent,
+            nonTaxablePercent,
             taxableValue,
+            nonTaxableValue,
             vatAmount,
             grossValue,
             calculationStatus,
@@ -1641,6 +1643,18 @@ function renderVatSectorResults(
                     ${createVatResultRow(
                     "Taxable Amount",
                     formatMoneyValue(taxableValue)
+                    )}
+
+                    ${createVatResultRow(
+                    "Non-Taxable Percentage",
+                    Number.isFinite(nonTaxablePercent)
+                        ? (nonTaxablePercent * 100).toFixed(2) + "%"
+                        : "Review Required"
+                    )}
+
+                    ${createVatResultRow(
+                    "Non-Taxable Amount",
+                    formatMoneyValue(nonTaxableValue)
                     )}
 
                     ${createVatResultRow(
@@ -2455,19 +2469,69 @@ const results = itinerary.map((sector, index) => {
         const calculationCheck =
             evaluateVatCalculationStatus(matchedRule, matchError);
 
-        const taxablePercent = calculationCheck.canCalculate
-            ? Number(matchedRule.taxablePercent)
-            : null;
-        const taxableValue = calculationCheck.canCalculate
+        const calculationMethod =
+            String(matchedRule?.calculationMethod || "")
+                .trim()
+                .toUpperCase();
+
+        let taxablePercent = null;
+        let nonTaxablePercent = null;
+        let apportionmentError = null;
+
+        if (calculationCheck.canCalculate) {
+            if (calculationMethod === "APPORTIONED") {
+                if (!madApportionment) {
+                    apportionmentError =
+                        "No apportionment configured for " +
+                        `${sector.origin.iata}-${sector.destination.iata}.`;
+                } else {
+                    taxablePercent =
+                        Number(madApportionment.taxablePercent);
+                    nonTaxablePercent =
+                        Number(madApportionment.nonTaxablePercent);
+                }
+            } else {
+                taxablePercent =
+                    Number(matchedRule.taxablePercent);
+                nonTaxablePercent =
+                    Number((1 - taxablePercent).toFixed(10));
+            }
+        }
+
+        const finalReviewReasons = [
+            ...calculationCheck.reasons
+        ];
+
+        if (apportionmentError) {
+            finalReviewReasons.push(apportionmentError);
+        }
+
+        const finalCalculationStatus =
+            finalReviewReasons.length === 0
+                ? "Complete"
+                : "Review Required";
+
+        const canCalculateFinal =
+            finalCalculationStatus === "Complete" &&
+            Number.isFinite(taxablePercent) &&
+            Number.isFinite(nonTaxablePercent);
+
+        const taxableValue = canCalculateFinal
             ? allocatedNetValue * taxablePercent
             : null;
-        const vatAmount = calculationCheck.canCalculate
+
+        const nonTaxableValue = canCalculateFinal
+            ? allocatedNetValue * nonTaxablePercent
+            : null;
+
+        const vatAmount = canCalculateFinal
             ? taxableValue * Number(matchedRule.rate)
             : null;
-        const grossValue = calculationCheck.canCalculate
+
+        const grossValue = canCalculateFinal
             ? allocatedNetValue + vatAmount
             : null;
-      
+
         return {
             sector,
             transaction,
@@ -2479,11 +2543,13 @@ const results = itinerary.map((sector, index) => {
             totalDistanceNm,
             allocatedNetValue,
             taxablePercent,
+            nonTaxablePercent,
             taxableValue,
+            nonTaxableValue,
             vatAmount,
             grossValue,
-            calculationStatus: calculationCheck.status,
-            reviewReasons: calculationCheck.reasons
+            calculationStatus: finalCalculationStatus,
+            reviewReasons: finalReviewReasons
         };
     });
 
