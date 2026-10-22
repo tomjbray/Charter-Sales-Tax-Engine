@@ -5,8 +5,8 @@
     "STANDARD": {
       "calculationMethod": "STANDARD"
     },
-    "APPORTIONMENT": {
-      "calculationMethod": "APPORTIONMENT"
+    "APPORTIONED": {
+      "calculationMethod": "APPORTIONED"
     },
     "AIRCRAFT_LOOKUP": {
       "calculationMethod": "AIRCRAFT_LOOKUP"
