@@ -1516,3 +1516,81 @@ PRINT-SPECIFIC STYLE
         min-height: 260px;
     }
 }
+
+
+/* Final UI layout adjustments: equal top panels and external tax components. */
+.top-results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tax-components-workspace:empty {
+    display: none;
+}
+
+.tax-components-workspace {
+    margin: 0 0 20px;
+}
+
+.tax-components-sector-card {
+    margin-bottom: 14px;
+}
+
+.tax-components-sector-card .vat-tax-components {
+    margin: 0;
+}
+
+.rule-trace-details {
+    margin: 0 14px 14px;
+    overflow: hidden;
+    border: 1px solid #d7dce3;
+    border-radius: 8px;
+    background: #fbfcfe;
+}
+
+.rule-trace-details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    cursor: pointer;
+    color: #17365d;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    list-style: none;
+}
+
+.rule-trace-details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.rule-trace-details > summary::after {
+    content: '+';
+    color: var(--gold);
+    font-size: 20px;
+}
+
+.rule-trace-details[open] > summary::after {
+    content: '−';
+}
+
+.rule-trace-details .rule-trace-panel {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #d7dce3;
+    border-radius: 0;
+}
+
+@media (max-width: 1180px) {
+    .top-results-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .top-results-grid {
+        grid-template-columns: 1fr;
+    }
+}
