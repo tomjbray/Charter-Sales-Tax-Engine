@@ -1384,6 +1384,78 @@ function createRuleTracePanel(
  * @param {Object[]} results - Sector VAT calculation results.
  */
 
+function createTaxComponentsPanel(
+    componentModel,
+    taxComponents
+) {
+    if (!Array.isArray(taxComponents) || taxComponents.length <= 1) {
+        return "";
+    }
+
+    const componentRows = taxComponents
+        .map((component, index) => {
+            const title =
+                component.componentType === "NON_TAXABLE"
+                    ? "Non-Taxable Component"
+                    : "Taxable Component";
+
+            const basisRow = component.basis
+                ? createVatResultRow(
+                    "Basis",
+                    component.basis
+                )
+                : "";
+
+            return `
+                <div class="vat-panel">
+                    <h3>${escapeHtml(title)}</h3>
+                    ${createVatResultRow(
+                        "Component",
+                        String(index + 1)
+                    )}
+                    ${createVatResultRow(
+                        "Treatment",
+                        component.treatment
+                    )}
+                    ${createVatResultRow(
+                        "Percentage",
+                        (component.percent * 100).toFixed(2) + "%"
+                    )}
+                    ${createVatResultRow(
+                        "Net Amount",
+                        formatMoneyValue(component.netAmount)
+                    )}
+                    ${createVatResultRow(
+                        `${getCurrentTaxName()} Rate`,
+                        (component.rate * 100).toFixed(2) + "%"
+                    )}
+                    ${createVatResultRow(
+                        `${getCurrentTaxName()} Amount`,
+                        formatMoneyValue(component.vatAmount)
+                    )}
+                    ${createVatResultRow(
+                        "Legal Reference",
+                        component.legalReference || "-"
+                    )}
+                    ${basisRow}
+                </div>
+            `;
+        })
+        .join("");
+
+    return `
+        <div class="vat-tax-components">
+            <div class="vat-sector-heading">
+                <div>Tax Components</div>
+                <strong>${escapeHtml(componentModel || "-")}</strong>
+            </div>
+            <div class="vat-sector-columns">
+                ${componentRows}
+            </div>
+        </div>
+    `;
+}
+
 function renderVatSectorResults(
     results
 ) {
@@ -1407,6 +1479,8 @@ function renderVatSectorResults(
             homeCountry,
             matchedRule,
             madApportionment,
+            componentModel,
+            taxComponents,
             distanceNm,
             distancePercentage,
             totalDistanceNm,
@@ -1670,6 +1744,10 @@ function renderVatSectorResults(
                 </div>
 
             </div>
+              ${createTaxComponentsPanel(
+                  componentModel,
+                  taxComponents
+              )}
               ${createRuleTracePanel(
                   matchedRule,
                   transaction
@@ -2532,12 +2610,53 @@ const results = itinerary.map((sector, index) => {
             ? allocatedNetValue + vatAmount
             : null;
 
+        const componentModel =
+            matchedRule?.ruleComponents ||
+            (calculationMethod === "APPORTIONED"
+                ? "APPORTIONED"
+                : "STANDARD");
+
+        const taxComponents = [];
+
+        if (canCalculateFinal) {
+            taxComponents.push({
+                componentType: "TAXABLE",
+                treatment: matchedRule.treatment,
+                percent: taxablePercent,
+                netAmount: taxableValue,
+                rate: Number(matchedRule.rate),
+                vatAmount,
+                legalReference:
+                    matchedRule.legalReference || "-"
+            });
+
+            if (
+                calculationMethod === "APPORTIONED" &&
+                nonTaxablePercent > 0
+            ) {
+                taxComponents.push({
+                    componentType: "NON_TAXABLE",
+                    treatment: "ZERO",
+                    percent: nonTaxablePercent,
+                    netAmount: nonTaxableValue,
+                    rate: 0,
+                    vatAmount: 0,
+                    legalReference:
+                        matchedRule.legalReference || "-",
+                    basis:
+                        "Portion of the route outside the Spanish VAT territory under the Mainland/Balearic apportionment."
+                });
+            }
+        }
+
         return {
             sector,
             transaction,
             homeCountry,
             matchedRule,
             madApportionment,
+            componentModel,
+            taxComponents,
             distanceNm: sectorDistances[index],
             distancePercentage,
             totalDistanceNm,
