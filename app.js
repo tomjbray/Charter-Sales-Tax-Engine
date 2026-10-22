@@ -19,6 +19,10 @@ import {
     getAirportRuleTerritory
 } from "./territory-resolution.js";
 
+import {
+    getMadApportionment
+} from "./mad-apportionment.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -84,6 +88,7 @@ let sellingEntitiesData = null;
 let vatRulesData = null;
 let taxTerritoriesData = null;
 let countriesData = null;
+let madApportionmentData = null;
 let charterValue = 0;
 let latestVatResults = [];
 
@@ -136,7 +141,8 @@ async function loadData() {
       loadCountries(),
       loadTaxTerritories(),
       loadVatRules(),
-      loadSellingEntities()
+      loadSellingEntities(),
+      loadMadApportionment()
     ]);
 
     /*
@@ -278,6 +284,41 @@ async function loadTaxTerritories() {
 }
 
 /**
+ * Loads the controlled airport-pair percentages used for
+ * Spanish Mainland/Balearic apportionment.
+ *
+ * @returns {Promise<void>}
+ */
+async function loadMadApportionment() {
+    const response =
+        await fetch("./mad_apportionment.json");
+
+    if (!response.ok) {
+        throw new Error(
+            "mad_apportionment.json: HTTP " +
+            response.status
+        );
+    }
+
+    madApportionmentData =
+        await response.json();
+
+    if (
+        !Array.isArray(
+            madApportionmentData?.routes
+        )
+    ) {
+        throw new Error(
+            "mad_apportionment.json does not contain a routes array."
+        );
+    }
+
+    console.log(
+        `Loaded ${madApportionmentData.routeCount} MAD apportionment routes`
+    );
+}
+
+/**
  * Loads the VAT rule matrix used for sector-by-sector rule matching.
  * @returns {Promise<void>}
  */
@@ -367,7 +408,8 @@ function validateStartupData() {
         ["selling_entities.json", sellingEntitiesData, ["data", "recordCount"]],
         ["tax_territories.json", taxTerritoriesData, ["data", "recordCount"]],
         ["vat_rules.json", vatRulesData, ["rules", "ruleCount"]],
-        ["input_requirements.json", inputRequirementsData, ["inputs", "inputCount"]]
+        ["input_requirements.json", inputRequirementsData, ["inputs", "inputCount"]],
+        ["mad_apportionment.json", madApportionmentData, ["routes", "routeCount"]]
     ];
 
     documentChecks.forEach(
@@ -1361,6 +1403,7 @@ function renderVatSectorResults(
             transaction,
             homeCountry,
             matchedRule,
+            madApportionment,
             distanceNm,
             distancePercentage,
             totalDistanceNm,
@@ -1465,6 +1508,33 @@ function renderVatSectorResults(
                     ${createVatResultRow(
                         "Destination Territory",
                         transaction.destinationTerritory
+                    )}
+
+                    ${createVatResultRow(
+                        "Apportionment Route",
+                         madApportionment
+                            ? madApportionment.routePair
+                            : "-"
+                    )}
+
+                    ${createVatResultRow(
+                        "Apportionment Taxable",
+                        madApportionment
+                            ? (
+                                madApportionment.taxablePercent *
+                                100
+                            ).toFixed(2) + "%"
+                            : "-"
+                    )}
+
+                    ${createVatResultRow(
+                        "Apportionment Non-Taxable",
+                        madApportionment
+                            ? (
+                                madApportionment.nonTaxablePercent *
+                                100
+                            ).toFixed(2) + "%"
+                            : "-"
                     )}
 
                     ${createVatResultRow(
@@ -2361,6 +2431,14 @@ const results = itinerary.map((sector, index) => {
     journeyDerivedInputs
 );
 
+    const madApportionment =
+    selectedEntity === "MAD"
+        ? getMadApportionment(
+            sector.origin,
+            sector.destination,
+            madApportionmentData
+        )
+        : null;
 
       
         const { matchedRule, matchError } = findMatchingRule(
@@ -2392,6 +2470,7 @@ const results = itinerary.map((sector, index) => {
             transaction,
             homeCountry,
             matchedRule,
+            madApportionment,
             distanceNm: sectorDistances[index],
             distancePercentage,
             totalDistanceNm,
