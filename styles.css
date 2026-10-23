@@ -978,7 +978,7 @@ PRINT-SPECIFIC STYLE
    ========================================================== */
 .main-area { display:block; min-width:0; overflow-y:auto; overflow-x:hidden; padding:22px; background:#eef2f7; }
 .top-results-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; align-items:stretch; margin-bottom:18px; }
-.tax-result-hero,.route-map-panel { height:414px; min-height:414px; margin:0; background:var(--surface); border-color:#d6dce6; box-shadow:0 10px 30px rgba(23,54,93,.06); }
+.tax-result-hero,.route-map-panel { height:500px; min-height:500px; margin:0; background:var(--surface); border-color:#d6dce6; box-shadow:0 10px 30px rgba(23,54,93,.06); }
 .tax-result-hero { display:flex; flex-direction:column; padding:18px; }
 .result-section-heading,.results-workspace-heading,.route-map-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
 .result-eyebrow { margin:0 0 3px; color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
