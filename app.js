@@ -976,6 +976,22 @@ function getCurrentTaxName() {
 
 }
 
+function getTaxNameForTransaction(
+    transaction
+) {
+    if (
+        transaction?.entity === "MAD" &&
+        transaction?.originTerritory ===
+            "ES_CANARY" &&
+        transaction?.destinationTerritory ===
+            "ES_CANARY"
+    ) {
+        return "IGIC";
+    }
+
+    return getCurrentTaxName();
+}
+
 function updateTaxLabels() {
 
     const taxName =
@@ -1394,7 +1410,8 @@ function createRuleTracePanel(
 
 function createTaxComponentsPanel(
     componentModel,
-    taxComponents
+    taxComponents,
+	taxName
 ) {
     if (!Array.isArray(taxComponents) || taxComponents.length <= 1) {
         return "";
@@ -1434,11 +1451,11 @@ function createTaxComponentsPanel(
                         formatMoneyValue(component.netAmount)
                     )}
                     ${createVatResultRow(
-                        `${getCurrentTaxName()} Rate`,
+                        `${taxName()} Rate`,
                         (component.rate * 100).toFixed(2) + "%"
                     )}
                     ${createVatResultRow(
-                        `${getCurrentTaxName()} Amount`,
+                        `${taxName()} Amount`,
                         formatMoneyValue(component.vatAmount)
                     )}
                     ${createVatResultRow(
@@ -1549,6 +1566,7 @@ function renderVatSectorResults(
             transaction,
             homeCountry,
             matchedRule,
+			taxName,
             madApportionment,
             distanceNm,
             distancePercentage,
@@ -1605,8 +1623,8 @@ function renderVatSectorResults(
                     "-"
                 )
                 : (
-                    `No ${getCurrentTaxName()} rule matches this ` +
-                    `sector and the selected ${getCurrentTaxName()} inputs.`
+                    `No ${taxName} rule matches this ` +
+                    `sector and the selected ${taxName} inputs.`
                 );
 
         const legalReference =
@@ -1615,7 +1633,7 @@ function renderVatSectorResults(
                     matchedRule.legalReference ||
                     "-"
                 )
-                : `Review ${getCurrentTaxName()} matrix`;
+                : `Review ${taxName} matrix`;
 
         card.innerHTML = `
             <div class="vat-sector-heading">
@@ -1686,7 +1704,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                        `${getCurrentTaxName()} Registered`,
+                        `${taxName} Registered`,
                         transaction.vatRegistered
                     )}
 
@@ -1705,7 +1723,7 @@ function renderVatSectorResults(
                 <div class="vat-panel">
 
                     <h3>
-                        ${getCurrentTaxName()} Rule Match
+                        ${taxName} Rule Match
                     </h3>
 
                     ${createVatResultRow(
@@ -1737,7 +1755,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                        `${getCurrentTaxName()} Rate`,
+                        `${taxName} Rate`,
                         rate
                     )}
 
@@ -1801,7 +1819,7 @@ function renderVatSectorResults(
                     )}
 
                     ${createVatResultRow(
-                    `${getCurrentTaxName()} Amount`,
+                    `${taxName} Amount`,
                     formatMoneyValue(vatAmount)
                       )}
 
@@ -2732,6 +2750,7 @@ const results = itinerary.map((sector, index) => {
             transaction,
             homeCountry,
             matchedRule,
+			taxName: getTaxNameForTransaction(transaction),
             madApportionment,
             componentModel,
             taxComponents,
