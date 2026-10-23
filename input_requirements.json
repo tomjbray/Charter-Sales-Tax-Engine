@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceTable": "tblInputRequirements",
-  "inputCount": 1,
+  "inputCount": 2,
   "inputs": [
     {
       "ruleGroup": "DE_CARGO_EXPORT",
@@ -14,6 +14,18 @@
       "appliesToCharterType": "Cargo",
       "required": true,
       "displayOrder": 1
+    },
+    {
+      "ruleGroup": "ES_MEDEVAC",
+      "inputKey": "QualifyingMedevac",
+      "inputLabel": "Qualifying Medevac Flight",
+      "inputType": "Checkbox",
+      "tooltip": "Flight qualifies for the Spanish medevac exemption and uses a specially adapted aircraft.",
+      "appliesToEntity": "MAD",
+      "appliesToCountry": "ES",
+      "appliesToCharterType": "Passenger",
+      "required": true,
+      "displayOrder": 2
     }
   ],
   "inputsByKey": {
@@ -29,6 +41,20 @@
         "appliesToCharterType": "Cargo",
         "required": true,
         "displayOrder": 1
+      }
+    ],
+    "QualifyingMedevac": [
+      {
+        "ruleGroup": "ES_MEDEVAC",
+        "inputKey": "QualifyingMedevac",
+        "inputLabel": "Qualifying Medevac Flight",
+        "inputType": "Checkbox",
+        "tooltip": "Flight qualifies for the Spanish medevac exemption and uses a specially adapted aircraft.",
+        "appliesToEntity": "MAD",
+        "appliesToCountry": "ES",
+        "appliesToCharterType": "Passenger",
+        "required": true,
+        "displayOrder": 2
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceTable": "tblVatRules",
-  "ruleCount": 170,
+  "ruleCount": 175,
   "rules": [
     {
       "ruleId": "JNB11",
@@ -23,6 +23,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     {
@@ -45,6 +46,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     {
@@ -67,6 +69,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     {
@@ -89,7 +92,123 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
+    },
+    {
+      "ruleId": "MAD70",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_MAINLAND",
+      "destinationTerritory": "ES_MAINLAND",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Spanish Mainland domestic passenger transport - Medevac Exemption",
+      "legalReference": "Spanish VAT matrix",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    {
+      "ruleId": "MAD71",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_MAINLAND",
+      "destinationTerritory": "ES_BALEARIC",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Spanish Passenger Transport - Mainland to Balearic Islands - Medevac Exemption",
+      "legalReference": "Spanish VAT Law 37/1992, Article 70.One.2; DGT Resolution 3/2004 of 21 July - Mainland/Balearic transport apportionment",
+      "taxablePercent": 1,
+      "calculationMethod": "APPORTIONED",
+      "ruleComponents": "RuleComponents = ES_BAL_APPORTIONED",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    {
+      "ruleId": "MAD72",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_BALEARIC",
+      "destinationTerritory": "ES_MAINLAND",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Spanish Passenger Transport - Balearic Islands to Mainland - Medevac Exemption",
+      "legalReference": "Spanish VAT Law 37/1992, Article 70.One.2; DGT Resolution 3/2004 of 21 July - Mainland/Balearic transport apportionment",
+      "taxablePercent": 1,
+      "calculationMethod": "APPORTIONED",
+      "ruleComponents": "RuleComponents = ES_BAL_APPORTIONED",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    {
+      "ruleId": "MAD73",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "PRIVATE",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_CANARY",
+      "destinationTerritory": "ES_CANARY",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Canary Islands Passenger Transport - Non- B2B booking - Medevac Exemption",
+      "legalReference": "Passenger transport wholly within the Canary Islands for a private customer - IGIC applies at 7%.",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    {
+      "ruleId": "MAD74",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_BALEARIC",
+      "destinationTerritory": "ES_BALEARIC",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Passenger Transport - Within Balearic Islands - Medevac Exemption",
+      "legalReference": "Spanish VAT Law 37/1992, Article 70.One.2; DGT Resolution 3/2004 of 21 July - Mainland/Balearic transport apportionment",
+      "taxablePercent": 1,
+      "calculationMethod": "APPORTIONED",
+      "ruleComponents": "RuleComponents = ES_BAL_APPORTIONED",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
     },
     {
       "ruleId": "BRU01",
@@ -111,6 +230,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -133,6 +253,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -155,6 +276,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -177,6 +299,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -199,6 +322,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -221,6 +345,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -243,6 +368,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -265,6 +391,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -287,6 +414,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -309,6 +437,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -331,6 +460,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -353,6 +483,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -375,6 +506,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -397,6 +529,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -419,6 +552,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -441,6 +575,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -463,6 +598,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -485,6 +621,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -507,6 +644,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -529,6 +667,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -551,6 +690,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -573,6 +713,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -595,6 +736,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -617,6 +759,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -639,6 +782,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -661,6 +805,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -683,6 +828,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -705,6 +851,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -727,6 +874,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -749,6 +897,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -771,6 +920,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -793,6 +943,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -815,6 +966,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -837,6 +989,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -859,6 +1012,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -881,6 +1035,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -903,6 +1058,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -925,6 +1081,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -947,6 +1104,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -969,6 +1127,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -991,6 +1150,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1013,6 +1173,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1035,6 +1196,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1057,6 +1219,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1079,6 +1242,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1101,6 +1265,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1123,6 +1288,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1145,6 +1311,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1167,6 +1334,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1189,6 +1357,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1211,6 +1380,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1233,6 +1403,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1255,6 +1426,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1277,6 +1449,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1299,6 +1472,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1321,6 +1495,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1343,6 +1518,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1365,6 +1541,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1387,6 +1564,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1409,6 +1587,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1431,6 +1610,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1453,6 +1633,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1475,6 +1656,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1497,6 +1679,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1519,6 +1702,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1541,6 +1725,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1563,6 +1748,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1585,6 +1771,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1607,6 +1794,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1629,6 +1817,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1651,6 +1840,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1673,6 +1863,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1695,6 +1886,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1717,6 +1909,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1739,6 +1932,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1761,6 +1955,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1783,6 +1978,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -1805,6 +2001,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -1827,6 +2024,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -1849,6 +2047,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -1871,6 +2070,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1893,6 +2093,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1915,6 +2116,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1937,6 +2139,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1959,6 +2162,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -1981,6 +2185,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2003,6 +2208,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2025,6 +2231,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2047,6 +2254,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2069,6 +2277,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2091,6 +2300,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2113,6 +2323,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2135,6 +2346,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2157,6 +2369,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2179,6 +2392,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2201,6 +2415,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2223,6 +2438,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2245,6 +2461,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2267,6 +2484,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2289,6 +2507,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2311,6 +2530,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2333,6 +2553,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2355,6 +2576,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2377,6 +2599,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2399,6 +2622,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2421,6 +2645,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2443,6 +2668,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2465,6 +2691,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2487,6 +2714,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2509,6 +2737,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2531,6 +2760,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2553,6 +2783,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2575,6 +2806,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2597,6 +2829,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2619,6 +2852,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2641,6 +2875,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2663,6 +2898,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2685,6 +2921,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2707,6 +2944,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2729,6 +2967,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2751,6 +2990,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2773,6 +3013,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2795,6 +3036,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2817,6 +3059,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2839,6 +3082,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2861,6 +3105,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2883,6 +3128,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2905,6 +3151,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2927,6 +3174,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2949,6 +3197,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2971,6 +3220,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -2993,6 +3243,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3015,6 +3266,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3037,6 +3289,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3059,6 +3312,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3081,6 +3335,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3103,6 +3358,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3125,6 +3381,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3147,6 +3404,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3169,6 +3427,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3191,6 +3450,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3213,6 +3473,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3235,6 +3496,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3257,6 +3519,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3279,6 +3542,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3301,6 +3565,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3323,6 +3588,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3345,6 +3611,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3367,6 +3634,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -3389,6 +3657,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     {
@@ -3411,6 +3680,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3433,6 +3703,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3455,6 +3726,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3477,6 +3749,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3499,6 +3772,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3521,6 +3795,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3543,6 +3818,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3565,6 +3841,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3587,6 +3864,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3609,6 +3887,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3631,6 +3910,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3653,6 +3933,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3675,6 +3956,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3697,6 +3979,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3719,6 +4002,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     {
@@ -3741,6 +4025,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     }
   ],
@@ -3765,6 +4050,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU02": {
@@ -3787,6 +4073,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU03": {
@@ -3809,6 +4096,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU04": {
@@ -3831,6 +4119,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU05": {
@@ -3853,6 +4142,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU06": {
@@ -3875,6 +4165,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU07": {
@@ -3897,6 +4188,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU08": {
@@ -3919,6 +4211,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU09": {
@@ -3941,6 +4234,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU10": {
@@ -3963,6 +4257,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU11": {
@@ -3985,6 +4280,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU12": {
@@ -4007,6 +4303,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU13": {
@@ -4029,6 +4326,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU14": {
@@ -4051,6 +4349,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU15": {
@@ -4073,6 +4372,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU16": {
@@ -4095,6 +4395,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU17": {
@@ -4117,6 +4418,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU18": {
@@ -4139,6 +4441,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU19": {
@@ -4161,6 +4464,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU20": {
@@ -4183,6 +4487,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU21": {
@@ -4205,6 +4510,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU22": {
@@ -4227,6 +4533,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU23": {
@@ -4249,6 +4556,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU24": {
@@ -4271,6 +4579,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU25": {
@@ -4293,6 +4602,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU26": {
@@ -4315,6 +4625,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU27": {
@@ -4337,6 +4648,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU28": {
@@ -4359,6 +4671,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU29": {
@@ -4381,6 +4694,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU30": {
@@ -4403,6 +4717,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU31": {
@@ -4425,6 +4740,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU32": {
@@ -4447,6 +4763,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU33": {
@@ -4469,6 +4786,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU34": {
@@ -4491,6 +4809,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU35": {
@@ -4513,6 +4832,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU36": {
@@ -4535,6 +4855,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU37": {
@@ -4557,6 +4878,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU38": {
@@ -4579,6 +4901,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU39": {
@@ -4601,6 +4924,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU40": {
@@ -4623,6 +4947,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU41": {
@@ -4645,6 +4970,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU42": {
@@ -4667,6 +4993,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU43": {
@@ -4689,6 +5016,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU44": {
@@ -4711,6 +5039,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "BRU45": {
@@ -4733,6 +5062,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA01": {
@@ -4755,6 +5085,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA02": {
@@ -4777,6 +5108,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA03": {
@@ -4799,6 +5131,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA04": {
@@ -4821,6 +5154,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA05": {
@@ -4843,6 +5177,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA06": {
@@ -4865,6 +5200,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA07": {
@@ -4887,6 +5223,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA08": {
@@ -4909,6 +5246,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA09": {
@@ -4931,6 +5269,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA10": {
@@ -4953,6 +5292,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA11": {
@@ -4975,6 +5315,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA12": {
@@ -4997,6 +5338,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA13": {
@@ -5019,6 +5361,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA14": {
@@ -5041,6 +5384,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA15": {
@@ -5063,6 +5407,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA16": {
@@ -5085,6 +5430,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA17": {
@@ -5107,6 +5453,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA18": {
@@ -5129,6 +5476,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA19": {
@@ -5151,6 +5499,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA20": {
@@ -5173,6 +5522,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA21": {
@@ -5195,6 +5545,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA22": {
@@ -5217,6 +5568,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA23": {
@@ -5239,6 +5591,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA24": {
@@ -5261,6 +5614,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA25": {
@@ -5283,6 +5637,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA26": {
@@ -5305,6 +5660,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA27": {
@@ -5327,6 +5683,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA28": {
@@ -5349,6 +5706,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA29": {
@@ -5371,6 +5729,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA30": {
@@ -5393,6 +5752,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA31": {
@@ -5415,6 +5775,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA32": {
@@ -5437,6 +5798,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA33": {
@@ -5459,6 +5821,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA34": {
@@ -5481,6 +5844,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA35": {
@@ -5503,6 +5867,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA36": {
@@ -5525,6 +5890,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA37": {
@@ -5547,6 +5913,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA38": {
@@ -5569,6 +5936,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "YES",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA39": {
@@ -5591,6 +5959,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "NO",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA40": {
@@ -5613,6 +5982,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA41": {
@@ -5635,6 +6005,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "FRA42": {
@@ -5657,6 +6028,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "JNB01": {
@@ -5679,6 +6051,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB02": {
@@ -5701,6 +6074,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB03": {
@@ -5723,6 +6097,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB04": {
@@ -5745,6 +6120,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB05": {
@@ -5767,6 +6143,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB06": {
@@ -5789,6 +6166,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB07": {
@@ -5811,6 +6189,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB08": {
@@ -5833,6 +6212,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB09": {
@@ -5855,6 +6235,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB10": {
@@ -5877,6 +6258,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "NO"
     },
     "JNB11": {
@@ -5899,6 +6281,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     "JNB12": {
@@ -5921,6 +6304,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     "JNB13": {
@@ -5943,6 +6327,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     "JNB14": {
@@ -5965,6 +6350,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "YES"
     },
     "MAD01": {
@@ -5987,6 +6373,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD02": {
@@ -6009,6 +6396,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD03": {
@@ -6031,6 +6419,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD04": {
@@ -6053,6 +6442,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD05": {
@@ -6075,6 +6465,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD06": {
@@ -6097,6 +6488,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD07": {
@@ -6119,6 +6511,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD08": {
@@ -6141,6 +6534,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD09": {
@@ -6163,6 +6557,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD10": {
@@ -6185,6 +6580,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD11": {
@@ -6207,6 +6603,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD12": {
@@ -6229,6 +6626,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD13": {
@@ -6251,6 +6649,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD14": {
@@ -6273,6 +6672,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD15": {
@@ -6295,6 +6695,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD16": {
@@ -6317,6 +6718,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD17": {
@@ -6339,6 +6741,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD18": {
@@ -6361,6 +6764,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD19": {
@@ -6383,6 +6787,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD20": {
@@ -6405,6 +6810,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD21": {
@@ -6427,6 +6833,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD22": {
@@ -6449,6 +6856,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD23": {
@@ -6471,6 +6879,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD24": {
@@ -6493,6 +6902,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD25": {
@@ -6515,6 +6925,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD26": {
@@ -6537,6 +6948,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD27": {
@@ -6559,6 +6971,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD28": {
@@ -6581,6 +6994,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD29": {
@@ -6603,6 +7017,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD30": {
@@ -6625,6 +7040,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD31": {
@@ -6647,6 +7063,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD32": {
@@ -6669,6 +7086,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD33": {
@@ -6691,6 +7109,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD34": {
@@ -6713,6 +7132,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD35": {
@@ -6735,6 +7155,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD36": {
@@ -6757,6 +7178,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD37": {
@@ -6779,6 +7201,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD38": {
@@ -6801,6 +7224,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD39": {
@@ -6823,6 +7247,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD40": {
@@ -6845,6 +7270,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD41": {
@@ -6867,6 +7293,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD42": {
@@ -6889,6 +7316,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD43": {
@@ -6911,6 +7339,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD44": {
@@ -6933,6 +7362,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD45": {
@@ -6955,6 +7385,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD46": {
@@ -6977,6 +7408,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD47": {
@@ -6999,6 +7431,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD48": {
@@ -7021,6 +7454,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD49": {
@@ -7043,6 +7477,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD50": {
@@ -7065,6 +7500,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD51": {
@@ -7087,6 +7523,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD52": {
@@ -7109,6 +7546,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD53": {
@@ -7131,6 +7569,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD54": {
@@ -7153,6 +7592,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD55": {
@@ -7175,6 +7615,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD56": {
@@ -7197,6 +7638,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD57": {
@@ -7219,6 +7661,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD58": {
@@ -7241,6 +7684,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD59": {
@@ -7263,6 +7707,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "NO",
       "HomeRoundTrip": "ANY"
     },
     "MAD60": {
@@ -7285,6 +7730,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD61": {
@@ -7307,6 +7753,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD62": {
@@ -7329,6 +7776,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD63": {
@@ -7351,6 +7799,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD64": {
@@ -7373,6 +7822,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD65": {
@@ -7395,6 +7845,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD66": {
@@ -7417,6 +7868,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD67": {
@@ -7439,6 +7891,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD68": {
@@ -7461,6 +7914,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
       "HomeRoundTrip": "ANY"
     },
     "MAD69": {
@@ -7483,6 +7937,122 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY"
+    },
+    "MAD70": {
+      "ruleId": "MAD70",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_MAINLAND",
+      "destinationTerritory": "ES_MAINLAND",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Spanish Mainland domestic passenger transport - Medevac Exemption",
+      "legalReference": "Spanish VAT matrix",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    "MAD71": {
+      "ruleId": "MAD71",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_MAINLAND",
+      "destinationTerritory": "ES_BALEARIC",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Spanish Passenger Transport - Mainland to Balearic Islands - Medevac Exemption",
+      "legalReference": "Spanish VAT Law 37/1992, Article 70.One.2; DGT Resolution 3/2004 of 21 July - Mainland/Balearic transport apportionment",
+      "taxablePercent": 1,
+      "calculationMethod": "APPORTIONED",
+      "ruleComponents": "RuleComponents = ES_BAL_APPORTIONED",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    "MAD72": {
+      "ruleId": "MAD72",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_BALEARIC",
+      "destinationTerritory": "ES_MAINLAND",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Spanish Passenger Transport - Balearic Islands to Mainland - Medevac Exemption",
+      "legalReference": "Spanish VAT Law 37/1992, Article 70.One.2; DGT Resolution 3/2004 of 21 July - Mainland/Balearic transport apportionment",
+      "taxablePercent": 1,
+      "calculationMethod": "APPORTIONED",
+      "ruleComponents": "RuleComponents = ES_BAL_APPORTIONED",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    "MAD73": {
+      "ruleId": "MAD73",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "PRIVATE",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_CANARY",
+      "destinationTerritory": "ES_CANARY",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Canary Islands Passenger Transport - Non- B2B booking - Medevac Exemption",
+      "legalReference": "Passenger transport wholly within the Canary Islands for a private customer - IGIC applies at 7%.",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
+      "HomeRoundTrip": "ANY"
+    },
+    "MAD74": {
+      "ruleId": "MAD74",
+      "entity": "MAD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "ES_BALEARIC",
+      "destinationTerritory": "ES_BALEARIC",
+      "treatment": "EXEMPT",
+      "rate": 0,
+      "rulePriority": 500,
+      "ruleExplanation": "Passenger Transport - Within Balearic Islands - Medevac Exemption",
+      "legalReference": "Spanish VAT Law 37/1992, Article 70.One.2; DGT Resolution 3/2004 of 21 July - Mainland/Balearic transport apportionment",
+      "taxablePercent": 1,
+      "calculationMethod": "APPORTIONED",
+      "ruleComponents": "RuleComponents = ES_BAL_APPORTIONED",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "YES",
       "HomeRoundTrip": "ANY"
     }
   }
