@@ -2257,7 +2257,7 @@
         }
       },
       "expected": {
-        "ruleId": "MAD73",
+        "ruleId": "MAD74",
         "treatment": "EXEMPT",
         "rate": 0,
         "taxablePercent": 1,
@@ -2536,7 +2536,7 @@
         }
       },
       "expected": {
-        "ruleId": "MAD74",
+        "ruleId": "MAD73",
         "treatment": "EXEMPT",
         "rate": 0,
         "taxablePercent": 1,
@@ -5104,7 +5104,7 @@
         }
       },
       "expected": {
-        "ruleId": "MAD74",
+        "ruleId": "MAD73",
         "treatment": "EXEMPT",
         "rate": 0,
         "taxablePercent": 1,
@@ -5131,7 +5131,7 @@
         }
       },
       "expected": {
-        "ruleId": "MAD73",
+        "ruleId": "MAD74",
         "treatment": "EXEMPT",
         "rate": 0,
         "taxablePercent": 1,
