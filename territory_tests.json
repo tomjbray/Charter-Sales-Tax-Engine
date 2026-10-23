@@ -71,6 +71,36 @@
       "destination": {"iata": "IBZ", "country": "ES"},
       "expectedOriginTerritory": "EU",
       "expectedDestinationTerritory": "EU"
+    },
+    {
+      "testId": "TERR-008",
+      "description": "FRA entity classifies Canary to Balearic as non-EU to EU",
+      "entity": "FRA",
+      "homeCountry": "DE",
+      "origin": {"iata": "TFS", "country": "ES"},
+      "destination": {"iata": "IBZ","country": "ES"},
+      "expectedOriginTerritory": "NON_EU",
+      "expectedDestinationTerritory": "EU"
+    },
+    {
+      "testId": "TERR-009",
+      "description": "FRA entity classifies Germany to Canary as DE to non-EU",
+      "entity": "FRA",
+      "homeCountry": "DE",
+      "origin": {"iata": "FRA", "country": "DE"},
+      "destination": {"iata": "TFS", "country": "ES"},
+      "expectedOriginTerritory": "DE",
+      "expectedDestinationTerritory": "NON_EU"
+    },
+    {
+      "testId": "TERR-010",
+      "description": "BRU entity classifies Belgium to Canary as BE to non-EU",
+      "entity": "BRU",
+      "homeCountry": "BE",
+      "origin": {"iata": "BRU", "country": "BE"},
+      "destination": {"iata": "TFS", "country": "ES"},
+      "expectedOriginTerritory": "BE",
+      "expectedDestinationTerritory": "NON_EU"
     }
   ]
 }
