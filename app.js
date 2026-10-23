@@ -1036,14 +1036,22 @@ function updateTaxLabels() {
 
 
 function clearVatSectorResults() {
-
-    const container =
+    const resultsContainer =
         document.getElementById(
             "vatSectorResults"
         );
 
-    if (container) {
-        container.innerHTML = "";
+    const componentsContainer =
+        document.getElementById(
+            "taxComponentsResults"
+        );
+
+    if (resultsContainer) {
+        resultsContainer.innerHTML = "";
+    }
+
+    if (componentsContainer) {
+        componentsContainer.innerHTML = "";
     }
 }
 
@@ -1456,6 +1464,69 @@ function createTaxComponentsPanel(
     `;
 }
 
+function renderTaxComponentsResults(
+    results
+) {
+    const container =
+        document.getElementById(
+            "taxComponentsResults"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    results.forEach(result => {
+        const {
+            sector,
+            componentModel,
+            taxComponents
+        } = result;
+
+        if (
+            !Array.isArray(taxComponents) ||
+            taxComponents.length <= 1
+        ) {
+            return;
+        }
+
+        const card =
+            document.createElement(
+                "section"
+            );
+
+        card.className =
+            "vat-sector-card tax-components-sector-card";
+
+        const routeLabel =
+            `${sector.origin.iata} → ` +
+            `${sector.destination.iata}`;
+
+        card.innerHTML = `
+            <div class="vat-sector-heading">
+                <div>
+                    Sector ${sector.sectorNumber}
+                </div>
+
+                <strong>
+                    ${escapeHtml(routeLabel)}
+                </strong>
+            </div>
+
+            ${createTaxComponentsPanel(
+                componentModel,
+                taxComponents
+            )}
+        `;
+
+        container.appendChild(
+            card
+        );
+    });
+}
+
 function renderVatSectorResults(
     results
 ) {
@@ -1479,8 +1550,6 @@ function renderVatSectorResults(
             homeCountry,
             matchedRule,
             madApportionment,
-            componentModel,
-            taxComponents,
             distanceNm,
             distancePercentage,
             totalDistanceNm,
@@ -1744,16 +1813,25 @@ function renderVatSectorResults(
                 </div>
 
             </div>
-              ${createTaxComponentsPanel(
-                  componentModel,
-                  taxComponents
-              )}
-              ${createRuleTracePanel(
-                  matchedRule,
-                  transaction
-              )}
+ 
+              <details class="rule-trace-details">
+				<summary>
+					Rule Match Trace
+					${matchedRule
+						? `· ${escapeHtml(
+							matchedRule.ruleId
+						)}`
+						: ""
+					}
+				</summary>
+
+				${createRuleTracePanel(
+					matchedRule,
+					transaction
+				)}
+			</details>
             
-        `;
+		`;
 
         container.appendChild(
             card
@@ -2672,11 +2750,13 @@ const results = itinerary.map((sector, index) => {
         };
     });
 
-    latestVatResults = results;
-  
-    renderVatSummary(results);
-    renderVatSectorResults(results);
-    return results;
+latestVatResults = results;
+
+renderVatSummary(results);
+renderTaxComponentsResults(results);
+renderVatSectorResults(results);
+
+return results;
 }
 
 /*
