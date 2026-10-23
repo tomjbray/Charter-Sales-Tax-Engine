@@ -4,6 +4,10 @@ function normalise(value) {
     return String(value ?? "").trim().toUpperCase();
 }
 
+function isTrue(value) {
+    return value === true || normalise(value) === "TRUE";
+}
+
 function getRuleRegionForContext(
     countryCode,
     homeCountry,
@@ -27,16 +31,15 @@ function getRuleRegionForContext(
         countryRecord.eUMember ??
         countryRecord.euMember;
 
-    const isEuMember =
-        euFlag === true ||
-        normalise(euFlag) === "TRUE";
-
-    return isEuMember ? "EU" : "NON_EU";
+    return isTrue(euFlag) ? "EU" : "NON_EU";
 }
 
-function getAirportTaxTerritory(
+/**
+ * Finds the explicit special tax-territory record configured for an airport.
+ * This lookup is independent of the selected selling entity.
+ */
+function findAirportTaxTerritory(
     airport,
-    homeCountry,
     taxTerritoriesData
 ) {
     if (!airport?.iata || !taxTerritoriesData?.data) {
@@ -44,24 +47,43 @@ function getAirportTaxTerritory(
     }
 
     const airportCode = normalise(airport.iata);
-    const home = normalise(homeCountry);
 
     for (const [territoryCode, territory] of Object.entries(taxTerritoriesData.data)) {
-        if (normalise(territory?.country) !== home) {
-            continue;
-        }
-
         const airportCodes = String(territory?.airportCodes || "")
             .split(",")
             .map(normalise)
             .filter(Boolean);
 
         if (airportCodes.includes(airportCode)) {
-            return territoryCode;
+            return {
+                territoryCode,
+                territory
+            };
         }
     }
 
     return null;
+}
+
+/**
+ * Returns an exact airport-level territory only when it belongs to the
+ * selected selling entity's home country.
+ */
+function getAirportTaxTerritory(
+    airport,
+    homeCountry,
+    taxTerritoriesData
+) {
+    const match = findAirportTaxTerritory(
+        airport,
+        taxTerritoriesData
+    );
+
+    if (!match) return null;
+
+    return normalise(match.territory?.country) === normalise(homeCountry)
+        ? match.territoryCode
+        : null;
 }
 
 function getAirportRuleTerritory(
@@ -73,18 +95,48 @@ function getAirportRuleTerritory(
 ) {
     if (!airport?.country) return null;
 
-    const explicitTerritory = getAirportTaxTerritory(
+    const country = normalise(airport.country);
+    const home = normalise(homeCountry);
+    const outside = normalise(outsideHomeRegion);
+
+    const explicitMatch = findAirportTaxTerritory(
         airport,
-        homeCountry,
         taxTerritoriesData
     );
 
-    if (explicitTerritory) {
-        return explicitTerritory;
-    }
+    if (explicitMatch) {
+        const territoryCountry = normalise(
+            explicitMatch.territory?.country
+        );
 
-    const country = normalise(airport.country);
-    const home = normalise(homeCountry);
+        // The home jurisdiction uses its detailed controlled territory code.
+        if (territoryCountry === home) {
+            return explicitMatch.territoryCode;
+        }
+
+        // Entity-defined outside regions, such as JNB's NON_ZA, take priority.
+        if (outside) {
+            return outside;
+        }
+
+        const homeRecord = countriesData?.data?.[home];
+        const homeIsEu = isTrue(
+            homeRecord?.eUMember ??
+            homeRecord?.euMember
+        );
+
+        // For another EU VAT jurisdiction, classify the special territory by
+        // its EU VAT-area status rather than by its parent's country status.
+        if (homeIsEu) {
+            const euAreaFlag =
+                explicitMatch.territory?.eUArea ??
+                explicitMatch.territory?.euArea;
+
+            return isTrue(euAreaFlag)
+                ? "EU"
+                : "NON_EU";
+        }
+    }
 
     if (country === home) {
         const mainlandTerritory = Object.entries(
@@ -103,11 +155,12 @@ function getAirportRuleTerritory(
         country,
         home,
         countriesData,
-        outsideHomeRegion
+        outside
     );
 }
 
 export {
+    findAirportTaxTerritory,
     getAirportTaxTerritory,
     getAirportRuleTerritory,
     getRuleRegionForContext
