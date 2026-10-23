@@ -9,7 +9,8 @@
       "country": "CN",
       "vATRegistration": "911101055621363000",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "BOM": {
       "entityCode": "BOM",
@@ -18,7 +19,8 @@
       "country": "IN",
       "vATRegistration": "27AAJCA7123J1ZK",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "BRU": {
       "entityCode": "BRU",
@@ -27,7 +29,8 @@
       "country": "BE",
       "vATRegistration": "BE1028.867.221",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "TRUE"
     },
     "DUB": {
       "entityCode": "DUB",
@@ -36,7 +39,8 @@
       "country": "IE",
       "vATRegistration": "IE4325071AH",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "DXB": {
       "entityCode": "DXB",
@@ -45,7 +49,8 @@
       "country": "AE",
       "vATRegistration": "100012645600003",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "FRA": {
       "entityCode": "FRA",
@@ -54,7 +59,8 @@
       "country": "DE",
       "vATRegistration": "DE273300790",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "TRUE"
     },
     "GVA": {
       "entityCode": "GVA",
@@ -63,7 +69,8 @@
       "country": "CH",
       "vATRegistration": "CHE-332.992.880",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "JNB": {
       "entityCode": "JNB",
@@ -72,7 +79,8 @@
       "country": "ZA",
       "vATRegistration": "4050253493",
       "taxName": "VAT",
-      "outsideHomeRegion": "NON_ZA"
+      "outsideHomeRegion": "NON_ZA",
+      "active": "TRUE"
     },
     "LON": {
       "entityCode": "LON",
@@ -81,7 +89,8 @@
       "country": "GB",
       "vATRegistration": "911579715",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "MAD": {
       "entityCode": "MAD",
@@ -90,7 +99,8 @@
       "country": "ES",
       "vATRegistration": "ES B95552139",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "TRUE"
     },
     "MXP": {
       "entityCode": "MXP",
@@ -99,7 +109,8 @@
       "country": "IT",
       "vATRegistration": "IT13693200969",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "PAR": {
       "entityCode": "PAR",
@@ -108,7 +119,8 @@
       "country": "FR",
       "vATRegistration": "FR16513299719",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "RUH": {
       "entityCode": "RUH",
@@ -117,7 +129,8 @@
       "country": "SA",
       "vATRegistration": "312696973400003",
       "taxName": "VAT",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "SAO": {
       "entityCode": "SAO",
@@ -126,7 +139,8 @@
       "country": "BR",
       "vATRegistration": "12.902.754/0001-16",
       "taxName": "tbc",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "SYD": {
       "entityCode": "SYD",
@@ -135,7 +149,8 @@
       "country": "AU",
       "vATRegistration": "47156345809",
       "taxName": "GST",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "YTZ": {
       "entityCode": "YTZ",
@@ -144,7 +159,8 @@
       "country": "CA",
       "vATRegistration": "781064886RC0001",
       "taxName": "GST/HST",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     },
     "YYZ": {
       "entityCode": "YYZ",
@@ -153,7 +169,8 @@
       "country": "CA",
       "vATRegistration": "836509257RC0001",
       "taxName": "GST/HST",
-      "outsideHomeRegion": null
+      "outsideHomeRegion": null,
+      "active": "FALSE"
     }
   }
 }
