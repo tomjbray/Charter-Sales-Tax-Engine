@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 99,
-  "enabledTestCount": 99,
+  "testCount": 102,
+  "enabledTestCount": 102,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -1895,7 +1895,9 @@
         "vatRegistered": "ANY",
         "originTerritory": "ES_MAINLAND",
         "destinationTerritory": "ES_MAINLAND",
-        "dynamicInputs": {},
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
         "derivedInputs": {
           "HomeRoundTrip": "ANY"
         }
@@ -2220,7 +2222,9 @@
         "vatRegistered": "ANY",
         "originTerritory": "ES_BALEARIC",
         "destinationTerritory": "ES_BALEARIC",
-        "dynamicInputs": {},
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
         "derivedInputs": {
           "HomeRoundTrip": "ANY"
         }
@@ -2229,6 +2233,33 @@
         "ruleId": "MAD59",
         "treatment": "REDUCED",
         "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-BAL-MEDEVAC-005",
+      "description": "Passenger transport wholly within Balearic Islands - apportioned",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD73",
+        "treatment": "EXEMPT",
+        "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
@@ -2245,7 +2276,9 @@
         "vatRegistered": "ANY",
         "originTerritory": "ES_CANARY",
         "destinationTerritory": "ES_CANARY",
-        "dynamicInputs": {},
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
         "derivedInputs": {
           "HomeRoundTrip": "ANY"
         }
@@ -2478,6 +2511,60 @@
       "expected": {
         "ruleId": "MAD54",
         "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-MEDEVAC-001",
+      "description": "Canary domestic passenger transport - private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD74",
+        "treatment": "EXEMPT",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-MEDEVAC-001",
+      "description": "Spanish mainland domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD70",
+        "treatment": "EXEMPT",
         "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
@@ -3451,7 +3538,9 @@
         "vatRegistered": "ANY",
         "originTerritory": "ES_MAINLAND",
         "destinationTerritory": "ES_MAINLAND",
-        "dynamicInputs": {},
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
         "derivedInputs": {
           "HomeRoundTrip": "ANY"
         }
@@ -4351,7 +4440,9 @@
         "vatRegistered": "ANY",
         "originTerritory": "ES_CANARY",
         "destinationTerritory": "ES_CANARY",
-        "dynamicInputs": {},
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
         "derivedInputs": {
           "HomeRoundTrip": "ANY"
         }
@@ -4701,7 +4792,9 @@
         "vatRegistered": "ANY",
         "originTerritory": "ES_BALEARIC",
         "destinationTerritory": "ES_BALEARIC",
-        "dynamicInputs": {},
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
         "derivedInputs": {
           "HomeRoundTrip": "ANY"
         }
@@ -4959,6 +5052,87 @@
       "expected": {
         "ruleId": "MAD69",
         "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-MEDEVAC-001": {
+      "testId": "MAD-PAX-MEDEVAC-001",
+      "description": "Spanish mainland domestic passenger transport",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD70",
+        "treatment": "EXEMPT",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-MEDEVAC-001": {
+      "testId": "MAD-PAX-CAN-MEDEVAC-001",
+      "description": "Canary domestic passenger transport - private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD74",
+        "treatment": "EXEMPT",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-BAL-MEDEVAC-005": {
+      "testId": "MAD-PAX-BAL-MEDEVAC-005",
+      "description": "Passenger transport wholly within Balearic Islands - apportioned",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD73",
+        "treatment": "EXEMPT",
         "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
