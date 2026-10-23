@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 89,
-  "enabledTestCount": 89,
+  "testCount": 99,
+  "enabledTestCount": 99,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -1627,6 +1627,256 @@
       },
       "expected": {
         "ruleId": "MAD36",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-001",
+      "description": "Canary domestic cargo transport - private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD60",
+        "treatment": "STANDARD",
+        "rate": 0.07,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-002",
+      "description": "Canary domestic cargo transport - business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD61",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-003",
+      "description": "Cargo transport mainland Spain to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD62",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-004",
+      "description": "Cargo transport Canary Islands to mainland Spain",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD63",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-005",
+      "description": "Cargo transport Balearic Islands to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD64",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-006",
+      "description": "Cargo transport Canary Islands to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD65",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-007",
+      "description": "Cargo transport Canary Islands to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD66",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-008",
+      "description": "Cargo transport EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD67",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-009",
+      "description": "Cargo transport Canary Islands to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD68",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-CARGO-CAN-010",
+      "description": "Cargo transport non-EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD69",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -4460,6 +4710,256 @@
         "ruleId": "MAD59",
         "treatment": "REDUCED",
         "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-001": {
+      "testId": "MAD-CARGO-CAN-001",
+      "description": "Canary domestic cargo transport - private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD60",
+        "treatment": "STANDARD",
+        "rate": 0.07,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-002": {
+      "testId": "MAD-CARGO-CAN-002",
+      "description": "Canary domestic cargo transport - business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "BUSINESS",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD61",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-003": {
+      "testId": "MAD-CARGO-CAN-003",
+      "description": "Cargo transport mainland Spain to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD62",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-004": {
+      "testId": "MAD-CARGO-CAN-004",
+      "description": "Cargo transport Canary Islands to mainland Spain",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD63",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-005": {
+      "testId": "MAD-CARGO-CAN-005",
+      "description": "Cargo transport Balearic Islands to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD64",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-006": {
+      "testId": "MAD-CARGO-CAN-006",
+      "description": "Cargo transport Canary Islands to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD65",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-007": {
+      "testId": "MAD-CARGO-CAN-007",
+      "description": "Cargo transport Canary Islands to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD66",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-008": {
+      "testId": "MAD-CARGO-CAN-008",
+      "description": "Cargo transport EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD67",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-009": {
+      "testId": "MAD-CARGO-CAN-009",
+      "description": "Cargo transport Canary Islands to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD68",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-CARGO-CAN-010": {
+      "testId": "MAD-CARGO-CAN-010",
+      "description": "Cargo transport non-EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD69",
+        "treatment": "ZERO",
+        "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
