@@ -40,7 +40,7 @@ import {
 //  - INFO: allows calculations and records expected work-in-progress data.
 // ═══════════════════════════════════════════════════════════
 
-const APP_VERSION = "0.2.3-phase2b-regression";
+const APP_VERSION = "0.3.1-First 4 locations";
 
 // ═══════════════════════════════════════════════════════════
 //  1. APPLICATION STATE
