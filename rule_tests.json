@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 91,
-  "enabledTestCount": 91,
+  "testCount": 89,
+  "enabledTestCount": 89,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -298,56 +298,6 @@
       },
       "expected": {
         "ruleId": "BRU41",
-        "treatment": "OUTSIDE_SCOPE",
-        "rate": 0,
-        "taxablePercent": 1,
-        "calculationStatus": "Complete"
-      }
-    },
-    {
-      "testId": "ES4-001",
-      "description": "Passenger transport within the Canary Islands Non-B2B",
-      "enabled": true,
-      "transaction": {
-        "entity": "MAD",
-        "charterType": "PASSENGER",
-        "customerType": "PRIVATE",
-        "customerLocation": "ANY",
-        "vatRegistered": "ANY",
-        "originTerritory": "ES_CANARY",
-        "destinationTerritory": "ES_CANARY",
-        "dynamicInputs": {},
-        "derivedInputs": {
-          "HomeRoundTrip": "ANY"
-        }
-      },
-      "expected": {
-        "ruleId": "MAD45",
-        "treatment": "STANDARD",
-        "rate": 0.07,
-        "taxablePercent": 1,
-        "calculationStatus": "Complete"
-      }
-    },
-    {
-      "testId": "ES4-002",
-      "description": "Passenger transport within the Canary IslandsB2B",
-      "enabled": true,
-      "transaction": {
-        "entity": "MAD",
-        "charterType": "PASSENGER",
-        "customerType": "BUSINESS",
-        "customerLocation": "ANY",
-        "vatRegistered": "ANY",
-        "originTerritory": "ES_CANARY",
-        "destinationTerritory": "ES_CANARY",
-        "dynamicInputs": {},
-        "derivedInputs": {
-          "HomeRoundTrip": "ANY"
-        }
-      },
-      "expected": {
-        "ruleId": "MAD46",
         "treatment": "OUTSIDE_SCOPE",
         "rate": 0,
         "taxablePercent": 1,
@@ -2079,7 +2029,7 @@
         "ruleId": "MAD46",
         "treatment": "OUTSIDE_SCOPE",
         "rate": 0,
-        "taxablePercent": 0,
+        "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
     },
@@ -4139,56 +4089,6 @@
         "calculationStatus": "Complete"
       }
     },
-    "ES4-001": {
-      "testId": "ES4-001",
-      "description": "Passenger transport within the Canary Islands Non-B2B",
-      "enabled": true,
-      "transaction": {
-        "entity": "MAD",
-        "charterType": "PASSENGER",
-        "customerType": "PRIVATE",
-        "customerLocation": "ANY",
-        "vatRegistered": "ANY",
-        "originTerritory": "ES_CANARY",
-        "destinationTerritory": "ES_CANARY",
-        "dynamicInputs": {},
-        "derivedInputs": {
-          "HomeRoundTrip": "ANY"
-        }
-      },
-      "expected": {
-        "ruleId": "MAD45",
-        "treatment": "STANDARD",
-        "rate": 0.07,
-        "taxablePercent": 1,
-        "calculationStatus": "Complete"
-      }
-    },
-    "ES4-002": {
-      "testId": "ES4-002",
-      "description": "Passenger transport within the Canary IslandsB2B",
-      "enabled": true,
-      "transaction": {
-        "entity": "MAD",
-        "charterType": "PASSENGER",
-        "customerType": "BUSINESS",
-        "customerLocation": "ANY",
-        "vatRegistered": "ANY",
-        "originTerritory": "ES_CANARY",
-        "destinationTerritory": "ES_CANARY",
-        "dynamicInputs": {},
-        "derivedInputs": {
-          "HomeRoundTrip": "ANY"
-        }
-      },
-      "expected": {
-        "ruleId": "MAD46",
-        "treatment": "OUTSIDE_SCOPE",
-        "rate": 0,
-        "taxablePercent": 1,
-        "calculationStatus": "Complete"
-      }
-    },
     "MAD-PAX-CAN-001": {
       "testId": "MAD-PAX-CAN-001",
       "description": "Canary domestic passenger transport - private customer",
@@ -4235,7 +4135,7 @@
         "ruleId": "MAD46",
         "treatment": "OUTSIDE_SCOPE",
         "rate": 0,
-        "taxablePercent": 0,
+        "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
     },
