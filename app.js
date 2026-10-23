@@ -1451,11 +1451,11 @@ function createTaxComponentsPanel(
                         formatMoneyValue(component.netAmount)
                     )}
                     ${createVatResultRow(
-                        `${taxName()} Rate`,
+                        `${taxName} Rate`,
                         (component.rate * 100).toFixed(2) + "%"
                     )}
                     ${createVatResultRow(
-                        `${taxName()} Amount`,
+                        `${taxName} Amount`,
                         formatMoneyValue(component.vatAmount)
                     )}
                     ${createVatResultRow(
