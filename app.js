@@ -1496,12 +1496,19 @@ function renderTaxComponentsResults(
     container.innerHTML = "";
 
     results.forEach(result => {
+
         const {
             sector,
             componentModel,
-            taxComponents
+            taxComponents,
+            taxName
         } = result;
 
+        /*
+         * Only show the separate Tax Components
+         * section where there is genuinely more
+         * than one tax component.
+         */
         if (
             !Array.isArray(taxComponents) ||
             taxComponents.length <= 1
@@ -1515,7 +1522,8 @@ function renderTaxComponentsResults(
             );
 
         card.className =
-            "vat-sector-card tax-components-sector-card";
+            "vat-sector-card " +
+            "tax-components-sector-card";
 
         const routeLabel =
             `${sector.origin.iata} → ` +
@@ -1523,6 +1531,7 @@ function renderTaxComponentsResults(
 
         card.innerHTML = `
             <div class="vat-sector-heading">
+
                 <div>
                     Sector ${sector.sectorNumber}
                 </div>
@@ -1530,11 +1539,13 @@ function renderTaxComponentsResults(
                 <strong>
                     ${escapeHtml(routeLabel)}
                 </strong>
+
             </div>
 
             ${createTaxComponentsPanel(
                 componentModel,
-                taxComponents
+                taxComponents,
+                taxName
             )}
         `;
 
