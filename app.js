@@ -1918,11 +1918,35 @@ function populateSellingEntityDropdown() {
     .sort()
     .forEach(entityCode => {
 
+        const entity =
+            sellingEntitiesData.data[
+                entityCode
+            ];
+
+        /*
+         * Active may arrive from Excel as either a
+         * Boolean or text depending on the export.
+         */
+        const isActive =
+            entity?.active === true ||
+            String(
+                entity?.active || ""
+            )
+                .trim()
+                .toUpperCase() === "TRUE";
+
         const option =
             document.createElement("option");
 
         option.value = entityCode;
-        option.textContent = entityCode;
+
+        option.textContent =
+            isActive
+                ? entityCode
+                : `${entityCode} (Inactive)`;
+
+        option.disabled =
+            !isActive;
 
         if (
             entityCode === selectedEntity
@@ -1948,6 +1972,7 @@ function populateSellingEntityDropdown() {
         }
     );
 }
+
 
 /**
  * Attaches charter-value input handling and reruns VAT allocation whenever the value changes.
