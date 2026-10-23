@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 76,
-  "enabledTestCount": 76,
+  "testCount": 91,
+  "enabledTestCount": 91,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -1902,6 +1902,381 @@
       },
       "expected": {
         "ruleId": "MAD09",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-BAL-001",
+      "description": "Passenger transport Balearic Islands to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD55",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-BAL-002",
+      "description": "Passenger transport EU to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD56",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-BAL-003",
+      "description": "Passenger transport Balearic Islands to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD57",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-BAL-004",
+      "description": "Passenger transport non-EU to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD58",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-BAL-005",
+      "description": "Passenger transport wholly within Balearic Islands - apportioned",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD59",
+        "treatment": "REDUCED",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-001",
+      "description": "Canary domestic passenger transport - private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD45",
+        "treatment": "STANDARD",
+        "rate": 0.07,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-002",
+      "description": "Canary domestic passenger transport - business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "BUSINESS",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD46",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 0,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-003",
+      "description": "Passenger transport mainland Spain to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD47",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-004",
+      "description": "Passenger transport Canary Islands to mainland Spain",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD48",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-005",
+      "description": "Passenger transport Balearic Islands to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD49",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-006",
+      "description": "Passenger transport Canary Islands to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD50",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-007",
+      "description": "Passenger transport Canary Islands to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD51",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-008",
+      "description": "Passenger transport EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD52",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-009",
+      "description": "Passenger transport Canary Islands to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD53",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "MAD-PAX-CAN-010",
+      "description": "Passenger transport non-EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD54",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -3810,6 +4185,381 @@
         "ruleId": "MAD46",
         "treatment": "OUTSIDE_SCOPE",
         "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-001": {
+      "testId": "MAD-PAX-CAN-001",
+      "description": "Canary domestic passenger transport - private customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD45",
+        "treatment": "STANDARD",
+        "rate": 0.07,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-002": {
+      "testId": "MAD-PAX-CAN-002",
+      "description": "Canary domestic passenger transport - business customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "BUSINESS",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD46",
+        "treatment": "OUTSIDE_SCOPE",
+        "rate": 0,
+        "taxablePercent": 0,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-003": {
+      "testId": "MAD-PAX-CAN-003",
+      "description": "Passenger transport mainland Spain to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_MAINLAND",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD47",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-004": {
+      "testId": "MAD-PAX-CAN-004",
+      "description": "Passenger transport Canary Islands to mainland Spain",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_MAINLAND",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD48",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-005": {
+      "testId": "MAD-PAX-CAN-005",
+      "description": "Passenger transport Balearic Islands to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD49",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-006": {
+      "testId": "MAD-PAX-CAN-006",
+      "description": "Passenger transport Canary Islands to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD50",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-007": {
+      "testId": "MAD-PAX-CAN-007",
+      "description": "Passenger transport Canary Islands to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD51",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-008": {
+      "testId": "MAD-PAX-CAN-008",
+      "description": "Passenger transport EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD52",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-009": {
+      "testId": "MAD-PAX-CAN-009",
+      "description": "Passenger transport Canary Islands to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_CANARY",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD53",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-CAN-010": {
+      "testId": "MAD-PAX-CAN-010",
+      "description": "Passenger transport non-EU to Canary Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "ES_CANARY",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD54",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-BAL-001": {
+      "testId": "MAD-PAX-BAL-001",
+      "description": "Passenger transport Balearic Islands to EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD55",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-BAL-002": {
+      "testId": "MAD-PAX-BAL-002",
+      "description": "Passenger transport EU to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "EU",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD56",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-BAL-003": {
+      "testId": "MAD-PAX-BAL-003",
+      "description": "Passenger transport Balearic Islands to non-EU",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "NON_EU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD57",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-BAL-004": {
+      "testId": "MAD-PAX-BAL-004",
+      "description": "Passenger transport non-EU to Balearic Islands",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_EU",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD58",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "MAD-PAX-BAL-005": {
+      "testId": "MAD-PAX-BAL-005",
+      "description": "Passenger transport wholly within Balearic Islands - apportioned",
+      "enabled": true,
+      "transaction": {
+        "entity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "ES_BALEARIC",
+        "destinationTerritory": "ES_BALEARIC",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "MAD59",
+        "treatment": "REDUCED",
+        "rate": 0.1,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
       }
