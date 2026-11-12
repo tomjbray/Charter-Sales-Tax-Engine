@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "app.js"
+      - "allocation.js"
       - "tax-engine.js"
       - "rule-tests.js"
       - "dynamic-inputs.js"
@@ -30,11 +31,13 @@ on:
       - "scripts/run-territory-tests.mjs"
       - "scripts/run-apportionment-tests.mjs"
       - "scripts/run-apportioned-calculation-tests.mjs"
+      - "scripts/run-allocation-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
     paths:
       - "app.js"
+      - "allocation.js"
       - "tax-engine.js"
       - "rule-tests.js"
       - "dynamic-inputs.js"
@@ -60,6 +63,7 @@ on:
       - "scripts/run-territory-tests.mjs"
       - "scripts/run-apportionment-tests.mjs"
       - "scripts/run-apportioned-calculation-tests.mjs"
+      - "scripts/run-allocation-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -95,6 +99,10 @@ jobs:
           node --check mad-apportionment.js
           node --check scripts/run-apportionment-tests.mjs
           node --check scripts/run-apportioned-calculation-tests.mjs
+          node --check allocation.js
 
       - name: Run regression tests
         run: npm test
+
+      - name: Run allocation tests
+        run: node scripts/run-allocation-tests.mjs
