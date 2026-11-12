@@ -1,0 +1,2368 @@
+{
+  "schemaVersion": "1.0",
+  "sourceTables": [
+    "tblCalculationContractTests",
+    "tblCalculationContractSectors"
+  ],
+  "testCount": 12,
+  "tests": [
+    {
+      "testId": "CT001",
+      "description": "BRU domestic passenger standard calculation",
+      "enabled": true,
+      "category": "STANDARD",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Simple single-sector baseline",
+      "request": {
+        "sellingEntity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "BE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "BRU",
+          "ANR"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 17,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 600,
+        "totalGrossValue": 10600,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "BRU",
+            "destinationAirport": "ANR",
+            "originCountry": "BE",
+            "destinationCountry": "BE",
+            "originTaxTerritory": "BE",
+            "destinationTaxTerritory": "BE",
+            "ruleRegion": "BE",
+            "ruleId": "BRU01",
+            "rulePriority": 300,
+            "treatment": "REDUCED",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.06,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 17,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 600,
+            "grossValue": 10600,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 600,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT002",
+      "description": "BRU multi-sector passenger allocation across EU and non-EU",
+      "enabled": true,
+      "category": "ALLOCATION",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects two-sector distance allocation",
+      "request": {
+        "sellingEntity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "BE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "BRU",
+          "CDG",
+          "LHR"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 324,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "BRU",
+            "destinationAirport": "CDG",
+            "originCountry": "BE",
+            "destinationCountry": "FR",
+            "originTaxTerritory": "BE",
+            "destinationTaxTerritory": "EU",
+            "ruleRegion": "BE",
+            "ruleId": "BRU06",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 136,
+            "allocationPercent": 0.42,
+            "allocatedNetValue": 4200,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 4200,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 4200,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 4200,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": null,
+            "originAirport": "CDG",
+            "destinationAirport": "LHR",
+            "originCountry": "FR",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "EU",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "BE",
+            "ruleId": "BRU26",
+            "rulePriority": 200,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 188,
+            "allocationPercent": 0.58,
+            "allocatedNetValue": 5800,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5800,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 5800,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5800,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT003",
+      "description": "FRA domestic German cargo standard calculation",
+      "enabled": true,
+      "category": "STANDARD",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "German domestic 19% cargo baseline",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "MUC"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 162,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1900,
+        "totalGrossValue": 11900,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "FRA",
+            "destinationAirport": "MUC",
+            "originCountry": "DE",
+            "destinationCountry": "DE",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "DE",
+            "ruleRegion": "DE",
+            "ruleId": "FRA10",
+            "rulePriority": 300,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.19,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 162,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 1900,
+            "grossValue": 11900,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 1900,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT004",
+      "description": "FRA cargo export with DirectExporter YES",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Positive DirectExporter boundary",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "LHR"
+        ],
+        "dynamicInputs": {
+          "DirectExporter": "YES"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 353,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "DirectExporter = YES",
+            "originAirport": "FRA",
+            "destinationAirport": "LHR",
+            "originCountry": "DE",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA12",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 353,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT005",
+      "description": "FRA cargo export with DirectExporter NO",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Negative DirectExporter boundary",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "LHR"
+        ],
+        "dynamicInputs": {
+          "DirectExporter": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 353,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1900,
+        "totalGrossValue": 11900,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "DirectExporter = NO",
+            "originAirport": "FRA",
+            "destinationAirport": "LHR",
+            "originCountry": "DE",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA13",
+            "rulePriority": 250,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.19,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 353,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 1900,
+            "grossValue": 11900,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 1900,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT006",
+      "description": "FRA mixed multi-sector cargo calculation",
+      "enabled": true,
+      "category": "ALLOCATION",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Existing observed FRA-LHR-MAD baseline",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "LHR",
+          "MAD"
+        ],
+        "dynamicInputs": {
+          "DirectExporter": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1025,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 654.74,
+        "totalGrossValue": 10654.74,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "DirectExporter = NO",
+            "originAirport": "FRA",
+            "destinationAirport": "LHR",
+            "originCountry": "DE",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA13",
+            "rulePriority": 250,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.19,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 353,
+            "allocationPercent": 0.3446,
+            "allocatedNetValue": 3446,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 3446,
+            "nonTaxableValue": 0,
+            "taxAmount": 654.74,
+            "grossValue": 4100.74,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 3446,
+              "taxableTax": 654.74,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": "DirectExporter = NO",
+            "originAirport": "LHR",
+            "destinationAirport": "MAD",
+            "originCountry": "GB",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "NON_EU",
+            "destinationTaxTerritory": "EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA19",
+            "rulePriority": 200,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 672,
+            "allocationPercent": 0.6554,
+            "allocatedNetValue": 6554,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 6554,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 6554,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 6554,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT007",
+      "description": "JNB one-way international passenger journey",
+      "enabled": true,
+      "category": "JOURNEY_CONTEXT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects HomeRoundTrip NO",
+      "request": {
+        "sellingEntity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ZA",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "ZAR",
+        "transactionDate": null,
+        "itinerary": [
+          "JNB",
+          "WDH"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 629,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "JNB",
+            "destinationAirport": "WDH",
+            "originCountry": "ZA",
+            "destinationCountry": "NA",
+            "originTaxTerritory": "ZA",
+            "destinationTaxTerritory": "NON_ZA",
+            "ruleRegion": "ZA",
+            "ruleId": "JNB05",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT008",
+      "description": "JNB home round trip for South African customer",
+      "enabled": true,
+      "category": "JOURNEY_CONTEXT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects HomeRoundTrip YES and JNB11 override",
+      "request": {
+        "sellingEntity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ZA",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "ZAR",
+        "transactionDate": null,
+        "itinerary": [
+          "JNB",
+          "WDH",
+          "JNB"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1258,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1500,
+        "totalGrossValue": 11500,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "JNB",
+            "destinationAirport": "WDH",
+            "originCountry": "ZA",
+            "destinationCountry": "NA",
+            "originTaxTerritory": "ZA",
+            "destinationTaxTerritory": "NON_ZA",
+            "ruleRegion": "ZA",
+            "ruleId": "JNB11",
+            "rulePriority": 500,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.15,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 750,
+            "grossValue": 5750,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 750,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "WDH",
+            "destinationAirport": "JNB",
+            "originCountry": "NA",
+            "destinationCountry": "ZA",
+            "originTaxTerritory": "NON_ZA",
+            "destinationTaxTerritory": "ZA",
+            "ruleRegion": "ZA",
+            "ruleId": "JNB11",
+            "rulePriority": 500,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.15,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 750,
+            "grossValue": 5750,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 750,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT009",
+      "description": "JNB home round trip for non-South-African customer",
+      "enabled": true,
+      "category": "JOURNEY_CONTEXT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects non-ZA customer override",
+      "request": {
+        "sellingEntity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "GB",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "ZAR",
+        "transactionDate": null,
+        "itinerary": [
+          "JNB",
+          "WDH",
+          "JNB"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1258,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "JNB",
+            "destinationAirport": "WDH",
+            "originCountry": "ZA",
+            "destinationCountry": "NA",
+            "originTaxTerritory": "ZA",
+            "destinationTaxTerritory": "NON_ZA",
+            "ruleRegion": "NON_ZA",
+            "ruleId": "JNB13",
+            "rulePriority": 500,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 5000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "WDH",
+            "destinationAirport": "JNB",
+            "originCountry": "NA",
+            "destinationCountry": "ZA",
+            "originTaxTerritory": "NON_ZA",
+            "destinationTaxTerritory": "ZA",
+            "ruleRegion": "NON_ZA",
+            "ruleId": "JNB13",
+            "rulePriority": 500,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 5000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT010",
+      "description": "MAD mainland to Balearic apportioned calculation",
+      "enabled": true,
+      "category": "APPORTIONED",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects MAD-PMI apportionment",
+      "request": {
+        "sellingEntity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ES",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "MAD",
+          "PMI"
+        ],
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 296,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 5147,
+        "totalNonTaxableValue": 4853,
+        "totalTaxAmount": 514.7,
+        "totalGrossValue": 10514.7,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "Medevac = NO",
+            "originAirport": "MAD",
+            "destinationAirport": "PMI",
+            "originCountry": "ES",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "ES_MAINLAND",
+            "destinationTaxTerritory": "ES_BALEARIC",
+            "ruleRegion": "ES",
+            "ruleId": "MAD37",
+            "rulePriority": 300,
+            "treatment": "REDUCED",
+            "calculationMethod": "APPORTIONED",
+            "taxName": "VAT",
+            "taxRate": 0.1,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 296,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 0.5147,
+            "nonTaxablePercent": 0.4853,
+            "taxableValue": 5147,
+            "nonTaxableValue": 4853,
+            "taxAmount": 514.7,
+            "grossValue": 10514.7,
+            "apportionment": {
+              "origin": "MAD",
+              "destination": "PMI",
+              "taxablePercent": 0.5147,
+              "nonTaxablePercent": 0.4853
+            },
+            "components": {
+              "count": 2,
+              "taxableValue": 5147,
+              "taxableTax": 514.7,
+              "nonTaxableValue": 4853,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT011",
+      "description": "MAD Canary domestic passenger calculation",
+      "enabled": true,
+      "category": "TERRITORY",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects Canary territory and IGIC label",
+      "request": {
+        "sellingEntity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ES",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "LPA",
+          "TFS"
+        ],
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 63,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 700,
+        "totalGrossValue": 10700,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "LPA",
+            "destinationAirport": "TFS",
+            "originCountry": "ES",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "ES_CANARY",
+            "destinationTaxTerritory": "ES_CANARY",
+            "ruleRegion": "ES",
+            "ruleId": "MAD45",
+            "rulePriority": 300,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "IGIC",
+            "taxRate": 0.07,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 63,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 700,
+            "grossValue": 10700,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 700,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT012",
+      "description": "MAD mainland to Balearic qualifying medevac",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects medevac override on apportioned route",
+      "request": {
+        "sellingEntity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ES",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "MAD",
+          "PMI"
+        ],
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 296,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 5147,
+        "totalNonTaxableValue": 4853,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "Medevac = YES",
+            "originAirport": "MAD",
+            "destinationAirport": "PMI",
+            "originCountry": "ES",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "ES_MAINLAND",
+            "destinationTaxTerritory": "ES_BALEARIC",
+            "ruleRegion": "ES",
+            "ruleId": "MAD71",
+            "rulePriority": 500,
+            "treatment": "EXEMPT",
+            "calculationMethod": "APPORTIONED",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 296,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 0.5147,
+            "nonTaxablePercent": 0.4853,
+            "taxableValue": 5147,
+            "nonTaxableValue": 4853,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": {
+              "origin": "MAD",
+              "destination": "PMI",
+              "taxablePercent": 0.5147,
+              "nonTaxablePercent": 0.4853
+            },
+            "components": {
+              "count": 2,
+              "taxableValue": 5147,
+              "taxableTax": 0,
+              "nonTaxableValue": 4853,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "testsById": {
+    "CT001": {
+      "testId": "CT001",
+      "description": "BRU domestic passenger standard calculation",
+      "enabled": true,
+      "category": "STANDARD",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Simple single-sector baseline",
+      "request": {
+        "sellingEntity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "BE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "BRU",
+          "ANR"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 17,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 600,
+        "totalGrossValue": 10600,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "BRU",
+            "destinationAirport": "ANR",
+            "originCountry": "BE",
+            "destinationCountry": "BE",
+            "originTaxTerritory": "BE",
+            "destinationTaxTerritory": "BE",
+            "ruleRegion": "BE",
+            "ruleId": "BRU01",
+            "rulePriority": 300,
+            "treatment": "REDUCED",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.06,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 17,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 600,
+            "grossValue": 10600,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 600,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT002": {
+      "testId": "CT002",
+      "description": "BRU multi-sector passenger allocation across EU and non-EU",
+      "enabled": true,
+      "category": "ALLOCATION",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects two-sector distance allocation",
+      "request": {
+        "sellingEntity": "BRU",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "BE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "BRU",
+          "CDG",
+          "LHR"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 324,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "BRU",
+            "destinationAirport": "CDG",
+            "originCountry": "BE",
+            "destinationCountry": "FR",
+            "originTaxTerritory": "BE",
+            "destinationTaxTerritory": "EU",
+            "ruleRegion": "BE",
+            "ruleId": "BRU06",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 136,
+            "allocationPercent": 0.42,
+            "allocatedNetValue": 4200,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 4200,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 4200,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 4200,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": null,
+            "originAirport": "CDG",
+            "destinationAirport": "LHR",
+            "originCountry": "FR",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "EU",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "BE",
+            "ruleId": "BRU26",
+            "rulePriority": 200,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 188,
+            "allocationPercent": 0.58,
+            "allocatedNetValue": 5800,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5800,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 5800,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5800,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT003": {
+      "testId": "CT003",
+      "description": "FRA domestic German cargo standard calculation",
+      "enabled": true,
+      "category": "STANDARD",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "German domestic 19% cargo baseline",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "MUC"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 162,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1900,
+        "totalGrossValue": 11900,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "FRA",
+            "destinationAirport": "MUC",
+            "originCountry": "DE",
+            "destinationCountry": "DE",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "DE",
+            "ruleRegion": "DE",
+            "ruleId": "FRA10",
+            "rulePriority": 300,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.19,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 162,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 1900,
+            "grossValue": 11900,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 1900,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT004": {
+      "testId": "CT004",
+      "description": "FRA cargo export with DirectExporter YES",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Positive DirectExporter boundary",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "LHR"
+        ],
+        "dynamicInputs": {
+          "DirectExporter": "YES"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 353,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "DirectExporter = YES",
+            "originAirport": "FRA",
+            "destinationAirport": "LHR",
+            "originCountry": "DE",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA12",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 353,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT005": {
+      "testId": "CT005",
+      "description": "FRA cargo export with DirectExporter NO",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Negative DirectExporter boundary",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "LHR"
+        ],
+        "dynamicInputs": {
+          "DirectExporter": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 353,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1900,
+        "totalGrossValue": 11900,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "DirectExporter = NO",
+            "originAirport": "FRA",
+            "destinationAirport": "LHR",
+            "originCountry": "DE",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA13",
+            "rulePriority": 250,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.19,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 353,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 1900,
+            "grossValue": 11900,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 1900,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT006": {
+      "testId": "CT006",
+      "description": "FRA mixed multi-sector cargo calculation",
+      "enabled": true,
+      "category": "ALLOCATION",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Existing observed FRA-LHR-MAD baseline",
+      "request": {
+        "sellingEntity": "FRA",
+        "charterType": "CARGO",
+        "customerType": "PRIVATE",
+        "customerCountry": "DE",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "FRA",
+          "LHR",
+          "MAD"
+        ],
+        "dynamicInputs": {
+          "DirectExporter": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1025,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 654.74,
+        "totalGrossValue": 10654.74,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "DirectExporter = NO",
+            "originAirport": "FRA",
+            "destinationAirport": "LHR",
+            "originCountry": "DE",
+            "destinationCountry": "GB",
+            "originTaxTerritory": "DE",
+            "destinationTaxTerritory": "NON_EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA13",
+            "rulePriority": 250,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.19,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 353,
+            "allocationPercent": 0.3446,
+            "allocatedNetValue": 3446,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 3446,
+            "nonTaxableValue": 0,
+            "taxAmount": 654.74,
+            "grossValue": 4100.74,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 3446,
+              "taxableTax": 654.74,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": "DirectExporter = NO",
+            "originAirport": "LHR",
+            "destinationAirport": "MAD",
+            "originCountry": "GB",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "NON_EU",
+            "destinationTaxTerritory": "EU",
+            "ruleRegion": "DE",
+            "ruleId": "FRA19",
+            "rulePriority": 200,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 672,
+            "allocationPercent": 0.6554,
+            "allocatedNetValue": 6554,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 6554,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 6554,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 6554,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT007": {
+      "testId": "CT007",
+      "description": "JNB one-way international passenger journey",
+      "enabled": true,
+      "category": "JOURNEY_CONTEXT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects HomeRoundTrip NO",
+      "request": {
+        "sellingEntity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ZA",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "ZAR",
+        "transactionDate": null,
+        "itinerary": [
+          "JNB",
+          "WDH"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 629,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "JNB",
+            "destinationAirport": "WDH",
+            "originCountry": "ZA",
+            "destinationCountry": "NA",
+            "originTaxTerritory": "ZA",
+            "destinationTaxTerritory": "NON_ZA",
+            "ruleRegion": "ZA",
+            "ruleId": "JNB05",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT008": {
+      "testId": "CT008",
+      "description": "JNB home round trip for South African customer",
+      "enabled": true,
+      "category": "JOURNEY_CONTEXT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects HomeRoundTrip YES and JNB11 override",
+      "request": {
+        "sellingEntity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ZA",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "ZAR",
+        "transactionDate": null,
+        "itinerary": [
+          "JNB",
+          "WDH",
+          "JNB"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1258,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1500,
+        "totalGrossValue": 11500,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "JNB",
+            "destinationAirport": "WDH",
+            "originCountry": "ZA",
+            "destinationCountry": "NA",
+            "originTaxTerritory": "ZA",
+            "destinationTaxTerritory": "NON_ZA",
+            "ruleRegion": "ZA",
+            "ruleId": "JNB11",
+            "rulePriority": 500,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.15,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 750,
+            "grossValue": 5750,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 750,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "WDH",
+            "destinationAirport": "JNB",
+            "originCountry": "NA",
+            "destinationCountry": "ZA",
+            "originTaxTerritory": "NON_ZA",
+            "destinationTaxTerritory": "ZA",
+            "ruleRegion": "ZA",
+            "ruleId": "JNB11",
+            "rulePriority": 500,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0.15,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 750,
+            "grossValue": 5750,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 750,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT009": {
+      "testId": "CT009",
+      "description": "JNB home round trip for non-South-African customer",
+      "enabled": true,
+      "category": "JOURNEY_CONTEXT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects non-ZA customer override",
+      "request": {
+        "sellingEntity": "JNB",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "GB",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "ZAR",
+        "transactionDate": null,
+        "itinerary": [
+          "JNB",
+          "WDH",
+          "JNB"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "YES"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1258,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "JNB",
+            "destinationAirport": "WDH",
+            "originCountry": "ZA",
+            "destinationCountry": "NA",
+            "originTaxTerritory": "ZA",
+            "destinationTaxTerritory": "NON_ZA",
+            "ruleRegion": "NON_ZA",
+            "ruleId": "JNB13",
+            "rulePriority": 500,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 5000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          },
+          {
+            "sectorNumber": 2,
+            "testVariant": "HomeRoundTrip = YES",
+            "originAirport": "WDH",
+            "destinationAirport": "JNB",
+            "originCountry": "NA",
+            "destinationCountry": "ZA",
+            "originTaxTerritory": "NON_ZA",
+            "destinationTaxTerritory": "ZA",
+            "ruleRegion": "NON_ZA",
+            "ruleId": "JNB13",
+            "rulePriority": 500,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 629,
+            "allocationPercent": 0.5,
+            "allocatedNetValue": 5000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 5000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 5000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 5000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT010": {
+      "testId": "CT010",
+      "description": "MAD mainland to Balearic apportioned calculation",
+      "enabled": true,
+      "category": "APPORTIONED",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects MAD-PMI apportionment",
+      "request": {
+        "sellingEntity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ES",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "MAD",
+          "PMI"
+        ],
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 296,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 5147,
+        "totalNonTaxableValue": 4853,
+        "totalTaxAmount": 514.7,
+        "totalGrossValue": 10514.7,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "Medevac = NO",
+            "originAirport": "MAD",
+            "destinationAirport": "PMI",
+            "originCountry": "ES",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "ES_MAINLAND",
+            "destinationTaxTerritory": "ES_BALEARIC",
+            "ruleRegion": "ES",
+            "ruleId": "MAD37",
+            "rulePriority": 300,
+            "treatment": "REDUCED",
+            "calculationMethod": "APPORTIONED",
+            "taxName": "VAT",
+            "taxRate": 0.1,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 296,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 0.5147,
+            "nonTaxablePercent": 0.4853,
+            "taxableValue": 5147,
+            "nonTaxableValue": 4853,
+            "taxAmount": 514.7,
+            "grossValue": 10514.7,
+            "apportionment": {
+              "origin": "MAD",
+              "destination": "PMI",
+              "taxablePercent": 0.5147,
+              "nonTaxablePercent": 0.4853
+            },
+            "components": {
+              "count": 2,
+              "taxableValue": 5147,
+              "taxableTax": 514.7,
+              "nonTaxableValue": 4853,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT011": {
+      "testId": "CT011",
+      "description": "MAD Canary domestic passenger calculation",
+      "enabled": true,
+      "category": "TERRITORY",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects Canary territory and IGIC label",
+      "request": {
+        "sellingEntity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ES",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "LPA",
+          "TFS"
+        ],
+        "dynamicInputs": {
+          "QualifyingMedevac": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 63,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 700,
+        "totalGrossValue": 10700,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": null,
+            "originAirport": "LPA",
+            "destinationAirport": "TFS",
+            "originCountry": "ES",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "ES_CANARY",
+            "destinationTaxTerritory": "ES_CANARY",
+            "ruleRegion": "ES",
+            "ruleId": "MAD45",
+            "rulePriority": 300,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "IGIC",
+            "taxRate": 0.07,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 63,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 700,
+            "grossValue": 10700,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 700,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT012": {
+      "testId": "CT012",
+      "description": "MAD mainland to Balearic qualifying medevac",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-12"
+      },
+      "notes": "Protects medevac override on apportioned route",
+      "request": {
+        "sellingEntity": "MAD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "ES",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "EUR",
+        "transactionDate": null,
+        "itinerary": [
+          "MAD",
+          "PMI"
+        ],
+        "dynamicInputs": {
+          "QualifyingMedevac": "YES"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 296,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 5147,
+        "totalNonTaxableValue": 4853,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "Medevac = YES",
+            "originAirport": "MAD",
+            "destinationAirport": "PMI",
+            "originCountry": "ES",
+            "destinationCountry": "ES",
+            "originTaxTerritory": "ES_MAINLAND",
+            "destinationTaxTerritory": "ES_BALEARIC",
+            "ruleRegion": "ES",
+            "ruleId": "MAD71",
+            "rulePriority": 500,
+            "treatment": "EXEMPT",
+            "calculationMethod": "APPORTIONED",
+            "taxName": "VAT",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 296,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 0.5147,
+            "nonTaxablePercent": 0.4853,
+            "taxableValue": 5147,
+            "nonTaxableValue": 4853,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": {
+              "origin": "MAD",
+              "destination": "PMI",
+              "taxablePercent": 0.5147,
+              "nonTaxablePercent": 0.4853
+            },
+            "components": {
+              "count": 2,
+              "taxableValue": 5147,
+              "taxableTax": 0,
+              "nonTaxableValue": 4853,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    }
+  }
+}
