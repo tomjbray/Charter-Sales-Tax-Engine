@@ -6,6 +6,7 @@ on:
     paths:
       - "app.js"
       - "allocation.js"
+      - "calculation-engine.js"
       - "tax-engine.js"
       - "rule-tests.js"
       - "dynamic-inputs.js"
@@ -24,6 +25,7 @@ on:
       - "mad_apportionment.json"
       - "apportionment_tests.json"
       - "apportioned_calculation_tests.json"
+      - "calculation_contract_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
@@ -32,12 +34,14 @@ on:
       - "scripts/run-apportionment-tests.mjs"
       - "scripts/run-apportioned-calculation-tests.mjs"
       - "scripts/run-allocation-tests.mjs"
+      - "scripts/run-calculation-contract-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
     paths:
       - "app.js"
       - "allocation.js"
+      - "calculation-engine.js"
       - "tax-engine.js"
       - "rule-tests.js"
       - "dynamic-inputs.js"
@@ -56,6 +60,7 @@ on:
       - "mad_apportionment.json"
       - "apportionment_tests.json"
       - "apportioned_calculation_tests.json"
+      - "calculation_contract_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
@@ -64,6 +69,7 @@ on:
       - "scripts/run-apportionment-tests.mjs"
       - "scripts/run-apportioned-calculation-tests.mjs"
       - "scripts/run-allocation-tests.mjs"
+      - "scripts/run-calculation-contract-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -89,6 +95,8 @@ jobs:
           node --check tax-engine.js
           node --check rule-tests.js
           node --check app.js
+          node --check allocation.js
+          node --check calculation-engine.js
           node --check dynamic-inputs.js
           node --check journey-context.js
           node --check territory-resolution.js
@@ -99,10 +107,14 @@ jobs:
           node --check mad-apportionment.js
           node --check scripts/run-apportionment-tests.mjs
           node --check scripts/run-apportioned-calculation-tests.mjs
-          node --check allocation.js
+          node --check scripts/run-allocation-tests.mjs
+          node --check scripts/run-calculation-contract-tests.mjs
 
       - name: Run regression tests
         run: npm test
 
       - name: Run allocation tests
         run: node scripts/run-allocation-tests.mjs
+
+      - name: Run calculation contract tests
+        run: node scripts/run-calculation-contract-tests.mjs  
