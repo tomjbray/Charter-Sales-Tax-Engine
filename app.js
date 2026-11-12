@@ -23,9 +23,14 @@ import {
     getMadApportionment
 } from "./mad-apportionment.js";
 
+/*
+ * B3 cleanup candidate.
+ * Calculation allocation is now called by calculation-engine.js.
+ *
 import {
     calculateItineraryAllocation
 } from "./allocation.js";
+*/
 
 import {
     calculate
@@ -983,7 +988,13 @@ function getCurrentTaxName() {
     );
 
 }
-
+/*
+ * ============================================================
+ * B3 CLEANUP CANDIDATE - OLD TAX-NAME HELPER
+ *
+ * Tax-name selection now lives in calculation-engine.js.
+ * Retained temporarily for easy rollback.
+ * ============================================================
 function getTaxNameForTransaction(
     transaction
 ) {
@@ -999,6 +1010,7 @@ function getTaxNameForTransaction(
 
     return getCurrentTaxName();
 }
+*/
 
 function updateTaxLabels() {
 
@@ -2454,13 +2466,23 @@ function syncVatRegisteredState() {
     }
 }
 
+
+/*
+ * ============================================================
+ * B3 CLEANUP CANDIDATE - OLD BROWSER TRANSACTION BUILDER
+ *
+ * Transaction construction now lives in calculation-engine.js.
+ * Retained temporarily for easy rollback.
+ * ============================================================
+
+*/
 /**
  * Builds the normalised VAT matching transaction and selling-entity home country for one sector.
  *
  * @param {Object} sector - Itinerary sector containing origin and destination airports.
  * @returns {{{transaction: Object, homeCountry: string|null}}}
  */
-
+/*
 function buildVatTransaction(
     sector,
     derivedInputs = {}
@@ -2520,7 +2542,7 @@ destinationTerritory:
         homeCountry
     };
 }
-
+*/
 /**
  * Aggregates sector calculations into itinerary totals and identifies any sectors requiring review.
  *
