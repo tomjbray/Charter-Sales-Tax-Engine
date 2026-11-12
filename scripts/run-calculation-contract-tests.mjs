@@ -429,10 +429,15 @@ function compareSummary(
         expected.status
     );
 
+    /*
+     * The calculation engine retains full Haversine precision because
+     * allocation depends on it. The approved B1 contract records the
+     * whole-nautical-mile value displayed by the current browser.
+     */
     assertClose(
         testId,
         "total distance",
-        actual.totalDistanceNm,
+        Math.round(actual.totalDistanceNm),
         expected.totalDistanceNm,
         tolerance.distanceNm
     );
@@ -835,10 +840,14 @@ function compareSector(
         expected.reviewReason
     );
 
+    /*
+     * Compare the whole-NM browser display value while leaving the
+     * engine's full-precision distance unchanged for allocation.
+     */
     assertClose(
         testId,
         `${prefix} distance`,
-        actual.distanceNm,
+        Math.round(actual.distanceNm),
         expected.distanceNm,
         tolerance.distanceNm
     );
