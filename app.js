@@ -27,6 +27,10 @@ import {
     calculateItineraryAllocation
 } from "./allocation.js";
 
+import {
+    calculate
+} from "./calculation-engine.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -2579,6 +2583,13 @@ function renderVatSummary(results) {
  */
 
 function runVatTests() {
+    /*
+     * Preserve the existing application-level readiness checks.
+     *
+     * These belong to the web application because they determine
+     * whether the page currently has enough loaded data and user
+     * input to request a calculation.
+     */
     if (
         !taxDataValidationPassed ||
         itinerary.length === 0 ||
@@ -2595,322 +2606,208 @@ function runVatTests() {
         return [];
     }
 
+
     /*
      * ============================================================
-     * B2 - NEW PURE ALLOCATION MODULE
-     *
-     * allocation.js now owns:
-     * - Haversine distance calculation
-     * - total itinerary distance
-     * - sector allocation percentages
-     * - allocated net charter values
-     *
-     * The values returned here should be identical to those
-     * previously calculated directly in app.js.
+     * B3b - BUILD THE ENGINE REQUEST
      * ============================================================
+     *
+     * The web application now packages its current user inputs into
+     * one calculation request. It no longer performs the tax
+     * calculation itself.
      */
 
-    const {
-        sectorDistances,
-        totalDistanceNm,
-        distancePercentages,
-        allocatedNetValues
-    } = calculateItineraryAllocation(
-        itinerary,
-        charterValue
-    );
+    const selectedEntityRecord =
+        sellingEntitiesData
+            ?.data
+            ?.[selectedEntity] ||
+        null;
+
+    /*
+     * Currency is currently descriptive rather than a tax-matching
+     * input. Use the entity currency where it is available.
+     *
+     * The fallback preserves calculation availability if an older
+     * selling-entity record has no currency property.
+     */
+    const calculationCurrency =
+        String(
+            selectedEntityRecord?.currency ||
+            selectedEntityRecord?.Currency ||
+            "N/A"
+        )
+            .trim()
+            .toUpperCase();
 
 
-    const entityHomeCountry =
-        getEntityCountry(selectedEntity);
+    const calculationRequest = {
+        sellingEntity:
+            selectedEntity,
 
-    const journeyDerivedInputs =
-        getDerivedJourneyInputs(
-            itinerary,
-            entityHomeCountry
-        );
+        charterType:
+            selectedCharterType,
 
-    console.log(
-        "Derived journey inputs:",
-        journeyDerivedInputs
-    );
+        customerType:
+            selectedCustomerType,
 
+        customerCountry:
+            selectedCustomerCountry,
 
-    const results = itinerary.map((sector, index) => {
-        const {
-            transaction,
-            homeCountry
-        } = buildVatTransaction(
-            sector,
-            journeyDerivedInputs
-        );
+        vatRegistered:
+            selectedVatRegistered,
 
-        const madApportionment =
-            selectedEntity === "MAD"
-                ? getMadApportionment(
-                    sector.origin,
-                    sector.destination,
-                    madApportionmentData
-                )
-                : null;
+        charterValue,
 
-
-        const {
-            matchedRule,
-            matchError
-        } = findMatchingRule(
-            transaction,
-            vatRulesData.rules
-        );
-
+        currency:
+            calculationCurrency,
 
         /*
-         * ========================================================
-         * B2 - SECTOR ALLOCATION
-         * ========================================================
+         * Effective-date matching is not active yet.
+         * Keep this null until that later controlled enhancement.
          */
+        transactionDate:
+            null,
 
-        const distancePercentage =
-            distancePercentages[index];
-
-         /*
-         * NEW:
+        /*
+         * Dynamic inputs already use controlled keys such as:
          *
-         * allocatedNetValues was calculated by allocation.js
-         * alongside the distance percentages.
+         * DirectExporter
+         * QualifyingMedevac
          */
-        const allocatedNetValue =
-            allocatedNetValues[index];
+        dynamicInputs: {
+            ...dynamicInputValues
+        },
 
+        /*
+         * The current browser itinerary already contains the complete
+         * airport objects required by calculation-engine.js:
+         *
+         * iata
+         * country
+         * lat
+         * lon
+         */
+        itinerary:
+            itinerary.map(
+                (
+                    sector,
+                    index
+                ) => ({
+                    ...sector,
 
-        const calculationCheck =
-            evaluateVatCalculationStatus(
-                matchedRule,
-                matchError
-            );
-
-        const calculationMethod =
-            String(
-                matchedRule?.calculationMethod || ""
+                    sectorNumber:
+                        sector.sectorNumber ||
+                        index + 1
+                })
             )
-                .trim()
-                .toUpperCase();
-
-        let taxablePercent = null;
-        let nonTaxablePercent = null;
-        let apportionmentError = null;
+    };
 
 
-        if (calculationCheck.canCalculate) {
-            if (
-                calculationMethod ===
-                "APPORTIONED"
-            ) {
-                if (!madApportionment) {
-                    apportionmentError =
-                        "No apportionment configured for " +
-                        `${sector.origin.iata}-${sector.destination.iata}.`;
-                } else {
-                    taxablePercent =
-                        Number(
-                            madApportionment
-                                .taxablePercent
-                        );
+    /*
+     * ============================================================
+     * B3b - BUILD THE REFERENCE-DATA BUNDLE
+     * ============================================================
+     *
+     * These are the same controlled JSON documents already loaded
+     * by the browser.
+     */
 
-                    nonTaxablePercent =
-                        Number(
-                            madApportionment
-                                .nonTaxablePercent
-                        );
-                }
-            } else {
-                taxablePercent =
-                    Number(
-                        matchedRule.taxablePercent
-                    );
+    const referenceData = {
+        countries:
+            countriesData,
 
-                nonTaxablePercent =
-                    Number(
-                        (
-                            1 -
-                            taxablePercent
-                        ).toFixed(10)
-                    );
-            }
-        }
+        sellingEntities:
+            sellingEntitiesData,
+
+        taxTerritories:
+            taxTerritoriesData,
+
+        vatRules:
+            vatRulesData,
+
+        madApportionment:
+            madApportionmentData
+    };
 
 
-        const finalReviewReasons = [
-            ...calculationCheck.reasons
-        ];
+    /*
+     * ============================================================
+     * B3b - CALL THE PURE CALCULATION ENGINE
+     * ============================================================
+     *
+     * All of the following now happen inside calculation-engine.js:
+     *
+     * - distance and value allocation;
+     * - journey-derived inputs;
+     * - transaction construction;
+     * - territory resolution;
+     * - rule matching;
+     * - apportionment;
+     * - taxable / non-taxable calculation;
+     * - VAT calculation;
+     * - component construction;
+     * - calculation summary.
+     */
 
-        if (apportionmentError) {
-            finalReviewReasons.push(
-                apportionmentError
+    let engineResult;
+
+    try {
+        engineResult =
+            calculate(
+                calculationRequest,
+                referenceData
             );
-        }
+    } catch (error) {
+        console.error(
+            "Calculation engine failed:",
+            error
+        );
+
+        clearVatSectorResults();
+        resetVatSummary();
+
+        return [];
+    }
 
 
-        const finalCalculationStatus =
-            finalReviewReasons.length === 0
-                ? "Complete"
-                : "Review Required";
+    /*
+     * ============================================================
+     * B3b - TEMPORARY WEB-APPLICATION ADAPTER
+     * ============================================================
+     *
+     * The existing render functions expect an array of sector
+     * results rather than the complete calculation-engine result.
+     *
+     * calculation-engine.js already returns the same sector result
+     * properties used by the renderers.
+     *
+     * homeCountry previously came directly from buildVatTransaction().
+     * The new engine returns it once in result.context, so add it to
+     * each sector result temporarily to preserve renderer compatibility.
+     */
+
+    const results =
+        engineResult.sectors.map(
+            sectorResult => ({
+                ...sectorResult,
+
+                homeCountry:
+                    engineResult
+                        .context
+                        .homeCountry
+            })
+        );
 
 
-        const canCalculateFinal =
-            finalCalculationStatus ===
-                "Complete" &&
-            Number.isFinite(
-                taxablePercent
-            ) &&
-            Number.isFinite(
-                nonTaxablePercent
-            );
+    console.log(
+        "Calculation engine result:",
+        engineResult
+    );
 
 
-        const taxableValue =
-            canCalculateFinal
-                ? allocatedNetValue *
-                    taxablePercent
-                : null;
-
-
-        const nonTaxableValue =
-            canCalculateFinal
-                ? allocatedNetValue *
-                    nonTaxablePercent
-                : null;
-
-
-        const vatAmount =
-            canCalculateFinal
-                ? taxableValue *
-                    Number(
-                        matchedRule.rate
-                    )
-                : null;
-
-
-        const grossValue =
-            canCalculateFinal
-                ? allocatedNetValue +
-                    vatAmount
-                : null;
-
-
-        const componentModel =
-            matchedRule?.ruleComponents ||
-            (
-                calculationMethod ===
-                    "APPORTIONED"
-                    ? "APPORTIONED"
-                    : "STANDARD"
-            );
-
-
-        const taxComponents = [];
-
-
-        if (canCalculateFinal) {
-            taxComponents.push({
-                componentType: "TAXABLE",
-                treatment:
-                    matchedRule.treatment,
-                percent:
-                    taxablePercent,
-                netAmount:
-                    taxableValue,
-                rate:
-                    Number(
-                        matchedRule.rate
-                    ),
-                vatAmount,
-                legalReference:
-                    matchedRule
-                        .legalReference ||
-                    "-"
-            });
-
-
-            if (
-                calculationMethod ===
-                    "APPORTIONED" &&
-                nonTaxablePercent > 0
-            ) {
-                taxComponents.push({
-                    componentType:
-                        "NON_TAXABLE",
-
-                    treatment:
-                        "ZERO",
-
-                    percent:
-                        nonTaxablePercent,
-
-                    netAmount:
-                        nonTaxableValue,
-
-                    rate:
-                        0,
-
-                    vatAmount:
-                        0,
-
-                    legalReference:
-                        matchedRule
-                            .legalReference ||
-                        "-",
-
-                    basis:
-                        "Portion of the route outside the Spanish VAT territory under the Mainland/Balearic apportionment."
-                });
-            }
-        }
-
-
-        return {
-            sector,
-            transaction,
-            homeCountry,
-            matchedRule,
-
-            taxName:
-                getTaxNameForTransaction(
-                    transaction
-                ),
-
-            madApportionment,
-            componentModel,
-            taxComponents,
-
-            /*
-             * These values now ultimately originate
-             * from allocation.js.
-             */
-            distanceNm:
-                sectorDistances[index],
-
-            distancePercentage,
-
-            totalDistanceNm,
-
-            allocatedNetValue,
-
-            taxablePercent,
-            nonTaxablePercent,
-            taxableValue,
-            nonTaxableValue,
-            vatAmount,
-            grossValue,
-
-            calculationStatus:
-                finalCalculationStatus,
-
-            reviewReasons:
-                finalReviewReasons
-        };
-    });
-
+    /*
+     * Existing display flow remains unchanged.
+     */
 
     latestVatResults = results;
 
