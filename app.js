@@ -2597,69 +2597,6 @@ function runVatTests() {
 
     /*
      * ============================================================
-     * B2 - OLD DISTANCE / ALLOCATION LOGIC
-     *
-     * This logic has moved unchanged into allocation.js.
-     * Leave it commented out initially so the change is easy to
-     * compare and, if necessary, reverse.
-     * ============================================================
-     */
-
-    /*
-    const sectorDistances = itinerary.map(sector => {
-        return haversineNm(
-            sector.origin.lat,
-            sector.origin.lon,
-            sector.destination.lat,
-            sector.destination.lon
-        );
-    });
-
-    const totalDistanceNm = sectorDistances.reduce(
-        (total, distance) => total + distance,
-        0
-    );
-
-    const distancePercentages = [];
-    let allocatedPercentage = 0;
-
-    sectorDistances.forEach((distanceNm, index) => {
-        const isFinalSector =
-            index === sectorDistances.length - 1;
-
-        let distancePercentage;
-
-        if (isFinalSector) {
-            distancePercentage = Math.max(
-                0,
-                Number(
-                    (100 - allocatedPercentage).toFixed(2)
-                )
-            );
-        } else {
-            distancePercentage =
-                totalDistanceNm > 0
-                    ? Number(
-                        (
-                            distanceNm /
-                            totalDistanceNm *
-                            100
-                        ).toFixed(2)
-                    )
-                    : 0;
-
-            allocatedPercentage +=
-                distancePercentage;
-        }
-
-        distancePercentages.push(
-            distancePercentage
-        );
-    });
-    */
-
-    /*
-     * ============================================================
      * B2 - NEW PURE ALLOCATION MODULE
      *
      * allocation.js now owns:
@@ -2684,13 +2621,6 @@ function runVatTests() {
     );
 
 
-    /*
-     * Derive journey-level rule inputs once from the complete itinerary.
-     *
-     * Example for JNB:
-     * JNB -> WDH        = HomeRoundTrip NO
-     * JNB -> WDH -> JNB = HomeRoundTrip YES
-     */
     const entityHomeCountry =
         getEntityCountry(selectedEntity);
 
@@ -2743,14 +2673,7 @@ function runVatTests() {
         const distancePercentage =
             distancePercentages[index];
 
-        /*
-         * OLD app.js calculation:
-         *
-         * const allocatedNetValue =
-         *     charterValue * (distancePercentage / 100);
-         */
-
-        /*
+         /*
          * NEW:
          *
          * allocatedNetValues was calculated by allocation.js
@@ -3983,34 +3906,9 @@ function splitAtAntimeridian(points) {
   return segments;
 }
 
-// ═══════════════════════════════════════════════════════════
-//  10. DISTANCE CALCULATION
-// ═══════════════════════════════════════════════════════════
-
-/**
- * Calculates great-circle distance between coordinates in nautical miles using the haversine formula.
- *
- * @param {number} lat1 - Start latitude.
- * @param {number} lon1 - Start longitude.
- * @param {number} lat2 - End latitude.
- * @param {number} lon2 - End longitude.
- * @returns {number}
- */
-
-function haversineNm(lat1, lon1, lat2, lon2) {
-  const R = 3440.065;   // Earth radius in nautical miles
-  const toRad = d => d * Math.PI / 180;
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
-  const a = Math.sin(dLat/2)**2 +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
-  return R * 2 * Math.asin(Math.sqrt(a));
-}
-
-
 
 // ═══════════════════════════════════════════════════════════
-//  11. GENERAL UI HELPERS
+//  10. GENERAL UI HELPERS
 // ═══════════════════════════════════════════════════════════
 
 
@@ -4057,7 +3955,7 @@ function updateUI() {
 
 
 // ═══════════════════════════════════════════════════════════
-//  12. EVENT HANDLERS
+//  11. EVENT HANDLERS
 //  DOM listeners below translate user actions into state changes and call the
 //  smallest relevant refresh function. They are registered before loadData().
 // ═══════════════════════════════════════════════════════════
@@ -4083,7 +3981,7 @@ document.getElementById('exportPdfBtn')
 
 
 // ═══════════════════════════════════════════════════════════
-//  13. APPLICATION STARTUP
+//  12. APPLICATION STARTUP
 // ═══════════════════════════════════════════════════════════
 
 // Start with neutral results, then load and validate configuration.
