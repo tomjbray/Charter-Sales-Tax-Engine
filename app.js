@@ -23,6 +23,10 @@ import {
     getMadApportionment
 } from "./mad-apportionment.js";
 
+import {
+    calculateItineraryAllocation
+} from "./allocation.js";
+
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
 //
@@ -2591,6 +2595,17 @@ function runVatTests() {
         return [];
     }
 
+    /*
+     * ============================================================
+     * B2 - OLD DISTANCE / ALLOCATION LOGIC
+     *
+     * This logic has moved unchanged into allocation.js.
+     * Leave it commented out initially so the change is easy to
+     * compare and, if necessary, reverse.
+     * ============================================================
+     */
+
+    /*
     const sectorDistances = itinerary.map(sector => {
         return haversineNm(
             sector.origin.lat,
@@ -2608,79 +2623,153 @@ function runVatTests() {
     const distancePercentages = [];
     let allocatedPercentage = 0;
 
-   sectorDistances.forEach((distanceNm, index) => {
-    const isFinalSector = index === sectorDistances.length - 1;
-    let distancePercentage;
+    sectorDistances.forEach((distanceNm, index) => {
+        const isFinalSector =
+            index === sectorDistances.length - 1;
 
-    if (isFinalSector) {
-        distancePercentage = Math.max(
-            0,
-            Number((100 - allocatedPercentage).toFixed(2))
+        let distancePercentage;
+
+        if (isFinalSector) {
+            distancePercentage = Math.max(
+                0,
+                Number(
+                    (100 - allocatedPercentage).toFixed(2)
+                )
+            );
+        } else {
+            distancePercentage =
+                totalDistanceNm > 0
+                    ? Number(
+                        (
+                            distanceNm /
+                            totalDistanceNm *
+                            100
+                        ).toFixed(2)
+                    )
+                    : 0;
+
+            allocatedPercentage +=
+                distancePercentage;
+        }
+
+        distancePercentages.push(
+            distancePercentage
         );
-    } else {
-        distancePercentage = totalDistanceNm > 0
-            ? Number((distanceNm / totalDistanceNm * 100).toFixed(2))
-            : 0;
+    });
+    */
 
-        allocatedPercentage += distancePercentage;
-    }
+    /*
+     * ============================================================
+     * B2 - NEW PURE ALLOCATION MODULE
+     *
+     * allocation.js now owns:
+     * - Haversine distance calculation
+     * - total itinerary distance
+     * - sector allocation percentages
+     * - allocated net charter values
+     *
+     * The values returned here should be identical to those
+     * previously calculated directly in app.js.
+     * ============================================================
+     */
 
-    distancePercentages.push(distancePercentage);
-});
-
-/*
- * Derive journey-level rule inputs once from the complete itinerary.
- *
- * Example for JNB:
- * JNB -> WDH       = HomeRoundTrip NO
- * JNB -> WDH -> JNB = HomeRoundTrip YES
- */
-const entityHomeCountry =
-    getEntityCountry(selectedEntity);
-
-const journeyDerivedInputs =
-    getDerivedJourneyInputs(
+    const {
+        sectorDistances,
+        totalDistanceNm,
+        distancePercentages,
+        allocatedNetValues
+    } = calculateItineraryAllocation(
         itinerary,
-        entityHomeCountry
+        charterValue
     );
 
-console.log(
-    "Derived journey inputs:",
-    journeyDerivedInputs
-);
 
-const results = itinerary.map((sector, index) => {
+    /*
+     * Derive journey-level rule inputs once from the complete itinerary.
+     *
+     * Example for JNB:
+     * JNB -> WDH        = HomeRoundTrip NO
+     * JNB -> WDH -> JNB = HomeRoundTrip YES
+     */
+    const entityHomeCountry =
+        getEntityCountry(selectedEntity);
+
+    const journeyDerivedInputs =
+        getDerivedJourneyInputs(
+            itinerary,
+            entityHomeCountry
+        );
+
+    console.log(
+        "Derived journey inputs:",
+        journeyDerivedInputs
+    );
+
+
+    const results = itinerary.map((sector, index) => {
         const {
-    transaction,
-    homeCountry
-} = buildVatTransaction(
-    sector,
-    journeyDerivedInputs
-);
+            transaction,
+            homeCountry
+        } = buildVatTransaction(
+            sector,
+            journeyDerivedInputs
+        );
 
-    const madApportionment =
-    selectedEntity === "MAD"
-        ? getMadApportionment(
-            sector.origin,
-            sector.destination,
-            madApportionmentData
-        )
-        : null;
+        const madApportionment =
+            selectedEntity === "MAD"
+                ? getMadApportionment(
+                    sector.origin,
+                    sector.destination,
+                    madApportionmentData
+                )
+                : null;
 
-      
-        const { matchedRule, matchError } = findMatchingRule(
+
+        const {
+            matchedRule,
+            matchError
+        } = findMatchingRule(
             transaction,
             vatRulesData.rules
         );
-        const distancePercentage = distancePercentages[index];
+
+
+        /*
+         * ========================================================
+         * B2 - SECTOR ALLOCATION
+         * ========================================================
+         */
+
+        const distancePercentage =
+            distancePercentages[index];
+
+        /*
+         * OLD app.js calculation:
+         *
+         * const allocatedNetValue =
+         *     charterValue * (distancePercentage / 100);
+         */
+
+        /*
+         * NEW:
+         *
+         * allocatedNetValues was calculated by allocation.js
+         * alongside the distance percentages.
+         */
         const allocatedNetValue =
-            charterValue * (distancePercentage / 100);
+            allocatedNetValues[index];
+
 
         const calculationCheck =
-            evaluateVatCalculationStatus(matchedRule, matchError);
+            evaluateVatCalculationStatus(
+                matchedRule,
+                matchError
+            );
 
         const calculationMethod =
-            String(matchedRule?.calculationMethod || "")
+            String(
+                matchedRule?.calculationMethod || ""
+            )
                 .trim()
                 .toUpperCase();
 
@@ -2688,130 +2777,225 @@ const results = itinerary.map((sector, index) => {
         let nonTaxablePercent = null;
         let apportionmentError = null;
 
+
         if (calculationCheck.canCalculate) {
-            if (calculationMethod === "APPORTIONED") {
+            if (
+                calculationMethod ===
+                "APPORTIONED"
+            ) {
                 if (!madApportionment) {
                     apportionmentError =
                         "No apportionment configured for " +
                         `${sector.origin.iata}-${sector.destination.iata}.`;
                 } else {
                     taxablePercent =
-                        Number(madApportionment.taxablePercent);
+                        Number(
+                            madApportionment
+                                .taxablePercent
+                        );
+
                     nonTaxablePercent =
-                        Number(madApportionment.nonTaxablePercent);
+                        Number(
+                            madApportionment
+                                .nonTaxablePercent
+                        );
                 }
             } else {
                 taxablePercent =
-                    Number(matchedRule.taxablePercent);
+                    Number(
+                        matchedRule.taxablePercent
+                    );
+
                 nonTaxablePercent =
-                    Number((1 - taxablePercent).toFixed(10));
+                    Number(
+                        (
+                            1 -
+                            taxablePercent
+                        ).toFixed(10)
+                    );
             }
         }
+
 
         const finalReviewReasons = [
             ...calculationCheck.reasons
         ];
 
         if (apportionmentError) {
-            finalReviewReasons.push(apportionmentError);
+            finalReviewReasons.push(
+                apportionmentError
+            );
         }
+
 
         const finalCalculationStatus =
             finalReviewReasons.length === 0
                 ? "Complete"
                 : "Review Required";
 
+
         const canCalculateFinal =
-            finalCalculationStatus === "Complete" &&
-            Number.isFinite(taxablePercent) &&
-            Number.isFinite(nonTaxablePercent);
+            finalCalculationStatus ===
+                "Complete" &&
+            Number.isFinite(
+                taxablePercent
+            ) &&
+            Number.isFinite(
+                nonTaxablePercent
+            );
 
-        const taxableValue = canCalculateFinal
-            ? allocatedNetValue * taxablePercent
-            : null;
 
-        const nonTaxableValue = canCalculateFinal
-            ? allocatedNetValue * nonTaxablePercent
-            : null;
+        const taxableValue =
+            canCalculateFinal
+                ? allocatedNetValue *
+                    taxablePercent
+                : null;
 
-        const vatAmount = canCalculateFinal
-            ? taxableValue * Number(matchedRule.rate)
-            : null;
 
-        const grossValue = canCalculateFinal
-            ? allocatedNetValue + vatAmount
-            : null;
+        const nonTaxableValue =
+            canCalculateFinal
+                ? allocatedNetValue *
+                    nonTaxablePercent
+                : null;
+
+
+        const vatAmount =
+            canCalculateFinal
+                ? taxableValue *
+                    Number(
+                        matchedRule.rate
+                    )
+                : null;
+
+
+        const grossValue =
+            canCalculateFinal
+                ? allocatedNetValue +
+                    vatAmount
+                : null;
+
 
         const componentModel =
             matchedRule?.ruleComponents ||
-            (calculationMethod === "APPORTIONED"
-                ? "APPORTIONED"
-                : "STANDARD");
+            (
+                calculationMethod ===
+                    "APPORTIONED"
+                    ? "APPORTIONED"
+                    : "STANDARD"
+            );
+
 
         const taxComponents = [];
+
 
         if (canCalculateFinal) {
             taxComponents.push({
                 componentType: "TAXABLE",
-                treatment: matchedRule.treatment,
-                percent: taxablePercent,
-                netAmount: taxableValue,
-                rate: Number(matchedRule.rate),
+                treatment:
+                    matchedRule.treatment,
+                percent:
+                    taxablePercent,
+                netAmount:
+                    taxableValue,
+                rate:
+                    Number(
+                        matchedRule.rate
+                    ),
                 vatAmount,
                 legalReference:
-                    matchedRule.legalReference || "-"
+                    matchedRule
+                        .legalReference ||
+                    "-"
             });
 
+
             if (
-                calculationMethod === "APPORTIONED" &&
+                calculationMethod ===
+                    "APPORTIONED" &&
                 nonTaxablePercent > 0
             ) {
                 taxComponents.push({
-                    componentType: "NON_TAXABLE",
-                    treatment: "ZERO",
-                    percent: nonTaxablePercent,
-                    netAmount: nonTaxableValue,
-                    rate: 0,
-                    vatAmount: 0,
+                    componentType:
+                        "NON_TAXABLE",
+
+                    treatment:
+                        "ZERO",
+
+                    percent:
+                        nonTaxablePercent,
+
+                    netAmount:
+                        nonTaxableValue,
+
+                    rate:
+                        0,
+
+                    vatAmount:
+                        0,
+
                     legalReference:
-                        matchedRule.legalReference || "-",
+                        matchedRule
+                            .legalReference ||
+                        "-",
+
                     basis:
                         "Portion of the route outside the Spanish VAT territory under the Mainland/Balearic apportionment."
                 });
             }
         }
 
+
         return {
             sector,
             transaction,
             homeCountry,
             matchedRule,
-			taxName: getTaxNameForTransaction(transaction),
+
+            taxName:
+                getTaxNameForTransaction(
+                    transaction
+                ),
+
             madApportionment,
             componentModel,
             taxComponents,
-            distanceNm: sectorDistances[index],
+
+            /*
+             * These values now ultimately originate
+             * from allocation.js.
+             */
+            distanceNm:
+                sectorDistances[index],
+
             distancePercentage,
+
             totalDistanceNm,
+
             allocatedNetValue,
+
             taxablePercent,
             nonTaxablePercent,
             taxableValue,
             nonTaxableValue,
             vatAmount,
             grossValue,
-            calculationStatus: finalCalculationStatus,
-            reviewReasons: finalReviewReasons
+
+            calculationStatus:
+                finalCalculationStatus,
+
+            reviewReasons:
+                finalReviewReasons
         };
     });
 
-latestVatResults = results;
 
-renderVatSummary(results);
-renderTaxComponentsResults(results);
-renderVatSectorResults(results);
+    latestVatResults = results;
 
-return results;
+    renderVatSummary(results);
+    renderTaxComponentsResults(results);
+    renderVatSectorResults(results);
+
+    return results;
 }
 
 /*
