@@ -1,7 +1,3 @@
-import {
-    findMatchingRule,
-    evaluateVatCalculationStatus
-} from "./tax-engine.js";
 
 import {
     runRuleRegressionTests
@@ -11,17 +7,8 @@ import {
     getApplicableDynamicInputsForContext
 } from "./dynamic-inputs.js";
 
-import {
-    getDerivedJourneyInputs
-} from "./journey-context.js";
 
-import {
-    getAirportRuleTerritory
-} from "./territory-resolution.js";
 
-import {
-    getMadApportionment
-} from "./mad-apportionment.js";
 
 /*
  * B3 cleanup candidate.
@@ -35,6 +22,37 @@ import {
 import {
     calculate
 } from "./calculation-engine.js";
+
+/*
+ * ============================================================
+ * B3 CLEANUP - LEGACY BROWSER CALCULATION IMPORTS
+ *
+ * These dependencies were previously used by runVatTests() and
+ * buildVatTransaction().
+ *
+ * Calculation orchestration now lives in calculation-engine.js.
+ * Retained temporarily for easy rollback.
+ * ============================================================
+
+import {
+    findMatchingRule,
+    evaluateVatCalculationStatus
+} from "./tax-engine.js";
+
+import {
+    getDerivedJourneyInputs
+} from "./journey-context.js";
+
+import {
+    getAirportRuleTerritory
+} from "./territory-resolution.js";
+
+import {
+    getMadApportionment
+} from "./mad-apportionment.js";
+
+ */
+
 
 // ═══════════════════════════════════════════════════════════
 //  Charter Sales Tax Engine — app.js
