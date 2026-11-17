@@ -6,7 +6,7 @@ async function readJson(relativePath) {
     return JSON.parse(await readFile(fileUrl, "utf8"));
 }
 
-const testsDocument = await readJson("../../territory_tests.json");
+const testsDocument = await readJson("../data/territory_tests.json");
 const territories = await readJson("../../data/tax_territories.json");
 const countries = await readJson("../../data/countries.json");
 const sellingEntities = await readJson("../../data/selling_entities.json");
