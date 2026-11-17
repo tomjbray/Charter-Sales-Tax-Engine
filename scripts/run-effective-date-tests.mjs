@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import {
     findMatchingRule,
     evaluateVatCalculationStatus
-} from "../tax-engine.js";
+} from "../src/tax-engine.js";
 
 
 /* ============================================================
