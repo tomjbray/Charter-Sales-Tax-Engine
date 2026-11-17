@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { getAirportRuleTerritory } from "../territory-resolution.js";
+import { getAirportRuleTerritory } from "../src/territory-resolution.js";
 
 async function readJson(relativePath) {
     const fileUrl = new URL(relativePath, import.meta.url);
