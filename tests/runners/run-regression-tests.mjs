@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { executeRuleTest } from "../src/rule-tests.js";
+import { executeRuleTest } from "../../src/rule-tests.js";
 
 async function readJson(path) {
     return JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"));
