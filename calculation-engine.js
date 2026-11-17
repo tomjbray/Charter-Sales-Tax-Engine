@@ -253,6 +253,9 @@ function buildCalculationTransaction({
         entity:
             request.sellingEntity,
 
+        transactionDate:
+            request.transactionDate,
+
         charterType:
             request.charterType,
 
