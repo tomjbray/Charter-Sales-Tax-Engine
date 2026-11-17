@@ -4,7 +4,7 @@ import {
 
 import {
     getApplicableDynamicInputKeys
-} from "../src/dynamic-inputs.js";
+} from "../../src/dynamic-inputs.js";
 
 async function readJson(
     relativePath
