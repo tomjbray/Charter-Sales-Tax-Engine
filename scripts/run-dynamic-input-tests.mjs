@@ -46,12 +46,12 @@ function arraysEqual(
 
 const inputRequirementsDocument =
     await readJson(
-        "../input_requirements.json"
+        "../data/input_requirements.json"
     );
 
 const sellingEntitiesDocument =
     await readJson(
-        "../selling_entities.json"
+        "../data/selling_entities.json"
     );
 
 const testDocument =
