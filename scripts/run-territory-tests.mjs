@@ -7,9 +7,9 @@ async function readJson(relativePath) {
 }
 
 const testsDocument = await readJson("../territory_tests.json");
-const territories = await readJson("../tax_territories.json");
-const countries = await readJson("../countries.json");
-const sellingEntities = await readJson("../selling_entities.json");
+const territories = await readJson("../data/tax_territories.json");
+const countries = await readJson("../data/countries.json");
+const sellingEntities = await readJson("../data/selling_entities.json");
 
 const results = testsDocument.tests.map(test => {
     const entity = sellingEntities?.data?.[test.entity] || {};
