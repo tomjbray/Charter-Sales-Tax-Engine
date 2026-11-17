@@ -6,7 +6,7 @@ async function readJson(path) {
 }
 
 const vatRulesDocument = await readJson("../../data/vat_rules.json");
-const ruleTestsDocument = await readJson("../../rule_tests.json");
+const ruleTestsDocument = await readJson("../data/rule_tests.json");
 
 if (!Array.isArray(vatRulesDocument.rules)) {
     throw new Error("vat_rules.json does not contain a rules array.");
