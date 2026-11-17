@@ -78,7 +78,7 @@ const APP_VERSION = "0.3.1-First 4 locations";
 // ═══════════════════════════════════════════════════════════
 
 // Core reference data
-let AIRPORTS = {};
+let  = {};
 
 
 // Data-loading and validation state
@@ -161,7 +161,7 @@ async function loadData() {
     const aptRes = await fetch('./data/airports.json');
     if (!aptRes.ok) throw new Error('airports: HTTP ' + aptRes.status);
 
-    AIRPORTS = await aptRes();
+    AIRPORTS = await aptRes.json();
     dbLoaded = true;
 
       statusEl.textContent =
@@ -3533,7 +3533,7 @@ function buildItinerary() {
  */
 
 function getAirport(iata) {
-  const d = AIRPORTS[iata.toUpperCase().trim()];
+  const d = [iata.toUpperCase().trim()];
   if (!d) return null;
 
   // Handle both old array format [name,country,city,lat,lon]
@@ -3723,23 +3723,23 @@ function clearRoute() {
     /*
      * Create one marker for every unique airport.
      */
-    const airportsByCode = {};
+    const ByCode = {};
 
     itinerary.forEach(
         sector => {
 
-            airportsByCode[
+            ByCode[
                 sector.origin.iata
             ] = sector.origin;
 
-            airportsByCode[
+            ByCode[
                 sector.destination.iata
             ] = sector.destination;
         }
     );
 
     Object.values(
-        airportsByCode
+        ByCode
     )
     .forEach(airport => {
 
