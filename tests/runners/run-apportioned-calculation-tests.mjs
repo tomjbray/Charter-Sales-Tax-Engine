@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { getMadApportionment } from "../src/mad-apportionment.js";
+import { getMadApportionment } from "../../src/mad-apportionment.js";
 
 async function readJson(relativePath) {
     const fileUrl = new URL(relativePath, import.meta.url);
