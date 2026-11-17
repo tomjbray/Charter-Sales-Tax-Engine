@@ -104,51 +104,235 @@ function derivedInputsMatch(
     );
 }
 
+/**
+ * Determines whether a VAT rule is effective for the transaction date.
+ *
+ * Behaviour:
+ * - Blank transaction date = do not apply date filtering.
+ * - Blank EffectiveFrom = no lower date boundary.
+ * - Blank EffectiveTo = no upper date boundary.
+ * - EffectiveFrom and EffectiveTo are inclusive.
+ *
+ * Controlled dates use ISO YYYY-MM-DD format, so lexical comparison
+ * is equivalent to chronological comparison.
+ */
+function ruleIsEffectiveOnDate(
+    rule,
+    transactionDate
+) {
+    /*
+     * Preserve pre-B4 behaviour when the caller has not supplied
+     * a transaction date.
+     *
+     * This is important because the existing calculation contracts
+     * currently have transactionDate = null.
+     */
+    if (
+        transactionDate === null ||
+        transactionDate === undefined ||
+        String(transactionDate).trim() === ""
+    ) {
+        return true;
+    }
+
+    const date =
+        String(transactionDate)
+            .trim();
+
+    const effectiveFrom =
+        rule.effectiveFrom === null ||
+        rule.effectiveFrom === undefined
+            ? ""
+            : String(
+                rule.effectiveFrom
+            ).trim();
+
+    const effectiveTo =
+        rule.effectiveTo === null ||
+        rule.effectiveTo === undefined
+            ? ""
+            : String(
+                rule.effectiveTo
+            ).trim();
+
+    /*
+     * Before the start date.
+     */
+    if (
+        effectiveFrom !== "" &&
+        date < effectiveFrom
+    ) {
+        return false;
+    }
+
+    /*
+     * After the end date.
+     */
+    if (
+        effectiveTo !== "" &&
+        date > effectiveTo
+    ) {
+        return false;
+    }
+
+    return true;
+}
 
 function findMatchingRule(transaction, rules) {
     if (!Array.isArray(rules)) {
-        return { matchedRule: null, matchError: "VAT rule data is unavailable." };
+        return {
+            matchedRule: null,
+            matchError:
+                "VAT rule data is unavailable."
+        };
     }
 
     const matches = rules
         .filter(rule =>
-            valueMatches(rule.entity, transaction.entity) &&
-            valueMatches(rule.charterType, transaction.charterType) &&
-            valueMatches(rule.customerType, transaction.customerType) &&
-            valueMatches(rule.customerLocation, transaction.customerLocation) &&
-            valueMatches(rule.vatRegistered, transaction.vatRegistered) &&
-            valueMatches(rule.originTerritory, transaction.originTerritory) &&
-            valueMatches(rule.destinationTerritory, transaction.destinationTerritory) &&
+            /*
+             * ====================================================
+             * B4 - EFFECTIVE-DATE ELIGIBILITY
+             *
+             * Date eligibility is deliberately tested before the
+             * normal transaction criteria.
+             *
+             * If transaction.transactionDate is blank/null,
+             * ruleIsEffectiveOnDate() returns true and the matcher
+             * behaves exactly as it did before B4.
+             * ====================================================
+             */
+            ruleIsEffectiveOnDate(
+                rule,
+                transaction.transactionDate
+            ) &&
+
+            /*
+             * Existing deterministic matching criteria.
+             */
+            valueMatches(
+                rule.entity,
+                transaction.entity
+            ) &&
+
+            valueMatches(
+                rule.charterType,
+                transaction.charterType
+            ) &&
+
+            valueMatches(
+                rule.customerType,
+                transaction.customerType
+            ) &&
+
+            valueMatches(
+                rule.customerLocation,
+                transaction.customerLocation
+            ) &&
+
+            valueMatches(
+                rule.vatRegistered,
+                transaction.vatRegistered
+            ) &&
+
+            valueMatches(
+                rule.originTerritory,
+                transaction.originTerritory
+            ) &&
+
+            valueMatches(
+                rule.destinationTerritory,
+                transaction.destinationTerritory
+            ) &&
+
             dynamicInputsMatch(
                 rule,
                 transaction
             ) &&
+
             derivedInputsMatch(
                 rule,
                 transaction
             )
-            )
+        )
         .sort((firstRule, secondRule) =>
-            Number(secondRule.rulePriority || 0) - Number(firstRule.rulePriority || 0) ||
-            String(firstRule.ruleId || "").localeCompare(String(secondRule.ruleId || ""))
+            Number(
+                secondRule.rulePriority || 0
+            ) -
+            Number(
+                firstRule.rulePriority || 0
+            ) ||
+
+            String(
+                firstRule.ruleId || ""
+            ).localeCompare(
+                String(
+                    secondRule.ruleId || ""
+                )
+            )
         );
 
-    if (matches.length === 0) return { matchedRule: null, matchError: null };
 
-    const highestPriority = Number(matches[0].rulePriority || 0);
-    const topMatches = matches.filter(
-        rule => Number(rule.rulePriority || 0) === highestPriority
-    );
-
-    if (topMatches.length > 1) {
+    if (matches.length === 0) {
         return {
             matchedRule: null,
-            matchError: `Ambiguous rule match at priority ${highestPriority}: ` +
-                topMatches.map(rule => rule.ruleId || "UNNAMED RULE").join(", ") + "."
+            matchError: null
         };
     }
 
-    return { matchedRule: matches[0], matchError: null };
+
+    /*
+     * Priority resolution remains unchanged.
+     *
+     * Effective dating determines which rules are eligible.
+     * It does NOT resolve competition between multiple eligible rules.
+     */
+    const highestPriority =
+        Number(
+            matches[0].rulePriority || 0
+        );
+
+    const topMatches =
+        matches.filter(
+            rule =>
+                Number(
+                    rule.rulePriority || 0
+                ) ===
+                highestPriority
+        );
+
+
+    /*
+     * Retain the existing ambiguity protection.
+     *
+     * This is particularly important for overlapping effective
+     * periods. Two same-priority rules that are both effective on
+     * the same date remain a configuration error.
+     */
+    if (topMatches.length > 1) {
+        return {
+            matchedRule: null,
+
+            matchError:
+                `Ambiguous rule match at priority ${highestPriority}: ` +
+                topMatches
+                    .map(
+                        rule =>
+                            rule.ruleId ||
+                            "UNNAMED RULE"
+                    )
+                    .join(", ") +
+                "."
+        };
+    }
+
+
+    return {
+        matchedRule:
+            matches[0],
+
+        matchError:
+            null
+    };
 }
 
 function evaluateVatCalculationStatus(
