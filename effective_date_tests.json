@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "1.0",
+  "description": "Synthetic regression tests for effective-date VAT rule selection.",
+  "tests": [
+    {
+      "testId": "ED001",
+      "description": "Blank transaction date preserves current matching behaviour",
+      "transactionDate": null,
+      "rules": [
+        {
+          "ruleId": "DATE_ALWAYS",
+          "effectiveFrom": null,
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_ALWAYS",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED002",
+      "description": "Undated rule is eligible when a transaction date is supplied",
+      "transactionDate": "2026-06-01",
+      "rules": [
+        {
+          "ruleId": "DATE_ALWAYS",
+          "effectiveFrom": null,
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_ALWAYS",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED003",
+      "description": "Rule is ineligible before EffectiveFrom",
+      "transactionDate": "2025-12-31",
+      "rules": [
+        {
+          "ruleId": "DATE_FROM_2026",
+          "effectiveFrom": "2026-01-01",
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": null,
+        "matchError": null,
+        "calculationStatus": "Review Required"
+      }
+    },
+    {
+      "testId": "ED004",
+      "description": "EffectiveFrom boundary is inclusive",
+      "transactionDate": "2026-01-01",
+      "rules": [
+        {
+          "ruleId": "DATE_FROM_2026",
+          "effectiveFrom": "2026-01-01",
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_FROM_2026",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED005",
+      "description": "EffectiveTo boundary is inclusive",
+      "transactionDate": "2026-12-31",
+      "rules": [
+        {
+          "ruleId": "DATE_TO_2026",
+          "effectiveFrom": null,
+          "effectiveTo": "2026-12-31"
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_TO_2026",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED006",
+      "description": "Rule is ineligible after EffectiveTo",
+      "transactionDate": "2027-01-01",
+      "rules": [
+        {
+          "ruleId": "DATE_TO_2026",
+          "effectiveFrom": null,
+          "effectiveTo": "2026-12-31"
+        }
+      ],
+      "expected": {
+        "ruleId": null,
+        "matchError": null,
+        "calculationStatus": "Review Required"
+      }
+    },
+    {
+      "testId": "ED007",
+      "description": "Rule is eligible inside bounded effective period",
+      "transactionDate": "2026-06-01",
+      "rules": [
+        {
+          "ruleId": "DATE_2026_ONLY",
+          "effectiveFrom": "2026-01-01",
+          "effectiveTo": "2026-12-31"
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_2026_ONLY",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED008",
+      "description": "Old rule applies on final day before successor starts",
+      "transactionDate": "2026-12-31",
+      "rules": [
+        {
+          "ruleId": "DATE_OLD",
+          "effectiveFrom": "2026-01-01",
+          "effectiveTo": "2026-12-31"
+        },
+        {
+          "ruleId": "DATE_NEW",
+          "effectiveFrom": "2027-01-01",
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_OLD",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED009",
+      "description": "New rule applies on first day after predecessor expires",
+      "transactionDate": "2027-01-01",
+      "rules": [
+        {
+          "ruleId": "DATE_OLD",
+          "effectiveFrom": "2026-01-01",
+          "effectiveTo": "2026-12-31"
+        },
+        {
+          "ruleId": "DATE_NEW",
+          "effectiveFrom": "2027-01-01",
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": "DATE_NEW",
+        "matchError": null,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "ED010",
+      "description": "Overlapping same-priority effective rules remain ambiguous",
+      "transactionDate": "2027-01-01",
+      "rules": [
+        {
+          "ruleId": "DATE_OVERLAP_OLD",
+          "effectiveFrom": "2026-01-01",
+          "effectiveTo": "2027-01-31"
+        },
+        {
+          "ruleId": "DATE_OVERLAP_NEW",
+          "effectiveFrom": "2027-01-01",
+          "effectiveTo": null
+        }
+      ],
+      "expected": {
+        "ruleId": null,
+        "matchErrorContains": "Ambiguous",
+        "calculationStatus": "Review Required"
+      }
+    }
+  ]
+}
