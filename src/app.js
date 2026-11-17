@@ -159,9 +159,9 @@ async function loadData() {
   try {
     // Airport data is required for route entry, geography and distance.
     const aptRes = await fetch('./data/airports.json');
-    if (!aptRes.ok) throw new Error('airports.json: HTTP ' + aptRes.status);
+    if (!aptRes.ok) throw new Error('airports: HTTP ' + aptRes.status);
 
-    AIRPORTS = await aptRes.json();
+    AIRPORTS = await aptRes();
     dbLoaded = true;
 
       statusEl.textContent =
@@ -214,7 +214,7 @@ async function loadData() {
      */
     runRuleRegressionTests({
         rules: vatRulesData.rules,
-        testFileUrl: "./rule_tests.json"
+        testFileUrl: "./tests/data/rule_tests.json"
     });
 
     // Re-run airport lookups if the user typed while data was loading.
