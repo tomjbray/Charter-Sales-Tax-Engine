@@ -3,81 +3,21 @@ name: Tax rule regression tests
 on:
   push:
     branches: [main]
-    paths:
-      - "app.js"
-      - "allocation.js"
-      - "calculation-engine.js"
-      - "tax-engine.js"
-      - "rule-tests.js"
-      - "dynamic-inputs.js"
-      - "journey-context.js"
-      - "territory-resolution.js"
-      - "mad-apportionment.js"
-      - "vat_rules.json"
-      - "rule_tests.json"
-      - "dynamic_input_tests.json"
-      - "input_requirements.json"
-      - "selling_entities.json"
-      - "journey_context_tests.json"
-      - "priority_tests.json"
-      - "territory_tests.json"
-      - "tax_territories.json"
-      - "mad_apportionment.json"
-      - "apportionment_tests.json"
-      - "apportioned_calculation_tests.json"
-      - "calculation_contract_tests.json"
-      - "effective_date_tests.json"
-      - "effective_date_calculation_tests.json"
-      - "scripts/run-regression-tests.mjs"
-      - "scripts/run-dynamic-input-tests.mjs"
-      - "scripts/run-journey-context-tests.mjs"
-      - "scripts/run-priority-tests.mjs"
-      - "scripts/run-territory-tests.mjs"
-      - "scripts/run-apportionment-tests.mjs"
-      - "scripts/run-apportioned-calculation-tests.mjs"
-      - "scripts/run-allocation-tests.mjs"
-      - "scripts/run-calculation-contract-tests.mjs"
-      - "scripts/run-effective-date-tests.mjs"
-      - "scripts/run-effective-date-calculation-tests.mjs"
+        paths:
+      - "src/**"
+      - "*.json"
+      - "scripts/**"
+      - "package.json"
+      - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "app.js"
-      - "allocation.js"
-      - "calculation-engine.js"
-      - "tax-engine.js"
-      - "rule-tests.js"
-      - "dynamic-inputs.js"
-      - "journey-context.js"
-      - "territory-resolution.js"
-      - "mad-apportionment.js"
-      - "vat_rules.json"
-      - "rule_tests.json"
-      - "dynamic_input_tests.json"
-      - "input_requirements.json"
-      - "selling_entities.json"
-      - "journey_context_tests.json"
-      - "priority_tests.json"
-      - "territory_tests.json"
-      - "tax_territories.json"
-      - "mad_apportionment.json"
-      - "apportionment_tests.json"
-      - "apportioned_calculation_tests.json"
-      - "calculation_contract_tests.json"
-      - "effective_date_tests.json"
-      - "effective_date_calculation_tests.json"
-      - "scripts/run-regression-tests.mjs"
-      - "scripts/run-dynamic-input-tests.mjs"
-      - "scripts/run-journey-context-tests.mjs"
-      - "scripts/run-priority-tests.mjs"
-      - "scripts/run-territory-tests.mjs"
-      - "scripts/run-apportionment-tests.mjs"
-      - "scripts/run-apportioned-calculation-tests.mjs"
-      - "scripts/run-allocation-tests.mjs"
-      - "scripts/run-calculation-contract-tests.mjs"
-      - "scripts/run-effective-date-tests.mjs"
-      - "scripts/run-effective-date-calculation-tests.mjs"
+       paths:
+      - "src/**"
+      - "*.json"
+      - "scripts/**"
+      - "package.json"
+      - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -100,19 +40,19 @@ jobs:
 
       - name: Check JavaScript syntax
         run: |
-          node --check tax-engine.js
-          node --check rule-tests.js
-          node --check app.js
-          node --check allocation.js
-          node --check calculation-engine.js
-          node --check dynamic-inputs.js
-          node --check journey-context.js
-          node --check territory-resolution.js
+          node --check src/tax-engine.js
+          node --check src/rule-tests.js
+          node --check src/app.js
+          node --check src/allocation.js
+          node --check src/calculation-engine.js
+          node --check src/dynamic-inputs.js
+          node --check src/journey-context.js
+          node --check src/territory-resolution.js
           node --check scripts/run-dynamic-input-tests.mjs
           node --check scripts/run-journey-context-tests.mjs
           node --check scripts/run-priority-tests.mjs
           node --check scripts/run-territory-tests.mjs
-          node --check mad-apportionment.js
+          node --check src/mad-apportionment.js
           node --check scripts/run-apportionment-tests.mjs
           node --check scripts/run-apportioned-calculation-tests.mjs
           node --check scripts/run-allocation-tests.mjs
