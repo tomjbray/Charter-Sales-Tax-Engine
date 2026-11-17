@@ -31,7 +31,7 @@ const rootDir =
 const testFilePath =
     path.join(
         rootDir,
-        "effective_date_tests.json"
+        "tests/data/effective_date_tests.json"
     );
 
 if (
