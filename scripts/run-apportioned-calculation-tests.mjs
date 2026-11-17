@@ -37,7 +37,7 @@ function calculateApportionedAmounts(netValue, rate, apportionment) {
 }
 
 const testDocument = await readJson("../apportioned_calculation_tests.json");
-const madApportionmentData = await readJson("../mad_apportionment.json");
+const madApportionmentData = await readJson("../data/mad_apportionment.json");
 
 const results = testDocument.tests.map(test => {
     const apportionment = getMadApportionment(
