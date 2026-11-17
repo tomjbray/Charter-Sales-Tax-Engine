@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "description": "End-to-end calculation-engine regression tests for effective-date rule selection.",
+  "tests": [
+    {
+      "testId": "EDC001",
+      "description": "Predecessor rule applies before transition date",
+      "transactionDate": "2026-12-31",
+      "expected": {
+        "ruleId": "DATED_OLD",
+        "rate": 0.1,
+        "taxAmount": 1000,
+        "grossValue": 11000,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "EDC002",
+      "description": "Successor rule applies from transition date",
+      "transactionDate": "2027-01-01",
+      "expected": {
+        "ruleId": "DATED_NEW",
+        "rate": 0.2,
+        "taxAmount": 2000,
+        "grossValue": 12000,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "EDC003",
+      "description": "No date-effective rule produces review required",
+      "transactionDate": "2028-01-01",
+      "expected": {
+        "ruleId": null,
+        "taxAmount": null,
+        "grossValue": null,
+        "calculationStatus": "Review Required"
+      }
+    }
+  ]
+}
