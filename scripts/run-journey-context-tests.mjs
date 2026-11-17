@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { getDerivedJourneyInputs } from "../journey-context.js";
+import { getDerivedJourneyInputs } from "../src/journey-context.js";
 
 async function readJson(relativePath) {
     const fileUrl = new URL(relativePath, import.meta.url);
