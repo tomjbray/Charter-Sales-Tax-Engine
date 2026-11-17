@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import {
     calculate
-} from "../calculation-engine.js";
+} from "../src/calculation-engine.js";
 
 
 /* ============================================================
