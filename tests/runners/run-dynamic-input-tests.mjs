@@ -56,7 +56,7 @@ const sellingEntitiesDocument =
 
 const testDocument =
     await readJson(
-        "../../dynamic_input_tests.json"
+        "../data/dynamic_input_tests.json"
     );
 
 if (
