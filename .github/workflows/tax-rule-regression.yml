@@ -3,24 +3,26 @@ name: Tax rule regression tests
 on:
   push:
     branches: [main]
-        paths:
+    paths:
       - "src/**"
       - "*.json"
       - "scripts/**"
       - "package.json"
       - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
+
   pull_request:
     branches: [main]
-       paths:
+    paths:
       - "src/**"
       - "*.json"
       - "scripts/**"
       - "package.json"
       - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
-  workflow_dispatch:
 
+  workflow_dispatch:
+  
 permissions:
   contents: read
 
