@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { findMatchingRule } from "../src/tax-engine.js";
+import { findMatchingRule } from "../../src/tax-engine.js";
 
 async function readJson(relativePath) {
     const fileUrl = new URL(relativePath, import.meta.url);
