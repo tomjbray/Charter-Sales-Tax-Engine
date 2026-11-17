@@ -1,7 +1,7 @@
 import {
     calculateItineraryAllocation,
     haversineNm
-} from "../allocation.js";
+} from "../src/allocation.js";
 
 function assertClose(actual, expected, tolerance, label) {
     if (
