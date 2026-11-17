@@ -6,7 +6,7 @@ async function readJson(relativePath) {
     return JSON.parse(await readFile(fileUrl, "utf8"));
 }
 
-const testDocument = await readJson("../../priority_tests.json");
+const testDocument = await readJson("../data/priority_tests.json");
 
 if (!Array.isArray(testDocument.tests)) {
     throw new Error("priority_tests.json does not contain a tests array.");
