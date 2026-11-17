@@ -17,7 +17,7 @@ function buildItinerary(countryChain) {
     }));
 }
 
-const testDocument = await readJson("../journey_context_tests.json");
+const testDocument = await readJson("../../journey_context_tests.json");
 
 if (!Array.isArray(testDocument.tests)) {
     throw new Error(
