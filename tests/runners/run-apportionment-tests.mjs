@@ -10,8 +10,8 @@ function approximatelyEqual(actual, expected, tolerance = 1e-10) {
     return Math.abs(Number(actual) - Number(expected)) <= tolerance;
 }
 
-const testDocument = await readJson("../apportionment_tests.json");
-const madApportionmentData = await readJson("../data/mad_apportionment.json");
+const testDocument = await readJson("../data/apportionment_tests.json");
+const madApportionmentData = await readJson("../../data/mad_apportionment.json");
 
 if (!Array.isArray(testDocument.tests)) {
     throw new Error("apportionment_tests.json does not contain a tests array.");
