@@ -26,6 +26,7 @@ on:
       - "apportionment_tests.json"
       - "apportioned_calculation_tests.json"
       - "calculation_contract_tests.json"
+      - "effective_date_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
@@ -35,6 +36,7 @@ on:
       - "scripts/run-apportioned-calculation-tests.mjs"
       - "scripts/run-allocation-tests.mjs"
       - "scripts/run-calculation-contract-tests.mjs"
+      - "scripts/run-effective-date-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   pull_request:
     branches: [main]
@@ -61,6 +63,7 @@ on:
       - "apportionment_tests.json"
       - "apportioned_calculation_tests.json"
       - "calculation_contract_tests.json"
+      - "effective_date_tests.json"
       - "scripts/run-regression-tests.mjs"
       - "scripts/run-dynamic-input-tests.mjs"
       - "scripts/run-journey-context-tests.mjs"
@@ -70,6 +73,7 @@ on:
       - "scripts/run-apportioned-calculation-tests.mjs"
       - "scripts/run-allocation-tests.mjs"
       - "scripts/run-calculation-contract-tests.mjs"
+      - "scripts/run-effective-date-tests.mjs"
       - ".github/workflows/tax-rule-regression.yml"
   workflow_dispatch:
 
@@ -109,6 +113,7 @@ jobs:
           node --check scripts/run-apportioned-calculation-tests.mjs
           node --check scripts/run-allocation-tests.mjs
           node --check scripts/run-calculation-contract-tests.mjs
+          node --check scripts/run-effective-date-tests.mjs
 
       - name: Run regression tests
         run: npm test
@@ -118,3 +123,6 @@ jobs:
 
       - name: Run calculation contract tests
         run: node scripts/run-calculation-contract-tests.mjs  
+
+      - name: Run effective-date tests
+        run: node scripts/run-effective-date-tests.mjs  
