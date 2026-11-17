@@ -78,7 +78,7 @@ const APP_VERSION = "0.3.1-First 4 locations";
 // ═══════════════════════════════════════════════════════════
 
 // Core reference data
-let  = {};
+let AIRPORTS = {};
 
 
 // Data-loading and validation state
