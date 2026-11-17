@@ -6,8 +6,6 @@ on:
     paths:
       - "src/**"
       - "data/**"
-      - "*.json"
-      - "scripts/**"
       - "package.json"
       - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
@@ -17,8 +15,6 @@ on:
     paths:
       - "src/**"
       - "data/**"
-      - "*.json"
-      - "scripts/**"
       - "package.json"
       - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
@@ -52,29 +48,29 @@ jobs:
           node --check src/dynamic-inputs.js
           node --check src/journey-context.js
           node --check src/territory-resolution.js
-          node --check scripts/run-dynamic-input-tests.mjs
-          node --check scripts/run-journey-context-tests.mjs
-          node --check scripts/run-priority-tests.mjs
-          node --check scripts/run-territory-tests.mjs
+          node --check tests/runners/run-dynamic-input-tests.mjs
+          node --check tests/runners/run-journey-context-tests.mjs
+          node --check tests/runners/run-priority-tests.mjs
+          node --check tests/runners/run-territory-tests.mjs
           node --check src/mad-apportionment.js
-          node --check scripts/run-apportionment-tests.mjs
-          node --check scripts/run-apportioned-calculation-tests.mjs
-          node --check scripts/run-allocation-tests.mjs
-          node --check scripts/run-calculation-contract-tests.mjs
-          node --check scripts/run-effective-date-tests.mjs
-          node --check scripts/run-effective-date-calculation-tests.mjs
+          node --check tests/runners/run-apportionment-tests.mjs
+          node --check tests/runners/run-apportioned-calculation-tests.mjs
+          node --check tests/runners/run-allocation-tests.mjs
+          node --check tests/runners/run-calculation-contract-tests.mjs
+          node --check tests/runners/run-effective-date-tests.mjs
+          node --check tests/runners/run-effective-date-calculation-tests.mjs
 
       - name: Run regression tests
         run: npm test
 
       - name: Run allocation tests
-        run: node scripts/run-allocation-tests.mjs
+        run: node tests/runners/run-allocation-tests.mjs
 
       - name: Run calculation contract tests
-        run: node scripts/run-calculation-contract-tests.mjs  
+        run: node tests/runners/run-calculation-contract-tests.mjs  
 
       - name: Run effective-date tests
-        run: node scripts/run-effective-date-tests.mjs  
+        run: node tests/runners/run-effective-date-tests.mjs  
 
       - name: Run effective-date calculation tests
-        run: node scripts/run-effective-date-calculation-tests.mjs
+        run: node tests/runners/run-effective-date-calculation-tests.mjs
