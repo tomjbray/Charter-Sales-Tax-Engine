@@ -96,7 +96,7 @@ const madApportionment =
 
 const contractDocument =
     loadJson(
-        "calculation_contract_tests.json"
+        "tests/data/calculation_contract_tests.json"
     );
 
 
