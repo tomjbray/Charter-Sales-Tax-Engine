@@ -66,32 +66,32 @@ function loadJson(fileName) {
 
 const airports =
     loadJson(
-        "airports.json"
+        "data/airports.json"
     );
 
 const countries =
     loadJson(
-        "countries.json"
+        "data/countries.json"
     );
 
 const sellingEntities =
     loadJson(
-        "selling_entities.json"
+        "data/selling_entities.json"
     );
 
 const taxTerritories =
     loadJson(
-        "tax_territories.json"
+        "data/tax_territories.json"
     );
 
 const vatRules =
     loadJson(
-        "vat_rules.json"
+        "data/vat_rules.json"
     );
 
 const madApportionment =
     loadJson(
-        "mad_apportionment.json"
+        "data/mad_apportionment.json"
     );
 
 const contractDocument =
