@@ -25,7 +25,7 @@ const __dirname =
 const rootDir =
     path.resolve(
         __dirname,
-        ".."
+        "../.."
     );
 
 const testFilePath =
