@@ -158,7 +158,7 @@ async function loadData() {
 
   try {
     // Airport data is required for route entry, geography and distance.
-    const aptRes = await fetch('./airports.json');
+    const aptRes = await fetch('./data/airports.json');
     if (!aptRes.ok) throw new Error('airports.json: HTTP ' + aptRes.status);
 
     AIRPORTS = await aptRes.json();
@@ -243,7 +243,7 @@ async function loadData() {
  */
 
 async function loadCountries() {
-  const response = await fetch('./countries.json');
+  const response = await fetch('./data/countries.json');
   if (!response.ok) throw new Error('countries.json: HTTP ' + response.status);
 
   countriesData = await response.json();
@@ -256,7 +256,7 @@ async function loadCountries() {
  */
 
 async function loadInputRequirements() {
-    const response = await fetch('./input_requirements.json');
+    const response = await fetch('./data/input_requirements.json');
 
     if (!response.ok) {
         throw new Error(
@@ -284,7 +284,7 @@ async function loadInputRequirements() {
 
 async function loadSellingEntities() {
     const response =
-        await fetch('./selling_entities.json');
+        await fetch('./data/selling_entities.json');
 
     if (!response.ok) {
         throw new Error(
@@ -307,7 +307,7 @@ async function loadSellingEntities() {
  */
 
 async function loadTaxTerritories() {
-  const response = await fetch('./tax_territories.json');
+  const response = await fetch('./data/tax_territories.json');
   if (!response.ok) throw new Error('tax_territories.json: HTTP ' + response.status);
 
   taxTerritoriesData = await response.json();
@@ -322,7 +322,7 @@ async function loadTaxTerritories() {
  */
 async function loadMadApportionment() {
     const response =
-        await fetch("./mad_apportionment.json");
+        await fetch("./data/mad_apportionment.json");
 
     if (!response.ok) {
         throw new Error(
@@ -355,7 +355,7 @@ async function loadMadApportionment() {
  */
 
 async function loadVatRules() {
-  const response = await fetch('./vat_rules.json');
+  const response = await fetch('./data/vat_rules.json');
   if (!response.ok) throw new Error('vat_rules.json: HTTP ' + response.status);
 
   vatRulesData = await response.json();
