@@ -6,6 +6,7 @@ on:
     paths:
       - "src/**"
       - "data/**"
+      - "tests/**"
       - "package.json"
       - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
@@ -15,6 +16,7 @@ on:
     paths:
       - "src/**"
       - "data/**"
+      - "tests/**"
       - "package.json"
       - "index.html"
       - ".github/workflows/tax-rule-regression.yml"
