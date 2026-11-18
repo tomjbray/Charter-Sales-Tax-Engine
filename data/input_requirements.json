@@ -29,7 +29,7 @@
     },
     {
       "ruleGroup": "AU_INCOUNTRY",
-      "inputKey": "CustomerInHommeCountryAtPurchase",
+      "inputKey": "CustomerInHomeCountryAtPurchase",
       "inputLabel": "Was the customer in Australia when the charter was purchased?",
       "inputType": "Checkbox",
       "tooltip": "Relevant to domestic Australian passenger charters for non-Australian customers. The GST-free treatment applies only where the customer was outside Australia when the charter was purchased.",
@@ -69,10 +69,10 @@
         "displayOrder": 2
       }
     ],
-    "CustomerInHommeCountryAtPurchase": [
+    "CustomerInHomeCountryAtPurchase": [
       {
         "ruleGroup": "AU_INCOUNTRY",
-        "inputKey": "CustomerInHommeCountryAtPurchase",
+        "inputKey": "CustomerInHomeCountryAtPurchase",
         "inputLabel": "Was the customer in Australia when the charter was purchased?",
         "inputType": "Checkbox",
         "tooltip": "Relevant to domestic Australian passenger charters for non-Australian customers. The GST-free treatment applies only where the customer was outside Australia when the charter was purchased.",
