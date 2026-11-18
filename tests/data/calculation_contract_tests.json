@@ -4,7 +4,7 @@
     "tblCalculationContractTests",
     "tblCalculationContractSectors"
   ],
-  "testCount": 12,
+  "testCount": 15,
   "tests": [
     {
       "testId": "CT001",
@@ -1178,6 +1178,260 @@
               "taxableValue": 5147,
               "taxableTax": 0,
               "nonTaxableValue": 4853,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT013",
+      "description": "SYD domestic passenger standard GST calculation",
+      "enabled": true,
+      "category": "STANDARD",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-18"
+      },
+      "notes": "Protects domestic Australian passenger 10% GST treatment",
+      "request": {
+        "sellingEntity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "AU",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "AUD",
+        "transactionDate": null,
+        "itinerary": [
+          "SYD",
+          "MEL"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 381,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1000,
+        "totalGrossValue": 11000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "Domestic passenger / AU customer",
+            "originAirport": "SYD",
+            "destinationAirport": "MEL",
+            "originCountry": "AU",
+            "destinationCountry": "AU",
+            "originTaxTerritory": "AU",
+            "destinationTaxTerritory": "AU",
+            "ruleRegion": "AU",
+            "ruleId": "SYD01",
+            "rulePriority": 300,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "GST",
+            "taxRate": 0.1,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 381,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 1000,
+            "grossValue": 11000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 1000,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT014",
+      "description": "SYD international outbound passenger GST-Free calculation",
+      "enabled": true,
+      "category": "TERRITORY",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-18"
+      },
+      "notes": "Protects Australian international outbound passenger GST-free treatment",
+      "request": {
+        "sellingEntity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "AU",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "AUD",
+        "transactionDate": null,
+        "itinerary": [
+          "SYD",
+          "AKL"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1166,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "International outbound passenger",
+            "originAirport": "SYD",
+            "destinationAirport": "AKL",
+            "originCountry": "AU",
+            "destinationCountry": "NZ",
+            "originTaxTerritory": "AU",
+            "destinationTaxTerritory": "NON_AU",
+            "ruleRegion": "AU",
+            "ruleId": "SYD04",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "GST",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 1166,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "testId": "CT015",
+      "description": "SYD domestic passenger non-Australian customer purchased outside Australia",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-18"
+      },
+      "notes": "Protects domestic non-resident passenger exemption where purchased outside Australia",
+      "request": {
+        "sellingEntity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "NZ",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "AUD",
+        "transactionDate": null,
+        "itinerary": [
+          "SYD",
+          "MEL"
+        ],
+        "dynamicInputs": {
+          "CustomerInHomeCountryAtPurchase": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 381,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "CustomerInHomeCOuntryAtPurchase = No",
+            "originAirport": "SYD",
+            "destinationAirport": "MEL",
+            "originCountry": "AU",
+            "destinationCountry": "AU",
+            "originTaxTerritory": "AU",
+            "destinationTaxTerritory": "AU",
+            "ruleRegion": "NON_AU",
+            "ruleId": "SYD03",
+            "rulePriority": 300,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "GST",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 381,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
               "nonTaxableTax": 0
             }
           }
@@ -2358,6 +2612,260 @@
               "taxableValue": 5147,
               "taxableTax": 0,
               "nonTaxableValue": 4853,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT013": {
+      "testId": "CT013",
+      "description": "SYD domestic passenger standard GST calculation",
+      "enabled": true,
+      "category": "STANDARD",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-18"
+      },
+      "notes": "Protects domestic Australian passenger 10% GST treatment",
+      "request": {
+        "sellingEntity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "AU",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "AUD",
+        "transactionDate": null,
+        "itinerary": [
+          "SYD",
+          "MEL"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 381,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 1000,
+        "totalGrossValue": 11000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "Domestic passenger / AU customer",
+            "originAirport": "SYD",
+            "destinationAirport": "MEL",
+            "originCountry": "AU",
+            "destinationCountry": "AU",
+            "originTaxTerritory": "AU",
+            "destinationTaxTerritory": "AU",
+            "ruleRegion": "AU",
+            "ruleId": "SYD01",
+            "rulePriority": 300,
+            "treatment": "STANDARD",
+            "calculationMethod": "STANDARD",
+            "taxName": "GST",
+            "taxRate": 0.1,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 381,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 1000,
+            "grossValue": 11000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 1000,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT014": {
+      "testId": "CT014",
+      "description": "SYD international outbound passenger GST-Free calculation",
+      "enabled": true,
+      "category": "TERRITORY",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-18"
+      },
+      "notes": "Protects Australian international outbound passenger GST-free treatment",
+      "request": {
+        "sellingEntity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "AU",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "AUD",
+        "transactionDate": null,
+        "itinerary": [
+          "SYD",
+          "AKL"
+        ],
+        "dynamicInputs": {},
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 1166,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "International outbound passenger",
+            "originAirport": "SYD",
+            "destinationAirport": "AKL",
+            "originCountry": "AU",
+            "destinationCountry": "NZ",
+            "originTaxTerritory": "AU",
+            "destinationTaxTerritory": "NON_AU",
+            "ruleRegion": "AU",
+            "ruleId": "SYD04",
+            "rulePriority": 250,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "GST",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 1166,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
+              "nonTaxableTax": 0
+            }
+          }
+        ]
+      }
+    },
+    "CT015": {
+      "testId": "CT015",
+      "description": "SYD domestic passenger non-Australian customer purchased outside Australia",
+      "enabled": true,
+      "category": "DYNAMIC_INPUT",
+      "approval": {
+        "status": "APPROVED",
+        "approvedBy": "Tom Bray",
+        "approvedDate": "2026-11-18"
+      },
+      "notes": "Protects domestic non-resident passenger exemption where purchased outside Australia",
+      "request": {
+        "sellingEntity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "PRIVATE",
+        "customerCountry": "NZ",
+        "vatRegistered": "NO",
+        "charterValue": 10000,
+        "currency": "AUD",
+        "transactionDate": null,
+        "itinerary": [
+          "SYD",
+          "MEL"
+        ],
+        "dynamicInputs": {
+          "CustomerInHomeCountryAtPurchase": "NO"
+        },
+        "expectedDerivedInputs": {
+          "HomeRoundTrip": "NO"
+        }
+      },
+      "expected": {
+        "status": "Complete",
+        "reviewReason": null,
+        "totalDistanceNm": 381,
+        "totalNetValue": 10000,
+        "totalTaxableValue": 10000,
+        "totalNonTaxableValue": 0,
+        "totalTaxAmount": 0,
+        "totalGrossValue": 10000,
+        "reviewSectorCount": 0,
+        "tolerances": {
+          "money": 0.01,
+          "distanceNm": 0.1,
+          "percentage": 0.0001
+        },
+        "sectors": [
+          {
+            "sectorNumber": 1,
+            "testVariant": "CustomerInHomeCOuntryAtPurchase = No",
+            "originAirport": "SYD",
+            "destinationAirport": "MEL",
+            "originCountry": "AU",
+            "destinationCountry": "AU",
+            "originTaxTerritory": "AU",
+            "destinationTaxTerritory": "AU",
+            "ruleRegion": "NON_AU",
+            "ruleId": "SYD03",
+            "rulePriority": 300,
+            "treatment": "ZERO",
+            "calculationMethod": "STANDARD",
+            "taxName": "GST",
+            "taxRate": 0,
+            "status": "Complete",
+            "reviewReason": null,
+            "distanceNm": 381,
+            "allocationPercent": 1,
+            "allocatedNetValue": 10000,
+            "taxablePercent": 1,
+            "nonTaxablePercent": 0,
+            "taxableValue": 10000,
+            "nonTaxableValue": 0,
+            "taxAmount": 0,
+            "grossValue": 10000,
+            "apportionment": null,
+            "components": {
+              "count": 1,
+              "taxableValue": 10000,
+              "taxableTax": 0,
+              "nonTaxableValue": 0,
               "nonTaxableTax": 0
             }
           }
