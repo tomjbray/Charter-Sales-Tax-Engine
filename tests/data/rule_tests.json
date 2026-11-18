@@ -2613,7 +2613,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD08",
+        "ruleId": "SYD07",
         "treatment": "STANDARD",
         "rate": 0.1,
         "taxablePercent": 1,
@@ -2638,7 +2638,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD09",
+        "ruleId": "SYD08",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -2663,7 +2663,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD10",
+        "ruleId": "SYD09",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -2688,7 +2688,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD11",
+        "ruleId": "SYD10",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -5614,7 +5614,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD08",
+        "ruleId": "SYD07",
         "treatment": "STANDARD",
         "rate": 0.1,
         "taxablePercent": 1,
@@ -5639,7 +5639,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD09",
+        "ruleId": "SYD08",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -5664,7 +5664,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD10",
+        "ruleId": "SYD09",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
@@ -5689,7 +5689,7 @@
         }
       },
       "expected": {
-        "ruleId": "SYD11",
+        "ruleId": "SYD10",
         "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
