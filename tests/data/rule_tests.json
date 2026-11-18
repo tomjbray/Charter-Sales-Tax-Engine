@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2.1",
   "sourceTable": "tblRuleTests",
-  "testCount": 102,
-  "enabledTestCount": 102,
+  "testCount": 113,
+  "enabledTestCount": 113,
   "tests": [
     {
       "testId": "BRU-CARGO-001",
@@ -2565,6 +2565,285 @@
       "expected": {
         "ruleId": "MAD70",
         "treatment": "EXEMPT",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-CARGO-01",
+      "description": "domestics cargo , australian customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD07",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-CARGO-02",
+      "description": "domestic cargo, non-Australian customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD08",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-CARGO-03",
+      "description": "AU to non-AU cargo",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD09",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-CARGO-04",
+      "description": "Non-AU to AU Cargo",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD10",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-CARGO-05",
+      "description": "Non-AU to Non-AU cargo",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD11",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-PAX-01",
+      "description": "Domestic passenger, Australian customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD01",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-PAX-02",
+      "description": "non-Austrlian customer, in Australia at time of purchase",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {
+          "CustomerInHomeCountryAtPurchase": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD02",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-PAX-03",
+      "description": "non-Australian Customer - outside Australia at time of purchase",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {
+          "CustomerInHomeCountryAtPurchase": "NO"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-PAX-04",
+      "description": "AU to Non-AU passenger",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD04",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-PAX-05",
+      "description": "Non-AU to AU passenger",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD05",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    {
+      "testId": "SYD-PAX-06",
+      "description": "Non-AU to NON-AU passenger",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD06",
+        "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
@@ -5133,6 +5412,285 @@
       "expected": {
         "ruleId": "MAD74",
         "treatment": "EXEMPT",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-PAX-01": {
+      "testId": "SYD-PAX-01",
+      "description": "Domestic passenger, Australian customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD01",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-PAX-02": {
+      "testId": "SYD-PAX-02",
+      "description": "non-Austrlian customer, in Australia at time of purchase",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {
+          "CustomerInHomeCountryAtPurchase": "YES"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD02",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-PAX-03": {
+      "testId": "SYD-PAX-03",
+      "description": "non-Australian Customer - outside Australia at time of purchase",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "NON_AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {
+          "CustomerInHomeCountryAtPurchase": "NO"
+        },
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD03",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-PAX-04": {
+      "testId": "SYD-PAX-04",
+      "description": "AU to Non-AU passenger",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD04",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-PAX-05": {
+      "testId": "SYD-PAX-05",
+      "description": "Non-AU to AU passenger",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD05",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-PAX-06": {
+      "testId": "SYD-PAX-06",
+      "description": "Non-AU to NON-AU passenger",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD06",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-CARGO-01": {
+      "testId": "SYD-CARGO-01",
+      "description": "domestics cargo , australian customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD07",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-CARGO-02": {
+      "testId": "SYD-CARGO-02",
+      "description": "domestic cargo, non-Australian customer",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "NON_AU",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD08",
+        "treatment": "STANDARD",
+        "rate": 0.1,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-CARGO-03": {
+      "testId": "SYD-CARGO-03",
+      "description": "AU to non-AU cargo",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD09",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-CARGO-04": {
+      "testId": "SYD-CARGO-04",
+      "description": "Non-AU to AU Cargo",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD10",
+        "treatment": "ZERO",
+        "rate": 0,
+        "taxablePercent": 1,
+        "calculationStatus": "Complete"
+      }
+    },
+    "SYD-CARGO-05": {
+      "testId": "SYD-CARGO-05",
+      "description": "Non-AU to Non-AU cargo",
+      "enabled": true,
+      "transaction": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerType": "ANY",
+        "customerLocation": "ANY",
+        "vatRegistered": "ANY",
+        "originTerritory": "NON_AU",
+        "destinationTerritory": "NON_AU",
+        "dynamicInputs": {},
+        "derivedInputs": {
+          "HomeRoundTrip": "ANY"
+        }
+      },
+      "expected": {
+        "ruleId": "SYD11",
+        "treatment": "ZERO",
         "rate": 0,
         "taxablePercent": 1,
         "calculationStatus": "Complete"
