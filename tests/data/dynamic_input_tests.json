@@ -62,6 +62,39 @@
         "customerCountry": "ZA"
       },
       "expectedInputKeys": []
+    },
+        {
+      "testId": "INPUT-SYD-PAX-AU",
+      "description": "CustomerInHomeCountryAtPurchase is applicable",
+      "enabled": true,
+      "context": {
+        "entity": "SYD",
+        "charterType": "PASSENGER",
+        "customerCountry": "NON_AU"
+      },
+      "expectedInputKeys": ["CustomerInHomeCountryAtPurchase"]
+    },
+            {
+      "testId": "INPUT-SYD-CARGO-AU",
+      "description": "CustomerInHomeCountryAtPurchase is not applicable",
+      "enabled": true,
+      "context": {
+        "entity": "SYD",
+        "charterType": "CARGO",
+        "customerCountry": "NON_AU"
+      },
+      "expectedInputKeys": []
+    },
+                {
+      "testId": "INPUT-BRU-PAX",
+      "description": "not applicable",
+      "enabled": true,
+      "context": {
+        "entity": "BRU",
+        "charterType": "PASSENGER",
+        "customerCountry": "NON_BR"
+      },
+      "expectedInputKeys": []
     }
   ]
 }
