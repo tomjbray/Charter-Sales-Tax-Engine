@@ -852,6 +852,39 @@ function getCurrentTaxName() {
     );
 
 }
+
+function updateTaxLabels() {
+    const taxName =
+        getCurrentTaxName();
+
+    const resultsSummaryTitle =
+        document.getElementById("resultsSummaryTitle");
+    if (resultsSummaryTitle) {
+        resultsSummaryTitle.textContent =
+            `${taxName} Results Summary`;
+    }
+
+    const sectorResultsTitle =
+        document.getElementById("sectorResultsTitle");
+    if (sectorResultsTitle) {
+        sectorResultsTitle.textContent =
+            `${taxName} Results`;
+    }
+
+    const itinerarySummaryTitle =
+        document.getElementById("itinerarySummaryTitle");
+    if (itinerarySummaryTitle) {
+        itinerarySummaryTitle.textContent =
+            `${taxName} Summary`;
+    }
+
+    const vatInputsTitle =
+        document.getElementById("vatInputsTitle");
+    if (vatInputsTitle) {
+        vatInputsTitle.textContent =
+            `${taxName} Inputs`;
+    }
+}
 /**
  * Removes all rendered sector VAT cards from the results container.
  */
