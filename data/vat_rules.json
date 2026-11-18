@@ -215,7 +215,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
-      "QualifyingMedevac": "ANY",
+      "QualifyingMedevac": "YES",
       "HomeRoundTrip": "ANY",
       "CustomerInHomeCountryAtPurchase": "ANY"
     },
@@ -8641,7 +8641,7 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
-      "QualifyingMedevac": "ANY",
+      "QualifyingMedevac": "YES",
       "HomeRoundTrip": "ANY",
       "CustomerInHomeCountryAtPurchase": "ANY"
     },
