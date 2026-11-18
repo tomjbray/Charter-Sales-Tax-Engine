@@ -1,15 +1,13 @@
 /**
- * Pure distance and charter-value allocation helpers.
+ * Charter Sales Tax Engine - allocation.js
  *
- * This module deliberately contains no DOM, browser state, map, tax-rule,
- * territory or rendering dependencies.
+ * Pure distance and charter-value allocation helpers. Sector distances use
+ * the Haversine formula with an Earth radius of 3440.065 nautical miles.
+ * Non-final allocation percentages are rounded to two decimal places and the
+ * final sector receives the balancing percentage so the itinerary totals 100%.
  *
- * Allocation behaviour matches the pre-extraction implementation in app.js:
- * - sector distances use Haversine great-circle distance;
- * - Earth radius is 3440.065 nautical miles;
- * - non-final sector percentages are rounded to 2 decimal places;
- * - the final sector receives the balancing percentage to make 100%;
- * - allocated values are charterValue * percentage / 100.
+ * This module has no DOM, browser state, map, tax-rule, territory or rendering
+ * dependencies.
  */
 
 /**

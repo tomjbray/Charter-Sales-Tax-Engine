@@ -1,10 +1,13 @@
-// Charter Sales Tax Engine - journey-context.js
-//
-// Pure journey-level derivation helpers. This module contains no DOM,
-// application-state or jurisdiction-specific tax treatment logic.
-//
-// HomeRoundTrip is a geographic/business context fact only. The VATRules
-// table decides what YES or NO means for a particular selling entity.
+/**
+ * Charter Sales Tax Engine - journey-context.js
+ *
+ * Pure journey-level derivation helpers. Converts a complete itinerary into
+ * rule-facing journey facts without applying tax treatment. HomeRoundTrip is
+ * currently derived here and interpreted by the controlled VAT rule matrix.
+ *
+ * This module contains no DOM, browser state, reference-data loading or
+ * jurisdiction-specific tax-treatment logic.
+ */
 
 function normaliseJourneyValue(value) {
     return String(value ?? "")

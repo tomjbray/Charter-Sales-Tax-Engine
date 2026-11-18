@@ -1,4 +1,16 @@
 /**
+ * Charter Sales Tax Engine - dynamic-inputs.js
+ *
+ * Pure applicability helpers for supplementary user-entered tax inputs defined
+ * in input_requirements.json. Applicability is evaluated against selling
+ * entity, selling-entity home country and charter type, with blank/ANY values
+ * acting as wildcards.
+ *
+ * Derived journey facts are handled separately in journey-context.js. This
+ * module contains no DOM or application-state logic.
+ */
+
+/**
  * Returns the supplementary input definitions applicable to a
  * transaction context.
  *

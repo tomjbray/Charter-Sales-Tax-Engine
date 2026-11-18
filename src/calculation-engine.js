@@ -1,19 +1,17 @@
 /**
- * Charter Sales Tax Engine
+ * Charter Sales Tax Engine - calculation-engine.js
  *
- * Pure calculation orchestration.
+ * Pure calculation orchestrator and primary integration entry point.
+ * Validates and normalises calculation requests, derives journey context,
+ * allocates charter value, resolves rule territories, selects controlled tax
+ * rules, applies STANDARD or APPORTIONED calculations, and returns sector and
+ * journey-level results.
  *
- * This module:
- * - validates a calculation request;
- * - derives journey context;
- * - builds sector tax transactions;
- * - resolves tax territories;
- * - allocates charter value by distance;
- * - selects VAT rules;
- * - applies standard and apportioned calculations;
- * - returns sector results and journey totals.
- *
- * This module contains no DOM, fetch, browser-state or rendering logic.
+ * Main dependencies: tax-engine.js, journey-context.js,
+ * territory-resolution.js, mad-apportionment.js and allocation.js.
+ * Data dependencies are supplied through the referenceData argument rather
+ * than fetched here. This module intentionally has no DOM, browser-state,
+ * network-fetch, map or rendering responsibilities.
  */
 
 import {
@@ -121,10 +119,7 @@ export function calculate(
             entity.outsideHomeRegion
         );
 
-    /*
-     * Allocation is calculated once for the complete itinerary.
-     * This reuses the pure module created during B2.
-     */
+    /* Allocation is calculated once for the complete itinerary. */
     const {
         sectorDistances,
         totalDistanceNm,

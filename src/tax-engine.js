@@ -1,4 +1,14 @@
-// Charter Sales Tax Engine — pure tax-rule engine.
+/**
+ * Charter Sales Tax Engine - tax-engine.js
+ *
+ * Pure, deterministic rule-matching and calculation-readiness helpers.
+ * Applies wildcard criteria, dynamic and derived inputs, effective-date
+ * eligibility and rule-priority resolution. Equal highest-priority matches
+ * are treated as an ambiguity requiring review.
+ *
+ * This module contains no DOM, network, allocation, territory-resolution or
+ * jurisdiction-specific calculation code.
+ */
 
 function valueMatches(
     ruleValue,
@@ -121,11 +131,8 @@ function ruleIsEffectiveOnDate(
     transactionDate
 ) {
     /*
-     * Preserve pre-B4 behaviour when the caller has not supplied
-     * a transaction date.
-     *
-     * This is important because the existing calculation contracts
-     * currently have transactionDate = null.
+     * A blank transaction date deliberately disables date filtering. This
+     * preserves callers that do not yet supply a controlled tax-point date.
      */
     if (
         transactionDate === null ||
@@ -191,14 +198,11 @@ function findMatchingRule(transaction, rules) {
         .filter(rule =>
             /*
              * ====================================================
-             * B4 - EFFECTIVE-DATE ELIGIBILITY
+             * EFFECTIVE-DATE ELIGIBILITY
              *
-             * Date eligibility is deliberately tested before the
-             * normal transaction criteria.
-             *
-             * If transaction.transactionDate is blank/null,
-             * ruleIsEffectiveOnDate() returns true and the matcher
-             * behaves exactly as it did before B4.
+             * Date eligibility is tested before the normal transaction
+             * criteria. A blank transactionDate makes every effective-date
+             * window eligible.
              * ====================================================
              */
             ruleIsEffectiveOnDate(

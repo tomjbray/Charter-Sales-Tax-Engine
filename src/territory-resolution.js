@@ -1,4 +1,13 @@
-// Pure airport tax-territory resolution helpers.
+/**
+ * Charter Sales Tax Engine - territory-resolution.js
+ *
+ * Pure helpers that translate countries and airport-specific controlled tax
+ * territories into rule-facing region/territory codes. Home-jurisdiction
+ * detail is preserved, entity-defined outside-home regions take precedence,
+ * and EU VAT-area classification is used where applicable.
+ *
+ * This module contains no DOM, network, rule-selection or calculation logic.
+ */
 
 function normalise(value) {
     return String(value ?? "").trim().toUpperCase();

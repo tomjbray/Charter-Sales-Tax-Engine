@@ -1,3 +1,15 @@
+/**
+ * Charter Sales Tax Engine - rule-tests.js
+ *
+ * Browser-facing regression-test runner for the controlled rule-test dataset.
+ * Loads rule_tests.json, executes enabled scenarios through the same tax-engine
+ * matcher used by the application, compares approved expected outcomes and
+ * reports a diagnostic summary to the console.
+ *
+ * Test failures are diagnostic only; this module does not alter production rule
+ * data or calculation behaviour.
+ */
+
 import {
     findMatchingRule,
     evaluateVatCalculationStatus

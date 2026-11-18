@@ -1,8 +1,13 @@
-// Charter Sales Tax Engine - MAD / Balearic apportionment lookup.
-//
-// This module is intentionally pure: it contains no DOM access and no
-// application globals. It only resolves controlled airport-pair data from
-// mad_apportionment.json.
+/**
+ * Charter Sales Tax Engine - mad-apportionment.js
+ *
+ * Pure lookup helper for controlled Spanish Mainland/Balearic route
+ * apportionment data from mad_apportionment.json. Returns validated taxable and
+ * non-taxable proportions for an airport pair, or null when no usable controlled
+ * route record exists.
+ *
+ * This module contains no DOM, browser state or tax-rule selection logic.
+ */
 
 /**
  * Normalises an airport code for comparison.
