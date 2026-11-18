@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "recordCount": 12,
+  "recordCount": 13,
   "data": {
     "ES_MAINLAND": {
       "territoryCode": "ES_MAINLAND",
@@ -106,6 +106,15 @@
       "territoryType": "REGION",
       "country": "MULTI",
       "description": "Outside South Africa",
+      "eUMember": false,
+      "eUArea": "FALSE",
+      "airportCodes": null
+    },
+    "NON_AU": {
+      "territoryCode": "NON_AU",
+      "territoryType": "REGION",
+      "country": "MULTI",
+      "description": "Outside Australia",
       "eUMember": false,
       "eUArea": "FALSE",
       "airportCodes": null

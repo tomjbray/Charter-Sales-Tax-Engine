@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceTable": "tblVatRules",
-  "ruleCount": 175,
+  "ruleCount": 185,
   "rules": [
     {
       "ruleId": "JNB11",
@@ -24,7 +24,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB12",
@@ -47,7 +48,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB13",
@@ -70,7 +72,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB14",
@@ -93,7 +96,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD70",
@@ -116,7 +120,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD71",
@@ -139,7 +144,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD72",
@@ -162,7 +168,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD73",
@@ -185,7 +192,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD74",
@@ -207,8 +215,9 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
-      "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU01",
@@ -231,7 +240,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU02",
@@ -254,7 +264,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU03",
@@ -277,7 +288,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU04",
@@ -300,7 +312,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU05",
@@ -323,7 +336,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA01",
@@ -346,7 +360,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA10",
@@ -369,7 +384,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA21",
@@ -392,7 +408,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA32",
@@ -415,7 +432,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB01",
@@ -438,7 +456,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB02",
@@ -461,7 +480,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB03",
@@ -484,7 +504,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB04",
@@ -507,7 +528,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD01",
@@ -530,7 +552,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD10",
@@ -553,7 +576,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD19",
@@ -576,7 +600,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD20",
@@ -599,7 +624,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD37",
@@ -622,7 +648,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD38",
@@ -645,7 +672,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD39",
@@ -668,7 +696,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD40",
@@ -691,7 +720,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD41",
@@ -714,7 +744,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD42",
@@ -737,7 +768,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD43",
@@ -760,7 +792,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD44",
@@ -783,7 +816,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD45",
@@ -806,7 +840,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD46",
@@ -829,7 +864,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD47",
@@ -852,7 +888,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD48",
@@ -875,7 +912,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD49",
@@ -898,7 +936,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD50",
@@ -921,7 +960,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD59",
@@ -944,7 +984,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD60",
@@ -967,7 +1008,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD61",
@@ -990,7 +1032,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD62",
@@ -1013,7 +1056,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD63",
@@ -1036,7 +1080,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD64",
@@ -1059,7 +1104,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD65",
@@ -1082,7 +1128,104 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD01",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "AU",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "STANDARD",
+      "rate": 0.1,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian transport subject to GST",
+      "legalReference": "A New Tax System (GST) Act 1999, ss 9-5 and 9-70",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD02",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "NON_AU",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "STANDARD",
+      "rate": 0.1,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian transport subject to GST",
+      "legalReference": "A New Tax System (GST) Act 1999, ss 9-5 and 9-70; s 38-355(1), item 3 not satisfied",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "YES"
+    },
+    {
+      "ruleId": "SYD03",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "NON_AU",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian passenger transport for non-Australian customer purchased while customer was outside Australia",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355 item 3",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "NO"
+    },
+    {
+      "ruleId": "SYD07",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "STANDARD",
+      "rate": 0.1,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian transport subject to GST",
+      "legalReference": "A New Tax System (GST) Act 1999, ss 9-5 and 9-70",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU06",
@@ -1105,7 +1248,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU07",
@@ -1128,7 +1272,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU08",
@@ -1151,7 +1296,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU09",
@@ -1174,7 +1320,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU10",
@@ -1197,7 +1344,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU11",
@@ -1220,7 +1368,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU12",
@@ -1243,7 +1392,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU13",
@@ -1266,7 +1416,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU14",
@@ -1289,7 +1440,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU15",
@@ -1312,7 +1464,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU21",
@@ -1335,7 +1488,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU22",
@@ -1358,7 +1512,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU23",
@@ -1381,7 +1536,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU24",
@@ -1404,7 +1560,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU25",
@@ -1427,7 +1584,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU31",
@@ -1450,7 +1608,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU32",
@@ -1473,7 +1632,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU33",
@@ -1496,7 +1656,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU34",
@@ -1519,7 +1680,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU35",
@@ -1542,7 +1704,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA02",
@@ -1565,7 +1728,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA03",
@@ -1588,7 +1752,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA05",
@@ -1611,7 +1776,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA07",
@@ -1634,7 +1800,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA11",
@@ -1657,7 +1824,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA12",
@@ -1680,7 +1848,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA13",
@@ -1703,7 +1872,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA15",
@@ -1726,7 +1896,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA18",
@@ -1749,7 +1920,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA22",
@@ -1772,7 +1944,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA23",
@@ -1795,7 +1968,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA27",
@@ -1818,7 +1992,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA29",
@@ -1841,7 +2016,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA33",
@@ -1864,7 +2040,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA34",
@@ -1887,7 +2064,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA35",
@@ -1910,7 +2088,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA37",
@@ -1933,7 +2112,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA40",
@@ -1956,7 +2136,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB05",
@@ -1979,7 +2160,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB06",
@@ -2002,7 +2184,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB07",
@@ -2025,7 +2208,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB08",
@@ -2048,7 +2232,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD02",
@@ -2071,7 +2256,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD03",
@@ -2094,7 +2280,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD04",
@@ -2117,7 +2304,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD07",
@@ -2140,7 +2328,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD11",
@@ -2163,7 +2352,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD12",
@@ -2186,7 +2376,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD14",
@@ -2209,7 +2400,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD16",
@@ -2232,7 +2424,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD21",
@@ -2255,7 +2448,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD22",
@@ -2278,7 +2472,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD23",
@@ -2301,7 +2496,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD26",
@@ -2324,7 +2520,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD29",
@@ -2347,7 +2544,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD30",
@@ -2370,7 +2568,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD31",
@@ -2393,7 +2592,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD34",
@@ -2416,7 +2616,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD51",
@@ -2439,7 +2640,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD52",
@@ -2462,7 +2664,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD53",
@@ -2485,7 +2688,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD54",
@@ -2508,7 +2712,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD55",
@@ -2531,7 +2736,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD56",
@@ -2554,7 +2760,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD57",
@@ -2577,7 +2784,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD58",
@@ -2600,7 +2808,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD66",
@@ -2623,7 +2832,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD67",
@@ -2646,7 +2856,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD68",
@@ -2669,7 +2880,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD69",
@@ -2692,7 +2904,104 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD04",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International passenger transport to/from Australia - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 1(a)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD05",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International passenger transport to/from Australia - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 1(b)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD08",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International transport of goods - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 5(a)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD09",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International transport of goods - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 5(b)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU16",
@@ -2715,7 +3024,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU17",
@@ -2738,7 +3048,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU18",
@@ -2761,7 +3072,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU19",
@@ -2784,7 +3096,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU20",
@@ -2807,7 +3120,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU26",
@@ -2830,7 +3144,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU27",
@@ -2853,7 +3168,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU28",
@@ -2876,7 +3192,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU29",
@@ -2899,7 +3216,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU30",
@@ -2922,7 +3240,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU36",
@@ -2945,7 +3264,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU37",
@@ -2968,7 +3288,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU38",
@@ -2991,7 +3312,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU39",
@@ -3014,7 +3336,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU40",
@@ -3037,7 +3360,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU41",
@@ -3060,7 +3384,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU42",
@@ -3083,7 +3408,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU43",
@@ -3106,7 +3432,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU44",
@@ -3129,7 +3456,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "BRU45",
@@ -3152,7 +3480,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA04",
@@ -3175,7 +3504,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA06",
@@ -3198,7 +3528,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA08",
@@ -3221,7 +3552,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA09",
@@ -3244,7 +3576,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA14",
@@ -3267,7 +3600,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA16",
@@ -3290,7 +3624,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA17",
@@ -3313,7 +3648,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA19",
@@ -3336,7 +3672,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA20",
@@ -3359,7 +3696,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA24",
@@ -3382,7 +3720,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA25",
@@ -3405,7 +3744,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA26",
@@ -3428,7 +3768,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA28",
@@ -3451,7 +3792,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA30",
@@ -3474,7 +3816,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA31",
@@ -3497,7 +3840,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA36",
@@ -3520,7 +3864,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA38",
@@ -3543,7 +3888,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA39",
@@ -3566,7 +3912,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA41",
@@ -3589,7 +3936,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "FRA42",
@@ -3612,7 +3960,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB09",
@@ -3635,7 +3984,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "JNB10",
@@ -3658,7 +4008,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD05",
@@ -3681,7 +4032,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD06",
@@ -3704,7 +4056,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD08",
@@ -3727,7 +4080,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD09",
@@ -3750,7 +4104,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD13",
@@ -3773,7 +4128,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD15",
@@ -3796,7 +4152,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD17",
@@ -3819,7 +4176,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD18",
@@ -3842,7 +4200,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD24",
@@ -3865,7 +4224,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD25",
@@ -3888,7 +4248,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD27",
@@ -3911,7 +4272,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD28",
@@ -3934,7 +4296,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD32",
@@ -3957,7 +4320,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD33",
@@ -3980,7 +4344,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD35",
@@ -4003,7 +4368,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     {
       "ruleId": "MAD36",
@@ -4026,7 +4392,56 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD06",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 200,
+      "ruleExplanation": "Passenger transport from a place outside Australia to the same or another place outside Australia is GST-free.",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 1 (c)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    {
+      "ruleId": "SYD10",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 200,
+      "ruleExplanation": "International transport of goods from a place outside Australia to the same or another place outside Australia is GST-free.",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 5(c)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     }
   ],
   "rulesById": {
@@ -4051,7 +4466,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU02": {
       "ruleId": "BRU02",
@@ -4074,7 +4490,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU03": {
       "ruleId": "BRU03",
@@ -4097,7 +4514,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU04": {
       "ruleId": "BRU04",
@@ -4120,7 +4538,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU05": {
       "ruleId": "BRU05",
@@ -4143,7 +4562,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU06": {
       "ruleId": "BRU06",
@@ -4166,7 +4586,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU07": {
       "ruleId": "BRU07",
@@ -4189,7 +4610,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU08": {
       "ruleId": "BRU08",
@@ -4212,7 +4634,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU09": {
       "ruleId": "BRU09",
@@ -4235,7 +4658,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU10": {
       "ruleId": "BRU10",
@@ -4258,7 +4682,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU11": {
       "ruleId": "BRU11",
@@ -4281,7 +4706,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU12": {
       "ruleId": "BRU12",
@@ -4304,7 +4730,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU13": {
       "ruleId": "BRU13",
@@ -4327,7 +4754,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU14": {
       "ruleId": "BRU14",
@@ -4350,7 +4778,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU15": {
       "ruleId": "BRU15",
@@ -4373,7 +4802,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU16": {
       "ruleId": "BRU16",
@@ -4396,7 +4826,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU17": {
       "ruleId": "BRU17",
@@ -4419,7 +4850,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU18": {
       "ruleId": "BRU18",
@@ -4442,7 +4874,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU19": {
       "ruleId": "BRU19",
@@ -4465,7 +4898,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU20": {
       "ruleId": "BRU20",
@@ -4488,7 +4922,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU21": {
       "ruleId": "BRU21",
@@ -4511,7 +4946,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU22": {
       "ruleId": "BRU22",
@@ -4534,7 +4970,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU23": {
       "ruleId": "BRU23",
@@ -4557,7 +4994,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU24": {
       "ruleId": "BRU24",
@@ -4580,7 +5018,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU25": {
       "ruleId": "BRU25",
@@ -4603,7 +5042,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU26": {
       "ruleId": "BRU26",
@@ -4626,7 +5066,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU27": {
       "ruleId": "BRU27",
@@ -4649,7 +5090,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU28": {
       "ruleId": "BRU28",
@@ -4672,7 +5114,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU29": {
       "ruleId": "BRU29",
@@ -4695,7 +5138,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU30": {
       "ruleId": "BRU30",
@@ -4718,7 +5162,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU31": {
       "ruleId": "BRU31",
@@ -4741,7 +5186,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU32": {
       "ruleId": "BRU32",
@@ -4764,7 +5210,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU33": {
       "ruleId": "BRU33",
@@ -4787,7 +5234,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU34": {
       "ruleId": "BRU34",
@@ -4810,7 +5258,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU35": {
       "ruleId": "BRU35",
@@ -4833,7 +5282,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU36": {
       "ruleId": "BRU36",
@@ -4856,7 +5306,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU37": {
       "ruleId": "BRU37",
@@ -4879,7 +5330,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU38": {
       "ruleId": "BRU38",
@@ -4902,7 +5354,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU39": {
       "ruleId": "BRU39",
@@ -4925,7 +5378,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU40": {
       "ruleId": "BRU40",
@@ -4948,7 +5402,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU41": {
       "ruleId": "BRU41",
@@ -4971,7 +5426,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU42": {
       "ruleId": "BRU42",
@@ -4994,7 +5450,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU43": {
       "ruleId": "BRU43",
@@ -5017,7 +5474,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU44": {
       "ruleId": "BRU44",
@@ -5040,7 +5498,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "BRU45": {
       "ruleId": "BRU45",
@@ -5063,7 +5522,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA01": {
       "ruleId": "FRA01",
@@ -5086,7 +5546,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA02": {
       "ruleId": "FRA02",
@@ -5109,7 +5570,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA03": {
       "ruleId": "FRA03",
@@ -5132,7 +5594,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA04": {
       "ruleId": "FRA04",
@@ -5155,7 +5618,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA05": {
       "ruleId": "FRA05",
@@ -5178,7 +5642,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA06": {
       "ruleId": "FRA06",
@@ -5201,7 +5666,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA07": {
       "ruleId": "FRA07",
@@ -5224,7 +5690,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA08": {
       "ruleId": "FRA08",
@@ -5247,7 +5714,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA09": {
       "ruleId": "FRA09",
@@ -5270,7 +5738,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA10": {
       "ruleId": "FRA10",
@@ -5293,7 +5762,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA11": {
       "ruleId": "FRA11",
@@ -5316,7 +5786,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA12": {
       "ruleId": "FRA12",
@@ -5339,7 +5810,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA13": {
       "ruleId": "FRA13",
@@ -5362,7 +5834,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA14": {
       "ruleId": "FRA14",
@@ -5385,7 +5858,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA15": {
       "ruleId": "FRA15",
@@ -5408,7 +5882,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA16": {
       "ruleId": "FRA16",
@@ -5431,7 +5906,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA17": {
       "ruleId": "FRA17",
@@ -5454,7 +5930,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA18": {
       "ruleId": "FRA18",
@@ -5477,7 +5954,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA19": {
       "ruleId": "FRA19",
@@ -5500,7 +5978,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA20": {
       "ruleId": "FRA20",
@@ -5523,7 +6002,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA21": {
       "ruleId": "FRA21",
@@ -5546,7 +6026,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA22": {
       "ruleId": "FRA22",
@@ -5569,7 +6050,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA23": {
       "ruleId": "FRA23",
@@ -5592,7 +6074,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA24": {
       "ruleId": "FRA24",
@@ -5615,7 +6098,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA25": {
       "ruleId": "FRA25",
@@ -5638,7 +6122,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA26": {
       "ruleId": "FRA26",
@@ -5661,7 +6146,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA27": {
       "ruleId": "FRA27",
@@ -5684,7 +6170,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA28": {
       "ruleId": "FRA28",
@@ -5707,7 +6194,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA29": {
       "ruleId": "FRA29",
@@ -5730,7 +6218,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA30": {
       "ruleId": "FRA30",
@@ -5753,7 +6242,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA31": {
       "ruleId": "FRA31",
@@ -5776,7 +6266,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA32": {
       "ruleId": "FRA32",
@@ -5799,7 +6290,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA33": {
       "ruleId": "FRA33",
@@ -5822,7 +6314,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA34": {
       "ruleId": "FRA34",
@@ -5845,7 +6338,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA35": {
       "ruleId": "FRA35",
@@ -5868,7 +6362,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA36": {
       "ruleId": "FRA36",
@@ -5891,7 +6386,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA37": {
       "ruleId": "FRA37",
@@ -5914,7 +6410,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA38": {
       "ruleId": "FRA38",
@@ -5937,7 +6434,8 @@
       "effectiveTo": null,
       "DirectExporter": "YES",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA39": {
       "ruleId": "FRA39",
@@ -5960,7 +6458,8 @@
       "effectiveTo": null,
       "DirectExporter": "NO",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA40": {
       "ruleId": "FRA40",
@@ -5983,7 +6482,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA41": {
       "ruleId": "FRA41",
@@ -6006,7 +6506,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "FRA42": {
       "ruleId": "FRA42",
@@ -6029,7 +6530,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB01": {
       "ruleId": "JNB01",
@@ -6052,7 +6554,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB02": {
       "ruleId": "JNB02",
@@ -6075,7 +6578,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB03": {
       "ruleId": "JNB03",
@@ -6098,7 +6602,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB04": {
       "ruleId": "JNB04",
@@ -6121,7 +6626,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB05": {
       "ruleId": "JNB05",
@@ -6144,7 +6650,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB06": {
       "ruleId": "JNB06",
@@ -6167,7 +6674,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB07": {
       "ruleId": "JNB07",
@@ -6190,7 +6698,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB08": {
       "ruleId": "JNB08",
@@ -6213,7 +6722,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB09": {
       "ruleId": "JNB09",
@@ -6236,7 +6746,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB10": {
       "ruleId": "JNB10",
@@ -6259,7 +6770,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "NO"
+      "HomeRoundTrip": "NO",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB11": {
       "ruleId": "JNB11",
@@ -6282,7 +6794,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB12": {
       "ruleId": "JNB12",
@@ -6305,7 +6818,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB13": {
       "ruleId": "JNB13",
@@ -6328,7 +6842,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "JNB14": {
       "ruleId": "JNB14",
@@ -6351,7 +6866,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "YES"
+      "HomeRoundTrip": "YES",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD01": {
       "ruleId": "MAD01",
@@ -6374,7 +6890,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD02": {
       "ruleId": "MAD02",
@@ -6397,7 +6914,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD03": {
       "ruleId": "MAD03",
@@ -6420,7 +6938,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD04": {
       "ruleId": "MAD04",
@@ -6443,7 +6962,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD05": {
       "ruleId": "MAD05",
@@ -6466,7 +6986,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD06": {
       "ruleId": "MAD06",
@@ -6489,7 +7010,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD07": {
       "ruleId": "MAD07",
@@ -6512,7 +7034,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD08": {
       "ruleId": "MAD08",
@@ -6535,7 +7058,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD09": {
       "ruleId": "MAD09",
@@ -6558,7 +7082,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD10": {
       "ruleId": "MAD10",
@@ -6581,7 +7106,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD11": {
       "ruleId": "MAD11",
@@ -6604,7 +7130,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD12": {
       "ruleId": "MAD12",
@@ -6627,7 +7154,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD13": {
       "ruleId": "MAD13",
@@ -6650,7 +7178,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD14": {
       "ruleId": "MAD14",
@@ -6673,7 +7202,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD15": {
       "ruleId": "MAD15",
@@ -6696,7 +7226,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD16": {
       "ruleId": "MAD16",
@@ -6719,7 +7250,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD17": {
       "ruleId": "MAD17",
@@ -6742,7 +7274,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD18": {
       "ruleId": "MAD18",
@@ -6765,7 +7298,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD19": {
       "ruleId": "MAD19",
@@ -6788,7 +7322,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD20": {
       "ruleId": "MAD20",
@@ -6811,7 +7346,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD21": {
       "ruleId": "MAD21",
@@ -6834,7 +7370,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD22": {
       "ruleId": "MAD22",
@@ -6857,7 +7394,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD23": {
       "ruleId": "MAD23",
@@ -6880,7 +7418,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD24": {
       "ruleId": "MAD24",
@@ -6903,7 +7442,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD25": {
       "ruleId": "MAD25",
@@ -6926,7 +7466,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD26": {
       "ruleId": "MAD26",
@@ -6949,7 +7490,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD27": {
       "ruleId": "MAD27",
@@ -6972,7 +7514,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD28": {
       "ruleId": "MAD28",
@@ -6995,7 +7538,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD29": {
       "ruleId": "MAD29",
@@ -7018,7 +7562,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD30": {
       "ruleId": "MAD30",
@@ -7041,7 +7586,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD31": {
       "ruleId": "MAD31",
@@ -7064,7 +7610,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD32": {
       "ruleId": "MAD32",
@@ -7087,7 +7634,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD33": {
       "ruleId": "MAD33",
@@ -7110,7 +7658,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD34": {
       "ruleId": "MAD34",
@@ -7133,7 +7682,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD35": {
       "ruleId": "MAD35",
@@ -7156,7 +7706,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD36": {
       "ruleId": "MAD36",
@@ -7179,7 +7730,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD37": {
       "ruleId": "MAD37",
@@ -7202,7 +7754,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD38": {
       "ruleId": "MAD38",
@@ -7225,7 +7778,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD39": {
       "ruleId": "MAD39",
@@ -7248,7 +7802,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD40": {
       "ruleId": "MAD40",
@@ -7271,7 +7826,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD41": {
       "ruleId": "MAD41",
@@ -7294,7 +7850,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD42": {
       "ruleId": "MAD42",
@@ -7317,7 +7874,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD43": {
       "ruleId": "MAD43",
@@ -7340,7 +7898,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD44": {
       "ruleId": "MAD44",
@@ -7363,7 +7922,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD45": {
       "ruleId": "MAD45",
@@ -7386,7 +7946,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD46": {
       "ruleId": "MAD46",
@@ -7409,7 +7970,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD47": {
       "ruleId": "MAD47",
@@ -7432,7 +7994,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD48": {
       "ruleId": "MAD48",
@@ -7455,7 +8018,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD49": {
       "ruleId": "MAD49",
@@ -7478,7 +8042,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD50": {
       "ruleId": "MAD50",
@@ -7501,7 +8066,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD51": {
       "ruleId": "MAD51",
@@ -7524,7 +8090,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD52": {
       "ruleId": "MAD52",
@@ -7547,7 +8114,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD53": {
       "ruleId": "MAD53",
@@ -7570,7 +8138,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD54": {
       "ruleId": "MAD54",
@@ -7593,7 +8162,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD55": {
       "ruleId": "MAD55",
@@ -7616,7 +8186,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD56": {
       "ruleId": "MAD56",
@@ -7639,7 +8210,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD57": {
       "ruleId": "MAD57",
@@ -7662,7 +8234,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD58": {
       "ruleId": "MAD58",
@@ -7685,7 +8258,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD59": {
       "ruleId": "MAD59",
@@ -7708,7 +8282,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "NO",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD60": {
       "ruleId": "MAD60",
@@ -7731,7 +8306,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD61": {
       "ruleId": "MAD61",
@@ -7754,7 +8330,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD62": {
       "ruleId": "MAD62",
@@ -7777,7 +8354,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD63": {
       "ruleId": "MAD63",
@@ -7800,7 +8378,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD64": {
       "ruleId": "MAD64",
@@ -7823,7 +8402,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD65": {
       "ruleId": "MAD65",
@@ -7846,7 +8426,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD66": {
       "ruleId": "MAD66",
@@ -7869,7 +8450,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD67": {
       "ruleId": "MAD67",
@@ -7892,7 +8474,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD68": {
       "ruleId": "MAD68",
@@ -7915,7 +8498,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD69": {
       "ruleId": "MAD69",
@@ -7938,7 +8522,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "ANY",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD70": {
       "ruleId": "MAD70",
@@ -7961,7 +8546,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD71": {
       "ruleId": "MAD71",
@@ -7984,7 +8570,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD72": {
       "ruleId": "MAD72",
@@ -8007,7 +8594,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD73": {
       "ruleId": "MAD73",
@@ -8030,7 +8618,8 @@
       "effectiveTo": null,
       "DirectExporter": "ANY",
       "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     },
     "MAD74": {
       "ruleId": "MAD74",
@@ -8052,8 +8641,249 @@
       "effectiveFrom": "2026-01-01",
       "effectiveTo": null,
       "DirectExporter": "ANY",
-      "QualifyingMedevac": "YES",
-      "HomeRoundTrip": "ANY"
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD01": {
+      "ruleId": "SYD01",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "AU",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "STANDARD",
+      "rate": 0.1,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian transport subject to GST",
+      "legalReference": "A New Tax System (GST) Act 1999, ss 9-5 and 9-70",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD02": {
+      "ruleId": "SYD02",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "NON_AU",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "STANDARD",
+      "rate": 0.1,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian transport subject to GST",
+      "legalReference": "A New Tax System (GST) Act 1999, ss 9-5 and 9-70; s 38-355(1), item 3 not satisfied",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "YES"
+    },
+    "SYD03": {
+      "ruleId": "SYD03",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "NON_AU",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian passenger transport for non-Australian customer purchased while customer was outside Australia",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355 item 3",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "NO"
+    },
+    "SYD04": {
+      "ruleId": "SYD04",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International passenger transport to/from Australia - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 1(a)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD05": {
+      "ruleId": "SYD05",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International passenger transport to/from Australia - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 1(b)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD06": {
+      "ruleId": "SYD06",
+      "entity": "SYD",
+      "charterType": "PASSENGER",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 200,
+      "ruleExplanation": "Passenger transport from a place outside Australia to the same or another place outside Australia is GST-free.",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 1 (c)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD07": {
+      "ruleId": "SYD07",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "AU",
+      "treatment": "STANDARD",
+      "rate": 0.1,
+      "rulePriority": 300,
+      "ruleExplanation": "Domestic Australian transport subject to GST",
+      "legalReference": "A New Tax System (GST) Act 1999, ss 9-5 and 9-70",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD08": {
+      "ruleId": "SYD08",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International transport of goods - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 5(a)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD09": {
+      "ruleId": "SYD09",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 250,
+      "ruleExplanation": "International transport of goods - GST-free",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 5(b)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
+    },
+    "SYD10": {
+      "ruleId": "SYD10",
+      "entity": "SYD",
+      "charterType": "CARGO",
+      "customerType": "ANY",
+      "customerLocation": "ANY",
+      "vatRegistered": "ANY",
+      "originTerritory": "NON_AU",
+      "destinationTerritory": "NON_AU",
+      "treatment": "ZERO",
+      "rate": 0,
+      "rulePriority": 200,
+      "ruleExplanation": "International transport of goods from a place outside Australia to the same or another place outside Australia is GST-free.",
+      "legalReference": "A New Tax System (GST) Act 1999, s 38-355(1), item 5(c)",
+      "taxablePercent": 1,
+      "calculationMethod": "STANDARD",
+      "ruleComponents": null,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null,
+      "DirectExporter": "ANY",
+      "QualifyingMedevac": "ANY",
+      "HomeRoundTrip": "ANY",
+      "CustomerInHomeCountryAtPurchase": "ANY"
     }
   }
 }

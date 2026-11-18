@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceTable": "tblInputRequirements",
-  "inputCount": 2,
+  "inputCount": 3,
   "inputs": [
     {
       "ruleGroup": "DE_CARGO_EXPORT",
@@ -26,6 +26,18 @@
       "appliesToCharterType": "Passenger",
       "required": true,
       "displayOrder": 2
+    },
+    {
+      "ruleGroup": "AU_INCOUNTRY",
+      "inputKey": "CustomerInHommeCountryAtPurchase",
+      "inputLabel": "Was the customer in Australia when the charter was purchased?",
+      "inputType": "Checkbox",
+      "tooltip": "Relevant to domestic Australian passenger charters for non-Australian customers. The GST-free treatment applies only where the customer was outside Australia when the charter was purchased.",
+      "appliesToEntity": "SYD",
+      "appliesToCountry": "AU",
+      "appliesToCharterType": "Passenger",
+      "required": true,
+      "displayOrder": 3
     }
   ],
   "inputsByKey": {
@@ -55,6 +67,20 @@
         "appliesToCharterType": "Passenger",
         "required": true,
         "displayOrder": 2
+      }
+    ],
+    "CustomerInHommeCountryAtPurchase": [
+      {
+        "ruleGroup": "AU_INCOUNTRY",
+        "inputKey": "CustomerInHommeCountryAtPurchase",
+        "inputLabel": "Was the customer in Australia when the charter was purchased?",
+        "inputType": "Checkbox",
+        "tooltip": "Relevant to domestic Australian passenger charters for non-Australian customers. The GST-free treatment applies only where the customer was outside Australia when the charter was purchased.",
+        "appliesToEntity": "SYD",
+        "appliesToCountry": "AU",
+        "appliesToCharterType": "Passenger",
+        "required": true,
+        "displayOrder": 3
       }
     ]
   }

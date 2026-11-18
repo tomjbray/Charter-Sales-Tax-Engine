@@ -149,8 +149,8 @@
       "country": "AU",
       "vATRegistration": "47156345809",
       "taxName": "GST",
-      "outsideHomeRegion": null,
-      "active": "FALSE"
+      "outsideHomeRegion": "NON_AU",
+      "active": "TRUE"
     },
     "YTZ": {
       "entityCode": "YTZ",
